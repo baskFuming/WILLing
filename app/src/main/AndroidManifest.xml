@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.xxx.willing">
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络请求 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 监听网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 监听WIFI状态 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 读取文件 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 写入文件 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 读取相机 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 读取相册 -->
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+
+    <application
+        android:name=".base.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ui.main.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="375" />
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="667" /> <!-- 7.0文件访问权限 -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".ui.main.SweepActivity" />
+
+        <activity android:name=".ui.login.activity.SelectCountyActivity" />
+        <activity android:name=".ui.login.activity.LoginActivity" />
+        <activity android:name=".ui.login.activity.RegisterActivity" />
+        <activity android:name=".ui.login.activity.ForgetLoginPswActivity" />
+
+        <activity android:name=".ui.my.activity.AccountSettingActivity" />
+        <activity android:name=".ui.my.activity.CallMeActivity" />
+        <activity android:name=".ui.my.activity.FeedBackActivity" />
+        <activity android:name=".ui.my.activity.InviteFriendActivity" />
+        <activity android:name=".ui.my.activity.LanguageActivity" />
+        <activity android:name=".ui.my.activity.UseHelpActivity" />
+
+        <activity android:name=".ui.my.activity.psw.ModifyLoginPswActivity" />
+        <activity android:name=".ui.my.activity.psw.ModifyPayPswActivity" />
+        <activity android:name=".ui.my.activity.psw.PasswordSettingActivity" />
+        <activity android:name=".ui.my.activity.psw.SettingPayPswActivity" />
+
+    </application>
+
+</manifest>

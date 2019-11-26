@@ -1,0 +1,62 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="TestTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- 正式 -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+    <!-- 闪屏 -->
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--<item name="android:windowBackground">@drawable/anim_splash</item>-->
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!--PopupWindow进出场动画-->
+    <style name="showPopupAnimation" parent="android:Animation">
+        <item name="android:windowExitAnimation">@anim/anim_popup_out</item>
+        <item name="android:windowEnterAnimation">@anim/anim_popup_in</item>
+    </style>
+
+    <!-- 主按钮样式 -->
+    <style name="MainButtonStyle">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/selector_main_btn</item>
+        <!--<item name="android:textColor">@color/colorTextColorBtn</item>-->
+        <item name="android:textSize" tools:ignore="SpUsage">18dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- 登陆按钮样式 -->
+    <style name="LoginButtonStyle">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/selector_login_btn</item>
+        <!--<item name="android:textColor">@color/colorTextColorBtn</item>-->
+        <item name="android:textSize" tools:ignore="SpUsage">18dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- 主输入框样式 -->
+    <style name="MainEditStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">10dp</item>
+        <!--<item name="android:textColor">@color/colorTextColorMain</item>-->
+        <!--<item name="android:textColorHint">@color/colorTextColorHint</item>-->
+        <item name="android:textSize" tools:ignore="SpUsage">14dp</item>
+    </style>
+
+</resources>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.xxx.willing.ui.login.activity.RegisterActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/register_account_return"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="#00000000" />
+
+        <ImageButton
+            android:id="@+id/switch_language"
+            android:layout_width="50dp"
+            android:visibility="gone"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:background="#00000000" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="66dp"
+        android:layout_height="72dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/ic_launcher"
+        android:visibility="gone"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="111dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_marginBottom="39dp"
+        android:textColor="#333333"
+        android:textSize="18dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="22dp">
+
+        <TextView
+            android:id="@+id/register_selector_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="5dp"
+            android:text="+86"
+
+            android:textSize="14dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#E5E5E5" />
+
+        <EditText
+            android:id="@+id/register_account_edit"
+            style="@style/MainEditStyle"
+            android:layout_toRightOf="@+id/register_selector_phone"
+            android:background="@null"
+            android:hint="@string/register_hint_account"
+            android:inputType="phone"
+            android:maxLength="20" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#E5E5E5" />
+
+        <EditText
+            android:id="@+id/register_sms_code_edit"
+            style="@style/MainEditStyle"
+            android:background="@null"
+            android:hint="@string/register_hint_sms_code"
+            android:inputType="phone"
+            android:maxLength="6" />
+
+        <TextView
+            android:id="@+id/register_send_sms_code"
+            android:layout_width="80dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:text="@string/forget_login_psw_send_sms_code"
+
+            android:textSize="12dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#E5E5E5" />
+
+        <EditText
+            android:id="@+id/register_password_edit"
+            style="@style/MainEditStyle"
+            android:background="@null"
+            android:digits="@string/password"
+            android:hint="@string/register_hint_password"
+            android:inputType="phone"
+            android:maxLength="20"
+            android:singleLine="true"/>
+
+        <CheckBox
+            android:id="@+id/register_password_eye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="10dp"
+            android:button="@drawable/selector_password" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/register_btn"
+        style="@style/LoginButtonStyle"
+        android:layout_width="330dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="44dp"
+        android:text="@string/register_btn" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/register_login"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/register_login"
+
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/register_forger_password"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="@string/register_forger"
+
+            android:textSize="14dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

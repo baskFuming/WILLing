@@ -16,14 +16,9 @@ import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.base.BaseBean;
-import com.xxx.willing.model.sp.SharedConst;
-import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.DownTimeUtil;
 import com.xxx.willing.model.utils.KeyBoardUtil;
-import com.xxx.willing.model.utils.LocalManageUtil;
 import com.xxx.willing.model.utils.ToastUtil;
-
-import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -48,6 +43,8 @@ public class RegisterActivity extends BaseTitleActivity {
     EditText mSMSCodeEdit;
     @BindView(R.id.register_password_edit)
     EditText mPasswordEdit;
+    @BindView(R.id.register_invite_edit)
+    EditText mInviteEdit;
 
     @BindView(R.id.register_selector_phone)
     TextView mSelectorCounty;
@@ -56,6 +53,8 @@ public class RegisterActivity extends BaseTitleActivity {
 
     @BindView(R.id.register_password_eye)
     CheckBox mPasswordEye;
+    @BindView(R.id.register_invite_eye)
+    CheckBox mInviteEye;
 
     private DownTimeUtil mDownTimeUtil;
     private String area = "86";
@@ -77,44 +76,36 @@ public class RegisterActivity extends BaseTitleActivity {
         KeyBoardUtil.closeKeyBord(this, mPasswordEdit);
     }
 
-    @OnClick({R.id.register_account_return, R.id.register_selector_phone,
-            R.id.register_password_eye, R.id.register_send_sms_code,
-            R.id.register_btn, R.id.switch_language, R.id.register_login, R.id.register_forger_password})
+    @OnClick({
+            R.id.register_selector_phone,
+            R.id.register_password_eye,
+            R.id.register_invite_eye,
+            R.id.register_send_sms_code,
+            R.id.register_btn,
+            R.id.register_account_clean,
+            R.id.register_login})
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.register_login:
                 LoginActivity.actionStart(this);
                 break;
-            case R.id.register_forger_password:
-                ForgetLoginPswActivity.actionStart(this);
-                break;
-            case R.id.register_account_return:
-                finish();
-                break;
             case R.id.register_selector_phone:
                 SelectCountyActivity.actionStart(this);
                 break;
+            case R.id.register_account_clean:
+                mAccountEdit.setText("");
+                break;
             case R.id.register_password_eye:
                 KeyBoardUtil.setInputTypePassword(mPasswordEye.isChecked(), mPasswordEdit);
+                break;
+            case R.id.register_invite_eye:
+                KeyBoardUtil.setInputTypePassword(mInviteEye.isChecked(), mInviteEdit);
                 break;
             case R.id.register_send_sms_code:
                 sendSMSCode();
                 break;
             case R.id.register_btn:
                 register();
-                break;
-            case R.id.switch_language:
-                String nowLanguage = SharedPreferencesUtil.getInstance().getString(SharedConst.CONSTANT_LAUNCHER);
-                switch (nowLanguage) {
-                    case LocalManageUtil.LANGUAGE_CN:
-                        SharedPreferencesUtil.getInstance().saveString(SharedConst.CONSTANT_LAUNCHER, LocalManageUtil.LANGUAGE_CN);
-                        EventBus.getDefault().post(ConfigClass.EVENT_LANGUAGE_TAG);
-                        break;
-                    case LocalManageUtil.LANGUAGE_US:
-                        SharedPreferencesUtil.getInstance().saveString(SharedConst.CONSTANT_LAUNCHER, LocalManageUtil.LANGUAGE_US);
-                        EventBus.getDefault().post(ConfigClass.EVENT_LANGUAGE_TAG);
-                        break;
-                }
                 break;
         }
     }
@@ -201,6 +192,7 @@ public class RegisterActivity extends BaseTitleActivity {
         final String account = mAccountEdit.getText().toString();
         String smsCode = mSMSCodeEdit.getText().toString();
         final String password = mPasswordEdit.getText().toString();
+        final String invite = mInviteEdit.getText().toString();
 
         if (account.isEmpty()) {
             ToastUtil.showToast(getString(R.string.register_error_1));
@@ -232,6 +224,12 @@ public class RegisterActivity extends BaseTitleActivity {
             showEditError(mPasswordEdit);
             return;
         }
+        if (invite.isEmpty()) {
+            ToastUtil.showToast(getString(R.string.register_error_7));
+            showEditError(mInviteEdit);
+            return;
+        }
+
 
         Api.getInstance().register(account, password, smsCode, area)
                 .subscribeOn(Schedulers.io())

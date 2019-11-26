@@ -43,8 +43,8 @@
     <style name="LoginButtonStyle">
         <item name="android:layout_gravity">center</item>
         <item name="android:background">@drawable/selector_login_btn</item>
-        <!--<item name="android:textColor">@color/colorTextColorBtn</item>-->
-        <item name="android:textSize" tools:ignore="SpUsage">18dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">17dp</item>
         <item name="android:textAllCaps">false</item>
     </style>
 
@@ -53,10 +53,10 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:paddingLeft">10dp</item>
-        <!--<item name="android:textColor">@color/colorTextColorMain</item>-->
-        <!--<item name="android:textColorHint">@color/colorTextColorHint</item>-->
-        <item name="android:textSize" tools:ignore="SpUsage">14dp</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:textColorHint">#999999</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">17dp</item>
     </style>
 
 </resources>

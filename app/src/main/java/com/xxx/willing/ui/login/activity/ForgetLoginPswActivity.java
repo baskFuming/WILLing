@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.xxx.willing.ConfigClass;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseActivity;
+import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.base.BaseBean;
@@ -30,7 +31,7 @@ import io.reactivex.schedulers.Schedulers;
  * @Page 忘记密码页
  * @Author xxx
  */
-public class ForgetLoginPswActivity extends BaseActivity {
+public class ForgetLoginPswActivity extends BaseTitleActivity {
 
     public static void actionStart(Activity activity) {
         Intent intent = new Intent(activity, ForgetLoginPswActivity.class);
@@ -59,6 +60,10 @@ public class ForgetLoginPswActivity extends BaseActivity {
     private DownTimeUtil mDownTimeUtil;
     private String area = "86";
 
+    @Override
+    protected String initTitle() {
+        return getString(R.string.forget_login_psw_title);
+    }
 
     @Override
     protected int getLayoutId() {
@@ -73,12 +78,9 @@ public class ForgetLoginPswActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.forget_login_psw_return, R.id.forget_login_psw_selector_phone, R.id.forget_login_psw_send_sms_code, R.id.forget_login_psw_btn, R.id.forget_login_psw_password_eye, R.id.forget_login_psw_password_again_eye})
+    @OnClick({R.id.forget_login_psw_selector_phone, R.id.forget_login_psw_send_sms_code, R.id.forget_login_psw_btn, R.id.forget_login_psw_password_eye, R.id.forget_login_psw_password_again_eye})
     public void OnClick(View view) {
         switch (view.getId()) {
-            case R.id.forget_login_psw_return:
-                finish();
-                break;
             case R.id.forget_login_psw_selector_phone:
                 SelectCountyActivity.actionStart(this);
                 break;
@@ -252,5 +254,4 @@ public class ForgetLoginPswActivity extends BaseActivity {
                     }
                 });
     }
-
 }

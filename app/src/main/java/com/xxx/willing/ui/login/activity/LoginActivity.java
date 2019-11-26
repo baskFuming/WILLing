@@ -13,6 +13,7 @@ import com.xxx.willing.ConfigClass;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.ActivityManager;
 import com.xxx.willing.base.activity.BaseActivity;
+import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.LoginBean;
@@ -36,7 +37,7 @@ import io.reactivex.schedulers.Schedulers;
  * @Page 登录页面
  * @Author xxx
  */
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseTitleActivity {
 
     public static void actionStart(Activity activity) {
         Intent intent = new Intent(activity, LoginActivity.class);
@@ -53,7 +54,11 @@ public class LoginActivity extends BaseActivity {
     CheckBox mPasswordEye;
 
     private String area = "86";
-    private String language;
+
+    @Override
+    protected String initTitle() {
+        return getString(R.string.login_title);
+    }
 
     @Override
     protected int getLayoutId() {
@@ -63,18 +68,20 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void initData() {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
         //保存记录
         String phone = SharedPreferencesUtil.getInstance().getString(SharedConst.VALUE_USER_PHONE);
         mAccountEdit.setText(phone);
-        KeyBoardUtil.closeKeyBord(this, mAccountEdit);
     }
 
-    @OnClick({R.id.login_return, R.id.login_password_eye, R.id.login_register, R.id.login_forger_password, R.id.login_btn, R.id.switch_language
-            , R.id.login_selector_phone})
+    @OnClick({R.id.login_password_eye, R.id.login_account_clean, R.id.login_register, R.id.login_forger_password, R.id.login_btn, R.id.login_selector_phone})
     public void OnClick(View view) {
         switch (view.getId()) {
-            case R.id.login_return:
-                finish();
+            case R.id.login_selector_phone:
+                SelectCountyActivity.actionStart(this);
+                break;
+            case R.id.login_account_clean:
+                mAccountEdit.setText("");
                 break;
             case R.id.login_password_eye:
                 KeyBoardUtil.setInputTypePassword(mPasswordEye.isChecked(), mPasswordEdit);
@@ -87,19 +94,6 @@ public class LoginActivity extends BaseActivity {
                 break;
             case R.id.login_btn:
                 login();
-                break;
-            case R.id.switch_language:
-                String nowLanguage = SharedPreferencesUtil.getInstance().getString(SharedConst.CONSTANT_LAUNCHER);
-                if (nowLanguage.equals(LocalManageUtil.LANGUAGE_CN)) {
-                    SharedPreferencesUtil.getInstance().saveString(SharedConst.CONSTANT_LAUNCHER, LocalManageUtil.LANGUAGE_US);
-                    EventBus.getDefault().post(ConfigClass.EVENT_LANGUAGE_TAG);
-                } else if (nowLanguage.equals(LocalManageUtil.LANGUAGE_US)) {
-                    SharedPreferencesUtil.getInstance().saveString(SharedConst.CONSTANT_LAUNCHER, LocalManageUtil.LANGUAGE_CN);
-                    EventBus.getDefault().post(ConfigClass.EVENT_LANGUAGE_TAG);
-                }
-                break;
-            case R.id.login_selector_phone:
-                SelectCountyActivity.actionStart(this);
                 break;
         }
     }

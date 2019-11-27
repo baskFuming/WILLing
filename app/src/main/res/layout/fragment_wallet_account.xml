@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.wallet.fragment.WalletAccountFragment">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/main_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="112dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:background="@mipmap/wallet_account_bg"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的账户"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/wallet_account_total_asset"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0"
+                        android:textColor="#FFFFFF"
+                        android:textSize="27dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:text="GVI"
+                        android:textColor="#FFFFFF"
+                        android:textSize="17dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/main_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <include layout="@layout/include_not_data" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

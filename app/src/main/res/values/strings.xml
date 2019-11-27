@@ -202,5 +202,8 @@
     <string name="call_my_save">保存二维码</string>
     <string name="call_my_we_chat">微信</string>
     <string name="main_call_my">联系我们</string>
+    <string name="wallet_release_type">释放类型</string>
+    <string name="wallet_release_number">数量</string>
+    <string name="wallet_release_time">时间</string>
 
 </resources>

@@ -38,6 +38,11 @@ public class UpdateWindow extends BaseDialog {
         setCancelable(false); // 是否可以按“返回键”消失
     }
 
+    @Override
+    protected double setWidth() {
+        return 0.8;
+    }
+
     @OnClick({R.id.window_update_true})
     public void onClick(View v) {
         switch (v.getId()) {

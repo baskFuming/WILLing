@@ -90,20 +90,16 @@ public class MainActivity extends BaseActivity {
         //初始化双击退出
         exitAppUtil = ExitAppUtil.getInstance();
 
-        //检测是否设置过支付密码
-        checkIsSettingPayPassword();
-
-        //版本更新
-        if (!BuildConfig.DEBUG) {
-            checkAppVersion();
-        }
+//        //检测是否设置过支付密码
+//        checkIsSettingPayPassword();
+//
+//        //版本更新
+//        if (!BuildConfig.DEBUG) {
+//            checkAppVersion();
+//        }
 
         //加载首页数据
         selectorItem();
-
-        //加载用户信息
-        loadInfo();
-
     }
 
     @OnClick({R.id.main_vote, R.id.main_app, R.id.main_wallet, R.id.main_my})
@@ -176,12 +172,12 @@ public class MainActivity extends BaseActivity {
             case APP_TYPE:
                 mAppImage.setImageResource(R.mipmap.main_app_selection);
                 mAppText.setTextColor(getResources().getColor(R.color.colorMainTrue));
-                FragmentManager.replaceFragment(this, WalletFragment.class, R.id.main_frame);
+                FragmentManager.replaceFragment(this, AppFragment.class, R.id.main_frame);
                 break;
             case WALLET_TYPE:
                 mWalletImage.setImageResource(R.mipmap.main_wallet_selection);
                 mWalletText.setTextColor(getResources().getColor(R.color.colorMainTrue));
-                FragmentManager.replaceFragment(this, AppFragment.class, R.id.main_frame);
+                FragmentManager.replaceFragment(this, WalletFragment.class, R.id.main_frame);
                 break;
             case MY_TYPE:
                 mMyImage.setImageResource(R.mipmap.main_my_selection);

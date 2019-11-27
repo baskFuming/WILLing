@@ -1,7 +1,5 @@
 package com.xxx.willing.ui.main;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,8 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.xxx.willing.ConfigClass;
 import com.xxx.willing.model.sp.SharedConst;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
-import com.xxx.willing.ui.login.activity.LoginActivity;
-import com.xxx.willing.ui.login.activity.SelectCountyActivity;
 
 import java.lang.ref.WeakReference;
 
@@ -41,11 +37,14 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void checkUI() {
-        if (isLogin) {
-            MainActivity.actionStart(this);
-        } else {
-            LoginActivity.actionStart(this);
-        }
+//        if (isLogin) {
+//            MainActivity.actionStart(this);
+//        } else {
+//            LoginActivity.actionStart(this);
+//        }
+//        finish();
+
+        MainActivity.actionStart(this);
         finish();
     }
 

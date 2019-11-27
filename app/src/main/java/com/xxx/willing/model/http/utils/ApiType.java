@@ -7,16 +7,11 @@ public class ApiType {
 
     public static final String HOME_LOCATION = "0";   //轮播图位置
 
-    //钱包列表是否开启兑换
-    public static final int CLOSE_EXCHANGE_TYPE = 0;
-    public static final int OPEN_EXCHANGE_TYPE = 1;
-
-    //钱包列表是否开启理财
-    public static final int CLOSE_FINANC_TYPE = 0;
-    public static final int OPEN_FINANC_TYPE = 1;
-
-
-    //理财记录type
-    public static final int DEPOSIT_RECORD_IN_TYPE = 0;
-    public static final int DEPOSIT_RECORD_OUT_TYPE = 1;
+    //转账 收款类型
+    public static final int TRANSFER_TYPE = 0;
+    public static final int RECHARGE_TYPE = 1;
+    //转账状态
+    public static final int TRANSFER_WAIT_STATUS = 0;   //等待打包
+    public static final int RECHARGE_SUCCESS_STATUS = 1;       //交易成功
+    public static final int TRANSFER_FAIL_TYPE = 2;          //交易失败
 }

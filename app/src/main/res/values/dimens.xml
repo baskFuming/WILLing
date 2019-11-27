@@ -1,7 +1,6 @@
 <resources>
     <!--二维码大小-->
-    <dimen name="zxCode_size">170dp</dimen>
-    <dimen name="text_size">14dp</dimen>
+    <dimen name="zxCode_size">150dp</dimen>
 
     <dimen name="zxCode_call_me_size">130dp</dimen>
 

@@ -10,21 +10,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@mipmap/my_background">
+
         <ImageView
             android:id="@+id/img_sign"
-            android:layout_marginTop="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerHorizontal="true"
             android:layout_width="22dp"
             android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
-            android:src="@mipmap/sign"/>
+            android:layout_marginTop="40dp"
+            android:src="@mipmap/sign" />
+
         <LinearLayout
             android:id="@+id/line1"
-            android:layout_marginLeft="33dp"
-            android:layout_marginTop="52dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="33dp"
+            android:layout_marginTop="52dp">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,16 +40,16 @@
                     android:background="@mipmap/my_icon" />
 
                 <LinearLayout
-                    android:layout_marginLeft="18dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_marginTop="10dp"
-                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -59,223 +62,241 @@
 
                         <ImageView
                             android:id="@+id/img_level"
-                            android:layout_marginLeft="11dp"
                             android:layout_width="23dp"
                             android:layout_height="17dp"
-                            android:src="@mipmap/level_0"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="11dp"
+                            android:src="@mipmap/level_0" />
                     </LinearLayout>
 
                     <TextView
                         android:id="@+id/user_phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:text="-----"
                         android:textColor="#ffffffff"
-                        android:textSize="17dp"
-                        android:layout_marginTop="10dp"/>
+                        android:textSize="17dp" />
                 </LinearLayout>
             </LinearLayout>
+
             <TextView
                 android:id="@+id/invite_friend"
                 android:layout_width="98dp"
                 android:layout_height="29dp"
                 android:layout_gravity="bottom"
+                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="100dp"
                 android:background="@drawable/shape_invite_bg"
                 android:gravity="center"
                 android:text="@string/invite_friend_title"
                 android:textColor="#FFFFFFFF"
-                android:layout_marginBottom="5dp"
                 android:textSize="12dp" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lin4"
-            android:paddingLeft="18dp"
-            android:paddingRight="16dp"
-            android:layout_below="@+id/line1"
             android:layout_width="382dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/line1"
             android:layout_centerHorizontal="true"
-            android:orientation="vertical"
             android:layout_marginTop="40dp"
-            android:background="@drawable/shape_line_bg">
+            android:background="@drawable/shape_line_bg"
+            android:orientation="vertical"
+            android:paddingLeft="18dp"
+            android:paddingRight="16dp">
+
             <RelativeLayout
                 android:id="@+id/re_my_vote"
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
+
                 <ImageView
                     android:id="@+id/image_1"
                     android:layout_width="18dp"
                     android:layout_height="21dp"
                     android:layout_centerVertical="true"
-                    android:background="@mipmap/my_img_1"/>
+                    android:background="@mipmap/my_img_1" />
+
                 <TextView
-                    android:layout_marginLeft="17dp"
-                    android:layout_toRightOf="@+id/image_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="17dp"
+                    android:layout_toRightOf="@+id/image_1"
                     android:text="@string/my_vote"
-                    android:layout_centerVertical="true"
                     android:textColor="#ff333333"
-                    android:textSize="13dp"
-                    />
+                    android:textSize="13dp" />
+
                 <ImageView
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
                     android:layout_width="7dp"
                     android:layout_height="12dp"
-                    android:background="@mipmap/my_right_back"/>
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/my_right_back" />
             </RelativeLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="#EFEFEF"/>
+                android:background="#EFEFEF" />
 
             <RelativeLayout
                 android:id="@+id/re_my_team"
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
+
                 <ImageView
                     android:id="@+id/image_2"
                     android:layout_width="18dp"
                     android:layout_height="21dp"
                     android:layout_centerVertical="true"
-                    android:background="@mipmap/my_img_2"/>
+                    android:background="@mipmap/my_img_2" />
+
                 <TextView
-                    android:layout_marginLeft="17dp"
-                    android:layout_toRightOf="@+id/image_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="17dp"
+                    android:layout_toRightOf="@+id/image_2"
                     android:text="@string/my_team"
-                    android:layout_centerVertical="true"
                     android:textColor="#ff333333"
-                    android:textSize="13dp"
-                    />
+                    android:textSize="13dp" />
+
                 <ImageView
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
                     android:layout_width="7dp"
                     android:layout_height="12dp"
-                    android:background="@mipmap/my_right_back"/>
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/my_right_back" />
             </RelativeLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="#EFEFEF"/>
+                android:background="#EFEFEF" />
+
             <RelativeLayout
                 android:id="@+id/re_my_join"
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
+
                 <ImageView
                     android:id="@+id/image_3"
                     android:layout_width="18dp"
                     android:layout_height="21dp"
                     android:layout_centerVertical="true"
-                    android:background="@mipmap/my_img_3"/>
+                    android:background="@mipmap/my_img_3" />
+
                 <TextView
-                    android:layout_marginLeft="17dp"
-                    android:layout_toRightOf="@+id/image_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/my_join"
                     android:layout_centerVertical="true"
+                    android:layout_marginLeft="17dp"
+                    android:layout_toRightOf="@+id/image_3"
+                    android:text="@string/my_join"
                     android:textColor="#ff333333"
-                    android:textSize="13dp"
-                    />
+                    android:textSize="13dp" />
 
                 <TextView
                     android:id="@+id/submit_review"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:layout_toLeftOf="@+id/img_6"
                     android:text="@string/my_submitted_review"
                     android:textColor="#ff999999"
-                    android:textSize="13dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/img_6"
-                    android:layout_marginRight="30dp"
-                    />
+                    android:textSize="13dp" />
+
                 <ImageView
                     android:id="@+id/img_6"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
                     android:layout_width="7dp"
                     android:layout_height="12dp"
-                    android:background="@mipmap/my_right_back"/>
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/my_right_back" />
             </RelativeLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="#EFEFEF"/>
+                android:background="#EFEFEF" />
+
             <RelativeLayout
                 android:id="@+id/re_my_money"
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
+
                 <ImageView
                     android:id="@+id/image_4"
                     android:layout_width="18dp"
                     android:layout_height="21dp"
                     android:layout_centerVertical="true"
-                    android:background="@mipmap/my_img_4"/>
+                    android:background="@mipmap/my_img_4" />
+
                 <TextView
-                    android:layout_marginLeft="17dp"
-                    android:layout_toRightOf="@id/image_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="17dp"
+                    android:layout_toRightOf="@id/image_4"
                     android:text="@string/my_money"
-                    android:layout_centerVertical="true"
                     android:textColor="#ff333333"
-                    android:textSize="13dp"
-                    />
+                    android:textSize="13dp" />
+
                 <ImageView
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
                     android:layout_width="7dp"
                     android:layout_height="12dp"
-                    android:background="@mipmap/my_right_back"/>
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/my_right_back" />
             </RelativeLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="#EFEFEF"/>
+                android:background="#EFEFEF" />
+
             <RelativeLayout
                 android:id="@+id/re_my_account_setting"
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
+
                 <ImageView
                     android:id="@+id/image_5"
                     android:layout_width="18dp"
                     android:layout_height="21dp"
                     android:layout_centerVertical="true"
-                    android:background="@mipmap/my_img_5"/>
+                    android:background="@mipmap/my_img_5" />
+
                 <TextView
-                    android:layout_marginLeft="17dp"
-                    android:layout_toRightOf="@id/image_5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="17dp"
+                    android:layout_toRightOf="@id/image_5"
                     android:text="@string/my_account"
-                    android:layout_centerVertical="true"
                     android:textColor="#ff333333"
-                    android:textSize="13dp"
-                    />
+                    android:textSize="13dp" />
+
                 <ImageView
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
                     android:layout_width="7dp"
                     android:layout_height="12dp"
-                    android:background="@mipmap/my_right_back"/>
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/my_right_back" />
             </RelativeLayout>
         </LinearLayout>
+
         <Button
             android:id="@+id/account_setting_out_login"
-            style="@style/LoginButtonStyle"
+            style="@style/ButtonStyle"
             android:layout_width="330dp"
             android:layout_height="44dp"
-            android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="84dp"
-            android:text="@string/account_setting_out_login"
-            />
+            android:text="@string/account_setting_out_login" />
     </RelativeLayout>
 </android.support.v4.widget.SwipeRefreshLayout>

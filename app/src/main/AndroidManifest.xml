@@ -72,6 +72,11 @@
         <activity android:name=".ui.my.activity.psw.ModifyPayPswActivity" />
         <activity android:name=".ui.my.activity.psw.PasswordSettingActivity" />
         <activity android:name=".ui.my.activity.psw.SettingPayPswActivity" />
+        <activity android:name=".ui.wallet.activity.WalletExchangeRecordActivity" />
+        <activity android:name=".ui.wallet.activity.WalletCoinDetailActivity"/>
+        <activity android:name=".ui.wallet.activity.RechargeActivity"/>
+        <activity android:name=".ui.wallet.activity.WithdrawalActivity"/>
+
     </application>
 
 </manifest>

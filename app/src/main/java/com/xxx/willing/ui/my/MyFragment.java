@@ -58,7 +58,7 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     @Override
     protected void initData() {
         mRefresh.setOnRefreshListener(this);
-        loadInfo();
+//        loadInfo();
     }
 
     @Override
@@ -142,7 +142,7 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     @Override
     public void onResume() {
         super.onResume();
-        loadInfo();
+//        loadInfo();
     }
 
     /**

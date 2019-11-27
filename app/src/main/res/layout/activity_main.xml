@@ -34,7 +34,8 @@
                 <ImageView
                     android:id="@+id/main_vote_image"
                     android:layout_width="18dp"
-                    android:layout_height="18dp" />
+                    android:layout_height="18dp"
+                    android:src="@mipmap/main_vote_default" />
 
                 <TextView
                     android:id="@+id/main_vote_text"
@@ -57,7 +58,8 @@
                 <ImageView
                     android:id="@+id/main_app_image"
                     android:layout_width="18dp"
-                    android:layout_height="18dp"/>
+                    android:layout_height="18dp"
+                    android:src="@mipmap/main_app_default" />
 
                 <TextView
                     android:id="@+id/main_app_text"
@@ -80,7 +82,8 @@
                 <ImageView
                     android:id="@+id/main_wallet_image"
                     android:layout_width="18dp"
-                    android:layout_height="18dp"/>
+                    android:layout_height="18dp"
+                    android:src="@mipmap/main_wallet_default" />
 
                 <TextView
                     android:id="@+id/main_wallet_text"
@@ -103,7 +106,8 @@
                 <ImageView
                     android:id="@+id/main_my_image"
                     android:layout_width="18dp"
-                    android:layout_height="18dp" />
+                    android:layout_height="18dp"
+                    android:src="@mipmap/main_my_default" />
 
                 <TextView
                     android:id="@+id/main_my_text"

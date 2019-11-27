@@ -28,7 +28,6 @@ public class AccountInfoActivity extends BaseTitleActivity {
         activity.startActivity(intent);
     }
 
-
     @BindView(R.id.account_img)
     ImageView mImg;
     @BindView(R.id.nick_name)

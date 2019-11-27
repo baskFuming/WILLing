@@ -47,6 +47,7 @@ public abstract class BaseDialog extends AlertDialog {
         }
     }
 
+
     protected abstract int getLayoutId();
 
     protected abstract void initData();

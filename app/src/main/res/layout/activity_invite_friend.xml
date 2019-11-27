@@ -90,6 +90,7 @@
             android:textSize="12dp" />
 
         <Button
+            android:layout_gravity="center"
             android:id="@+id/copy_code"
             style="@style/LoginButtonStyle"
             android:layout_width="228dp"
@@ -103,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
-            android:text="我的邀请链接"
+            android:text="@string/my_invite_line"
             android:textColor="#ff191a1b"
             android:textSize="16dp" />
 
@@ -118,6 +119,7 @@
             android:textSize="12dp" />
 
         <Button
+            android:layout_gravity="center"
             android:id="@+id/invite_friend_copy"
             style="@style/LoginButtonStyle"
             android:layout_width="228dp"

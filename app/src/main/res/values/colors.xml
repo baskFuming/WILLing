@@ -4,9 +4,10 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="colorMainTrue">#3B76BD</color>
+    <color name="colorMainTrue">#4183FC</color>
     <color name="colorMainFalse">#999999</color>
     <color name="main_bg">#F8FCFF</color>
+    <color name="colorTextColorBtn">#FFFFFF</color>
 
 
 </resources>

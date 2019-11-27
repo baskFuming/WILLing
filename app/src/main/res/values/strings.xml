@@ -294,5 +294,7 @@
     <string name="sign_success">签到成功！恭喜获得2枚BVSE！已放入您的账户中。</string>
     <string name="rember_tip">记得明天再来哦～</string>
     <string name="tip_ok">好的</string>
+    <string name="copy_code">复制邀请码</string>
+    <string name="my_invite_line">我的邀请链接</string>
 
 </resources>

@@ -78,6 +78,7 @@
     <string name="invite_friend_title">邀请好友</string>
     <string name="invite_friend_my">我的邀请链接</string>
     <string name="invite_friend_copy">复制链接</string>
+    <string name="copy_code">复制邀请码</string>
 
     <string name="recharge_title">充值</string>
     <string name="recharge_toast_1">扫描二维码向我付款</string>
@@ -204,7 +205,6 @@
     <string name="main_call_my">联系我们</string>
 
 
-
     <!-- wiilling-->
     <string name="my_vote">我的投票</string>
     <string name="my_team">我的团队</string>
@@ -212,5 +212,46 @@
     <string name="my_money">资金记录</string>
     <string name="my_account">账户设置</string>
     <string name="my_submitted_review">已提交审核</string>
+    <string name="user_info">账户信息</string>
+    <string name="nick_name">昵称</string>
+    <string name="user_phone">手机号</string>
+    <string name="modify_nickname">修改昵称</string>
+    <string name="content_save">保存</string>
+    <string name="enter_nickname">请输入修改昵称</string>
+    <string name="enter_nickname_introduce">3–16个字符，支持中文、数字、下划线以及加减号，不支持其它特殊符号</string>
+    <string name="join_id">加盟商ID</string>
+    <string name="join_name">加盟商名称</string>
+    <string name="vote_time">投票时间</string>
+    <string name="vote_day">投票周期</string>
+    <string name="vote_number">投票数量（GVI）</string>
+    <string name="release_day">已释放天数</string>
+    <string name="release_number">累计释放（GVI）</string>
+    <string name="vote_record">投票记录</string>
+    <string name="total_number">总业绩（GVI）</string>
+    <string name="team_account">账户</string>
+    <string name="team_register_time">注册时间</string>
+    <string name="team_results">业绩（GVI）</string>
+    <string name="sign_task">任务中心</string>
+    <string name="sign_task_rules">任务规则</string>
+    <string name="rules">
+     1.签到领BVSE：总共领三周，每周前五天每天领两个，后两天每天领三个；连续签到7天后可点亮第二个任务（投票），后边两周还可以继续领BVSE；\n\n
+     2.投票任务：需要投票1000GVI，以此点亮第三个任务；\n\n
+        3.邀请任务：需要推荐其他用户投票3000GVI；
+    </string>
+    <string name="success_rules">完成以上任务可获得</string>
+    <string name="sign_gift">签到有礼，免费送BVSE～</string>
+    <string name="sign_rules"><font color="#F62E43">连续</font>签到<font color="#F62E43">七天</font>即可点亮下方推荐任务！记得是<font color="#F62E43">连续</font>签到，中断就不算了哦～</string>
+    <string name="sign_btn">签到领BVSE～</string>
+    <string name="tuijain_task">推荐任务</string>
+    <string name="toupiao_task">投票任务</string>
+    <string name="join_task">参与任务获取更多BVSE</string>
+    <string name="toupiao_number">投票1000GVI即可点亮下一个任务</string>
+    <string name="toupiao_number_friend">推荐朋友投票1000GVI完成第三个任务吧</string>
+    <string name="go_vote">去投票</string>
+    <string name="task_progress">任务进度</string>
+    <string name="task_trip">温馨提示：完成以上全部任务可获得<font color="#F62E43">2000</font>枚BVSE～</string>
+    <string name="sign_success">签到成功！恭喜获得2枚BVSE！已放入您的账户中。</string>
+    <string name="rember_tip">记得明天再来哦～</string>
+    <string name="tip_ok">好的</string>
 
 </resources>

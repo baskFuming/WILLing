@@ -16,9 +16,13 @@ import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.login.activity.LoginActivity;
+import com.xxx.willing.ui.my.activity.AccountInfoActivity;
 import com.xxx.willing.ui.my.activity.AccountSettingActivity;
 import com.xxx.willing.ui.my.activity.CallMeActivity;
 import com.xxx.willing.ui.my.activity.InviteFriendActivity;
+import com.xxx.willing.ui.my.activity.MyTeamActivity;
+import com.xxx.willing.ui.my.activity.MyVoteActivity;
+import com.xxx.willing.ui.my.activity.SignActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -62,18 +66,24 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
         loadInfo();
     }
 
-    @OnClick({R.id.img_sign, R.id.invite_friend, R.id.re_my_vote, R.id.re_my_team, R.id.re_my_join,
+    @OnClick({R.id.img_sign, R.id.invite_friend, R.id.re_my_vote, R.id.line1, R.id.re_my_team, R.id.re_my_join,
             R.id.re_my_money, R.id.re_my_account_setting, R.id.account_setting_out_login})
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.img_sign://签到
+                SignActivity.actionStart(getActivity());
                 break;
             case R.id.invite_friend://邀请好友
                 InviteFriendActivity.actionStart(getActivity());
                 break;
+            case R.id.line1://账户信息
+                AccountInfoActivity.actionStart(getActivity());
+                break;
             case R.id.re_my_vote://我的投票
+                MyVoteActivity.actionStart(getActivity());
                 break;
             case R.id.re_my_team: //我的团队
+                MyTeamActivity.actionStart(getActivity());
                 break;
             case R.id.re_my_join://  加盟申请
                 break;

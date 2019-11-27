@@ -33,13 +33,17 @@ public class InviteFriendActivity extends BaseTitleActivity {
     ImageView mImage;
     @BindView(R.id.invite_friend_code)
     TextView mCode;
+    @BindView(R.id.main_title)
+    TextView mTitle;
+    @BindView(R.id.main_content)
+    TextView mContent;
 
     private String content;
     private Bitmap bitmap;  //二维码
 
     @Override
     protected String initTitle() {
-        return getString(R.string.invite_friend_title);
+        return null;
     }
 
     @Override
@@ -49,10 +53,13 @@ public class InviteFriendActivity extends BaseTitleActivity {
 
     @Override
     protected void initData() {
+        mTitle.setText(getString(R.string.invite_friend_title));
+        mContent.setText(getString(R.string.content_save));
         content = ConfigClass.INVITE_URL + SharedPreferencesUtil.getInstance().getString(SharedConst.VALUE_INVITE_CODE);
         bitmap = ZXingUtil.createQRCode(content, (int) getResources().getDimension(R.dimen.zxCode_size));
         mImage.setImageBitmap(bitmap);
         mCode.setText(content);
+
     }
 
     @OnClick({R.id.invite_friend_copy})

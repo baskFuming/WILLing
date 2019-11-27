@@ -51,4 +51,6 @@ public abstract class BaseDialog extends AlertDialog {
 
     protected abstract void initData();
 
+    protected abstract double setWidth();
+
 }

@@ -3,56 +3,119 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/invite_bg"
     android:orientation="vertical"
     tools:context="com.xxx.willing.ui.my.activity.CallMeActivity">
 
-    <include layout="@layout/include_title_bar" />
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="46dp">
+
+            <ImageButton
+                android:id="@+id/main_return"
+                android:layout_width="46dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:background="#00000000"
+                android:src="@mipmap/main_return_white" />
+
+            <TextView
+                android:id="@+id/main_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="12dp"
+                android:text="title"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/main_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="20dp"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="392dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_line_bg"
+        android:orientation="vertical">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="12dp"
+            android:gravity="center"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/call_me_wechat_code"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginBottom="22dp"
+                android:text="@string/call_my_we_chat"
+                android:textColor="#333333"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/wechat_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:text="BVSE-JIAO"
+                android:textColor="#ff191a1b"
+                android:textSize="12dp" />
+
+            <Button
+                android:id="@+id/call_me_wechat_save"
+                style="@style/ButtonStyle"
+                android:layout_width="289dp"
+                android:layout_height="44dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/copy_wechat_name" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome_copy"
+                android:textColor="#ff666666"
+                android:textSize="12dp" />
+
+            <TextView
+                android:layout_width="215dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
                 android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/call_me_wechat_code"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:layout_marginTop="25dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="22dp"
-                    android:layout_marginTop="19dp"
-                    android:text="@string/call_my_we_chat"
-                    android:textColor="#333333"
-                    android:textSize="15dp" />
-
-                <Button
-                    android:id="@+id/call_me_wechat_save"
-                    style="@style/ButtonStyle"
-                    android:layout_width="289dp"
-                    android:layout_height="44dp"
-                    android:layout_marginBottom="22dp"
-                    android:text="@string/call_my_save" />
-
-            </LinearLayout>
-
+                android:text="@string/save_zxing"
+                android:textColor="#ff666666"
+                android:textSize="12dp" />
         </LinearLayout>
-
-    </ScrollView>
-
+    </LinearLayout>
 </LinearLayout>

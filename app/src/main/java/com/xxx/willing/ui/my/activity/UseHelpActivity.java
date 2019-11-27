@@ -1,6 +1,8 @@
 package com.xxx.willing.ui.my.activity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.net.http.SslError;
 import android.os.Build;
 import android.view.View;
@@ -24,6 +26,12 @@ import butterknife.BindView;
  * @Author xxx
  */
 public class UseHelpActivity extends BaseTitleActivity {
+
+
+    public static void actionStart(Activity activity) {
+        Intent intent = new Intent(activity, UseHelpActivity.class);
+        activity.startActivity(intent);
+    }
 
     @BindView(R.id.use_help_web)
     WebView mWebView;

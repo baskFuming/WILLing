@@ -37,6 +37,8 @@ public class AccountSettingActivity extends BaseTitleActivity {
     TextView mVersionCode;
 
     private String versionName;
+    private UpdateWindow instance;
+
 
     @Override
     protected String initTitle() {
@@ -54,14 +56,17 @@ public class AccountSettingActivity extends BaseTitleActivity {
         mVersionCode.setText(versionName);
     }
 
-    @OnClick({R.id.account_setting_set_password, R.id.account_setting_address_manager, R.id.account_setting_check_version})
+    @OnClick({R.id.account_setting_set_password, R.id.account_setting_address_manager, R.id.account_setting_check_version, R.id.call_my})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.account_setting_set_password:
                 PasswordSettingActivity.actionStart(this);
                 break;
-            case R.id.account_setting_address_manager:
-                AccountSettingActivity.actionStart(this);
+            case R.id.account_setting_address_manager:   //使用帮助
+                UseHelpActivity.actionStart(this);
+                break;
+            case R.id.call_my:
+                CallMeActivity.actionStart(this);//联系我们
                 break;
             case R.id.account_setting_check_version:
                 checkAppVersion();
@@ -86,7 +91,7 @@ public class AccountSettingActivity extends BaseTitleActivity {
                                 if (versionName.equals(version)) {
                                     ToastUtil.showToast(getString(R.string.check_version_not));
                                 } else {
-                                    UpdateWindow.getInstance(AccountSettingActivity.this, data.getDownloadUrl());
+                                    instance = UpdateWindow.getInstance(AccountSettingActivity.this, data.getDownloadUrl());
                                 }
                             }
                         }
@@ -106,6 +111,7 @@ public class AccountSettingActivity extends BaseTitleActivity {
                     @Override
                     public void onEnd() {
                         super.onEnd();
+                        instance.dismiss();
                         hideLoading();
                     }
                 });

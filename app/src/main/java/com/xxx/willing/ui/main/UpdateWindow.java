@@ -18,10 +18,10 @@ public class UpdateWindow extends BaseDialog {
         this.url = url;
     }
 
-    public static void getInstance(Context context, String url) {
+    public static UpdateWindow getInstance(Context context, String url) {
         UpdateWindow window = new UpdateWindow(context);
-        window.show();
         window.setUrl(url);
+        return window;
     }
 
     private UpdateWindow(Context context) {

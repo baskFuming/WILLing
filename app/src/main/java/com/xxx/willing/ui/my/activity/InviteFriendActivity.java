@@ -43,7 +43,7 @@ public class InviteFriendActivity extends BaseTitleActivity {
 
     @Override
     protected String initTitle() {
-        return null;
+        return getString(R.string.invite_friend_title);
     }
 
     @Override

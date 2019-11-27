@@ -66,7 +66,7 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
         loadInfo();
     }
 
-    @OnClick({R.id.img_sign, R.id.invite_friend, R.id.re_my_vote, R.id.line1, R.id.re_my_team, R.id.re_my_join,
+    @OnClick({R.id.img_sign, R.id.invite_friend, R.id.re_my_vote, R.id.line2, R.id.re_my_team, R.id.re_my_join,
             R.id.re_my_money, R.id.re_my_account_setting, R.id.account_setting_out_login})
     public void OnClick(View view) {
         switch (view.getId()) {
@@ -76,7 +76,7 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
             case R.id.invite_friend://邀请好友
                 InviteFriendActivity.actionStart(getActivity());
                 break;
-            case R.id.line1://账户信息
+            case R.id.line2://账户信息
                 AccountInfoActivity.actionStart(getActivity());
                 break;
             case R.id.re_my_vote://我的投票
@@ -90,6 +90,7 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
             case R.id.re_my_money: //资金记录
                 break;
             case R.id.re_my_account_setting://账户设置
+                AccountSettingActivity.actionStart(getActivity());
                 break;
             case R.id.account_setting_out_login://退出登录
                 outLogin();

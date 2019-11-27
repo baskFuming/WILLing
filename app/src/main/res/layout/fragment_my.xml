@@ -29,6 +29,7 @@
             android:layout_marginTop="52dp">
 
             <LinearLayout
+                android:id="@+id/line2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -290,6 +291,7 @@
         </LinearLayout>
 
         <Button
+            android:visibility="gone"
             android:id="@+id/account_setting_out_login"
             style="@style/ButtonStyle"
             android:layout_width="330dp"

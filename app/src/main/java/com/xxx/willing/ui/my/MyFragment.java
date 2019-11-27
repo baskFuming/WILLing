@@ -32,12 +32,16 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    @BindView(R.id.main_my_icon)
+    @BindView(R.id.user_icon)
     ImageView mIcon;
-    @BindView(R.id.main_my_name)
+    @BindView(R.id.user_name)
     TextView mName;
-    @BindView(R.id.main_my_invited_text)
-    TextView mInvitedText;
+    @BindView(R.id.user_phone)
+    TextView mPhone;
+    @BindView(R.id.img_level)
+    ImageView mLevel;
+    @BindView(R.id.submit_review)
+    TextView mReview;
     @BindView(R.id.main_my_refresh)
     SwipeRefreshLayout mRefresh;
 
@@ -50,7 +54,7 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     @Override
     protected void initData() {
         mRefresh.setOnRefreshListener(this);
-        loadInfo();
+//        loadInfo();
     }
 
     @Override
@@ -58,19 +62,26 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
         loadInfo();
     }
 
-    @OnClick({R.id.main_my_invited, R.id.main_my_call_my, R.id.account_setting_out_login, R.id.main_my_setting})
+    @OnClick({R.id.img_sign, R.id.invite_friend, R.id.re_my_vote, R.id.re_my_team, R.id.re_my_join,
+            R.id.re_my_money, R.id.re_my_account_setting, R.id.account_setting_out_login})
     public void OnClick(View view) {
         switch (view.getId()) {
-            case R.id.main_my_invited:
+            case R.id.img_sign://签到
+                break;
+            case R.id.invite_friend://邀请好友
                 InviteFriendActivity.actionStart(getActivity());
                 break;
-            case R.id.main_my_call_my:
-                CallMeActivity.actionStart(getActivity());
+            case R.id.re_my_vote://我的投票
                 break;
-            case R.id.main_my_setting:
-                AccountSettingActivity.actionStart(getActivity());
+            case R.id.re_my_team: //我的团队
                 break;
-            case R.id.account_setting_out_login:
+            case R.id.re_my_join://  加盟申请
+                break;
+            case R.id.re_my_money: //资金记录
+                break;
+            case R.id.re_my_account_setting://账户设置
+                break;
+            case R.id.account_setting_out_login://退出登录
                 outLogin();
                 break;
         }
@@ -91,7 +102,6 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                             UserInfo data = bean.getData();
                             if (data != null) {
                                 mName.setText(data.getUserName());
-                                mInvitedText.setText(data.getValue());
                             }
                         }
                     }
@@ -122,7 +132,7 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     @Override
     public void onResume() {
         super.onResume();
-        loadInfo();
+//        loadInfo();
     }
 
     /**

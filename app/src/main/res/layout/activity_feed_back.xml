@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="产品建议（出现问题）"
-            android:textSize="@dimen/text_size" />
+            android:textSize="14dp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -64,7 +64,7 @@
         android:inputType="phone"
         android:maxLength="20"
         android:paddingLeft="20dp"
-        android:textSize="@dimen/text_size" />
+        android:textSize="14dp" />
 
     <TextView
         android:id="@+id/feed_back_btn"

@@ -78,7 +78,7 @@
 
     <Button
         android:id="@+id/setting_pay_psw_btn"
-        style="@style/LoginButtonStyle"
+        style="@style/ButtonStyle"
         android:layout_width="330dp"
         android:layout_height="44dp"
         android:layout_marginTop="44dp"

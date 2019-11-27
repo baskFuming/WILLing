@@ -6,5 +6,7 @@
 
     <color name="colorMainTrue">#3B76BD</color>
     <color name="colorMainFalse">#999999</color>
+    <color name="main_bg">#F8FCFF</color>
+
 
 </resources>

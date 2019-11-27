@@ -6,8 +6,15 @@ import com.xxx.willing.model.http.bean.IsSettingPayPswBean;
 import com.xxx.willing.model.http.bean.LoginBean;
 import com.xxx.willing.model.http.bean.SelectCountyBean;
 import com.xxx.willing.model.http.bean.UserInfo;
+import com.xxx.willing.model.http.bean.WalletAccountBean;
+import com.xxx.willing.model.http.bean.WalletCoinBean;
+import com.xxx.willing.model.http.bean.WalletExchangeBean;
+import com.xxx.willing.model.http.bean.WalletMarketBean;
+import com.xxx.willing.model.http.bean.WalletReleaseBean;
+import com.xxx.willing.model.http.bean.WalletTransactionBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.BooleanBean;
+import com.xxx.willing.model.http.bean.base.PageBean;
 
 import java.util.List;
 
@@ -16,10 +23,52 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
     //----------------------------------------------------------展示列表----------------------------------------------------------------------------------------------------------------------------//
+
+    //获取钱包充值转账记录
+    @GET("/CT/invest/getDepositLogs")
+    Observable<BaseBean<PageBean<WalletTransactionBean>>> getTransferRecordList(
+            @Query("type") int type,
+            @Query("pageNo") int pageNo,
+            @Query("pageSize") int pageSize
+    );
+
+    //获取钱包账号列表
+    @GET("/CT/invest/getDepositLogs")
+    Observable<BaseBean<PageBean<WalletAccountBean>>> getWalletAccountList(
+            @Query("pageNo") int pageNo,
+            @Query("pageSize") int pageSize
+    );
+
+    //获取钱包释放列表
+    @GET("/CT/invest/getDepositLogs")
+    Observable<BaseBean<PageBean<WalletReleaseBean>>> getWalletReleaseList(
+            @Query("pageNo") int pageNo,
+            @Query("pageSize") int pageSize
+    );
+
+    //获取钱包释放列表
+    @GET("/CT/invest/getDepositLogs")
+    Observable<BaseBean<PageBean<WalletExchangeBean>>> getWalletExchangeList(
+            @Query("pageNo") int pageNo,
+            @Query("pageSize") int pageSize
+    );
+
+    //获取钱包行情列表
+    @GET("/CT/invest/getDepositLogs")
+    Observable<BaseBean<PageBean<WalletMarketBean>>> getWalletMarketList(
+            @Query("pageNo") int pageNo,
+            @Query("pageSize") int pageSize
+    );
+
+
+    //获取可兑换列表
+    @POST(ConfigClass.BASE_URL_PATH + "/getExchangeList")
+    Observable<BaseBean<List<WalletCoinBean>>> getExchangeList();
 
 
     //----------------------------------------------------------获取信息----------------------------------------------------------------------------------------------------------------------------//
@@ -34,10 +83,18 @@ public interface ApiService {
             @Field("coinId") int coinId,
             @Field("amount") double amount,
             @Field("fee") double fee,
-            @Field("code") int code,
             @Field("address") String address,
             @Field("jyPassword") String jyPassword,
             @Field("remark") String remark
+    );
+
+    //兑换
+    @POST(ConfigClass.BASE_URL_PATH + "/exchange")
+    @FormUrlEncoded
+    Observable<BaseBean<BooleanBean>> exchange(
+            @Field("amount") double baseAmount,
+            @Field("baseCoinId") Integer baseCoinId,
+            @Field("targetCoinId") Integer targetCoinId
     );
 
     //-------------------------------------------------------登录-------------------------------------------------------------------------------------------------------------------------------//

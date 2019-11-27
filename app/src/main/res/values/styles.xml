@@ -30,32 +30,22 @@
         <item name="android:windowEnterAnimation">@anim/anim_popup_in</item>
     </style>
 
-    <!-- 主按钮样式 -->
-    <style name="MainButtonStyle">
+    <!-- 按钮样式 -->
+    <style name="ButtonStyle">
         <item name="android:layout_gravity">center</item>
-        <item name="android:background">@drawable/selector_main_btn</item>
-        <!--<item name="android:textColor">@color/colorTextColorBtn</item>-->
-        <item name="android:textSize" tools:ignore="SpUsage">18dp</item>
-        <item name="android:textAllCaps">false</item>
-    </style>
-
-    <!-- 登陆按钮样式 -->
-    <style name="LoginButtonStyle">
-        <item name="android:layout_gravity">center</item>
-        <item name="android:background">@drawable/selector_login_btn</item>
+        <item name="android:background">@drawable/selector_btn</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textSize">17dp</item>
         <item name="android:textAllCaps">false</item>
     </style>
 
-    <!-- 主输入框样式 -->
+    <!-- 输入框样式 -->
     <style name="MainEditStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:textColor">#333333</item>
         <item name="android:textColorHint">#999999</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:textSize">17dp</item>
     </style>
 

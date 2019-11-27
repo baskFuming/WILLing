@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.xxx.willing">
 
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -22,7 +23,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ui.main.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,23 +52,24 @@
 
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.main.SweepActivity" />
-
         <activity android:name=".ui.login.activity.SelectCountyActivity" />
         <activity android:name=".ui.login.activity.LoginActivity" />
         <activity android:name=".ui.login.activity.RegisterActivity" />
         <activity android:name=".ui.login.activity.ForgetLoginPswActivity" />
-
         <activity android:name=".ui.my.activity.AccountSettingActivity" />
         <activity android:name=".ui.my.activity.CallMeActivity" />
         <activity android:name=".ui.my.activity.FeedBackActivity" />
         <activity android:name=".ui.my.activity.InviteFriendActivity" />
         <activity android:name=".ui.my.activity.LanguageActivity" />
         <activity android:name=".ui.my.activity.UseHelpActivity" />
-
         <activity android:name=".ui.my.activity.psw.ModifyLoginPswActivity" />
         <activity android:name=".ui.my.activity.psw.ModifyPayPswActivity" />
         <activity android:name=".ui.my.activity.psw.PasswordSettingActivity" />
         <activity android:name=".ui.my.activity.psw.SettingPayPswActivity" />
+        <activity android:name=".ui.wallet.activity.WalletExchangeRecordActivity" />
+        <activity android:name=".ui.wallet.activity.WalletCoinDetailActivity"/>
+        <activity android:name=".ui.wallet.activity.RechargeActivity"/>
+        <activity android:name=".ui.wallet.activity.WithdrawalActivity"/>
 
     </application>
 

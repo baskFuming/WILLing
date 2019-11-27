@@ -237,5 +237,20 @@
     <string name="my_money">资金记录</string>
     <string name="my_account">账户设置</string>
     <string name="my_submitted_review">已提交审核</string>
+    <string name="app_recommend">推荐</string>
+    <string name="app_vote">投票加盟</string>
+    <string name="app_partner">合伙人列表</string>
+    <string name="app_competition">竞赛排名</string>
+    <string name="app_shop">GVI商城</string>
+    <string name="app_util">工具</string>
+    <string name="app_H_coin">Hcoin</string>
+    <string name="app_huo_bi">火币</string>
+    <string name="app_eth">ETH浏览器</string>
+    <string name="app_btc">BTC浏览器</string>
+    <string name="app_game">娱乐</string>
+    <string name="app_not">敬请期待</string>
+    <string name="app_plane">打飞机</string>
+    <string name="app_soft">学习</string>
+    <string name="app_kong_yi_college">孔壹学院</string>
 
 </resources>

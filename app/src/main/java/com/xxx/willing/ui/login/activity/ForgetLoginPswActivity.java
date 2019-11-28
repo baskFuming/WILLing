@@ -20,6 +20,8 @@ import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.utils.DownTimeUtil;
 import com.xxx.willing.model.utils.KeyBoardUtil;
 import com.xxx.willing.model.utils.ToastUtil;
+import com.xxx.willing.ui.login.area.AreaCodeModel;
+import com.xxx.willing.ui.login.area.SelectPhoneCode;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -82,7 +84,7 @@ public class ForgetLoginPswActivity extends BaseTitleActivity {
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.forget_login_psw_selector_phone:
-                SelectCountyActivity.actionStart(this);
+                SelectPhoneCode.with(ForgetLoginPswActivity.this).select();
                 break;
             case R.id.forget_login_psw_password_eye:
                 KeyBoardUtil.setInputTypePassword(mPasswordEye.isChecked(), mPasswordEdit);
@@ -102,11 +104,11 @@ public class ForgetLoginPswActivity extends BaseTitleActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == ConfigClass.RESULT_CODE) {
+        if (resultCode == ChoiceActivity.resultCode) {
             if (data != null) {
-                String name = data.getStringExtra(SelectCountyActivity.RESULT_NAME_KRY);
-                area = data.getStringExtra(SelectCountyActivity.RESULT_CODE_KRY);
-                mSelectorCounty.setText(name);
+                AreaCodeModel model = (AreaCodeModel) data.getSerializableExtra(ChoiceActivity.DATAKEY);
+                area = model.getTel();
+                mSelectorCounty.setText("+ " + area);
             }
         }
     }

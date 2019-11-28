@@ -67,4 +67,11 @@ dependencies {
     //Zxing
     implementation 'com.google.zxing:core:3.3.0'
     implementation('com.journeyapps:zxing-android-embedded:3.6.0') { transitive = false }
+
+    //粘性头部
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.timehop.stickyheadersrecyclerview:library:0.4.3@aar'
+    implementation 'com.github.promeg:tinypinyin:2.0.2'
+    implementation 'com.bigkoo:quicksidebar:1.0.3'
+    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
 }

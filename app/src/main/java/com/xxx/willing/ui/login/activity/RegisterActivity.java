@@ -19,6 +19,8 @@ import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.utils.DownTimeUtil;
 import com.xxx.willing.model.utils.KeyBoardUtil;
 import com.xxx.willing.model.utils.ToastUtil;
+import com.xxx.willing.ui.login.area.AreaCodeModel;
+import com.xxx.willing.ui.login.area.SelectPhoneCode;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -90,7 +92,7 @@ public class RegisterActivity extends BaseTitleActivity {
                 LoginActivity.actionStart(this);
                 break;
             case R.id.register_selector_phone:
-                SelectCountyActivity.actionStart(this);
+                SelectPhoneCode.with(RegisterActivity.this).select();
                 break;
             case R.id.register_account_clean:
                 mAccountEdit.setText("");
@@ -113,11 +115,11 @@ public class RegisterActivity extends BaseTitleActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == ConfigClass.RESULT_CODE) {
+        if (resultCode == ChoiceActivity.resultCode) {
             if (data != null) {
-                String name = data.getStringExtra(SelectCountyActivity.RESULT_NAME_KRY);
-                area = data.getStringExtra(SelectCountyActivity.RESULT_CODE_KRY);
-                mSelectorCounty.setText(name);
+                AreaCodeModel model = (AreaCodeModel) data.getSerializableExtra(ChoiceActivity.DATAKEY);
+                area = model.getTel();
+                mSelectorCounty.setText("+ " + area);
             }
         }
     }

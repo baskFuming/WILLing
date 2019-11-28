@@ -23,6 +23,8 @@ import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.KeyBoardUtil;
 import com.xxx.willing.model.utils.LocalManageUtil;
 import com.xxx.willing.model.utils.ToastUtil;
+import com.xxx.willing.ui.login.area.AreaCodeModel;
+import com.xxx.willing.ui.login.area.SelectPhoneCode;
 import com.xxx.willing.ui.main.MainActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -78,7 +80,7 @@ public class LoginActivity extends BaseTitleActivity {
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.login_selector_phone:
-                SelectCountyActivity.actionStart(this);
+                SelectPhoneCode.with(LoginActivity.this).select();
                 break;
             case R.id.login_account_clean:
                 mAccountEdit.setText("");
@@ -109,9 +111,15 @@ public class LoginActivity extends BaseTitleActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == ConfigClass.RESULT_CODE) {
             if (data != null) {
-                String name = data.getStringExtra(SelectCountyActivity.RESULT_NAME_KRY);
-                area = data.getStringExtra(SelectCountyActivity.RESULT_CODE_KRY);
-                mSelectorPhone.setText(name);
+                String account = data.getStringExtra("account");
+                mAccountEdit.setText(account);
+            }
+        }
+        if (resultCode == ChoiceActivity.resultCode) {
+            if (data != null) {
+                AreaCodeModel model = (AreaCodeModel) data.getSerializableExtra(ChoiceActivity.DATAKEY);
+                area = model.getTel();
+                mSelectorPhone.setText("+ " + area);
             }
         }
     }

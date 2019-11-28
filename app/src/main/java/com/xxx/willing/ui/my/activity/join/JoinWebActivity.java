@@ -1,4 +1,4 @@
-package com.xxx.willing.ui.my.activity;
+package com.xxx.willing.ui.my.activity.join;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -22,14 +22,16 @@ import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import butterknife.BindView;
 
 /**
- * @Page 使用帮助页
- * @Author xxx
+ *  @desc  加盟用户协议
+ *  @author FM
+ *  @date   2019-11-28
  */
-public class UseHelpActivity extends BaseTitleActivity {
+
+public class JoinWebActivity extends BaseTitleActivity {
 
 
     public static void actionStart(Activity activity) {
-        Intent intent = new Intent(activity, UseHelpActivity.class);
+        Intent intent = new Intent(activity, JoinWebActivity.class);
         activity.startActivity(intent);
     }
 
@@ -44,7 +46,7 @@ public class UseHelpActivity extends BaseTitleActivity {
 
     @Override
     protected String initTitle() {
-        return getString(R.string.usd_help_title);
+        return getString(R.string.join_agree_web);
     }
 
     @Override

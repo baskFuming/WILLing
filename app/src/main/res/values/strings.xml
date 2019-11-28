@@ -299,5 +299,43 @@
     <string name="my_invite_line">我的邀请链接</string>
     <string name="welcome_copy">欢迎添加客服微信，加入专属场外交流群</string>
     <string name="save_zxing">(长按二维码直接保存）</string>
+    <string name="modify_login_pwd">修改登录密码，24小时禁止转账</string>
+    <string name="enter_pwd">请输入8-20位数字与字母结合的密码</string>
+    <string name="modify_pwd">修改资金密码，24小时禁止转账</string>
+    <string name="apply_name">加盟商名称</string>
+    <string name="apply_brand">所属品牌</string>
+    <string name="apply_time">加盟周期</string>
+    <string name="apply_adderss">地点</string>
+    <string name="apply_lines">投票额度</string>
+    <string name="apply_node">节点介绍</string>
+    <string name="apply_mess">创始团队信息（<font color="#fffe3848">*</font>为必填项）</string>
+    <string name="apply_role">人员角色</string>
+    <string name="apply_user_name">姓名</string>
+    <string name="apply_phone">联系电话</string>
+    <string name="apply_photo">证件照片</string>
+    <string name="apply_person_introduce">简介</string>
+    <string name="apply_create_mess">+创始人团队信息</string>
+    <string name="apply_trans_photo">宣传图片</string>
+    <string name="ed_hint_1">企业/机构/团队名称</string>
+    <string name="ed_hint_2">请选择品牌</string>
+    <string name="ed_hint_3">请选择加盟周期</string>
+    <string name="ed_hint_4" tools:ignore="ExtraTranslation">点击选择</string>
+    <string name="ed_hint_5">请输入投票额度</string>
+    <string name="ed_hint_6">项目介绍/发展计划/合作资源等</string>
+    <string name="ed_hint_7">请输入您的角色</string>
+    <string name="ed_hint_8">请输入您的姓名</string>
+    <string name="ed_hint_9">请输入您的电话</string>
+    <string name="ed_hint_10">点击上传</string>
+    <string name="ed_hint_11">请输入人员简介</string>
+    <string name="ed_agree">我已阅读并同意</string>
+    <string name="ed_agree_web">品值链合伙人申请协议</string>
+    <string name="join_agree_web">加盟申请协议</string>
+    <string name="update_card">证件照上传</string>
+    <string name="card_positive">二代身份证正面</string>
+    <string name="card_reverse">二代身份证正面</string>
+    <string name="card_hand">手持身份证与签名照片</string>
+    <string name="up_photo">宣传图上传</string>
+    <string name="all_text">全部</string>
+
 
 </resources>

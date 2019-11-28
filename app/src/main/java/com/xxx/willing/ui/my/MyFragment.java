@@ -16,13 +16,14 @@ import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.login.activity.LoginActivity;
-import com.xxx.willing.ui.my.activity.AccountInfoActivity;
+import com.xxx.willing.ui.my.activity.join.JoinApplyActivity;
+import com.xxx.willing.ui.my.activity.record.MoRecordActivity;
+import com.xxx.willing.ui.my.activity.userinfo.AccountInfoActivity;
 import com.xxx.willing.ui.my.activity.AccountSettingActivity;
-import com.xxx.willing.ui.my.activity.CallMeActivity;
 import com.xxx.willing.ui.my.activity.InviteFriendActivity;
-import com.xxx.willing.ui.my.activity.MyTeamActivity;
-import com.xxx.willing.ui.my.activity.MyVoteActivity;
-import com.xxx.willing.ui.my.activity.SignActivity;
+import com.xxx.willing.ui.my.activity.team.MyTeamActivity;
+import com.xxx.willing.ui.my.activity.vote.MyVoteActivity;
+import com.xxx.willing.ui.my.activity.sign.SignActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -86,8 +87,10 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 MyTeamActivity.actionStart(getActivity());
                 break;
             case R.id.re_my_join://  加盟申请
+                JoinApplyActivity.actionStart(getActivity());
                 break;
             case R.id.re_my_money: //资金记录
+                MoRecordActivity.actionStart(getActivity());
                 break;
             case R.id.re_my_account_setting://账户设置
                 AccountSettingActivity.actionStart(getActivity());

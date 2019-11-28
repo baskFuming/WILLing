@@ -25,13 +25,18 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.my.activity.TaskRulesActivity"></activity>
-        <activity android:name=".ui.my.activity.SignActivity" />
-        <activity android:name=".ui.my.activity.MyTeamActivity" />
-        <activity android:name=".ui.my.activity.VoteRecordActivity" />
-        <activity android:name=".ui.my.activity.MyVoteActivity" />
-        <activity android:name=".ui.my.activity.ModifyNameActivity" />
-        <activity android:name=".ui.my.activity.AccountInfoActivity" />
+        <activity android:name=".ui.my.activity.team.MyChildActivity"></activity>
+        <activity android:name=".ui.my.activity.record.MoRecordActivity" />
+        <activity android:name=".ui.my.activity.join.UpdatePhotoActivity" />
+        <activity android:name=".ui.my.activity.join.UpdateCardActivity" />
+        <activity android:name=".ui.my.activity.join.JoinApplyActivity" />
+        <activity android:name=".ui.my.activity.sign.TaskRulesActivity" />
+        <activity android:name=".ui.my.activity.sign.SignActivity" />
+        <activity android:name=".ui.my.activity.team.MyTeamActivity" />
+        <activity android:name=".ui.my.activity.vote.VoteRecordActivity" />
+        <activity android:name=".ui.my.activity.vote.MyVoteActivity" />
+        <activity android:name=".ui.my.activity.userinfo.ModifyNameActivity" />
+        <activity android:name=".ui.my.activity.userinfo.AccountInfoActivity" />
         <activity android:name=".ui.main.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -73,10 +78,9 @@
         <activity android:name=".ui.my.activity.psw.PasswordSettingActivity" />
         <activity android:name=".ui.my.activity.psw.SettingPayPswActivity" />
         <activity android:name=".ui.wallet.activity.WalletExchangeRecordActivity" />
-        <activity android:name=".ui.wallet.activity.WalletCoinDetailActivity"/>
-        <activity android:name=".ui.wallet.activity.RechargeActivity"/>
-        <activity android:name=".ui.wallet.activity.WithdrawalActivity"/>
-
+        <activity android:name=".ui.wallet.activity.WalletCoinDetailActivity" />
+        <activity android:name=".ui.wallet.activity.RechargeActivity" />
+        <activity android:name=".ui.wallet.activity.WithdrawalActivity" />
     </application>
 
 </manifest>

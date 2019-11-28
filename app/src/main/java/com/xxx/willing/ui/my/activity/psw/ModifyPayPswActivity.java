@@ -67,7 +67,7 @@ public class ModifyPayPswActivity extends BaseTitleActivity {
         mDownTimeUtil = DownTimeUtil.getInstance();
     }
 
-    @OnClick({R.id.modify_pay_psw_send_sms_code, R.id.modify_pay_psw_btn, R.id.modify_pay_psw_password_eye, R.id.modify_pay_psw_password_again_eye})
+    @OnClick({R.id.modify_pay_psw_send_sms_code, R.id.modify_pay_psw_btn, R.id.modify_pay_psw_password_eye, R.id.modify_pay_psw_password_again_eye, R.id.img_edit_cancel})
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.modify_pay_psw_password_eye:
@@ -81,6 +81,9 @@ public class ModifyPayPswActivity extends BaseTitleActivity {
                 break;
             case R.id.modify_pay_psw_btn:
                 updatePsw();
+                break;
+            case R.id.img_edit_cancel:
+                mPasswordAgainEdit.setText("");
                 break;
         }
     }

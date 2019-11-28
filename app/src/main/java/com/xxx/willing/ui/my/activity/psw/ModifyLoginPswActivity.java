@@ -72,7 +72,7 @@ public class ModifyLoginPswActivity extends BaseTitleActivity {
         mDownTimeUtil = DownTimeUtil.getInstance();
     }
 
-    @OnClick({R.id.modify_login_psw_send_sms_code, R.id.modify_login_psw_btn, R.id.modify_login_psw_old_password_eye, R.id.modify_login_psw_new_password_eye, R.id.modify_login_psw_new_password_again_eye})
+    @OnClick({R.id.modify_login_psw_send_sms_code, R.id.modify_login_psw_btn, R.id.modify_login_psw_old_password_eye, R.id.modify_login_psw_new_password_eye, R.id.modify_login_psw_new_password_again_eye, R.id.img_edit_cancel})
     public void OnClick(View view) {
         KeyBoardUtil.closeKeyBord(this, mSMSCodeEdit);
         switch (view.getId()) {
@@ -90,6 +90,9 @@ public class ModifyLoginPswActivity extends BaseTitleActivity {
                 break;
             case R.id.modify_login_psw_btn:
                 updatePsw();
+                break;
+            case R.id.img_edit_cancel:
+                mNewPasswordAgainEdit.setText("");
                 break;
         }
     }

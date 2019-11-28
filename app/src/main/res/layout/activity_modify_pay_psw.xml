@@ -8,6 +8,16 @@
     tools:context=".ui.my.activity.psw.ModifyPayPswActivity">
 
     <include layout="@layout/include_title_bar" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/modify_login_pwd"
+        android:textColor="#fffe3848"
+        android:textSize="14sp"
+        android:paddingBottom="13dp"
+        android:paddingTop="13dp"
+        android:paddingLeft="15dp"
+        android:background="#FFEBEC"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -109,12 +119,30 @@
             android:layout_marginRight="10dp"
             android:button="@drawable/selector_password" />
 
+        <ImageView
+            android:id="@+id/img_edit_cancel"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/modify_pay_psw_password_again_eye"
+            android:layout_centerVertical="true"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:src="@mipmap/edit_cancel"/>
+
     </RelativeLayout>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_pwd"
+        android:textColor="#fffe3848"
+        android:textSize="12dp"
+        />
 
     <Button
         android:id="@+id/modify_pay_psw_btn"
         style="@style/ButtonStyle"
-        android:layout_width="330dp"
+        android:layout_width="262dp"
         android:layout_height="44dp"
         android:layout_marginTop="44dp"
         android:text="@string/modify_pay_psw_btn" />

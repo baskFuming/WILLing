@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:orientation="vertical"
-    tools:context=".ui.my.activity.AccountInfoActivity">
+    tools:context=".ui.my.activity.userinfo.AccountInfoActivity">
 
     <include layout="@layout/include_title_bar" />
 

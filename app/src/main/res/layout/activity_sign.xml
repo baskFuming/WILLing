@@ -20,7 +20,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="288dp"
             android:background="@mipmap/sign_bg"
             android:orientation="vertical">
 
@@ -33,15 +33,23 @@
                 android:textColor="#ff333333"
                 android:textSize="17dp" />
 
-            <TextView
+            <!--<android.support.v7.widget.RecyclerView-->
+                <!--android:id="@+id/recycler_progress"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="60dp"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:paddingLeft="30dp"-->
+                <!--android:paddingRight="30dp" />-->
+
+            <com.xxx.willing.ui.my.activity.sign.view.StepsView
+                android:id="@+id/step_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
                 android:layout_marginBottom="60dp"
+                android:layout_marginTop="20dp"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:text="----------------------------"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/text_rules"
@@ -66,8 +74,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
 
             <ImageView
                 android:layout_width="3dp"
@@ -102,9 +110,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/shape_line_bg"
             android:orientation="vertical"
+            android:paddingBottom="16dp"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingBottom="16dp">
+            android:paddingRight="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -132,8 +140,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:orientation="vertical"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
+                            android:paddingBottom="5dp"
+                            android:paddingTop="5dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -194,8 +202,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:orientation="vertical"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
+                            android:paddingBottom="5dp"
+                            android:paddingTop="5dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -269,11 +277,11 @@
                     android:id="@+id/te_trip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:layout_marginTop="5dp"
                     android:text="@string/task_trip"
                     android:textColor="#ff666666"
-                    android:textSize="12dp"
-                    android:layout_marginBottom="16dp"/>
+                    android:textSize="12dp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

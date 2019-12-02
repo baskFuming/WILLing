@@ -1,9 +1,7 @@
 package com.xxx.willing.ui.wallet.window;
 
-import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.xxx.willing.R;

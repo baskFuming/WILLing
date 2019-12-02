@@ -1,6 +1,5 @@
 package com.xxx.willing.ui.wallet.activity;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;

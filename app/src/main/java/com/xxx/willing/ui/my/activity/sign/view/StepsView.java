@@ -10,6 +10,8 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.xxx.willing.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,47 +23,49 @@ import java.util.List;
  */
 public class StepsView extends View {
 
-    /**
-     * 动画执行的时间 230毫秒
-     */
-    private final static int ANIMATION_TIME = 230;
-    /**
-     * 动画执行的间隔次数
-     */
-    private final static int ANIMATION_INTERVAL = 10;
+    private StepCallback callback;
 
     /**
      * 线段的高度
      */
-    private float mCompletedLineHeight = CalcUtils.dp2px(getContext(), 2f);
-
+    private float mLineHeight;
+    /**
+     * 线段长度
+     */
+    private float mLineWidth;
     /**
      * 小图标大小
      */
-    private float mSmallIconSize = CalcUtils.dp2px(getContext(), 13.5f);
+    private float mSmallIconSize;
     /**
      * 大图标大小
      */
-    private float mBigIconSize = CalcUtils.dp2px(getContext(), 20f);
+    private float mBigIconSize;
 
     /**
      * up的宽度
      */
-    private float mUpWidth = CalcUtils.dp2px(getContext(), 21.5f);
+    private float mUpWidth;
+
     /**
      * up的高度
      */
-    private float mUpHeight = CalcUtils.dp2px(getContext(), 18.5f);
+    private float mUpHeight;
 
     /**
-     * 线段长度
+     * up的间距
      */
-    private float mLineWidth = CalcUtils.dp2px(getContext(), 23f);
+    private float mUpPadding;
+
+    /**
+     * 文字大小
+     */
+    private float mTextSize;
 
     /**
      * 文字间距
      */
-    private float mTextPadding = CalcUtils.dp2px(getContext(), 15f);
+    private float mTextPadding;
 
     /**
      * 图标中心点Y
@@ -80,24 +84,23 @@ public class StepsView extends View {
      * 数据源
      */
     private List<StepBean> mStepBeanList;
-    private int mStepNum = 0;
 
     /**
      * 未完成圆形颜色
      */
-    private int mUnCompletedCircleColor = Color.parseColor("#3C7FFF");
+    private int mUnCompletedCircleColor = Color.parseColor("#DFE2E5");
     /**
      * 完成的圆形颜色
      */
-    private int mCompletedCircleColor = Color.parseColor("#DFE2E5");
+    private int mCompletedCircleColor = Color.parseColor("#3C7FFF");
     /**
      * 未完成线条颜色
      */
-    private int mUnCompletedLineColor = Color.parseColor("#3C7FFF");
+    private int mUnCompletedLineColor = Color.parseColor("#DFE2E5");
     /**
      * 完成的线条颜色
      */
-    private int mCompletedLineColor = Color.parseColor("#DFE2E5");
+    private int mCompletedLineColor = Color.parseColor("#3C7FFF");
     /**
      * 未完成的天数颜色
      */
@@ -143,15 +146,23 @@ public class StepsView extends View {
     private int mCount = 0;
 
     /**
+     * 动画执行的时间 230毫秒
+     */
+    private final static int ANIMATION_TIME = 230;
+    /**
+     * 动画执行的间隔次数
+     */
+    private final static int ANIMATION_INTERVAL = 10;
+
+    /**
      * 执行动画线段每次绘制的长度，线段的总长度除以总共执行的时间乘以每次执行的间隔时间
      */
-    private float mAnimationWidth = (mLineWidth / ANIMATION_TIME) * ANIMATION_INTERVAL;
+    private float mAnimationWidth;
 
     /**
      * 执行动画的位置
      */
     private int mPosition;
-    private int[] mMax;
 
     public StepsView(Context context) {
         this(context, null);
@@ -171,6 +182,17 @@ public class StepsView extends View {
      */
     private void init() {
         mStepBeanList = new ArrayList<>();
+        mLineHeight = getResources().getDimension(R.dimen.step_line_height);
+        mLineWidth = getResources().getDimension(R.dimen.step_line_width);
+        mSmallIconSize = getResources().getDimension(R.dimen.step_small_circle);
+        mBigIconSize = getResources().getDimension(R.dimen.step_big_circle);
+        mUpWidth = getResources().getDimension(R.dimen.step_up_width);
+        mUpHeight = getResources().getDimension(R.dimen.step_up_height);
+        mUpPadding = getResources().getDimension(R.dimen.step_up_padding);
+        mTextSize = getResources().getDimension(R.dimen.step_text_size);
+        mTextPadding = getResources().getDimension(R.dimen.step_text_padding);
+
+        mAnimationWidth = (mLineWidth / ANIMATION_TIME) * ANIMATION_INTERVAL;
 
         //未完成线段画笔
         mUnCompletedLinePaint = new Paint();
@@ -192,13 +214,14 @@ public class StepsView extends View {
         mUnCompletedTextPaint.setColor(mUnCompletedTextColor);
         mUnCompletedTextPaint.setStrokeWidth(2);
         mUnCompletedTextPaint.setStyle(Paint.Style.FILL);
+        mUnCompletedTextPaint.setTextSize(mTextSize);
 
         //已完成文字画笔
         mCompletedTextPaint = new Paint();
         mCompletedTextPaint.setAntiAlias(true);
         mCompletedTextPaint.setColor(mCompletedTextColor);
         mCompletedTextPaint.setStyle(Paint.Style.FILL);
-        mCompletedTextPaint.setTextSize(CalcUtils.sp2px(getContext(), 8f));
+        mCompletedTextPaint.setTextSize(mTextSize);
 
         //未完成圆形画笔
         mUnCompletedCirclePaint = new Paint();
@@ -224,11 +247,11 @@ public class StepsView extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         //图标的中中心Y点
-        mCenterY = CalcUtils.dp2px(getContext(), 28f) + mSmallIconSize / 2;
+        mCenterY = mBigIconSize / 2 + mUpHeight + mUpHeight;
         //获取左上方Y的位置，获取该点的意义是为了方便画矩形左上的Y位置
-        mLeftY = mCenterY - (mCompletedLineHeight / 2);
+        mLeftY = mCenterY - (mLineHeight / 2);
         //获取右下方Y的位置，获取该点的意义是为了方便画矩形右下的Y位置
-        mRightY = mCenterY + mCompletedLineHeight / 2;
+        mRightY = mCenterY + mLineHeight / 2;
     }
 
     @SuppressLint("DrawAllocation")
@@ -255,7 +278,7 @@ public class StepsView extends View {
             //图标大小
             float iconSize;
             //首先判断是否是正在进行中
-            if (bean.getState() == StepBean.STEP_CURRENT) {
+            if (i == mPosition) {
                 iconSize = mBigIconSize;
             } else {
                 iconSize = mSmallIconSize;
@@ -301,14 +324,21 @@ public class StepsView extends View {
             }
 
             //绘制天数
+            float textX;
+            if (i == mPosition) {
+                textX = lastWidth + (mBigIconSize - mSmallIconSize) / 2;
+            } else {
+                textX = lastWidth;
+            }
+
             if (bean.getState() == StepBean.STEP_COMPLETED) {
                 canvas.drawText(bean.getNumber() + "天",
-                        lastWidth + iconSize / 2,
+                        textX,
                         mCenterY + mTextPadding,
                         mCompletedTextPaint);
             } else {
                 canvas.drawText(bean.getNumber() + "天",
-                        lastWidth + iconSize / 2,
+                        textX,
                         mCenterY + mTextPadding,
                         mUnCompletedTextPaint);
             }
@@ -318,10 +348,10 @@ public class StepsView extends View {
             if (drawId != 0) {
                 //需要UP才进行绘制
                 Rect rectUp =
-                        new Rect((int) (lastWidth - mUpWidth / 2),
-                                (int) (mCenterY - iconSize / 2 - CalcUtils.dp2px(getContext(), 8f) - mUpHeight),
-                                (int) (lastWidth + mUpWidth / 2),
-                                (int) (mCenterY - iconSize / 2 - CalcUtils.dp2px(getContext(), 8f)));
+                        new Rect((int) (lastWidth + iconSize / 2 - mUpWidth / 2),
+                                (int) (mCenterY - mUpPadding - mUpHeight),
+                                (int) (lastWidth + iconSize / 2 + mUpWidth / 2),
+                                (int) (mCenterY - mUpPadding));
 
                 Drawable mUpIcon = getResources().getDrawable(drawId);
                 mUpIcon.setBounds(rectUp);
@@ -337,8 +367,14 @@ public class StepsView extends View {
             postInvalidate();
         } else {
             //重绘完成
+            mStepBeanList.get(mPosition).setState(StepBean.STEP_COMPLETED);
             isAnimation = false;
             mCount = 0;
+            postInvalidate();
+            if (callback != null) {
+                callback.onStepSuccess();
+                callback = null;
+            }
         }
     }
 
@@ -355,7 +391,7 @@ public class StepsView extends View {
             //图标大小
             float iconSize;
             //首先判断是否是正在进行中
-            if (bean.getState() == StepBean.STEP_CURRENT) {
+            if (i == mPosition) {
                 iconSize = mBigIconSize;
             } else {
                 iconSize = mSmallIconSize;
@@ -389,14 +425,21 @@ public class StepsView extends View {
             }
 
             //绘制天数
+            float textX;
+            if (i == mPosition) {
+                textX = lastWidth + (mBigIconSize - mSmallIconSize) / 2;
+            } else {
+                textX = lastWidth;
+            }
+
             if (bean.getState() == StepBean.STEP_COMPLETED) {
                 canvas.drawText(bean.getNumber() + "天",
-                        lastWidth + iconSize / 2,
+                        textX,
                         mCenterY + mTextPadding,
                         mCompletedTextPaint);
             } else {
                 canvas.drawText(bean.getNumber() + "天",
-                        lastWidth + iconSize / 2,
+                        textX,
                         mCenterY + mTextPadding,
                         mUnCompletedTextPaint);
             }
@@ -406,10 +449,10 @@ public class StepsView extends View {
             if (drawId != 0) {
                 //需要UP才进行绘制
                 Rect rectUp =
-                        new Rect((int) (lastWidth - mUpWidth / 2),
-                                (int) (mCenterY - iconSize / 2 - CalcUtils.dp2px(getContext(), 8f) - mUpHeight),
-                                (int) (lastWidth + mUpWidth / 2),
-                                (int) (mCenterY - iconSize / 2 - CalcUtils.dp2px(getContext(), 8f)));
+                        new Rect((int) (lastWidth + iconSize / 2 - mUpWidth / 2),
+                                (int) (mCenterY - mUpPadding - mUpHeight),
+                                (int) (lastWidth + iconSize / 2 + mUpWidth / 2),
+                                (int) (mCenterY - mUpPadding));
 
                 Drawable mUpIcon = getResources().getDrawable(drawId);
                 mUpIcon.setBounds(rectUp);
@@ -429,21 +472,25 @@ public class StepsView extends View {
             return;
         }
         mStepBeanList = stepsBeanList;
-        //找出最大的两个值的位置
-        mMax = CalcUtils.findMax(stepsBeanList);
+        for (int i = 0; i < mStepBeanList.size(); i++) {
+            if (mStepBeanList.get(i).getState() == StepBean.STEP_UNDO) {
+                mPosition = i;
+                break;
+            }
+        }
+
         //引起重绘
         postInvalidate();
     }
 
     /**
      * 执行签到动画
-     *
-     * @param position 执行的位置
      */
-    public void startSignAnimation(int position) {
+    public void startSignAnimation(StepCallback callback) {
+        this.callback = callback;
+
         //线条从灰色变为蓝色
         isAnimation = true;
-        mPosition = position;
         //引起重绘
         postInvalidate();
     }

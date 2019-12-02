@@ -4,4 +4,16 @@
 
     <dimen name="zxCode_call_me_size">130dp</dimen>
 
+
+    <!-- 自定义View -->
+    <dimen name="step_small_circle">13.5dp</dimen>
+    <dimen name="step_big_circle">20dp</dimen>
+    <dimen name="step_line_width">34.5dp</dimen>
+    <dimen name="step_line_height">2dp</dimen>
+    <dimen name="step_up_width">21.5dp</dimen>
+    <dimen name="step_up_height">18.5dp</dimen>
+    <dimen name="step_up_padding">15.5dp</dimen>
+    <dimen name="step_text_size">9dp</dimen>
+    <dimen name="step_text_padding">20dp</dimen>
+
 </resources>

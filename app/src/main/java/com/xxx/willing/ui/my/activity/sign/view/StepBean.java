@@ -12,10 +12,6 @@ public class StepBean {
      */
     public static final int STEP_UNDO = -1;
     /**
-     * 正在进行
-     */
-    public static final int STEP_CURRENT = 0;
-    /**
      * 已完成
      */
     public static final int STEP_COMPLETED = 1;
@@ -24,7 +20,7 @@ public class StepBean {
     private int number;
     private int drawId;
 
-    public StepBean(int state, int number, int drawId) {
+    public StepBean(int state, int number,int drawId) {
         this.state = state;
         this.number = number;
         this.drawId = drawId;

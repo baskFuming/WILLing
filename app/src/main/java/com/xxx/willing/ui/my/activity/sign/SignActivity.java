@@ -14,6 +14,7 @@ import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.ui.my.activity.InviteFriendActivity;
 import com.xxx.willing.ui.my.activity.sign.view.StepBean;
+import com.xxx.willing.ui.my.activity.sign.view.StepCallback;
 import com.xxx.willing.ui.my.activity.sign.view.StepsView;
 import com.xxx.willing.ui.my.activity.vote.MyVoteActivity;
 import com.xxx.willing.ui.my.activity.window.SignPopWindow;
@@ -73,8 +74,8 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
         mTrip.setText(Html.fromHtml(String.format(getResources().getString(R.string.task_trip))));
 
         //TODO 假数据测试
-        mList.add(new StepBean(StepBean.STEP_UNDO, 1));
-        mList.add(new StepBean(StepBean.STEP_UNDO, 2));
+        mList.add(new StepBean(StepBean.STEP_COMPLETED, 1));
+        mList.add(new StepBean(StepBean.STEP_COMPLETED, 2));
         mList.add(new StepBean(StepBean.STEP_UNDO, 3));
         mList.add(new StepBean(StepBean.STEP_UNDO, 4));
         mList.add(new StepBean(StepBean.STEP_UNDO, 5));
@@ -90,11 +91,14 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                 TaskRulesActivity.actionStart(this);
                 break;
             case R.id.te_sign_btn://签到弹框
-                if (signPopWindow == null || !signPopWindow.isShowing()) {
-                    signPopWindow = SignPopWindow.getInstance(this);
-                    signPopWindow.setCallback(this);
-                    signPopWindow.show();
-                }
+                //执行签到动画
+                mStepView.startSignAnimation(() -> {
+                    if (signPopWindow == null || !signPopWindow.isShowing()) {
+                        signPopWindow = SignPopWindow.getInstance(this);
+                        signPopWindow.setCallback(this);
+                        signPopWindow.show();
+                    }
+                });
                 break;
             case R.id.te_invite_friend:
                 InviteFriendActivity.actionStart(this);

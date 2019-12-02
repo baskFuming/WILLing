@@ -9,7 +9,6 @@ import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.model.sp.SharedConst;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
-import com.xxx.willing.ui.my.activity.AccountSettingActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

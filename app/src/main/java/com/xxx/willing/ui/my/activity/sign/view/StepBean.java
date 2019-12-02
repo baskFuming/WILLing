@@ -20,7 +20,7 @@ public class StepBean {
     private int number;
     private int drawId;
 
-    public StepBean(int state, int number,int drawId) {
+    public StepBean(int state, int number, int drawId) {
         this.state = state;
         this.number = number;
         this.drawId = drawId;

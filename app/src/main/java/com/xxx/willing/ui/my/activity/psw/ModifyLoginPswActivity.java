@@ -17,7 +17,6 @@ import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.utils.DownTimeUtil;
 import com.xxx.willing.model.utils.KeyBoardUtil;
 import com.xxx.willing.model.utils.ToastUtil;
-import com.xxx.willing.ui.main.SplashActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

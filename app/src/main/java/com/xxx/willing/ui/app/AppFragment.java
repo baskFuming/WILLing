@@ -1,16 +1,11 @@
 package com.xxx.willing.ui.app;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
 
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 public class AppFragment extends BaseFragment {
 

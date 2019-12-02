@@ -16,14 +16,10 @@ import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.WalletExchangeBean;
-import com.xxx.willing.model.http.bean.WalletMarketBean;
-import com.xxx.willing.model.http.bean.WalletReleaseBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.utils.ToastUtil;
-import com.xxx.willing.ui.login.activity.ForgetLoginPswActivity;
 import com.xxx.willing.ui.wallet.adapter.WalletExchangeAdapter;
-import com.xxx.willing.ui.wallet.adapter.WalletMarketAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

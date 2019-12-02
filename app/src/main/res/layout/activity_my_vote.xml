@@ -15,18 +15,18 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="12dp"
         android:layout_marginRight="16dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/shape_line_bg"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
             android:paddingLeft="15dp"
-            android:paddingTop="20dp"
             android:paddingRight="15dp"
-            android:paddingBottom="20dp">
+            android:paddingTop="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -51,10 +51,10 @@
             android:id="@+id/re_join_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
             android:paddingLeft="15dp"
-            android:paddingTop="20dp"
             android:paddingRight="15dp"
-            android:paddingBottom="20dp">
+            android:paddingTop="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -66,10 +66,10 @@
 
             <TextView
                 android:id="@+id/join_name"
-                android:layout_toLeftOf="@+id/img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/img"
                 android:text="-----"
                 android:textColor="#ff333333"
                 android:textSize="14dp" />
@@ -78,19 +78,19 @@
                 android:id="@+id/img"
                 android:layout_width="6dp"
                 android:layout_height="10dp"
-                android:layout_marginLeft="10dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
                 android:src="@mipmap/vote_right_bg" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
             android:paddingLeft="15dp"
-            android:paddingTop="20dp"
             android:paddingRight="15dp"
-            android:paddingBottom="20dp">
+            android:paddingTop="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -114,10 +114,10 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
             android:paddingLeft="15dp"
-            android:paddingTop="20dp"
             android:paddingRight="15dp"
-            android:paddingBottom="20dp">
+            android:paddingTop="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -142,10 +142,10 @@
             android:id="@+id/re_vote_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
             android:paddingLeft="15dp"
-            android:paddingTop="20dp"
             android:paddingRight="15dp"
-            android:paddingBottom="20dp">
+            android:paddingTop="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -157,10 +157,10 @@
 
             <TextView
                 android:id="@+id/vote_number"
-                android:layout_toLeftOf="@+id/img2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/img2"
                 android:text="-----"
                 android:textColor="#ff333333"
                 android:textSize="14dp" />
@@ -169,19 +169,19 @@
                 android:id="@+id/img2"
                 android:layout_width="6dp"
                 android:layout_height="10dp"
-                android:layout_marginLeft="10dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
                 android:src="@mipmap/vote_right_bg" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
             android:paddingLeft="15dp"
-            android:paddingTop="20dp"
             android:paddingRight="15dp"
-            android:paddingBottom="20dp">
+            android:paddingTop="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -205,10 +205,10 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
             android:paddingLeft="15dp"
-            android:paddingTop="20dp"
             android:paddingRight="15dp"
-            android:paddingBottom="20dp">
+            android:paddingTop="20dp">
 
             <TextView
                 android:layout_width="wrap_content"

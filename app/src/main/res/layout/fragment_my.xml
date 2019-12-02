@@ -135,6 +135,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:background="@mipmap/my_right_back" />
+
             </RelativeLayout>
 
             <View
@@ -170,6 +171,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:background="@mipmap/my_right_back" />
+
             </RelativeLayout>
 
             <View
@@ -288,10 +290,10 @@
                     android:layout_centerVertical="true"
                     android:background="@mipmap/my_right_back" />
             </RelativeLayout>
+
         </LinearLayout>
 
         <Button
-            android:visibility="gone"
             android:id="@+id/account_setting_out_login"
             style="@style/ButtonStyle"
             android:layout_width="330dp"
@@ -299,6 +301,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="84dp"
-            android:text="@string/account_setting_out_login" />
+            android:text="@string/account_setting_out_login"
+            android:visibility="gone" />
     </RelativeLayout>
 </android.support.v4.widget.SwipeRefreshLayout>

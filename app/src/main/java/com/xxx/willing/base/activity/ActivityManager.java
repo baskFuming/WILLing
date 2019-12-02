@@ -1,12 +1,7 @@
 package com.xxx.willing.base.activity;
 
 import android.app.Activity;
-import android.content.ComponentName;
-import android.content.Context;
 
-import com.xxx.willing.ui.main.MainActivity;
-
-import java.util.List;
 import java.util.Stack;
 
 /**

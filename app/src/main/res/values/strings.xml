@@ -341,7 +341,7 @@
     <string name="toubu">头部</string>
     <string name="diqu">地区</string>
     <string name="biaohao">标号</string>
-
+    <string name="vote_down">全部</string>
 
 
 </resources>

@@ -10,7 +10,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 
-
 import com.xxx.willing.R;
 
 import java.io.ByteArrayOutputStream;

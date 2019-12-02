@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.LocaleList;
 import android.util.DisplayMetrics;
 
-
 import com.xxx.willing.model.sp.SharedConst;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
 

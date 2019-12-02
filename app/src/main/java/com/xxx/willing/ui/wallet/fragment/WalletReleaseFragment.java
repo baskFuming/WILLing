@@ -12,12 +12,10 @@ import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
-import com.xxx.willing.model.http.bean.WalletMarketBean;
 import com.xxx.willing.model.http.bean.WalletReleaseBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.utils.ToastUtil;
-import com.xxx.willing.ui.wallet.adapter.WalletMarketAdapter;
 import com.xxx.willing.ui.wallet.adapter.WalletReleaseAdapter;
 
 import java.util.ArrayList;

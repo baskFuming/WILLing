@@ -1,9 +1,6 @@
 package com.xxx.willing.model.utils;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-
-import com.xxx.willing.R;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

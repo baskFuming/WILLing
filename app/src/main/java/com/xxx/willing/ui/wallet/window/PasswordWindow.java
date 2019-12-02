@@ -2,21 +2,14 @@ package com.xxx.willing.ui.wallet.window;
 
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseActivity;
 import com.xxx.willing.base.dialog.BaseDialog;
-import com.xxx.willing.model.http.Api;
-import com.xxx.willing.model.http.ApiCallback;
-import com.xxx.willing.model.utils.DownTimeUtil;
 import com.xxx.willing.model.utils.KeyBoardUtil;
-import com.xxx.willing.model.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 public class PasswordWindow extends BaseDialog {
 

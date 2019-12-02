@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.xxx.willing.BuildConfig;
 import com.xxx.willing.ConfigClass;
 import com.xxx.willing.R;

@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.xxx.willing.ConfigClass;
 import com.xxx.willing.R;
-import com.xxx.willing.base.activity.BaseActivity;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;

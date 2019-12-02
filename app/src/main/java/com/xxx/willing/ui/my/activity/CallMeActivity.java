@@ -6,14 +6,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.model.utils.ImageUtil;
 
-import butterknife.BindView;
 import butterknife.OnClick;
 
 public class CallMeActivity extends BaseTitleActivity {

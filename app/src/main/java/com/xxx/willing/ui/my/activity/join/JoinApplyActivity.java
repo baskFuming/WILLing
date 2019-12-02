@@ -2,16 +2,12 @@ package com.xxx.willing.ui.my.activity.join;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.journeyapps.barcodescanner.ViewfinderView;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
-import com.xxx.willing.ui.my.activity.CallMeActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

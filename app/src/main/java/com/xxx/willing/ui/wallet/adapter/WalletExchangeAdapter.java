@@ -6,7 +6,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
 import com.xxx.willing.model.http.bean.WalletExchangeBean;
-import com.xxx.willing.model.http.bean.WalletReleaseBean;
 
 import java.util.List;
 

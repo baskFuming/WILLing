@@ -2,9 +2,6 @@ package com.xxx.willing.ui.my.activity.sign;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -14,7 +11,6 @@ import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.ui.my.activity.InviteFriendActivity;
 import com.xxx.willing.ui.my.activity.sign.view.StepBean;
-import com.xxx.willing.ui.my.activity.sign.view.StepCallback;
 import com.xxx.willing.ui.my.activity.sign.view.StepsView;
 import com.xxx.willing.ui.my.activity.vote.MyVoteActivity;
 import com.xxx.willing.ui.my.activity.window.SignPopWindow;

@@ -2,8 +2,6 @@ package com.xxx.willing.ui.my.activity.team;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;

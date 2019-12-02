@@ -2,14 +2,10 @@ package com.xxx.willing.ui.my.activity.record;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 
-import com.journeyapps.barcodescanner.ViewfinderView;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
-import com.xxx.willing.ui.my.activity.join.JoinApplyActivity;
 
 import butterknife.OnClick;
 

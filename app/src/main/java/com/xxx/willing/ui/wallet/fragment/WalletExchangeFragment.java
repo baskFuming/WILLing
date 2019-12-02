@@ -9,7 +9,6 @@ import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
-import com.xxx.willing.model.http.bean.UserInfo;
 import com.xxx.willing.model.http.bean.WalletCoinBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.BooleanBean;

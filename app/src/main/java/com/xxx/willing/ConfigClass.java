@@ -1,7 +1,5 @@
 package com.xxx.willing;
 
-import android.widget.CompoundButton;
-
 public class ConfigClass {
     /**
      * 服务器地址

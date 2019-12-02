@@ -19,8 +19,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingLeft="15dp"
-            android:paddingTop="10dp"
-            android:paddingRight="15dp">
+            android:paddingRight="15dp"
+            android:paddingTop="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,9 +50,9 @@
                     android:layout_marginLeft="15dp"
                     android:background="@mipmap/ed_bg"
                     android:hint="@string/ed_hint_1"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
                     android:textColor="#ff333333"
                     android:textColorHint="#ff999999"
                     android:textSize="14dp" />
@@ -61,8 +61,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:background="#EFEFEF" />
 
             <LinearLayout
@@ -98,10 +98,10 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:background="@null"
-                        android:text="@string/ed_hint_2"
+                        android:paddingBottom="10dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
+                        android:text="@string/ed_hint_2"
                         android:textColor="#ff333333"
                         android:textSize="14dp" />
 
@@ -119,8 +119,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:background="#EFEFEF" />
 
             <LinearLayout
@@ -156,10 +156,10 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:background="@null"
-                        android:text="@string/ed_hint_3"
+                        android:paddingBottom="10dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
+                        android:text="@string/ed_hint_3"
                         android:textColor="#ff333333"
                         android:textSize="14dp" />
 
@@ -177,8 +177,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:background="#EFEFEF" />
 
             <LinearLayout
@@ -214,9 +214,9 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:background="@null"
+                        android:paddingBottom="10dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
                         android:text="@string/ed_hint_4"
                         android:textColor="#ff999999"
                         android:textSize="14dp" />
@@ -259,9 +259,9 @@
                     android:layout_marginLeft="37dp"
                     android:background="@mipmap/ed_bg"
                     android:hint="@string/ed_hint_5"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
                     android:textColor="#ff333333"
                     android:textColorHint="#ff999999"
                     android:textSize="14dp" />
@@ -270,8 +270,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:background="#EFEFEF" />
 
             <LinearLayout
@@ -336,8 +336,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:background="#EFEFEF" />
 
             <TextView
@@ -350,8 +350,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:background="#EFEFEF" />
 
             <LinearLayout
@@ -382,9 +382,9 @@
                     android:layout_marginLeft="25dp"
                     android:background="@mipmap/ed_bg"
                     android:hint="@string/ed_hint_7"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
                     android:textColor="#ff333333"
                     android:textColorHint="#ff999999"
                     android:textSize="14dp" />
@@ -393,8 +393,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:background="#EFEFEF" />
 
             <LinearLayout
@@ -425,9 +425,9 @@
                     android:layout_marginLeft="55dp"
                     android:background="@mipmap/ed_bg"
                     android:hint="@string/ed_hint_8"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
                     android:textColor="#ff333333"
                     android:textColorHint="#ff999999"
                     android:textSize="14dp" />
@@ -436,8 +436,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:background="#EFEFEF" />
 
             <LinearLayout
@@ -468,9 +468,9 @@
                     android:layout_marginLeft="25dp"
                     android:background="@mipmap/ed_bg"
                     android:hint="@string/ed_hint_7"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
                     android:textColor="#ff333333"
                     android:textColorHint="#ff999999"
                     android:textSize="14dp" />
@@ -479,8 +479,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:background="#EFEFEF" />
 
             <LinearLayout
@@ -510,9 +510,9 @@
                         android:layout_centerVertical="true"
                         android:background="@null"
                         android:hint="@string/ed_hint_10"
+                        android:paddingBottom="10dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
                         android:textColor="#ff999999"
                         android:textSize="14dp" />
 
@@ -530,8 +530,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:background="#EFEFEF" />
 
             <LinearLayout
@@ -614,9 +614,10 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
                 android:background="#EFEFEF" />
+
             <LinearLayout
                 android:id="@+id/re_trans_photo_click"
                 android:layout_width="match_parent"
@@ -637,65 +638,67 @@
                     android:layout_width="291dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="37dp"
-                    android:text="@string/ed_hint_10"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:text="@string/ed_hint_10"
                     android:textColor="#ff999999"
                     android:textSize="14dp" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:background="#EFEFEF" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <CheckBox
                     android:id="@+id/ed_check"
                     android:layout_width="14dp"
                     android:layout_height="14dp"
-                    android:button="null"
                     android:layout_gravity="center"
-                    android:gravity="center"
                     android:background="@mipmap/check_bg"
-                    />
+                    android:button="@null"
+                    android:gravity="center" />
+
                 <TextView
-                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
                     android:text="@string/ed_agree"
                     android:textColor="#ff999999"
-                    android:textSize="12dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    />
+                    android:textSize="12dp" />
+
                 <TextView
                     android:id="@+id/ed_agree_click"
-                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
                     android:text="@string/ed_agree_web"
                     android:textColor="#3C7FFF"
-                    android:textSize="12dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    />
+                    android:textSize="12dp" />
             </LinearLayout>
+
             <TextView
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="54dp"
                 android:id="@+id/ed_submit"
                 style="@style/LoginButtonStyle"
                 android:layout_width="262dp"
                 android:layout_height="44dp"
-                android:text="@string/feed_back_btn"
                 android:layout_gravity="center"
+                android:layout_marginBottom="54dp"
+                android:layout_marginTop="16dp"
                 android:gravity="center"
-                />
+                android:text="@string/feed_back_btn" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

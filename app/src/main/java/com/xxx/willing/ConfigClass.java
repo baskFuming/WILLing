@@ -6,11 +6,11 @@ public class ConfigClass {
     /**
      * 服务器地址
      */
-    public static final String BASE_URL = "https://noahglobal.me/";   //正式服务器地址
-    public static final String BASE_URL_PATH = "/NoahWallet";
+//    public static final String BASE_URL = "https://noahglobal.me/";   //正式服务器地址
+//    public static final String BASE_URL_PATH = "/NoahWallet";
 
-//    public static final String BASE_URL = "http://192.168.31.95:8080";   //测试服务器地址
-//    public static final String BASE_URL_PATH = "";
+    public static final String BASE_URL = "http://192.168.31.95:8080";   //测试服务器地址
+    public static final String BASE_URL_PATH = "";
 
     /**
      * 正则判断区域

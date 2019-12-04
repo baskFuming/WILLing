@@ -207,8 +207,6 @@ public class MainActivity extends BaseActivity {
                 break;
         }
     }
-
-
     /**
      * @Model 检查App版本
      */

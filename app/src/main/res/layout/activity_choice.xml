@@ -44,7 +44,7 @@
             android:layout_marginBottom="14dp"
             android:text="@string/diquxuanze"
             android:textColor="#202124"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
             android:layout_marginEnd="8dp"
             android:text="@string/zhongwen"
             android:textColor="#202124"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView5"
             app:layout_constraintEnd_toEndOf="parent"
@@ -118,7 +118,7 @@
                 app:sidebarItemHeight="20dp"
                 app:sidebarTextColor="#FF375880"
                 app:sidebarTextColorChoose="#333333"
-                app:sidebarTextSize="12sp"
+                app:sidebarTextSize="12dp"
                 app:sidebarTextSizeChoose="@dimen/textSize_quicksidebar_choose" />
 
         </RelativeLayout>

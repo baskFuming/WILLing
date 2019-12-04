@@ -38,7 +38,7 @@
                 android:layout_gravity="center"
                 android:text="@string/sign_success"
                 android:textColor="#ff333333"
-                android:textSize="17sp" />
+                android:textSize="17dp" />
 
             <TextView
                 android:layout_width="wrap_content"

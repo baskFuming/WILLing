@@ -127,7 +127,7 @@
         android:layout_height="wrap_content"
         android:text="@string/enter_pwd"
         android:textColor="#fffe3848"
-        android:textSize="12sp"
+        android:textSize="12dp"
         />
 
     <Button

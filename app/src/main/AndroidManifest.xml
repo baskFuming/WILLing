@@ -25,6 +25,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ui.app.vote.activity.gvishop.GVIShopActivity"></activity>
+        <activity android:name=".ui.app.vote.activity.partner.PartnerActivity" />
+        <activity android:name=".ui.app.vote.activity.rank.CmpRankActivity" />
+        <activity android:name=".ui.app.vote.activity.vote.JoinDetailsActivity" />
+        <activity android:name=".ui.app.vote.activity.vote.VoteJoinActivity" />
+        <activity android:name=".ui.app.vote.activity.GameActivity" />
+        <activity android:name=".ui.login.activity.ChoiceActivity" />
         <activity android:name=".ui.login.activity.ChoiceActivity" />
         <activity android:name=".ui.my.activity.team.MyChildActivity" />
         <activity android:name=".ui.my.activity.record.MoRecordActivity" />

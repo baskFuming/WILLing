@@ -44,7 +44,7 @@
                     android:gravity="center"
                     android:text="@string/card_positive"
                     android:textColor="#ff333333"
-                    android:textSize="17sp" />
+                    android:textSize="17dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -73,7 +73,7 @@
                     android:gravity="center"
                     android:text="@string/card_reverse"
                     android:textColor="#ff333333"
-                    android:textSize="17sp" />
+                    android:textSize="17dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -100,7 +100,7 @@
                     android:gravity="center"
                     android:text="@string/card_hand"
                     android:textColor="#ff333333"
-                    android:textSize="17sp" />
+                    android:textSize="17dp" />
             </LinearLayout>
 
             <TextView

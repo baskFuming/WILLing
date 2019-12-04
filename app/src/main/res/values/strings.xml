@@ -341,6 +341,49 @@
     <string name="toubu">头部</string>
     <string name="diqu">地区</string>
     <string name="biaohao">标号</string>
+    <string name="time_error">时间格式错误</string>
+    <string name="total_vote">总投票额：</string>
+    <string name="total_release">总释放额：</string>
+    <string name="join_campaign">加盟竞选</string>
+    <string name="votes">已经获票数：</string>
+    <string name="vote_btn">投票</string>
+    <string name="vote_end">距离投票结束时间：</string>
+    <string name="vote_status">进行中</string>
+    <string name="vote_per">已授权</string>
+    <string name="vote_start">未开始</string>
+    <string name="vote_default">失败</string>
+    <string name="vote_details">加盟详情</string>
+    <string name="vote_rules">投票规则</string>
+    <string name="audit">已审核真实性</string>
+    <string name="join_company">加盟商ID：</string>
+    <string name="join_introduce">加盟商介绍</string>
+    <string name="team_mess">团队信息</string>
+    <string name="competition_rank">竞赛排名</string>
+    <string name="competition_rules">竞赛规则</string>
+    <string name="total_vote_count">投票总额：</string>
+    <string name="total_vote_jackpot">奖池：</string>
+    <string name="tui_record">推荐业绩：</string>
+    <string name="partner_list">合伙人列表</string>
+    <string name="partner_rules">合伙人规则</string>
+    <string name="partner_vote_number">投票值：</string>
+    <string name="gvi_shop">GVI商城</string>
+    <string name="gvi_change">兑换须知</string>
+    <string name="home_title">首页</string>
+    <string name="my_gvi">我的GVI</string>
+    <string-array name="partner_status">
+        <item>全部</item>
+        <item>区级合伙人</item>
+        <item>市级合伙人</item>
+        <item>董事会</item>
+    </string-array>
+
+    <string-array name="order_gvi_tab" tools:ignore="InconsistentArrays">
+        <item>全部</item>
+        <item>待付款</item>
+        <item>待发货</item>
+        <item>待收货</item>
+        <item>已收货</item>
+    </string-array>
     <string name="vote_down">全部</string>
 
 

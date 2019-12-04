@@ -14,4 +14,18 @@ public class ApiType {
     public static final int TRANSFER_WAIT_STATUS = 0;   //等待打包
     public static final int RECHARGE_SUCCESS_STATUS = 1;       //交易成功
     public static final int TRANSFER_FAIL_TYPE = 2;          //交易失败
+
+    //合伙人列表
+    public static final int PARTNER_LIST_ALL = 0;  //全部
+    public static final int PARTNER_LIST_AERA_ALL = 1;  //区级合伙人
+    public static final int PARTNER_LIST_CITY_ALL = 2;  //市级合伙人
+    public static final int PARTNER_LIST_DIRECTOR_ALL = 4;  //董事
+
+    //订单交易状态
+    public static final int ORDER_COMMUNITY_ALL = 0;  //全部
+    public static final int ORDER_COMMUNITY_UNPAID = 1;    //待付款
+    public static final int ORDER_COMMUNITY_DELIVERY = 2;   //待发货
+    public static final int ORDER_COMMUNITY_GOODS = 3;   //待收货
+    public static final int ORDER_COMMUNITY_COMPLAINING = 4; //已收货
+
 }

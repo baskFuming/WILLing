@@ -40,7 +40,7 @@
                     android:gravity="center"
                     android:text="@string/all_text"
                     android:textColor="#ff666666"
-                    android:textSize="14sp" />
+                    android:textSize="14dp" />
 
                 <ImageView
                     android:layout_width="10dp"
@@ -69,7 +69,7 @@
                     android:gravity="center"
                     android:text="@string/all_text"
                     android:textColor="#ff666666"
-                    android:textSize="14sp" />
+                    android:textSize="14dp" />
 
                 <ImageView
                     android:layout_width="10dp"

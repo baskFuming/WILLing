@@ -4,6 +4,10 @@
 
     <dimen name="zxCode_call_me_size">130dp</dimen>
 
+    <dimen name="activity_left_margin">16dp</dimen>
+    <dimen name="activity_right_margin">16dp</dimen>
+    <dimen name="activity_Top_margin">12dp</dimen>
+    <dimen name="activity_vertical_margin">20dp</dimen>
 
     <!-- 自定义View -->
     <dimen name="step_small_circle">13.5dp</dimen>

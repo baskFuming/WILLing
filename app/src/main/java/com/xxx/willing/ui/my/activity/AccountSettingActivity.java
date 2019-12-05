@@ -14,7 +14,7 @@ import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.utils.SystemUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.main.UpdateWindow;
-import com.xxx.willing.ui.my.activity.psw.PasswordSettingActivity;
+import com.xxx.willing.ui.login.activity.PasswordSettingActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

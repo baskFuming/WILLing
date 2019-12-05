@@ -64,7 +64,7 @@ public class ForgetLoginPswActivity extends BaseTitleActivity {
 
     @Override
     protected String initTitle() {
-        return getString(R.string.forget_login_psw_title);
+        return getString(R.string.forget_title);
     }
 
     @Override
@@ -127,11 +127,12 @@ public class ForgetLoginPswActivity extends BaseTitleActivity {
     private void sendSMSCode() {
         String account = mAccountEdit.getText().toString();
         if (account.isEmpty()) {
-            ToastUtil.showToast(getString(R.string.forget_login_psw_error_1));
+            ToastUtil.showToast(R.string.login_error_phone_1);
+            showEditError(mAccountEdit);
             return;
         }
         if (!account.matches(MatchesConfig.MATCHES_PHONE)) {
-            ToastUtil.showToast(getString(R.string.forget_login_psw_error_4));
+            ToastUtil.showToast(R.string.login_error_phone_2);
             showEditError(mAccountEdit);
             return;
         }
@@ -154,7 +155,7 @@ public class ForgetLoginPswActivity extends BaseTitleActivity {
                             @Override
                             public void end() {
                                 if (mSendSMSCode != null)
-                                    mSendSMSCode.setText(getString(R.string.forget_login_psw_send_sms_code));
+                                    mSendSMSCode.setText(R.string.login_send_sms_code_btn);
                             }
                         });
                     }
@@ -189,37 +190,37 @@ public class ForgetLoginPswActivity extends BaseTitleActivity {
         String passwordAgain = mPasswordAgainEdit.getText().toString();
 
         if (account.isEmpty()) {
-            ToastUtil.showToast(getString(R.string.forget_login_psw_error_1));
+            ToastUtil.showToast(R.string.login_error_phone_1);
             showEditError(mAccountEdit);
             return;
         }
         if (!account.matches(MatchesConfig.MATCHES_PHONE)) {
-            ToastUtil.showToast(getString(R.string.forget_login_psw_error_4));
+            ToastUtil.showToast(R.string.login_error_phone_2);
             showEditError(mSMSCodeEdit);
             return;
         }
         if (smsCode.isEmpty()) {
-            ToastUtil.showToast(getString(R.string.forget_login_psw_error_2));
+            ToastUtil.showToast(R.string.login_error_code_1);
             showEditError(mSMSCodeEdit);
             return;
         }
         if (!smsCode.matches(MatchesConfig.MATCHES_SMS_CODE)) {
-            ToastUtil.showToast(getString(R.string.forget_login_psw_error_5));
+            ToastUtil.showToast(R.string.login_error_code_2);
             showEditError(mPasswordEdit);
             return;
         }
         if (password.isEmpty()) {
-            ToastUtil.showToast(getString(R.string.forget_login_psw_error_3));
+            ToastUtil.showToast(R.string.login_error_psw_1);
             showEditError(mPasswordEdit);
             return;
         }
         if (!password.matches(MatchesConfig.MATCHES_PASSWORD)) {
-            ToastUtil.showToast(getString(R.string.forget_login_psw_error_6));
+            ToastUtil.showToast(R.string.login_error_psw_2);
             showEditError(mPasswordEdit);
             return;
         }
         if (!password.equals(passwordAgain)) {
-            ToastUtil.showToast(getString(R.string.forget_login_psw_error_7));
+            ToastUtil.showToast(R.string.login_error_psw_again_1);
             showEditError(mPasswordEdit, mPasswordAgainEdit);
             return;
         }

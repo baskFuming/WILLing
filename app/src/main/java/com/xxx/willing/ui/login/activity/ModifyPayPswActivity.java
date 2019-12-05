@@ -1,4 +1,4 @@
-package com.xxx.willing.ui.my.activity.psw;
+package com.xxx.willing.ui.login.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -15,8 +15,6 @@ import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.base.BaseBean;
-import com.xxx.willing.model.sp.SharedConst;
-import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.DownTimeUtil;
 import com.xxx.willing.model.utils.KeyBoardUtil;
 import com.xxx.willing.model.utils.ToastUtil;
@@ -28,67 +26,76 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * @Page 设置支付密码页
+ * @Page 修改支付密码页
  * @Author xxx
  */
-public class SettingPayPswActivity extends BaseTitleActivity {
+public class ModifyPayPswActivity extends BaseTitleActivity {
 
     public static void actionStart(Activity activity) {
-        Intent intent = new Intent(activity, SettingPayPswActivity.class);
+        Intent intent = new Intent(activity, ModifyPayPswActivity.class);
         activity.startActivity(intent);
     }
 
-    @BindView(R.id.setting_pay_psw_password_edit)
+    @BindView(R.id.modify_pay_psw_sms_code_edit)
+    EditText mSMSCodeEdit;
+    @BindView(R.id.modify_pay_psw_password_edit)
     EditText mPasswordEdit;
-    @BindView(R.id.setting_pay_psw_password_again_edit)
+    @BindView(R.id.modify_pay_psw_password_again_edit)
     EditText mPasswordAgainEdit;
-    @BindView(R.id.modify_login_psw_sms_code_edit)
-    EditText mSmsCodeEdit;
-    @BindView(R.id.modify_login_psw_send_sms_code)
+
+    @BindView(R.id.modify_pay_psw_send_sms_code)
     TextView mSendSMSCode;
 
-
-    @BindView(R.id.setting_pay_psw_password_eye)
+    @BindView(R.id.modify_pay_psw_password_eye)
     CheckBox mPasswordEye;
-    @BindView(R.id.setting_pay_psw_password_again_eye)
+    @BindView(R.id.modify_pay_psw_password_again_eye)
     CheckBox mPasswordAgainEye;
+
     private DownTimeUtil mDownTimeUtil;
 
     @Override
     protected String initTitle() {
-        return getString(R.string.setting_pay_psw_title);
+        return getString(R.string.modify_pay_psw_title);
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_setting_pay_psw;
+        return R.layout.activity_modify_pay_psw;
     }
 
     @Override
     protected void initData() {
-
+        mDownTimeUtil = DownTimeUtil.getInstance();
     }
 
-    @OnClick({R.id.setting_pay_psw_btn, R.id.setting_pay_psw_password_eye, R.id.setting_pay_psw_password_again_eye, R.id.img_edit_cancel, R.id.modify_login_psw_send_sms_code})
+    @OnClick({R.id.modify_pay_psw_send_sms_code, R.id.modify_pay_psw_btn, R.id.modify_pay_psw_password_eye, R.id.modify_pay_psw_password_again_eye, R.id.img_edit_cancel})
     public void OnClick(View view) {
         switch (view.getId()) {
-            case R.id.setting_pay_psw_password_eye:
+            case R.id.modify_pay_psw_password_eye:
                 KeyBoardUtil.setInputTypePassword(mPasswordEye.isChecked(), mPasswordEdit);
                 break;
-            case R.id.setting_pay_psw_password_again_eye:
+            case R.id.modify_pay_psw_password_again_eye:
                 KeyBoardUtil.setInputTypePassword(mPasswordAgainEye.isChecked(), mPasswordAgainEdit);
                 break;
-            case R.id.setting_pay_psw_btn:
+            case R.id.modify_pay_psw_send_sms_code:
+                sendSMSCode();
+                break;
+            case R.id.modify_pay_psw_btn:
                 updatePsw();
                 break;
             case R.id.img_edit_cancel:
                 mPasswordAgainEdit.setText("");
                 break;
-            case R.id.modify_login_psw_send_sms_code:
-                sendSMSCode();
-                break;
-
         }
+    }
+
+    @Override
+    public void finish() {
+        KeyBoardUtil.closeKeyBord(this, mSMSCodeEdit);
+        if (mDownTimeUtil != null) {
+            mDownTimeUtil.closeDownTime();
+        }
+        super.finish();
     }
 
     /**
@@ -99,6 +106,7 @@ public class SettingPayPswActivity extends BaseTitleActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<Object>(this) {
+
                     @Override
                     public void onSuccess(BaseBean<Object> bean) {
                         ToastUtil.showToast(bean.getMessage());
@@ -113,7 +121,7 @@ public class SettingPayPswActivity extends BaseTitleActivity {
                             @Override
                             public void end() {
                                 if (mSendSMSCode != null)
-                                    mSendSMSCode.setText(getString(R.string.modify_login_psw_send_sms_code));
+                                    mSendSMSCode.setText(R.string.login_send_sms_code_btn);
                             }
                         });
                     }
@@ -137,51 +145,50 @@ public class SettingPayPswActivity extends BaseTitleActivity {
                 });
     }
 
-    @Override
-    public void finish() {
-        KeyBoardUtil.closeKeyBord(this, mPasswordEdit);
-        KeyBoardUtil.closeKeyBord(this, mSmsCodeEdit);
-        if (mDownTimeUtil != null) {
-            mDownTimeUtil.closeDownTime();
-        }
-        super.finish();
-    }
 
     /**
-     * @Model 设置支付密码
+     * @Model 修改支付密码
      */
     private void updatePsw() {
+        String smsCode = mSMSCodeEdit.getText().toString();
         String newPassword = mPasswordEdit.getText().toString();
         String newPasswordAgain = mPasswordAgainEdit.getText().toString();
 
+        if (smsCode.isEmpty()) {
+            ToastUtil.showToast(R.string.login_error_code_1);
+            showEditError(mSMSCodeEdit);
+            return;
+        }
+        if (!smsCode.matches(MatchesConfig.MATCHES_JY_PASSWORD)) {
+            ToastUtil.showToast(R.string.login_error_code_2);
+            showEditError(mSMSCodeEdit);
+            return;
+        }
         if (newPassword.isEmpty()) {
-            ToastUtil.showToast(getString(R.string.setting_pay_psw_error_1));
+            ToastUtil.showToast(R.string.login_error_psw_1);
             showEditError(mPasswordEdit);
             return;
         }
-        if (!newPassword.matches(MatchesConfig.MATCHES_JY_PASSWORD)) {
-            ToastUtil.showToast(getString(R.string.setting_pay_psw_error_3));
+        if (!newPassword.matches(MatchesConfig.MATCHES_PASSWORD)) {
+            ToastUtil.showToast(R.string.login_error_psw_2);
             showEditError(mPasswordEdit);
             return;
         }
         if (!newPassword.equals(newPasswordAgain)) {
-            ToastUtil.showToast(getString(R.string.setting_pay_psw_error_2));
+            ToastUtil.showToast(R.string.login_error_psw_again_1);
             showEditError(mPasswordEdit, mPasswordAgainEdit);
             return;
         }
 
-        Api.getInstance().settingPayPsw(newPassword)
+        Api.getInstance().modifyPayPsw(newPassword, smsCode)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<Object>(this) {
 
                     @Override
                     public void onSuccess(BaseBean<Object> bean) {
-                        if (bean != null) {
-                            SharedPreferencesUtil.getInstance().saveBoolean(SharedConst.IS_SETTING_PAY_PSW, true);
-                            ToastUtil.showToast(bean.getMessage());
-                            finish();
-                        }
+                        ToastUtil.showToast(bean.getMessage());
+                        finish();
                     }
 
                     @Override

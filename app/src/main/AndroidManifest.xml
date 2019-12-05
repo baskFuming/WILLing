@@ -81,10 +81,10 @@
         <activity android:name=".ui.my.activity.InviteFriendActivity" />
         <activity android:name=".ui.my.activity.LanguageActivity" />
         <activity android:name=".ui.my.activity.UseHelpActivity" />
-        <activity android:name=".ui.my.activity.psw.ModifyLoginPswActivity" />
-        <activity android:name=".ui.my.activity.psw.ModifyPayPswActivity" />
-        <activity android:name=".ui.my.activity.psw.PasswordSettingActivity" />
-        <activity android:name=".ui.my.activity.psw.SettingPayPswActivity" />
+        <activity android:name=".ui.login.activity.ModifyLoginPswActivity" />
+        <activity android:name=".ui.login.activity.ModifyPayPswActivity" />
+        <activity android:name=".ui.login.activity.PasswordSettingActivity" />
+        <activity android:name=".ui.login.activity.SettingPayPswActivity" />
         <activity android:name=".ui.wallet.activity.WalletExchangeRecordActivity" />
         <activity android:name=".ui.wallet.activity.WalletCoinDetailActivity" />
         <activity android:name=".ui.wallet.activity.RechargeActivity" />

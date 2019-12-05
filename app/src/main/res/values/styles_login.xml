@@ -1,0 +1,151 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 登陆按钮样式 -->
+    <style name="LoginButtonStyle">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/selector_login_btn</item>
+        <item name="android:textColor">@color/colorTextColorBtn</item>
+        <item name="android:textSize" tools:ignore="SpUsage">18dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- 手机号输入框样式 -->
+    <style name="EditInputPhoneStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:textColorHint">#999999</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:inputType">phone</item>
+        <item name="android:background">@null</item>
+        <item name="android:maxLength">11</item>
+    </style>
+
+    <!-- 验证码输入框样式 -->
+    <style name="EditInputSMSCodeStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:textColorHint">#999999</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:inputType">phone</item>
+        <item name="android:background">@null</item>
+        <item name="android:maxLength">6</item>
+        <item name="android:hint">@string/login_send_sms_code_hint</item>
+    </style>
+
+    <!-- 发送验证码按钮样式 -->
+    <style name="BtnInputSMSCodeStyle">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:textColor">#3C7FFF</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">@string/login_send_sms_code_btn</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+    <!-- 切换密码样式 -->
+    <style name="CheckPasswordStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:button">@drawable/selector_password</item>
+    </style>
+
+    <!-- 密码输入框样式 -->
+    <style name="EditInputPswStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:textColorHint">#999999</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:background">@null</item>
+        <item name="android:maxLength">20</item>
+        <item name="android:hint">@string/login_password_hint</item>
+    </style>
+
+    <!-- 再次密码输入框样式 -->
+    <style name="EditInputPswAgainStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:textColorHint">#999999</item>
+        <item name="android:digits">@string/password</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:background">@null</item>
+        <item name="android:maxLength">20</item>
+        <item name="android:hint">@string/login_password_again_hint</item>
+    </style>
+
+    <!-- 旧密码输入框样式 -->
+    <style name="EditInputOldPswStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:textColorHint">#999999</item>
+        <item name="android:digits">@string/password</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:background">@null</item>
+        <item name="android:maxLength">20</item>
+        <item name="android:hint">@string/login_password_old_hint</item>
+    </style>
+
+    <!-- 新密码输入框样式 -->
+    <style name="EditInputNewPswStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:textColorHint">#999999</item>
+        <item name="android:digits">@string/password</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:background">@null</item>
+        <item name="android:maxLength">20</item>
+        <item name="android:hint">@string/login_password_new_hint</item>
+    </style>
+
+    <!-- 再次新密码输入框样式 -->
+    <style name="EditInputNewPswAgainStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:textColorHint">#999999</item>
+        <item name="android:digits">@string/password</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:background">@null</item>
+        <item name="android:maxLength">20</item>
+        <item name="android:hint">@string/login_password_new_again_hint</item>
+    </style>
+
+    <!-- 请输入邀请码输入框样式 -->
+    <style name="EditInputInviteStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:textColorHint">#999999</item>
+        <item name="android:digits">@string/invite</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:maxLength">10</item>
+        <item name="android:hint">@string/login_invite_hint</item>
+    </style>
+
+
+</resources>

@@ -140,8 +140,13 @@ public class RegisterActivity extends BaseTitleActivity {
     private void sendSMSCode() {
         String account = mAccountEdit.getText().toString();
         if (account.isEmpty()) {
-            ToastUtil.showToast(getString(R.string.register_error_1));
+            ToastUtil.showToast(R.string.login_error_psw_again_1);
             showEditError(mAccountEdit);
+            return;
+        }
+        if (!account.matches(MatchesConfig.MATCHES_PHONE)) {
+            ToastUtil.showToast(R.string.login_error_phone_2);
+            showEditError(mSMSCodeEdit);
             return;
         }
         Api.getInstance().sendSMSCode(account, area)
@@ -163,7 +168,7 @@ public class RegisterActivity extends BaseTitleActivity {
                             @Override
                             public void end() {
                                 if (mSMSCodeText != null)
-                                    mSMSCodeText.setText(getString(R.string.register_send_sms_code));
+                                    mSMSCodeText.setText(R.string.login_send_sms_code_btn);
                             }
                         });
                     }
@@ -198,37 +203,37 @@ public class RegisterActivity extends BaseTitleActivity {
         final String invite = mInviteEdit.getText().toString();
 
         if (account.isEmpty()) {
-            ToastUtil.showToast(getString(R.string.register_error_1));
+            ToastUtil.showToast(R.string.login_error_phone_1);
             showEditError(mAccountEdit);
             return;
         }
         if (!account.matches(MatchesConfig.MATCHES_PHONE)) {
-            ToastUtil.showToast(getString(R.string.login_error_3));
+            ToastUtil.showToast(R.string.login_error_phone_2);
             showEditError(mAccountEdit);
             return;
         }
         if (smsCode.isEmpty()) {
-            ToastUtil.showToast(getString(R.string.register_error_2));
+            ToastUtil.showToast(R.string.login_error_code_1);
             showEditError(mSMSCodeEdit);
             return;
         }
         if (!smsCode.matches(MatchesConfig.MATCHES_SMS_CODE)) {
-            ToastUtil.showToast(getString(R.string.register_error_5));
+            ToastUtil.showToast(R.string.login_error_code_2);
             showEditError(mSMSCodeEdit);
             return;
         }
         if (password.isEmpty()) {
-            ToastUtil.showToast(getString(R.string.register_error_3));
+            ToastUtil.showToast(R.string.login_error_psw_1);
             showEditError(mPasswordEdit);
             return;
         }
         if (!password.matches(MatchesConfig.MATCHES_PASSWORD)) {
-            ToastUtil.showToast(getString(R.string.register_error_6));
+            ToastUtil.showToast(R.string.login_error_psw_2);
             showEditError(mPasswordEdit);
             return;
         }
         if (invite.isEmpty()) {
-            ToastUtil.showToast(getString(R.string.register_error_7));
+            ToastUtil.showToast(R.string.login_error_invite_1);
             showEditError(mInviteEdit);
             return;
         }

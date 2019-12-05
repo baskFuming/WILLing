@@ -1,5 +1,6 @@
 package com.xxx.willing.ui.login.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.Nullable;
@@ -70,10 +71,6 @@ public class LoginActivity extends BaseTitleActivity {
     @Override
     protected void initData() {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-
-        //保存记录
-        String phone = SharedPreferencesUtil.getInstance().getString(SharedConst.VALUE_USER_PHONE);
-        mAccountEdit.setText(phone);
     }
 
     @OnClick({R.id.login_password_eye, R.id.login_account_clean, R.id.login_register, R.id.login_forger_password, R.id.login_btn, R.id.login_selector_phone})
@@ -106,6 +103,7 @@ public class LoginActivity extends BaseTitleActivity {
         super.onDestroy();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -138,22 +136,22 @@ public class LoginActivity extends BaseTitleActivity {
         final String password = mPasswordEdit.getText().toString();
 
         if (account.isEmpty()) {
-            ToastUtil.showToast(getString(R.string.login_error_1));
+            ToastUtil.showToast(R.string.login_error_phone_1);
             showEditError(mAccountEdit);
             return;
         }
         if (!account.matches(MatchesConfig.MATCHES_PHONE)) {
-            ToastUtil.showToast(getString(R.string.register_error_4));
+            ToastUtil.showToast(R.string.login_error_phone_2);
             showEditError(mAccountEdit);
             return;
         }
         if (password.isEmpty()) {
-            ToastUtil.showToast(getString(R.string.login_error_2));
+            ToastUtil.showToast(R.string.login_error_psw_1);
             showEditError(mPasswordEdit);
             return;
         }
         if (!password.matches(MatchesConfig.MATCHES_PASSWORD)) {
-            ToastUtil.showToast(getString(R.string.login_error_4));
+            ToastUtil.showToast(R.string.login_error_psw_2);
             showEditError(mPasswordEdit);
             return;
         }
@@ -170,7 +168,7 @@ public class LoginActivity extends BaseTitleActivity {
                                 ToastUtil.showToast(bean.getMessage());
                                 SharedPreferencesUtil util = SharedPreferencesUtil.getInstance();
                                 util.saveString(SharedConst.VALUE_USER_PHONE, account);
-//                                util.saveString(SharedConst.VALUE_USER_NAME, data.getUsername());
+                                util.saveString(SharedConst.VALUE_USER_NAME, data.getUsername());
                                 util.saveString(SharedConst.VALUE_INVITE_CODE, data.getPromotionCode());
                                 util.saveString(SharedConst.VALUE_USER_ID, String.valueOf(data.getId()));
                                 util.saveBoolean(SharedConst.IS_LOGIN, true);

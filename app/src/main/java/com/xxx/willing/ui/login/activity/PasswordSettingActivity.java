@@ -1,4 +1,4 @@
-package com.xxx.willing.ui.my.activity.psw;
+package com.xxx.willing.ui.login.activity;
 
 import android.app.Activity;
 import android.content.Intent;

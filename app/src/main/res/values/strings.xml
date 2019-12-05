@@ -6,6 +6,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="address">QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxccvbnm1234567890</string>
     <string name="password">QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxccvbnm1234567890</string>
+    <string name="invite">QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxccvbnm1234567890</string>
     <string name="loading_text">加载中…</string>
 
     <!-- 网络请求错误信息配置 -->
@@ -26,6 +27,51 @@
     <string name="token_error">登录信息失效，请重新登录</string>
     <string name="jy_password_error">请先设置资金密码</string>
 
+    <string name="btn_confirm">确定</string>
+    <string name="btn_cancel">取消</string>
+    <string name="btn_submit">提交</string>
+    <string name="btn_save">保存</string>
+
+    <string name="update_title">是否下载最新BVSE版本？</string>
+    <string name="update_btn">下载</string>
+
+    <!-- 登录模块 -->
+    <string name="login_title">登录</string>
+    <string name="register_title">注册</string>
+    <string name="forget_title">忘记密码</string>
+    <string name="modify_login_psw_title">修改登录密码</string>
+    <string name="modify_pay_psw_title">修改支付密码</string>
+    <string name="setting_pay_psw_title">设置支付密码</string>
+
+    <string name="login_btn">登录</string>
+    <string name="register_btn">注册</string>
+    <string name="forget_btn">忘记密码</string>
+    <string name="login_send_sms_code_btn">获取验证码</string>
+
+    <string name="login_phone_hint">手机号/用户名/邮箱</string>
+    <string name="login_send_sms_code_hint">请输入验证码</string>
+    <string name="login_password_hint">请输入密码</string>
+    <string name="login_password_again_hint">请再次输入密码</string>
+    <string name="login_password_old_hint">请输入旧密码</string>
+    <string name="login_password_new_hint">请输入新密码</string>
+    <string name="login_password_new_again_hint">请再次输入密码</string>
+    <string name="login_invite_hint">请输入邀请码</string>
+
+    <string name="login_error_phone_1">手机号不能为空</string>
+    <string name="login_error_phone_2">手机号输入有误</string>
+    <string name="login_error_code_1">验证码不能为空</string>
+    <string name="login_error_code_2">验证码输入有误</string>
+    <string name="login_error_psw_1">密码不能为空</string>
+    <string name="login_error_psw_2">密码输入有误</string>
+    <string name="login_error_psw_again_1">两次密码输入不一致</string>
+    <string name="login_error_psw_old_1">旧密码不能为空</string>
+    <string name="login_error_psw_old_2">旧密码输入有误</string>
+    <string name="login_error_psw_new_1">新密码不能为空</string>
+    <string name="login_error_psw_new_2">新密码输入有误</string>
+    <string name="login_error_invite_1">邀请码不能为空</string>
+
+
+    <!-- 首页 -->
     <string name="main_vote">投票</string>
     <string name="main_app">应用</string>
     <string name="main_wallet">钱包</string>
@@ -104,90 +150,6 @@
     <string name="withdrawal_error_4">数量输入有误</string>
     <string name="withdrawal_error_5">密码不能为空</string>
     <string name="withdrawal_error_6">请先设置资金密码</string>
-
-    <string name="login_title">登录</string>
-    <string name="login_forget">忘记密码</string>
-    <string name="login_register">注册</string>
-    <string name="login_hint_account">手机号/用户名/邮箱</string>
-    <string name="login_hint_password">密码</string>
-    <string name="login_btn">登录</string>
-    <string name="login_error_1">手机号不能为空</string>
-    <string name="login_error_2">密码不能为空</string>
-    <string name="login_error_3">手机号输入有误</string>
-    <string name="login_error_4">密码错误请重新输入</string>
-
-    <string name="register_title">注册</string>
-    <string name="register_send_sms_code">获取验证码</string>
-    <string name="register_hint_account">手机号/用户名/邮箱</string>
-    <string name="register_hint_sms_code">请输入验证码</string>
-    <string name="register_hint_password">请输入密码</string>
-    <string name="register_hint_invite">请输入邀请码</string>
-    <string name="register_btn">注册</string>
-    <string name="register_login">登录</string>
-    <string name="register_forger">忘记密码</string>
-    <string name="register_error_1">手机号不能为空</string>
-    <string name="register_error_2">验证码不能为空</string>
-    <string name="register_error_3">密码不能为空</string>
-    <string name="register_error_4">手机号输入有误</string>
-    <string name="register_error_5">验证码输入有误</string>
-    <string name="register_error_6">密码输入有误</string>
-    <string name="register_error_7">邀请码不能为空</string>
-
-    <string name="forget_login_psw_title">忘记密码</string>
-    <string name="forget_login_psw_send_sms_code">获取验证码</string>
-    <string name="forget_login_psw_hint_account">请输入您的手机号</string>
-    <string name="forget_login_psw_hint_sms_code">请输入验证码</string>
-    <string name="forget_login_psw_hint_password">请输入密码</string>
-    <string name="forget_login_psw_hint_password_again">请再次输入密码</string>
-    <string name="forget_login_psw_btn">提交</string>
-    <string name="forget_login_psw_error_1">手机号不能为空</string>
-    <string name="forget_login_psw_error_2">验证码不能为空</string>
-    <string name="forget_login_psw_error_3">密码不能为空</string>
-    <string name="forget_login_psw_error_4">手机号输入有误</string>
-    <string name="forget_login_psw_error_5">验证码输入有误</string>
-    <string name="forget_login_psw_error_6">密码输入有误</string>
-    <string name="forget_login_psw_error_7">您输入的密码两次不一致</string>
-
-    <string name="modify_login_psw_title">修改登录密码</string>
-    <string name="modify_login_psw_send_sms_code">获取验证码</string>
-    <string name="modify_login_psw_hint_sms_code">请输入验证码</string>
-    <string name="modify_login_psw_hint_old_password">请输入旧密码</string>
-    <string name="modify_login_psw_hint_new_password">请输入新密码</string>
-    <string name="modify_login_psw_hint_new_password_again">请再次输入密码</string>
-    <string name="modify_login_psw_btn">确定</string>
-    <string name="modify_login_psw_error_1">验证码不能为空</string>
-    <string name="modify_login_psw_error_2">旧密码不能为空</string>
-    <string name="modify_login_psw_error_3">新密码不能为空</string>
-    <string name="modify_login_psw_error_4">您输入的密码两次不一致</string>
-    <string name="modify_login_psw_error_5">验证码输入有误</string>
-    <string name="modify_login_psw_error_6">旧密码输入有误</string>
-    <string name="modify_login_psw_error_7">新密码输入有误</string>
-
-    <string name="modify_pay_psw_title">修改支付密码</string>
-    <string name="modify_pay_psw_send_sms_code">获取验证码</string>
-    <string name="modify_pay_psw_hint_sms_code">请输入验证码</string>
-    <string name="modify_pay_psw_hint_password">请输入新密码</string>
-    <string name="modify_pay_psw_hint_password_again">请再次输入密码</string>
-    <string name="modify_pay_psw_btn">确定</string>
-    <string name="modify_pay_psw_error_1">验证码不能为空</string>
-    <string name="modify_pay_psw_error_2">密码不能为空</string>
-    <string name="modify_pay_psw_error_3">您输入的密码两次不一致</string>
-    <string name="modify_pay_psw_error_4">验证码输入有误</string>
-    <string name="modify_pay_psw_error_5">密码输入有误</string>
-
-    <string name="setting_pay_psw_title">设置支付密码</string>
-    <string name="setting_pay_psw_hint_password">请输入密码</string>
-    <string name="setting_pay_psw_hint_password_again">请再次输入密码</string>
-    <string name="setting_pay_psw_btn">确定</string>
-    <string name="setting_pay_psw_error_1">密码不能为空</string>
-    <string name="setting_pay_psw_error_2">您输入的密码两次不一致</string>
-    <string name="setting_pay_psw_error_3">密码输入有误</string>
-
-    <string name="select_county_save">保存</string>
-    <string name="select_county_title">国家和地区</string>
-
-    <string name="update_title">是否下载最新BVSE版本？</string>
-    <string name="update_btn">下载</string>
 
     <string name="window_password_edit_hint">请输入支付密码</string>
     <string name="window_password_btn">确定</string>

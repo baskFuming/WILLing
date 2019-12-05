@@ -3,132 +3,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical"
-    android:background="@color/main_bg"
-    tools:context=".ui.my.activity.psw.SettingPayPswActivity">
+    tools:context=".ui.login.activity.SettingPayPswActivity">
 
     <include layout="@layout/include_title_bar" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="20dp">
+        android:layout_height="60dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_alignParentBottom="true"
-            android:background="#E5E5E5" />
+        <View style="@style/dividingLineBottom" />
 
         <EditText
             android:id="@+id/modify_login_psw_sms_code_edit"
-            style="@style/MainEditStyle"
-            android:background="@null"
-            android:hint="@string/modify_login_psw_hint_sms_code"
-            android:inputType="phone"
-            android:maxLength="6" />
+            style="@style/EditInputSMSCodeStyle" />
 
         <TextView
             android:id="@+id/modify_login_psw_send_sms_code"
-            android:layout_width="80dp"
-            android:layout_height="20dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:text="@string/modify_login_psw_send_sms_code"
-            android:textColor="#3B76BD"
-            android:textSize="14dp" />
+            style="@style/BtnInputSMSCodeStyle" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="20dp">
+        android:layout_height="60dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_alignParentBottom="true"
-            android:background="#E5E5E5" />
+        <View style="@style/dividingLineBottom" />
 
         <EditText
             android:id="@+id/setting_pay_psw_password_edit"
-            style="@style/MainEditStyle"
-            android:background="@null"
-            android:digits="@string/password"
-            android:hint="@string/setting_pay_psw_hint_password"
-            android:inputType="textPassword"
-            android:maxLength="20" />
+            style="@style/EditInputPswStyle" />
 
         <CheckBox
             android:id="@+id/setting_pay_psw_password_eye"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="16dp"
-            android:layout_marginRight="10dp"
-            android:button="@drawable/selector_password" />
+            style="@style/CheckPasswordStyle" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="20dp">
+        android:layout_height="60dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_alignParentBottom="true"
-            android:background="#E5E5E5" />
+        <View style="@style/dividingLineBottom" />
 
         <EditText
             android:id="@+id/setting_pay_psw_password_again_edit"
-            style="@style/MainEditStyle"
-            android:background="@null"
-            android:digits="@string/password"
-            android:hint="@string/setting_pay_psw_hint_password_again"
-            android:inputType="textPassword"
-            android:maxLength="20" />
+            style="@style/EditInputPswAgainStyle" />
 
         <CheckBox
             android:id="@+id/setting_pay_psw_password_again_eye"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="16dp"
-            android:layout_marginRight="10dp"
-            android:button="@drawable/selector_password" />
+            style="@style/CheckPasswordStyle" />
 
         <ImageView
             android:id="@+id/img_edit_cancel"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/setting_pay_psw_password_again_eye"
-            android:layout_centerVertical="true"
             android:layout_width="19dp"
             android:layout_height="19dp"
-            android:src="@mipmap/edit_cancel"/>
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/setting_pay_psw_password_again_eye"
+            android:src="@mipmap/edit_cancel" />
 
     </RelativeLayout>
 
     <TextView
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
         android:text="@string/enter_pwd"
         android:textColor="#fffe3848"
-        android:textSize="12dp"
-        />
+        android:textSize="12dp" />
 
     <Button
         android:id="@+id/setting_pay_psw_btn"
@@ -136,6 +87,6 @@
         android:layout_width="262dp"
         android:layout_height="44dp"
         android:layout_marginTop="44dp"
-        android:text="@string/setting_pay_psw_btn" />
+        android:text="@string/btn_cancel" />
 
 </LinearLayout>

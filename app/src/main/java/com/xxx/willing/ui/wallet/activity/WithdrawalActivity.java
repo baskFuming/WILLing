@@ -23,7 +23,7 @@ import com.xxx.willing.model.utils.KeyBoardUtil;
 import com.xxx.willing.model.utils.PermissionUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.main.SweepActivity;
-import com.xxx.willing.ui.my.activity.psw.PasswordSettingActivity;
+import com.xxx.willing.ui.login.activity.PasswordSettingActivity;
 import com.xxx.willing.ui.wallet.window.PasswordWindow;
 
 import butterknife.BindView;

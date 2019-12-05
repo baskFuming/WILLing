@@ -27,7 +27,7 @@ public class HttpConfig {
     /**
      * 网页地址
      */
-    public static final String USE_HELP_URL = BASE_URL + "/download/CommonProblems-cn.html?lang=";   //使用帮助地址
+    public static final String USE_HELP_URL = "https://www.toutiao.com/group/6766741331189432839/";   //使用帮助地址
     public static final String INVITE_URL = BASE_URL + "/download/register.html";   //邀请好友地址
 
     public static final String CALL_MY_CODE = "1231231";    //联系我们微信号

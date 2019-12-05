@@ -20,7 +20,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="17dp"
             android:gravity="center"
-            android:text="@string/register_login"
+            android:text="@string/login_btn"
             android:textColor="#666666"
             android:textSize="14dp" />
 
@@ -61,20 +61,12 @@
             android:textColor="#333333"
             android:textSize="17dp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_alignParentBottom="true"
-            android:background="#E5E5E5" />
+        <View style="@style/dividingLineBottom" />
 
         <EditText
             android:id="@+id/register_account_edit"
-            style="@style/MainEditStyle"
-            android:layout_toRightOf="@+id/register_selector_phone"
-            android:background="@null"
-            android:hint="@string/login_hint_account"
-            android:inputType="phone"
-            android:maxLength="20" />
+            style="@style/EditInputPhoneStyle"
+            android:layout_toRightOf="@+id/register_selector_phone" />
 
         <ImageButton
             android:id="@+id/register_account_clean"
@@ -100,33 +92,17 @@
             android:layout_centerVertical="true"
             android:src="@mipmap/login_edit_code" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_alignParentBottom="true"
-            android:background="#E5E5E5" />
+        <View style="@style/dividingLineBottom" />
 
         <EditText
             android:id="@+id/register_sms_code_edit"
-            style="@style/MainEditStyle"
+            style="@style/EditInputSMSCodeStyle"
             android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@id/image21"
-            android:background="@null"
-            android:digits="@string/password"
-            android:hint="@string/register_hint_sms_code"
-            android:inputType="phone"
-            android:maxLength="6" />
+            android:layout_toRightOf="@id/image21" />
 
         <TextView
             android:id="@+id/register_send_sms_code"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:text="@string/forget_login_psw_send_sms_code"
-            android:textColor="#3C7FFF"
-            android:textSize="17dp" />
+            style="@style/BtnInputSMSCodeStyle" />
 
     </RelativeLayout>
 
@@ -143,32 +119,17 @@
             android:layout_centerVertical="true"
             android:src="@mipmap/login_edit_password" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_alignParentBottom="true"
-            android:background="#E5E5E5" />
+        <View style="@style/dividingLineBottom" />
 
         <EditText
             android:id="@+id/register_password_edit"
-            style="@style/MainEditStyle"
+            style="@style/EditInputPswStyle"
             android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@id/image3"
-            android:background="@null"
-            android:digits="@string/password"
-            android:hint="@string/register_hint_password"
-            android:inputType="phone"
-            android:maxLength="20"
-            android:singleLine="true" />
+            android:layout_toRightOf="@id/image3" />
 
         <CheckBox
             android:id="@+id/register_password_eye"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="16dp"
-            android:button="@drawable/selector_password" />
+            style="@style/CheckPasswordStyle" />
 
     </RelativeLayout>
 
@@ -185,31 +146,17 @@
             android:layout_centerVertical="true"
             android:src="@mipmap/login_edit_password" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_alignParentBottom="true"
-            android:background="#E5E5E5" />
+        <View style="@style/dividingLineBottom" />
 
         <EditText
             android:id="@+id/register_invite_edit"
-            style="@style/MainEditStyle"
+            style="@style/EditInputInviteStyle"
             android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@id/image4"
-            android:background="@null"
-            android:digits="@string/password"
-            android:hint="@string/register_hint_invite"
-            android:inputType="textPassword"
-            android:maxLength="20" />
+            android:layout_toRightOf="@id/image4" />
 
         <CheckBox
             android:id="@+id/register_invite_eye"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="16dp"
-            android:button="@drawable/selector_password" />
+            style="@style/CheckPasswordStyle" />
 
     </RelativeLayout>
 

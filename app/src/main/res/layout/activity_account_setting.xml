@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical"
-    android:background="@color/main_bg"
     tools:context="com.xxx.willing.ui.my.activity.AccountSettingActivity">
 
     <include layout="@layout/include_title_bar" />
@@ -13,6 +13,7 @@
         android:id="@+id/account_setting_set_password"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="10dp"
         android:background="?android:attr/selectableItemBackground"
         android:paddingEnd="17dp"
         android:paddingStart="17dp">
@@ -123,16 +124,17 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@mipmap/my_right_back" />
+
         <TextView
-            android:layout_marginRight="20dp"
-            android:layout_toLeftOf="@+id/img1"
             android:id="@+id/account_setting_version_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/img1"
             android:text="1.0.0"
-            android:textColor="#333333"
+            android:textColor="#999999"
             android:textSize="15dp" />
 
         <TextView
@@ -144,6 +146,7 @@
             android:text="@string/account_setting_check_version"
             android:textColor="#333333"
             android:textSize="15dp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

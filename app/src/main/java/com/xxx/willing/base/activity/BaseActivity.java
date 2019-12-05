@@ -64,7 +64,9 @@ public abstract class BaseActivity extends BaseLanguageActivity {
 
     public void hideLoading() {
         if (mLoadingDialog != null) {
-            mLoadingDialog.dismiss();
+            if (mLoadingDialog.isShowing()) {
+                mLoadingDialog.dismiss();
+            }
         }
     }
 

@@ -8,30 +8,20 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@mipmap/my_background">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/img_sign"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="40dp"
-            android:src="@mipmap/sign" />
-
-        <LinearLayout
-            android:id="@+id/line1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="33dp"
-            android:layout_marginTop="52dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="265.5dp"
+            android:background="@mipmap/my_background">
 
             <LinearLayout
-                android:id="@+id/line2"
+                android:id="@+id/account_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="33dp"
+                android:layout_marginRight="16dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -43,7 +33,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="18dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16.5dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -59,7 +50,8 @@
                             android:layout_height="wrap_content"
                             android:text="-----"
                             android:textColor="#ffffffff"
-                            android:textSize="19dp" />
+                            android:textSize="19dp"
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/img_level"
@@ -68,6 +60,7 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="11dp"
                             android:src="@mipmap/level_0" />
+
                     </LinearLayout>
 
                     <TextView
@@ -77,40 +70,53 @@
                         android:layout_marginTop="10dp"
                         android:text="-----"
                         android:textColor="#ffffffff"
-                        android:textSize="17dp" />
+                        android:textSize="15dp" />
+
                 </LinearLayout>
+
             </LinearLayout>
 
             <TextView
                 android:id="@+id/invite_friend"
                 android:layout_width="98dp"
                 android:layout_height="29dp"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="100dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
                 android:background="@drawable/shape_invite_bg"
                 android:gravity="center"
                 android:text="@string/invite_friend_title"
-                android:textColor="#FFFFFFFF"
-                android:textSize="12dp" />
-        </LinearLayout>
+                android:textColor="#FFFFFF"
+                android:textSize="14dp" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/img_sign"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="40dp"
+            android:src="@mipmap/sign" />
 
         <LinearLayout
-            android:id="@+id/lin4"
-            android:layout_width="382dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/line1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/shape_line_bg"
-            android:orientation="vertical"
-            android:paddingLeft="18dp"
-            android:paddingRight="16dp">
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="204dp"
+            android:background="@drawable/shape_back_item"
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:id="@+id/re_my_vote"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
 
                 <ImageView
                     android:id="@+id/image_1"
@@ -129,12 +135,7 @@
                     android:textColor="#ff333333"
                     android:textSize="13dp" />
 
-                <ImageView
-                    android:layout_width="7dp"
-                    android:layout_height="12dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@mipmap/my_right_back" />
+                <ImageView style="@style/rightFlag" />
 
             </RelativeLayout>
 
@@ -146,7 +147,10 @@
             <RelativeLayout
                 android:id="@+id/re_my_team"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
 
                 <ImageView
                     android:id="@+id/image_2"
@@ -165,12 +169,7 @@
                     android:textColor="#ff333333"
                     android:textSize="13dp" />
 
-                <ImageView
-                    android:layout_width="7dp"
-                    android:layout_height="12dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@mipmap/my_right_back" />
+                <ImageView style="@style/rightFlag" />
 
             </RelativeLayout>
 
@@ -182,7 +181,10 @@
             <RelativeLayout
                 android:id="@+id/re_my_join"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
 
                 <ImageView
                     android:id="@+id/image_3"
@@ -206,19 +208,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="30dp"
-                    android:layout_toLeftOf="@+id/img_6"
+                    android:layout_marginRight="18dp"
                     android:text="@string/my_submitted_review"
+                    android:layout_alignParentRight="true"
                     android:textColor="#ff999999"
                     android:textSize="13dp" />
 
-                <ImageView
-                    android:id="@+id/img_6"
-                    android:layout_width="7dp"
-                    android:layout_height="12dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@mipmap/my_right_back" />
+                <ImageView style="@style/rightFlag" />
+
             </RelativeLayout>
 
             <View
@@ -229,7 +226,10 @@
             <RelativeLayout
                 android:id="@+id/re_my_money"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
 
                 <ImageView
                     android:id="@+id/image_4"
@@ -248,12 +248,8 @@
                     android:textColor="#ff333333"
                     android:textSize="13dp" />
 
-                <ImageView
-                    android:layout_width="7dp"
-                    android:layout_height="12dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@mipmap/my_right_back" />
+                <ImageView style="@style/rightFlag" />
+
             </RelativeLayout>
 
             <View
@@ -264,7 +260,10 @@
             <RelativeLayout
                 android:id="@+id/re_my_account_setting"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
 
                 <ImageView
                     android:id="@+id/image_5"
@@ -283,25 +282,12 @@
                     android:textColor="#ff333333"
                     android:textSize="13dp" />
 
-                <ImageView
-                    android:layout_width="7dp"
-                    android:layout_height="12dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@mipmap/my_right_back" />
+                <ImageView style="@style/rightFlag" />
+
             </RelativeLayout>
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/account_setting_out_login"
-            style="@style/ButtonStyle"
-            android:layout_width="330dp"
-            android:layout_height="44dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="84dp"
-            android:text="@string/account_setting_out_login"
-            android:visibility="gone" />
     </RelativeLayout>
+
 </android.support.v4.widget.SwipeRefreshLayout>

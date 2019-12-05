@@ -42,9 +42,9 @@ public class SettingPayPswActivity extends BaseTitleActivity {
     EditText mPasswordEdit;
     @BindView(R.id.setting_pay_psw_password_again_edit)
     EditText mPasswordAgainEdit;
-    @BindView(R.id.modify_login_psw_sms_code_edit)
+    @BindView(R.id.setting_pay_psw_sms_code_edit)
     EditText mSmsCodeEdit;
-    @BindView(R.id.modify_login_psw_send_sms_code)
+    @BindView(R.id.setting_pay_psw_send_sms_code)
     TextView mSendSMSCode;
 
 
@@ -70,7 +70,7 @@ public class SettingPayPswActivity extends BaseTitleActivity {
         mDownTimeUtil = DownTimeUtil.getInstance();
     }
 
-    @OnClick({R.id.setting_pay_psw_btn, R.id.setting_pay_psw_password_eye, R.id.setting_pay_psw_password_again_eye, R.id.img_edit_cancel, R.id.modify_login_psw_send_sms_code})
+    @OnClick({R.id.setting_pay_psw_btn, R.id.setting_pay_psw_password_eye, R.id.setting_pay_psw_password_again_eye, R.id.img_edit_cancel, R.id.setting_pay_psw_send_sms_code})
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.setting_pay_psw_password_eye:
@@ -85,7 +85,7 @@ public class SettingPayPswActivity extends BaseTitleActivity {
             case R.id.img_edit_cancel:
                 mPasswordAgainEdit.setText("");
                 break;
-            case R.id.modify_login_psw_send_sms_code:
+            case R.id.setting_pay_psw_send_sms_code:
                 sendSMSCode();
                 break;
 

@@ -3,8 +3,12 @@ package com.xxx.willing.model.http;
 import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.http.bean.AppVersionBean;
 import com.xxx.willing.model.http.bean.IsSettingPayPswBean;
+import com.xxx.willing.model.http.bean.JoinInfoBean;
 import com.xxx.willing.model.http.bean.LoginBean;
+import com.xxx.willing.model.http.bean.MyTeamBean;
+import com.xxx.willing.model.http.bean.MyVoteBean;
 import com.xxx.willing.model.http.bean.UserInfo;
+import com.xxx.willing.model.http.bean.VoteRecordBean;
 import com.xxx.willing.model.http.bean.WalletAccountBean;
 import com.xxx.willing.model.http.bean.WalletCoinBean;
 import com.xxx.willing.model.http.bean.WalletExchangeBean;
@@ -27,6 +31,36 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     //----------------------------------------------------------展示列表----------------------------------------------------------------------------------------------------------------------------//
+
+    //获取我的团队
+    @GET("/CT/invest/getDepositLogs")
+    Observable<BaseBean<PageBean<MyTeamBean>>> getMyTeamList(
+            @Query("pageNo") int pageNo,
+            @Query("pageSize") int pageSize
+    );
+
+    //获取我的团队
+    @GET("/CT/invest/getDepositLogs")
+    Observable<BaseBean<PageBean<MyTeamBean>>> getMyTeamList(
+            @Query("userId") int userId,
+            @Query("pageNo") int pageNo,
+            @Query("pageSize") int pageSize
+    );
+
+    //获取我的投票
+    @GET("/CT/invest/getDepositLogs")
+    Observable<BaseBean<PageBean<MyVoteBean>>> getMyVoteList(
+            @Query("pageNo") int pageNo,
+            @Query("pageSize") int pageSize
+    );
+
+    //获取投票记录
+    @GET("/CT/invest/getDepositLogs")
+    Observable<BaseBean<PageBean<VoteRecordBean>>> getVoteRecordList(
+            @Query("voteId") int voteId,
+            @Query("pageNo") int pageNo,
+            @Query("pageSize") int pageSize
+    );
 
     //获取钱包充值转账记录
     @GET("/CT/invest/getDepositLogs")
@@ -71,9 +105,18 @@ public interface ApiService {
 
 
     //----------------------------------------------------------获取信息----------------------------------------------------------------------------------------------------------------------------//
-
+    //获取加盟信息
+    @POST("/CT/invest/getDepositLogs")
+    Observable<BaseBean<JoinInfoBean>> getJoinInfo();
 
     //----------------------------------------------------------执行操作----------------------------------------------------------------------------------------------------------------------------//
+
+    //申请加盟
+    @POST("/CT/invest/getDepositLogs")
+    @FormUrlEncoded
+    Observable<BaseBean<BooleanBean>> submitJoin(
+            @Field("coinId") int coinId
+    );
 
     //转账
     @POST(HttpConfig.BASE_URL_PATH + "/doChange")

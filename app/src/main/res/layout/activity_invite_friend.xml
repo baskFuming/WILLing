@@ -44,8 +44,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="12dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginTop="12dp"
                 android:textColor="#FFFFFF"
                 android:textSize="15dp" />
 
@@ -62,12 +62,11 @@
 
         <ImageView
             android:id="@+id/invite_friend_image"
-            android:layout_width="113dp"
-            android:layout_height="113dp"
+            android:layout_width="@dimen/zxCode_size"
+            android:layout_height="@dimen/zxCode_size"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
             android:background="#FFFFFF"
-            android:padding="8dp"
             android:scaleType="fitXY" />
 
         <TextView
@@ -90,14 +89,13 @@
             android:textSize="12dp" />
 
         <Button
-            android:layout_gravity="center"
-            android:id="@+id/copy_code"
+            android:id="@+id/invite_friend_copy"
             style="@style/LoginButtonStyle"
             android:layout_width="228dp"
             android:layout_height="40dp"
+            android:layout_gravity="center"
             android:layout_marginTop="17dp"
             android:text="@string/copy_code" />
-
 
         <TextView
             android:layout_width="wrap_content"
@@ -109,7 +107,7 @@
             android:textSize="16dp" />
 
         <TextView
-            android:id="@+id/copy_line"
+            android:id="@+id/invite_friend_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -119,13 +117,14 @@
             android:textSize="12dp" />
 
         <Button
-            android:layout_gravity="center"
-            android:id="@+id/invite_friend_copy"
+            android:id="@+id/invite_friend_url"
             style="@style/LoginButtonStyle"
             android:layout_width="228dp"
             android:layout_height="40dp"
+            android:layout_gravity="center"
             android:layout_marginTop="17dp"
             android:text="@string/invite_friend_copy" />
 
     </LinearLayout>
+
 </LinearLayout>

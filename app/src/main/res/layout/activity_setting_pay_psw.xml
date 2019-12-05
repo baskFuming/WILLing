@@ -18,11 +18,11 @@
         <View style="@style/dividingLineBottom" />
 
         <EditText
-            android:id="@+id/modify_login_psw_sms_code_edit"
+            android:id="@+id/setting_pay_psw_sms_code_edit"
             style="@style/EditInputSMSCodeStyle" />
 
         <TextView
-            android:id="@+id/modify_login_psw_send_sms_code"
+            android:id="@+id/setting_pay_psw_send_sms_code"
             style="@style/BtnInputSMSCodeStyle" />
 
     </RelativeLayout>
@@ -75,7 +75,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="10dp"
         android:text="@string/enter_pwd"
         android:textColor="#fffe3848"

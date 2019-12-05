@@ -2,8 +2,6 @@
     <!--二维码大小-->
     <dimen name="zxCode_size">150dp</dimen>
 
-    <dimen name="zxCode_call_me_size">130dp</dimen>
-
     <dimen name="activity_left_margin">16dp</dimen>
     <dimen name="activity_right_margin">16dp</dimen>
     <dimen name="activity_Top_margin">12dp</dimen>

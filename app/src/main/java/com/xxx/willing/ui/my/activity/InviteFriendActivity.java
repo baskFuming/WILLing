@@ -12,6 +12,7 @@ import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.sp.SharedConst;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
+import com.xxx.willing.model.utils.ImageUtil;
 import com.xxx.willing.model.utils.KeyBoardUtil;
 import com.xxx.willing.model.utils.ZXingUtil;
 
@@ -33,13 +34,14 @@ public class InviteFriendActivity extends BaseTitleActivity {
     ImageView mImage;
     @BindView(R.id.invite_friend_code)
     TextView mCode;
-    @BindView(R.id.main_title)
-    TextView mTitle;
+    @BindView(R.id.invite_friend_link)
+    TextView mLink;
     @BindView(R.id.main_content)
     TextView mContent;
 
     private String content;
-    private Bitmap bitmap;  //二维码
+    private String url;
+    private Bitmap bitmap;
 
     @Override
     protected String initTitle() {
@@ -53,20 +55,28 @@ public class InviteFriendActivity extends BaseTitleActivity {
 
     @Override
     protected void initData() {
-        mTitle.setText(getString(R.string.invite_friend_title));
         mContent.setText(getString(R.string.content_save));
-        content = HttpConfig.INVITE_URL + SharedPreferencesUtil.getInstance().getString(SharedConst.VALUE_INVITE_CODE);
-        bitmap = ZXingUtil.createQRCode(content, (int) getResources().getDimension(R.dimen.zxCode_size));
+
+        content = SharedPreferencesUtil.getInstance().getString(SharedConst.VALUE_INVITE_CODE);
+        url = HttpConfig.INVITE_URL + content;
+        bitmap = ZXingUtil.createQRCode(url, (int) getResources().getDimension(R.dimen.zxCode_size));
+
         mImage.setImageBitmap(bitmap);
         mCode.setText(content);
-
+        mLink.setText(url);
     }
 
-    @OnClick({R.id.invite_friend_copy})
+    @OnClick({R.id.invite_friend_copy, R.id.invite_friend_url, R.id.main_content})
     public void OnClick(View view) {
         switch (view.getId()) {
+            case R.id.invite_friend_url:
+                KeyBoardUtil.copy(this, url);
+                break;
             case R.id.invite_friend_copy:
                 KeyBoardUtil.copy(this, content);
+                break;
+            case R.id.main_content:
+                ImageUtil.saveImage(this, bitmap);
                 break;
         }
     }

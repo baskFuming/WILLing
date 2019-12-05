@@ -51,6 +51,7 @@ public class LoadingDialog extends AlertDialog {
                 window.clearFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
                 window.getDecorView().post(() -> {
                     lp.width = (int) (window.getDecorView().getWidth() * 0.45);
+                    lp.height = lp.width;
                     window.setGravity(Gravity.CLIP_HORIZONTAL);
                     window.setAttributes(lp);
                 });

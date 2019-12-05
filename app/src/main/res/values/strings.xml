@@ -347,6 +347,8 @@
         <item>已收货</item>
     </string-array>
     <string name="vote_down">全部</string>
+    <string name="vote_record_number">GVI数量</string>
+    <string name="vote_record_time">时间</string>
 
 
 </resources>

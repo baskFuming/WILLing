@@ -27,16 +27,11 @@ import butterknife.BindView;
  */
 public class UseHelpActivity extends BaseTitleActivity {
 
-
     public static void actionStart(Activity activity) {
         Intent intent = new Intent(activity, UseHelpActivity.class);
         activity.startActivity(intent);
     }
 
-
-    private void initBund() {
-
-    }
     @BindView(R.id.use_help_web)
     WebView mWebView;
     @BindView(R.id.web_progress)
@@ -55,25 +50,12 @@ public class UseHelpActivity extends BaseTitleActivity {
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void initData() {
-        initBund();
-    }
-
-
-    @SuppressLint("SetJavaScriptEnabled")
-    @Override
-    protected void onResume() {
-        super.onResume();
         final WebSettings webSetting;
         webSetting = mWebView.getSettings();
         webSetting.setJavaScriptEnabled(true);  //支持js
         webSetting.setJavaScriptCanOpenWindowsAutomatically(true);  //支持弹窗
         webSetting.setBlockNetworkImage(false);
-        mWebView.post(new Runnable() {
-            @Override
-            public void run() {
-                webSetting.setTextZoom(getWindow().getDecorView().getWidth() / 375 * 100);
-            }
-        });
+        mWebView.post(() -> webSetting.setTextZoom(getWindow().getDecorView().getWidth() / 375 * 100));
         webSetting.setCacheMode(WebSettings.LOAD_NO_CACHE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             webSetting.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);

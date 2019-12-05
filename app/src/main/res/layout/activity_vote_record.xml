@@ -1,58 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_bg"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context=".ui.my.activity.vote.VoteRecordActivity">
 
     <include layout="@layout/include_title_bar" />
 
-    <LinearLayout
-        android:layout_width="382dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/shape_line_bg"
-        android:orientation="vertical">
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/main_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:paddingTop="21dp"
-            android:paddingRight="16dp"
-            android:paddingBottom="21dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="GVI数量"
-                android:textColor="#ff666666"
-                android:textSize="14dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:text="时间"
-                android:textColor="#ff666666"
-                android:textSize="14dp" />
-        </RelativeLayout>
-
-        <View
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginBottom="10dp"
-            android:background="#EFEFEF"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <include layout="@layout/include_recycler" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/main_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/shape_back_item"
+                android:orientation="vertical"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="54dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/vote_record_number"
+                        android:textColor="#ff666666"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="18dp"
+                        android:text="@string/vote_record_time"
+                        android:textColor="#ff666666"
+                        android:textSize="14dp" />
+
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/main_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <include layout="@layout/include_not_data" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 </LinearLayout>

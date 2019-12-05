@@ -103,4 +103,9 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!--PopupWindow进出场动画-->
+    <style name="showPopupAnimation" parent="android:Animation" tools:ignore="DuplicateDefinition">
+        <item name="android:windowExitAnimation">@anim/anim_popup_out</item>
+        <item name="android:windowEnterAnimation">@anim/anim_popup_in</item>
+    </style>
 </resources>

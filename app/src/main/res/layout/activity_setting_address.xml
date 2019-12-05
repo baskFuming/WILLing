@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical"
+    tools:context=".ui.app.vote.activity.gvishop.my.address.SettingAddressActivity">
+
+    <include layout="@layout/include_title_bar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/base_shape_cast" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/activity_vertical_margin">
+
+        <LinearLayout
+            android:paddingRight="@dimen/activity_right_margin"
+            android:paddingLeft="@dimen/activity_left_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="17dp"
+                android:paddingBottom="17dp">
+
+                <TextView
+                    android:id="@+id/text_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/setting_add_person"
+                    android:textColor="#ff111111"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:id="@+id/ed_enter_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="34dp"
+                    android:layout_toRightOf="@+id/text_2"
+                    android:background="null"
+                    android:hint="@string/add_hint_name"
+                    android:textColor="#ff999999"
+                    android:textColorHint="#ff999999"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#EFEFEF" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="17dp"
+                android:paddingBottom="17dp">
+
+                <TextView
+                    android:id="@+id/text_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/address_user_phone"
+                    android:textColor="#ff111111"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:id="@+id/ed_enter_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_toRightOf="@+id/text_1"
+                    android:background="null"
+                    android:hint="@string/add_hint_phone"
+                    android:textColor="#ff999999"
+                    android:textColorHint="#ff999999"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#EFEFEF" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="17dp"
+                android:paddingBottom="17dp">
+
+                <TextView
+                    android:id="@+id/text_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/area_address"
+                    android:textColor="#ff111111"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:id="@+id/ed_enter_chose_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_toRightOf="@+id/text_3"
+                    android:background="null"
+                    android:hint="@string/add_hint_chose_address"
+                    android:textColor="#ff999999"
+                    android:textColorHint="#ff999999"
+                    android:textSize="12dp" />
+
+                <ImageView
+                    android:id="@+id/chose_city_onclick"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/adres_position" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#EFEFEF" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="17dp"
+                android:paddingBottom="17dp">
+
+                <TextView
+                    android:id="@+id/text_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/detail_address"
+                    android:textColor="#ff111111"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:id="@+id/ed_enter_detail_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_toRightOf="@+id/text_4"
+                    android:background="null"
+                    android:hint="@string/add_hint_detail_address"
+                    android:textColor="#ff999999"
+                    android:textColorHint="#ff999999"
+                    android:textSize="12dp" />
+
+                <ImageView
+                    android:id="@+id/clean_ed_content"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/ed_diss_bg" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#EFEFEF" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingTop="20dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="30dp"
+                android:thumb="@drawable/switch_white_circle_selector"
+                android:track="@drawable/switch_selector_green">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setting_default_add"
+                        android:textColor="#ff111111"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/address_tip"
+                        android:textColor="#ff999999"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+
+                <Switch
+                    android:id="@+id/switch_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:thumb="@drawable/switch_white_circle_selector"
+                    android:track="@drawable/switch_selector_green" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/add_save"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:layout_gravity="center"
+                android:background="#FE3848"
+                android:gravity="center"
+                android:text="@string/select_county_save"
+                android:textColor="#ffffffff"
+                android:textSize="17dp" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

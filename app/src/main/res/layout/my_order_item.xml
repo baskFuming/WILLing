@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_left_margin"
+    android:paddingTop="@dimen/activity_Top_margin"
+    android:paddingRight="@dimen/activity_right_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_line_bg"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_left_margin"
+        android:paddingTop="@dimen/activity_Top_margin"
+        android:paddingRight="@dimen/activity_left_margin"
+        android:paddingBottom="17dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/order_number"
+                android:textColor="#ff666666"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/order_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="@string/order_un_pay"
+                android:textColor="#fffe3848"
+                android:textSize="11dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/order_goods_icon"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:layout_gravity="center_vertical"
+                android:background="@mipmap/order_default_bg" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal"
+                android:paddingLeft="19dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/order_goods_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:singleLine="false"
+                        android:text="----"
+                        android:textColor="#ff333333"
+                        android:textSize="17dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="right"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/order_pay_price_account"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="---"
+                            android:textColor="#FE3848"
+                            android:textSize="21dp" />
+
+                        <TextView
+                            android:id="@+id/order_pay_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_vertical"
+                            android:text="---"
+                            android:textColor="#ff999999"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true">
+
+                    <TextView
+                        android:id="@+id/order_goods_color"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="---"
+                        android:textColor="#ff999999"
+                        android:textSize="11dp" />
+
+                    <TextView
+                        android:id="@+id/order_buy_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="×1"
+                        android:textColor="#ff333333"
+                        android:textSize="14dp" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/order_all_price"
+                android:textColor="#ff111111"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="---"
+                android:textColor="#ff666666"
+                android:textSize="12dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/order_freight_money"
+                android:textColor="#ff111111"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/order_freight_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="---"
+                android:textColor="#ff666666"
+                android:textSize="12dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/order_total"
+                android:textColor="#ff111111"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/order_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="---"
+                android:textColor="#ff666666"
+                android:textSize="12dp" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#EFEFEF" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:orientation="horizontal"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/order_cancel_btn"
+                    android:layout_width="99dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/shap_cancle_order"
+                    android:gravity="center"
+                    android:text="@string/order_cancel_btn"
+                    android:textColor="#ff999999"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:id="@+id/order_cancel_pay_btn"
+                    android:layout_width="99dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/shap_order_read"
+                    android:gravity="center"
+                    android:text="@string/order_cancel_pay_btn"
+                    android:textColor="#ffffffff"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/order_un_delivery"
+                    android:layout_width="99dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/shap_delivery_order"
+                    android:gravity="center"
+                    android:text="@string/order_un_delivery"
+                    android:textColor="#fffe3848"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/order_confirm_btn"
+                    android:layout_width="99dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/shap_order_read"
+                    android:gravity="center"
+                    android:text="@string/order_confirm_btn"
+                    android:textColor="#ffffffff"
+                    android:textSize="17dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

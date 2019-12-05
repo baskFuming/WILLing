@@ -9,10 +9,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.xxx.willing.ConfigClass;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.ActivityManager;
 import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.config.EventBusConfig;
+import com.xxx.willing.config.MatchesConfig;
+import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.LoginBean;
@@ -87,10 +89,10 @@ public class LoginActivity extends BaseTitleActivity {
                 KeyBoardUtil.setInputTypePassword(mPasswordEye.isChecked(), mPasswordEdit);
                 break;
             case R.id.login_forger_password:
-                startActivityForResult(new Intent(this, ForgetLoginPswActivity.class), ConfigClass.REQUEST_CODE);
+                startActivityForResult(new Intent(this, ForgetLoginPswActivity.class), UIConfig.REQUEST_CODE);
                 break;
             case R.id.login_register:
-                startActivityForResult(new Intent(this, RegisterActivity.class), ConfigClass.REQUEST_CODE);
+                startActivityForResult(new Intent(this, RegisterActivity.class), UIConfig.REQUEST_CODE);
                 break;
             case R.id.login_btn:
                 login();
@@ -107,7 +109,7 @@ public class LoginActivity extends BaseTitleActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == ConfigClass.RESULT_CODE) {
+        if (resultCode == UIConfig.RESULT_CODE) {
             if (data != null) {
                 String account = data.getStringExtra("account");
                 mAccountEdit.setText(account);
@@ -140,7 +142,7 @@ public class LoginActivity extends BaseTitleActivity {
             showEditError(mAccountEdit);
             return;
         }
-        if (!account.matches(ConfigClass.MATCHES_PHONE)) {
+        if (!account.matches(MatchesConfig.MATCHES_PHONE)) {
             ToastUtil.showToast(getString(R.string.register_error_4));
             showEditError(mAccountEdit);
             return;
@@ -150,7 +152,7 @@ public class LoginActivity extends BaseTitleActivity {
             showEditError(mPasswordEdit);
             return;
         }
-        if (!password.matches(ConfigClass.MATCHES_PASSWORD)) {
+        if (!password.matches(MatchesConfig.MATCHES_PASSWORD)) {
             ToastUtil.showToast(getString(R.string.login_error_4));
             showEditError(mPasswordEdit);
             return;
@@ -183,7 +185,7 @@ public class LoginActivity extends BaseTitleActivity {
                                 Activity activity = ActivityManager.getInstance().getActivity(MainActivity.class.getName());
                                 if (activity != null) {
                                     //发送eventBus
-                                    EventBus.getDefault().post(ConfigClass.EVENT_LOGIN);
+                                    EventBus.getDefault().post(EventBusConfig.EVENT_LOGIN);
                                     finish();
                                 } else {
                                     startActivity(new Intent(LoginActivity.this, MainActivity.class));

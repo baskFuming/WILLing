@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.xxx.willing.BuildConfig;
-import com.xxx.willing.ConfigClass;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.sp.SharedConst;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.LocalManageUtil;
@@ -60,7 +60,7 @@ public class ApiIntercept implements Interceptor {
         return chain.request()
                 .newBuilder()
                 .addHeader("Accept-Language", language == null || language.equals("") ? LocalManageUtil.LANGUAGE_CN : language)
-                .addHeader("Cache-Control", "public,max-age=" + ConfigClass.CACHE_TIME)
+                .addHeader("Cache-Control", "public,max-age=" + HttpConfig.CACHE_TIME)
                 .addHeader("x-auth-token", token)
                 .build();
     }
@@ -112,11 +112,11 @@ public class ApiIntercept implements Interceptor {
      * 在需要转化的接口上  加上一个标记
      */
     private Request conversionBaseUrl(Request request) {
-        String baseUrl = request.header(ConfigClass.HTTP_CONVERSION);
+        String baseUrl = request.header(HttpConfig.HTTP_CONVERSION);
         //首先验证是否需要转化url
         if (baseUrl != null && !baseUrl.isEmpty()) {
             Request.Builder newBuilder = request.newBuilder();
-            newBuilder.removeHeader(ConfigClass.HTTP_CONVERSION);
+            newBuilder.removeHeader(HttpConfig.HTTP_CONVERSION);
             HttpUrl newBaseUrl = HttpUrl.parse(baseUrl);
             HttpUrl oldHttpUrl = request.url();
             //重建新的HttpUrl，修改需要修改的url部分

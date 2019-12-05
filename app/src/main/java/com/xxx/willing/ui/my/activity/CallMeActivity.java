@@ -4,14 +4,19 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.utils.ImageUtil;
+import com.xxx.willing.model.utils.KeyBoardUtil;
+import com.xxx.willing.model.utils.ZXingUtil;
 
+import butterknife.BindView;
 import butterknife.OnClick;
+import butterknife.OnLongClick;
 
 public class CallMeActivity extends BaseTitleActivity {
 
@@ -20,7 +25,11 @@ public class CallMeActivity extends BaseTitleActivity {
         activity.startActivity(intent);
     }
 
-    private Bitmap mBitmap;
+    @BindView(R.id.call_me_wechat_code)
+    ImageView mCode;
+
+    private Bitmap bitmap;
+    private String content;
 
     @Override
     protected String initTitle() {
@@ -35,15 +44,29 @@ public class CallMeActivity extends BaseTitleActivity {
     @SuppressLint("ResourceAsColor")
     @Override
     protected void initData() {
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.wechat_code);
+        content = HttpConfig.CALL_MY_CODE;
+        bitmap = ZXingUtil.createQRCode(content, (int) getResources().getDimension(R.dimen.zxCode_size));
+        mCode.setImageBitmap(bitmap);
     }
 
     @OnClick({R.id.call_me_wechat_save})
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.call_me_wechat_save:
-                ImageUtil.saveImage(this, mBitmap);
+                KeyBoardUtil.copy(this, content);
                 break;
         }
+    }
+
+    @OnLongClick({R.id.call_me_wechat_code})
+    public boolean OnLongClick(View view) {
+        switch (view.getId()) {
+            case R.id.call_me_wechat_save:
+                if (bitmap != null) {
+                    ImageUtil.saveImage(this, bitmap);
+                }
+                break;
+        }
+        return false;
     }
 }

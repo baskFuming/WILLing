@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import com.google.zxing.client.android.Intents;
 import com.journeyapps.barcodescanner.CaptureActivity;
-import com.xxx.willing.ConfigClass;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.base.BaseBean;
@@ -96,7 +96,7 @@ public class WithdrawalActivity extends BaseTitleActivity implements PasswordWin
         mPasswordWindow.setCallback(this);
 
         //限定
-        KeyBoardUtil.setFilters(mAmount, ConfigClass.DOUBLE_AMOUNT_NUMBER);
+        KeyBoardUtil.setFilters(mAmount, UIConfig.DOUBLE_AMOUNT_NUMBER);
     }
 
     @OnClick({R.id.main_return, R.id.withdrawal_btn, R.id.withdrawal_sweep})
@@ -110,7 +110,7 @@ public class WithdrawalActivity extends BaseTitleActivity implements PasswordWin
                 break;
             case R.id.withdrawal_sweep:
                 if (!PermissionUtil.checkPermission(this, PermissionUtil.READ_PERMISSION, PermissionUtil.WRITE_PERMISSION, PermissionUtil.CAMERA_PERMISSION)) {
-                    startActivityForResult(new Intent(this, SweepActivity.class), ConfigClass.REQUEST_CODE);
+                    startActivityForResult(new Intent(this, SweepActivity.class), UIConfig.REQUEST_CODE);
                 }
                 break;
         }
@@ -136,10 +136,10 @@ public class WithdrawalActivity extends BaseTitleActivity implements PasswordWin
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         boolean result = PermissionUtil.onRequestPermissionsResult(permissions, grantResults);
         if (result) {
-            startActivityForResult(new Intent(this, CaptureActivity.class), ConfigClass.REQUEST_CODE);
+            startActivityForResult(new Intent(this, CaptureActivity.class), UIConfig.REQUEST_CODE);
         } else {
             if (!PermissionUtil.checkPermission(this, PermissionUtil.READ_PERMISSION, PermissionUtil.WRITE_PERMISSION, PermissionUtil.CAMERA_PERMISSION)) {
-                startActivityForResult(new Intent(this, CaptureActivity.class), ConfigClass.REQUEST_CODE);
+                startActivityForResult(new Intent(this, CaptureActivity.class), UIConfig.REQUEST_CODE);
             }
         }
     }

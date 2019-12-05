@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
-import com.xxx.willing.ConfigClass;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.config.EventBusConfig;
 import com.xxx.willing.model.sp.SharedConst;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.LocalManageUtil;
@@ -61,13 +61,13 @@ public class LanguageActivity extends BaseTitleActivity {
                 mSimpleZh.setText("√");
                 mEn.setText("");
                 SharedPreferencesUtil.getInstance().saveString(SharedConst.CONSTANT_LAUNCHER, LocalManageUtil.LANGUAGE_CN);
-                EventBus.getDefault().post(ConfigClass.EVENT_LANGUAGE_TAG);
+                EventBus.getDefault().post(EventBusConfig.EVENT_LANGUAGE_TAG);
                 break;
             case R.id.language_en:
                 mSimpleZh.setText("");
                 mEn.setText("√");
                 SharedPreferencesUtil.getInstance().saveString(SharedConst.CONSTANT_LAUNCHER, LocalManageUtil.LANGUAGE_US);
-                EventBus.getDefault().post(ConfigClass.EVENT_LANGUAGE_TAG);
+                EventBus.getDefault().post(EventBusConfig.EVENT_LANGUAGE_TAG);
                 break;
         }
     }

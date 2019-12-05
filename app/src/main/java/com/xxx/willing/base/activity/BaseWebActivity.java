@@ -13,13 +13,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-import com.xxx.willing.ConfigClass;
 import com.xxx.willing.R;
 import com.xxx.willing.model.sp.SharedConst;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
 
 import butterknife.BindView;
-import retrofit2.http.Url;
 
 /**
  * @author FM

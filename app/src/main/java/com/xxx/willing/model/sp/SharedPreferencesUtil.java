@@ -3,7 +3,7 @@ package com.xxx.willing.model.sp;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.xxx.willing.ConfigClass;
+import com.xxx.willing.BuildConfig;
 import com.xxx.willing.base.App;
 import com.xxx.willing.model.utils.SystemUtil;
 
@@ -11,14 +11,16 @@ public class SharedPreferencesUtil {
 
     private static final Object SYC = new Object();
 
-    private static final String SP_KEY = SystemUtil.getSerialNumber();   //SP加密key
-
     private static SharedPreferencesUtil sharedPreferencesUtils;
 
     private SharedPreferences sharedPreferences;
 
+    private String key;   //SP加密key
+
     private SharedPreferencesUtil() {
-        sharedPreferences = App.getContext().getSharedPreferences(ConfigClass.SP_NAME, Context.MODE_PRIVATE);
+        String name = BuildConfig.APPLICATION_ID + "_sp";
+        key = SystemUtil.getSerialNumber();
+        sharedPreferences = App.getContext().getSharedPreferences(name, Context.MODE_PRIVATE);
     }
 
     public static SharedPreferencesUtil getInstance() {
@@ -37,7 +39,7 @@ public class SharedPreferencesUtil {
      * 保存
      */
     public void saveEncryptString(String tag, String content) {
-        saveString(tag, SpEncryption.getInstance().encryptString(content, SP_KEY));
+        saveString(tag, SpEncryption.getInstance().encryptString(content, key));
     }
 
     public void saveString(String tag, String content) {
@@ -56,7 +58,7 @@ public class SharedPreferencesUtil {
      * 获取
      */
     public String getDecryptionString(String tag) {
-        return SpEncryption.getInstance().decryptString(getString(tag), SP_KEY);
+        return SpEncryption.getInstance().decryptString(getString(tag), key);
     }
 
     public String getString(String tag) {

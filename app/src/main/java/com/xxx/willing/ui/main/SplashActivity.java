@@ -6,7 +6,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.xxx.willing.ConfigClass;
+import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.sp.SharedConst;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
 
@@ -33,7 +33,7 @@ public class SplashActivity extends AppCompatActivity {
         isLogin = SharedPreferencesUtil.getInstance().getBoolean(SharedConst.IS_LOGIN);
 
         // 利用消息处理器实现延迟跳转到登录窗口
-        mHandler.sendEmptyMessageDelayed(0, ConfigClass.SPLASH_DELAY_TIME);
+        mHandler.sendEmptyMessageDelayed(0, UIConfig.SPLASH_DELAY_TIME);
     }
 
     private void checkUI() {

@@ -1,10 +1,9 @@
 package com.xxx.willing.model.http;
 
-import com.xxx.willing.ConfigClass;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.http.bean.AppVersionBean;
 import com.xxx.willing.model.http.bean.IsSettingPayPswBean;
 import com.xxx.willing.model.http.bean.LoginBean;
-import com.xxx.willing.model.http.bean.SelectCountyBean;
 import com.xxx.willing.model.http.bean.UserInfo;
 import com.xxx.willing.model.http.bean.WalletAccountBean;
 import com.xxx.willing.model.http.bean.WalletCoinBean;
@@ -38,7 +37,7 @@ public interface ApiService {
     );
 
     //获取钱包账号列表
-    @GET("/CT/invest/getDepositLogs")
+    @GET("/myWallet")
     Observable<BaseBean<PageBean<WalletAccountBean>>> getWalletAccountList(
             @Query("pageNo") int pageNo,
             @Query("pageSize") int pageSize
@@ -67,7 +66,7 @@ public interface ApiService {
 
 
     //获取可兑换列表
-    @POST(ConfigClass.BASE_URL_PATH + "/getExchangeList")
+    @POST(HttpConfig.BASE_URL_PATH + "/getExchangeList")
     Observable<BaseBean<List<WalletCoinBean>>> getExchangeList();
 
 
@@ -77,7 +76,7 @@ public interface ApiService {
     //----------------------------------------------------------执行操作----------------------------------------------------------------------------------------------------------------------------//
 
     //转账
-    @POST(ConfigClass.BASE_URL_PATH + "/doChange")
+    @POST(HttpConfig.BASE_URL_PATH + "/doChange")
     @FormUrlEncoded
     Observable<BaseBean<BooleanBean>> withdrawal(
             @Field("coinId") int coinId,
@@ -89,7 +88,7 @@ public interface ApiService {
     );
 
     //兑换
-    @POST(ConfigClass.BASE_URL_PATH + "/exchange")
+    @POST(HttpConfig.BASE_URL_PATH + "/exchange")
     @FormUrlEncoded
     Observable<BaseBean<BooleanBean>> exchange(
             @Field("amount") double baseAmount,
@@ -102,7 +101,7 @@ public interface ApiService {
 
     //登录
     @FormUrlEncoded
-    @POST(ConfigClass.BASE_URL_PATH + "/login")
+    @POST(HttpConfig.BASE_URL_PATH + "/login")
     Observable<BaseBean<LoginBean>> login(
             @Field("phone") String account,
             @Field("password") String password,
@@ -111,19 +110,19 @@ public interface ApiService {
 
     //发送短信验证码
     @FormUrlEncoded
-    @POST(ConfigClass.BASE_URL_PATH + "/sendPhoneMassage")
+    @POST(HttpConfig.BASE_URL_PATH + "/sendPhoneMassage")
     Observable<BaseBean<Object>> sendSMSCode(
             @Field("phone") String phone,
             @Field("area") String area
     );
 
     //发送修改密码验证码
-    @POST(ConfigClass.BASE_URL_PATH + "/sendUpdatePhoneMassage")
+    @POST(HttpConfig.BASE_URL_PATH + "/sendUpdatePhoneMassage")
     Observable<BaseBean<Object>> sendUpdateSMSCode();
 
     //注册
     @FormUrlEncoded
-    @POST(ConfigClass.BASE_URL_PATH + "/register")
+    @POST(HttpConfig.BASE_URL_PATH + "/register")
     Observable<BaseBean<Object>> register(
             @Field("phone") String phone,
             @Field("password") String password,
@@ -133,7 +132,7 @@ public interface ApiService {
 
     //忘记密码
     @FormUrlEncoded
-    @POST(ConfigClass.BASE_URL_PATH + "/forgetPassword")
+    @POST(HttpConfig.BASE_URL_PATH + "/forgetPassword")
     Observable<BaseBean<Object>> forgetPsw(
             @Field("phone") String phone,
             @Field("newPassword") String newPassword,
@@ -143,7 +142,7 @@ public interface ApiService {
 
     //修改登录密码
     @FormUrlEncoded
-    @POST(ConfigClass.BASE_URL_PATH + "/updatePassword")
+    @POST(HttpConfig.BASE_URL_PATH + "/updatePassword")
     Observable<BaseBean<Object>> modifyLoginPsw(
             @Field("oldPassword") String password,
             @Field("newPassword") String mode,
@@ -152,7 +151,7 @@ public interface ApiService {
 
     //修改支付密码
     @FormUrlEncoded
-    @POST(ConfigClass.BASE_URL_PATH + "/updatePayPassword")
+    @POST(HttpConfig.BASE_URL_PATH + "/updatePayPassword")
     Observable<BaseBean<Object>> modifyPayPsw(
             @Field("payPassword") String password,
             @Field("code") String smsCode
@@ -160,29 +159,25 @@ public interface ApiService {
 
     //设置支付密码
     @FormUrlEncoded
-    @POST(ConfigClass.BASE_URL_PATH + "/setPayPassword")
+    @POST(HttpConfig.BASE_URL_PATH + "/setPayPassword")
     Observable<BaseBean<Object>> settingPayPsw(
             @Field("payPassword") String payPassword
     );
 
-    //获取城市编码
-    @POST(ConfigClass.BASE_URL_PATH + "")
-    Observable<BaseBean<List<SelectCountyBean>>> getCounty();
+    //检查是否设置过支付密码
+    @POST(HttpConfig.BASE_URL_PATH + "/selectPayPassword")
+    Observable<BaseBean<IsSettingPayPswBean>> checkIsSettingPayPassword();
 
     //检查app版本
-    @GET(ConfigClass.BASE_URL_PATH + "/checkUpdate")
+    @GET(HttpConfig.BASE_URL_PATH + "/checkUpdate")
     Observable<BaseBean<AppVersionBean>> checkAppVersion();
 
     //退出登录
-    @POST(ConfigClass.BASE_URL_PATH + "/loginOut")
+    @POST(HttpConfig.BASE_URL_PATH + "/loginOut")
     Observable<BaseBean<Object>> outLogin();
 
-    //检查是否设置过支付密码
-    @POST(ConfigClass.BASE_URL_PATH + "/selectPayPassword")
-    Observable<BaseBean<IsSettingPayPswBean>> checkIsSettingPayPassword();
-
     //意见反馈
-    @POST(ConfigClass.BASE_URL_PATH + "")
+    @POST(HttpConfig.BASE_URL_PATH + "")
     @FormUrlEncoded
     Observable<BaseBean<Object>> submitFeedback(
             @Field("content") String amount,
@@ -190,7 +185,7 @@ public interface ApiService {
     );
 
     //获取用户信息
-    @POST(ConfigClass.BASE_URL_PATH + "/getUser")
+    @POST(HttpConfig.BASE_URL_PATH + "/getUser")
     Observable<BaseBean<UserInfo>> getUserinfo();
 
 }

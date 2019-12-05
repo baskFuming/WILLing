@@ -2,25 +2,17 @@ package com.xxx.willing.ui.app.vote.activity.gvishop;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.base.activity.BaseWebActivity;
 import com.xxx.willing.base.fragment.FragmentManager;
-import com.xxx.willing.ui.app.AppFragment;
 import com.xxx.willing.ui.app.vote.activity.gvishop.home.GVIHomeFragment;
 import com.xxx.willing.ui.app.vote.activity.gvishop.my.GVIMyFragment;
-import com.xxx.willing.ui.app.vote.activity.partner.PartnerActivity;
-import com.xxx.willing.ui.my.MyFragment;
-import com.xxx.willing.ui.vote.VoteFragment;
-import com.xxx.willing.ui.wallet.WalletFragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;

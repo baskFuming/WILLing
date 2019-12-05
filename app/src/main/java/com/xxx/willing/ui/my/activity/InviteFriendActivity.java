@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.xxx.willing.ConfigClass;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.sp.SharedConst;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.KeyBoardUtil;
@@ -55,7 +55,7 @@ public class InviteFriendActivity extends BaseTitleActivity {
     protected void initData() {
         mTitle.setText(getString(R.string.invite_friend_title));
         mContent.setText(getString(R.string.content_save));
-        content = ConfigClass.INVITE_URL + SharedPreferencesUtil.getInstance().getString(SharedConst.VALUE_INVITE_CODE);
+        content = HttpConfig.INVITE_URL + SharedPreferencesUtil.getInstance().getString(SharedConst.VALUE_INVITE_CODE);
         bitmap = ZXingUtil.createQRCode(content, (int) getResources().getDimension(R.dimen.zxCode_size));
         mImage.setImageBitmap(bitmap);
         mCode.setText(content);

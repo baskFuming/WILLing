@@ -9,10 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xxx.willing.BuildConfig;
-import com.xxx.willing.ConfigClass;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseActivity;
 import com.xxx.willing.base.fragment.FragmentManager;
+import com.xxx.willing.config.EventBusConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.AppVersionBean;
@@ -129,7 +129,7 @@ public class MainActivity extends BaseActivity {
         //首先调用父类
         super.onEventBus(eventFlag);
         switch (eventFlag) {
-            case ConfigClass.EVENT_LOGIN:
+            case EventBusConfig.EVENT_LOGIN:
                 //等待页面渲染完毕
                 this.getWindow().getDecorView().post(() -> {
                     if (!BuildConfig.DEBUG) {

@@ -7,7 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.xxx.willing.ConfigClass;
+import com.xxx.willing.config.EventBusConfig;
 import com.xxx.willing.model.utils.LocalManageUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -34,7 +34,7 @@ public abstract class BaseLanguageActivity extends AppCompatActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventBus(String eventFlag) {
         switch (eventFlag) {
-            case ConfigClass.EVENT_LANGUAGE_TAG:
+            case EventBusConfig.EVENT_LANGUAGE_TAG:
                 recreate();//刷新界面
                 break;
         }

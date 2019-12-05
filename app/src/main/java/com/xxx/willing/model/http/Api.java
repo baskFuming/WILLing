@@ -3,8 +3,8 @@ package com.xxx.willing.model.http;
 import android.util.Log;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import com.xxx.willing.ConfigClass;
 import com.xxx.willing.base.App;
+import com.xxx.willing.config.HttpConfig;
 
 import java.io.File;
 import java.security.SecureRandom;
@@ -35,7 +35,7 @@ public class Api {
             synchronized (SYC) {
                 if (service == null) {
                     Retrofit.Builder builder = new Retrofit.Builder()
-                            .baseUrl(ConfigClass.BASE_URL)
+                            .baseUrl(HttpConfig.BASE_URL)
                             .addConverterFactory(GsonConverterFactory.create())
                             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                             .client(getOkHttpClient());
@@ -51,11 +51,11 @@ public class Api {
      */
     private static OkHttpClient getOkHttpClient() {
         return new OkHttpClient.Builder()
-                .cache(new Cache(App.getContext().getCacheDir(), ConfigClass.CACHE_SIZE))
+                .cache(new Cache(App.getContext().getCacheDir(), HttpConfig.CACHE_SIZE))
                 .sslSocketFactory(createSSLSocketFactory())
-                .connectTimeout(ConfigClass.HTTP_TIME_OUT, TimeUnit.MILLISECONDS)
-                .readTimeout(ConfigClass.HTTP_TIME_OUT, TimeUnit.MILLISECONDS)
-                .writeTimeout(ConfigClass.HTTP_TIME_OUT, TimeUnit.MILLISECONDS)
+                .connectTimeout(HttpConfig.HTTP_TIME_OUT, TimeUnit.MILLISECONDS)
+                .readTimeout(HttpConfig.HTTP_TIME_OUT, TimeUnit.MILLISECONDS)
+                .writeTimeout(HttpConfig.HTTP_TIME_OUT, TimeUnit.MILLISECONDS)
                 .addInterceptor(new ApiIntercept()).build();
     }
 

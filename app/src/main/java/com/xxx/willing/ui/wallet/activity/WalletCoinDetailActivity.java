@@ -12,9 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.xxx.willing.ConfigClass;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.WalletTransactionBean;
@@ -76,7 +76,7 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
     private String address;
 
     private int type;
-    private int page = ConfigClass.PAGE_DEFAULT;
+    private int page = UIConfig.PAGE_DEFAULT;
     private WalletTransactionAdapter mAdapter;
     private List<WalletTransactionBean> mList = new ArrayList<>();
 
@@ -120,7 +120,7 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
                 WithdrawalActivity.actionStart(this, coinId, coinSymbol, 0, 0);
                 break;
             case R.id.wallet_coin_detail_recharge:
-                RechargeActivity.actionStart(this, "", coinSymbol);
+                RechargeActivity.actionStart(this, address, coinSymbol);
                 break;
         }
     }
@@ -153,7 +153,7 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
 
     @Override
     public void onRefresh() {
-        page = ConfigClass.PAGE_DEFAULT;
+        page = UIConfig.PAGE_DEFAULT;
         loadData();
     }
 
@@ -171,7 +171,7 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
         mAdapter.notifyDataSetChanged();
         if (true) return;
 
-        Api.getInstance().getTransferRecordList(type, page, ConfigClass.PAGE_SIZE)
+        Api.getInstance().getTransferRecordList(type, page, UIConfig.PAGE_SIZE)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<PageBean<WalletTransactionBean>>(this) {
@@ -192,7 +192,7 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
                             return;
                         }
                         List<WalletTransactionBean> list = data.getList();
-                        if (list == null || list.size() == 0 && page == ConfigClass.PAGE_DEFAULT) {
+                        if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
                             mNotData.setVisibility(View.VISIBLE);
                             mLinear.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
@@ -201,12 +201,12 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
 
                         mNotData.setVisibility(View.GONE);
                         mLinear.setVisibility(View.VISIBLE);
-                        if (page == ConfigClass.PAGE_DEFAULT) {
+                        if (page == UIConfig.PAGE_DEFAULT) {
                             mList.clear();
                         }
 
                         mList.addAll(list);
-                        if (list.size() < ConfigClass.PAGE_SIZE) {
+                        if (list.size() < UIConfig.PAGE_SIZE) {
                             mAdapter.loadMoreEnd(true);
                         } else {
                             mAdapter.loadMoreComplete();
@@ -226,7 +226,7 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
                     @Override
                     public void onStart(Disposable d) {
                         super.onStart(d);
-                        if (mRefresh != null && page == ConfigClass.PAGE_DEFAULT) {
+                        if (mRefresh != null && page == UIConfig.PAGE_DEFAULT) {
                             mRefresh.setRefreshing(true);
                         }
                     }

@@ -13,7 +13,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-import com.xxx.willing.ConfigClass;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.model.sp.SharedConst;
@@ -87,7 +86,7 @@ public class JoinWebActivity extends BaseTitleActivity {
         } catch (Exception e) {
             launcher = "zh";
         }
-        mWebView.loadUrl(ConfigClass.USE_HELP_URL + launcher);
+        mWebView.loadUrl("" + launcher);
 
         mWebView.setWebViewClient(new WebViewClient() {
             @Override

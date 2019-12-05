@@ -10,9 +10,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.xxx.willing.ConfigClass;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.WalletExchangeBean;
@@ -43,7 +43,7 @@ public class WalletExchangeRecordActivity extends BaseTitleActivity implements S
     @BindView(R.id.main_refresh)
     SwipeRefreshLayout mRefresh;
 
-    private int page = ConfigClass.PAGE_DEFAULT;
+    private int page = UIConfig.PAGE_DEFAULT;
     private WalletExchangeAdapter mAdapter;
     private List<WalletExchangeBean> mList = new ArrayList<>();
 
@@ -70,7 +70,7 @@ public class WalletExchangeRecordActivity extends BaseTitleActivity implements S
 
     @Override
     public void onRefresh() {
-        page = ConfigClass.PAGE_DEFAULT;
+        page = UIConfig.PAGE_DEFAULT;
         loadData();
     }
 
@@ -88,7 +88,7 @@ public class WalletExchangeRecordActivity extends BaseTitleActivity implements S
         mAdapter.notifyDataSetChanged();
         if (true) return;
 
-        Api.getInstance().getWalletExchangeList(page, ConfigClass.PAGE_SIZE)
+        Api.getInstance().getWalletExchangeList(page, UIConfig.PAGE_SIZE)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<PageBean<WalletExchangeBean>>(this) {
@@ -109,7 +109,7 @@ public class WalletExchangeRecordActivity extends BaseTitleActivity implements S
                             return;
                         }
                         List<WalletExchangeBean> list = data.getList();
-                        if (list == null || list.size() == 0 && page == ConfigClass.PAGE_DEFAULT) {
+                        if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
                             mNotData.setVisibility(View.VISIBLE);
                             mRecycler.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
@@ -118,12 +118,12 @@ public class WalletExchangeRecordActivity extends BaseTitleActivity implements S
 
                         mNotData.setVisibility(View.GONE);
                         mRecycler.setVisibility(View.VISIBLE);
-                        if (page == ConfigClass.PAGE_DEFAULT) {
+                        if (page == UIConfig.PAGE_DEFAULT) {
                             mList.clear();
                         }
 
                         mList.addAll(list);
-                        if (list.size() < ConfigClass.PAGE_SIZE) {
+                        if (list.size() < UIConfig.PAGE_SIZE) {
                             mAdapter.loadMoreEnd(true);
                         } else {
                             mAdapter.loadMoreComplete();
@@ -143,7 +143,7 @@ public class WalletExchangeRecordActivity extends BaseTitleActivity implements S
                     @Override
                     public void onStart(Disposable d) {
                         super.onStart(d);
-                        if (mRefresh != null && page == ConfigClass.PAGE_DEFAULT) {
+                        if (mRefresh != null && page == UIConfig.PAGE_DEFAULT) {
                             mRefresh.setRefreshing(true);
                         }
                     }

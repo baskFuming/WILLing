@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.xxx.willing.ConfigClass;
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
+import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.WalletMarketBean;
@@ -39,7 +39,7 @@ public class WalletMarketFragment extends BaseFragment implements SwipeRefreshLa
     @BindView(R.id.main_refresh)
     SwipeRefreshLayout mRefresh;
 
-    private int page = ConfigClass.PAGE_DEFAULT;
+    private int page = UIConfig.PAGE_DEFAULT;
     private WalletMarketAdapter mAdapter;
     private List<WalletMarketBean> mList = new ArrayList<>();
 
@@ -61,7 +61,7 @@ public class WalletMarketFragment extends BaseFragment implements SwipeRefreshLa
 
     @Override
     public void onRefresh() {
-        page = ConfigClass.PAGE_DEFAULT;
+        page = UIConfig.PAGE_DEFAULT;
         loadData();
     }
 
@@ -79,7 +79,7 @@ public class WalletMarketFragment extends BaseFragment implements SwipeRefreshLa
         mAdapter.notifyDataSetChanged();
         if (true) return;
 
-        Api.getInstance().getWalletMarketList(page, ConfigClass.PAGE_SIZE)
+        Api.getInstance().getWalletMarketList(page, UIConfig.PAGE_SIZE)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<PageBean<WalletMarketBean>>(getActivity()) {
@@ -100,7 +100,7 @@ public class WalletMarketFragment extends BaseFragment implements SwipeRefreshLa
                             return;
                         }
                         List<WalletMarketBean> list = data.getList();
-                        if (list == null || list.size() == 0 && page == ConfigClass.PAGE_DEFAULT) {
+                        if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
                             mNotData.setVisibility(View.VISIBLE);
                             mRecycler.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
@@ -109,12 +109,12 @@ public class WalletMarketFragment extends BaseFragment implements SwipeRefreshLa
 
                         mNotData.setVisibility(View.GONE);
                         mRecycler.setVisibility(View.VISIBLE);
-                        if (page == ConfigClass.PAGE_DEFAULT) {
+                        if (page == UIConfig.PAGE_DEFAULT) {
                             mList.clear();
                         }
 
                         mList.addAll(list);
-                        if (list.size() < ConfigClass.PAGE_SIZE) {
+                        if (list.size() < UIConfig.PAGE_SIZE) {
                             mAdapter.loadMoreEnd(true);
                         } else {
                             mAdapter.loadMoreComplete();
@@ -134,7 +134,7 @@ public class WalletMarketFragment extends BaseFragment implements SwipeRefreshLa
                     @Override
                     public void onStart(Disposable d) {
                         super.onStart(d);
-                        if (mRefresh != null && page == ConfigClass.PAGE_DEFAULT) {
+                        if (mRefresh != null && page == UIConfig.PAGE_DEFAULT) {
                             mRefresh.setRefreshing(true);
                         }
                     }

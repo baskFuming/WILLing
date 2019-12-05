@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 
-import com.xxx.willing.ConfigClass;
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
+import com.xxx.willing.config.AppConfig;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.vote.activity.GameActivity;
 import com.xxx.willing.ui.app.vote.activity.StudyActivity;
@@ -46,10 +46,10 @@ public class AppFragment extends BaseFragment {
                 GVIShopActivity.actionStart(getActivity());
                 break;
             case R.id.app_eth:
-                uri = Uri.parse(ConfigClass.APP_ETH_BROWSER);
+                uri = Uri.parse(AppConfig.APP_ETH_BROWSER);
                 break;
             case R.id.app_btc:
-                uri = Uri.parse(ConfigClass.APP_BTC_BROWSER);
+                uri = Uri.parse(AppConfig.APP_BTC_BROWSER);
                 break;
             case R.id.app_H_coin:
 //                uri = Uri.parse(ConfigClass.APP_BTC_BROWSER);

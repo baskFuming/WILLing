@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.xxx.willing.ConfigClass;
 import com.xxx.willing.base.activity.BaseActivity;
+import com.xxx.willing.config.EventBusConfig;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -40,7 +40,7 @@ public abstract class BaseFragment extends Fragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventBus(String eventFlag) {
         switch (eventFlag) {
-            case ConfigClass.EVENT_LANGUAGE_TAG:
+            case EventBusConfig.EVENT_LANGUAGE_TAG:
                 inflate.invalidate();
                 break;
         }

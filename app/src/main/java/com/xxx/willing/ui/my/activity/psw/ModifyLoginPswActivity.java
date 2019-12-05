@@ -8,9 +8,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.xxx.willing.ConfigClass;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.config.MatchesConfig;
+import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.base.BaseBean;
@@ -116,7 +117,7 @@ public class ModifyLoginPswActivity extends BaseTitleActivity {
                     @Override
                     public void onSuccess(BaseBean<Object> bean) {
                         ToastUtil.showToast(bean.getMessage());
-                        mDownTimeUtil.openDownTime(ConfigClass.SMS_CODE_DOWN_TIME, new DownTimeUtil.Callback() {
+                        mDownTimeUtil.openDownTime(UIConfig.SMS_CODE_DOWN_TIME, new DownTimeUtil.Callback() {
                             @SuppressLint("SetTextI18n")
                             @Override
                             public void run(int nowTime) {
@@ -166,7 +167,7 @@ public class ModifyLoginPswActivity extends BaseTitleActivity {
             showEditError(mSMSCodeEdit);
             return;
         }
-        if (!smsCode.matches(ConfigClass.MATCHES_SMS_CODE)) {
+        if (!smsCode.matches(MatchesConfig.MATCHES_SMS_CODE)) {
             ToastUtil.showToast(getString(R.string.modify_login_psw_error_5));
             showEditError(mSMSCodeEdit);
             return;
@@ -177,7 +178,7 @@ public class ModifyLoginPswActivity extends BaseTitleActivity {
             showEditError(mOldPasswordEdit);
             return;
         }
-        if (!oldPassword.matches(ConfigClass.MATCHES_PASSWORD)) {
+        if (!oldPassword.matches(MatchesConfig.MATCHES_PASSWORD)) {
             ToastUtil.showToast(getString(R.string.modify_login_psw_error_6));
             showEditError(mOldPasswordEdit);
             return;
@@ -188,7 +189,7 @@ public class ModifyLoginPswActivity extends BaseTitleActivity {
             showEditError(mNewPasswordEdit);
             return;
         }
-        if (!newPassword.matches(ConfigClass.MATCHES_PASSWORD)) {
+        if (!newPassword.matches(MatchesConfig.MATCHES_PASSWORD)) {
             ToastUtil.showToast(getString(R.string.modify_login_psw_error_7));
             showEditError(mNewPasswordEdit);
             return;

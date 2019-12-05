@@ -13,9 +13,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-import com.xxx.willing.ConfigClass;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.sp.SharedConst;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
 
@@ -85,7 +85,7 @@ public class UseHelpActivity extends BaseTitleActivity {
         } catch (Exception e) {
             launcher = "zh";
         }
-        mWebView.loadUrl(ConfigClass.USE_HELP_URL + launcher);
+        mWebView.loadUrl(HttpConfig.USE_HELP_URL + launcher);
 
         mWebView.setWebViewClient(new WebViewClient() {
             @Override

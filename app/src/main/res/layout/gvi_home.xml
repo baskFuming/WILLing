@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_left_margin"
+    android:paddingRight="@dimen/activity_right_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/search_bg"
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp">
+
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:background="@mipmap/search_ed_bg" />
+
+        <EditText
+            android:id="@+id/ed_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:background="null"
+            android:hint="@string/search_shop"
+            android:textColor="#ff666666"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <include layout="@layout/include_recycler" />
+</LinearLayout>

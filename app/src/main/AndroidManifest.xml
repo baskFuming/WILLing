@@ -25,7 +25,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.app.vote.activity.gvishop.GVIShopActivity"></activity>
+        <activity android:name=".ui.app.vote.activity.gvishop.my.address.AddressManagerActivity"></activity>
+        <activity android:name=".ui.app.vote.activity.gvishop.my.address.SettingAddressActivity" />
+        <activity android:name=".ui.app.vote.activity.gvishop.my.address.ShipAddressActivity" />
+        <activity android:name=".ui.app.vote.activity.gvishop.my.order.MyOrderActivity" />
+        <activity android:name=".ui.app.vote.activity.gvishop.GVIShopActivity" />
         <activity android:name=".ui.app.vote.activity.partner.PartnerActivity" />
         <activity android:name=".ui.app.vote.activity.rank.CmpRankActivity" />
         <activity android:name=".ui.app.vote.activity.vote.JoinDetailsActivity" />

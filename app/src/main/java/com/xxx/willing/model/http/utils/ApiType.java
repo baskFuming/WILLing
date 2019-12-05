@@ -6,6 +6,8 @@ package com.xxx.willing.model.http.utils;
 public class ApiType {
 
     public static final String HOME_LOCATION = "0";   //轮播图位置
+    //地址管理默认地址标识
+    public static final int FLAG_ADDRESS_DEFAULT = 1;
 
     //转账 收款类型
     public static final int TRANSFER_TYPE = 0;

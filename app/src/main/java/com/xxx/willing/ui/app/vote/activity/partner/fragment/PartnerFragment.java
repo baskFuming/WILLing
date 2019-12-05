@@ -18,10 +18,12 @@ public class PartnerFragment extends BaseFragment implements SwipeRefreshLayout.
         PartnerFragment fragment = new PartnerFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("status", status);
+        bundle.putString("statusStr", statusStr);
         fragment.setArguments(bundle);
         return fragment;
     }
     private int status;
+    private String statusStr;
     @Override
     protected int getLayoutId() {
         return R.layout.partner_fragment;
@@ -32,6 +34,7 @@ public class PartnerFragment extends BaseFragment implements SwipeRefreshLayout.
         Bundle bundle = getArguments();
         if (bundle != null) {
             status = bundle.getInt("status");
+            statusStr = bundle.getString("statusStr");
         }
     }
 

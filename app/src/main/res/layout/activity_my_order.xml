@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical"
+    tools:context=".ui.app.vote.activity.gvishop.my.order.MyOrderActivity">
+
+    <include layout="@layout/include_title_bar" />
+
+    <include layout="@layout/include_view_pager" />
+
+</android.support.constraint.ConstraintLayout>

@@ -6,14 +6,16 @@ import android.widget.TextView;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseWebActivity;
 import com.xxx.willing.base.fragment.BaseFragment;
+import com.xxx.willing.ui.app.vote.activity.gvishop.my.address.ShipAddressActivity;
+import com.xxx.willing.ui.app.vote.activity.gvishop.my.order.MyOrderActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- *  @desc   商城首页
- *  @author FM
- *  @date   2019-12-04
+ * @author FM
+ * @desc 商城首页
+ * @date 2019-12-04
  */
 
 public class GVIMyFragment extends BaseFragment {
@@ -37,14 +39,21 @@ public class GVIMyFragment extends BaseFragment {
         mTitle.setText(R.string.gvi_change);
 
     }
-    @OnClick({R.id.main_return,R.id.main_content})
-    public void OnClick(View view){
-        switch (view.getId()){
+
+    @OnClick({R.id.main_return, R.id.main_content, R.id.re_my_order, R.id.re_my_address})
+    public void OnClick(View view) {
+        switch (view.getId()) {
             case R.id.main_return:
-                getActivity().onBackPressed();
+                getActivity().finish();
+                break;
+            case R.id.re_my_order: //订单
+                MyOrderActivity.actionStart(getActivity());
+                break;
+            case R.id.re_my_address: //我的地址
+                ShipAddressActivity.actionStart(getActivity());
                 break;
             case R.id.main_content:
-                BaseWebActivity.actionStart(getActivity(),Url,title);
+                BaseWebActivity.actionStart(getActivity(), Url, title);
                 break;
         }
     }

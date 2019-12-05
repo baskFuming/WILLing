@@ -1,5 +1,6 @@
 package com.xxx.willing.ui.app.vote.activity.gvishop.home;
 
+import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
 
 /**
@@ -12,7 +13,7 @@ public class GVIHomeFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.gvi_home;
     }
 
     @Override

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingRight="@dimen/activity_right_margin"
+    android:paddingLeft="@dimen/activity_left_margin">
+    <LinearLayout
+        android:paddingTop="@dimen/activity_Top_margin"
+        android:paddingLeft="@dimen/activity_left_margin"
+        android:paddingRight="@dimen/activity_right_margin"
+        android:paddingBottom="@dimen/activity_Top_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@drawable/shape_line_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/notice_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--------"
+            android:textColor="#ff333333"
+            android:textSize="17sp"
+            />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:paddingBottom="@dimen/activity_Top_margin"
+            android:paddingTop="@dimen/activity_Top_margin"
+            android:id="@+id/notice_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--------"
+            android:textColor="#ff666666"
+            android:textSize="14sp"
+            android:maxLines="5"
+            />
+        <RelativeLayout
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/notice_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="0dp"
+                android:text="--------"
+                android:textColor="#ff999999"
+                android:textSize="14sp" />
+
+            <CheckBox
+                android:layout_toLeftOf="@+id/notice_img"
+                android:id="@+id/item_notice_center_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:button="@null"
+                android:text="@string/to_view_content"
+                android:textColor="#333333"
+                android:textSize="12dp" />
+
+            <ImageView
+                android:id="@+id/notice_img"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="12dp"
+                android:layout_height="8dp"
+                android:background="@mipmap/vote_down"/>
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

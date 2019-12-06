@@ -31,7 +31,7 @@ public abstract class BasePopup extends PopupWindow {
         window.setAttributes(params);
 
         ButterKnife.bind(this, view);
-        setAnimationStyle(R.style.showPopupAnimation);
+        setAnimationStyle(R.style.PopupAnimation);
 
         setBackgroundDrawable(new BitmapDrawable());    //边距BUG解决
         setOutsideTouchable(true);

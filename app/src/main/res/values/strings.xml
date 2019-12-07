@@ -425,5 +425,6 @@
     <string name="login_success">登录成功</string>
     <string name="window_exchange_check_toast">选择兑换币种</string>
     <string name="exchange_success">兑换成功</string>
+    <string name="exchange_error_2">不能选择相同的币种</string>
 
 </resources>

@@ -72,6 +72,7 @@ public class WalletCoinBean {
         private String coinSymbol;
         private String coinUrl;
         private String coinPriceUsdt;
+        private int coinDecimal;
         private boolean isBase;
         private boolean isTarget;
 
@@ -83,6 +84,9 @@ public class WalletCoinBean {
             return coinId;
         }
 
+        public int getCoinDecimal() {
+            return coinDecimal;
+        }
 
         public String getCoinSymbol() {
             return coinSymbol;

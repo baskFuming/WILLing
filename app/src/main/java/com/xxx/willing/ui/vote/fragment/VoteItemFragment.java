@@ -5,6 +5,11 @@ import android.content.Context;
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.view.ExpandableTextView;
+/**
+ *  @desc  钱包
+ *  @author FM
+ *  @date   2019-12-07
+ */
 
 public class VoteItemFragment extends BaseFragment{
 

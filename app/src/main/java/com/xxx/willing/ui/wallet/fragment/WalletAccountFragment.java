@@ -1,6 +1,7 @@
 package com.xxx.willing.ui.wallet.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,7 +12,9 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
+import com.xxx.willing.base.App;
 import com.xxx.willing.base.activity.ActivityManager;
+import com.xxx.willing.base.activity.BaseActivity;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
@@ -34,7 +37,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class WalletAccountFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, BaseQuickAdapter.OnItemClickListener {
+public class WalletAccountFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
 
     public static WalletAccountFragment getInstance() {
         return new WalletAccountFragment();
@@ -50,10 +53,10 @@ public class WalletAccountFragment extends BaseFragment implements SwipeRefreshL
     @BindView(R.id.wallet_account_total_asset)
     TextView mTotalAsset;
 
+
     private int page = UIConfig.PAGE_DEFAULT;
     private WalletAccountAdapter mAdapter;
     private List<WalletAccountBean> mList = new ArrayList<>();
-
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_wallet_account;
@@ -66,16 +69,9 @@ public class WalletAccountFragment extends BaseFragment implements SwipeRefreshL
         mRecycler.setAdapter(mAdapter);
         mRefresh.setOnRefreshListener(this);
         mAdapter.setOnLoadMoreListener(this, mRecycler);
-        mAdapter.setOnItemClickListener(this);
-
         loadData();
     }
 
-    @Override
-    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        WalletAccountBean bean = mList.get(position);
-        WalletCoinDetailActivity.actionStart(getActivity(), bean);
-    }
 
     @Override
     public void onRefresh() {
@@ -159,4 +155,7 @@ public class WalletAccountFragment extends BaseFragment implements SwipeRefreshL
                     }
                 });
     }
+
 }
+
+

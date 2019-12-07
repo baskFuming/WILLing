@@ -23,15 +23,15 @@ public class WalletMarketBean {
     }
 
     public String getCoinName() {
-        return coinName;
+        return coinName == null ? coinSymbol : coinName;
     }
 
     public String getCoinPriceRmb() {
-        return String.valueOf(coinPriceRmb);
+        return "￥" + String.valueOf(coinPriceRmb);
     }
 
     public String getCoinPriceUsdt() {
-        return coinPriceUsdt;
+        return "$" + coinPriceUsdt;
     }
 
     public String getCoinFluctuation() {

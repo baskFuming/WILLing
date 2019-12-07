@@ -13,6 +13,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.ActivityManager;
 import com.xxx.willing.base.fragment.BaseFragment;
+import com.xxx.willing.config.EventBusConfig;
 import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
@@ -25,6 +26,8 @@ import com.xxx.willing.ui.wallet.activity.WalletCoinDetailActivity;
 import com.xxx.willing.ui.wallet.adapter.WalletAccountAdapter;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +78,16 @@ public class WalletAccountFragment extends BaseFragment implements SwipeRefreshL
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         WalletAccountBean bean = mList.get(position);
         WalletCoinDetailActivity.actionStart(getActivity(), bean);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventBus(String eventFlag) {
+        super.onEventBus(eventFlag);
+        switch (eventFlag) {
+            case EventBusConfig.EVENT_UPDATE_WALLET:
+                loadData();
+                break;
+        }
     }
 
     @Override

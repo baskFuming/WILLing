@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 public abstract class BasePopup extends PopupWindow {
 
     private Context mContext;
+    private View view;
 
     protected BasePopup(Context context) {
         super(context);
@@ -24,33 +25,32 @@ public abstract class BasePopup extends PopupWindow {
     }
 
     public void show() {
-        View view = LayoutInflater.from(mContext).inflate(getLayoutId(), null);
-        Window window = ((Activity)mContext).getWindow();
+        Window window = ((Activity) mContext).getWindow();
         WindowManager.LayoutParams params = window.getAttributes();
         params.alpha = 0.6f;
         window.setAttributes(params);
+        if (view == null) {
+            view = LayoutInflater.from(mContext).inflate(getLayoutId(), null);
 
-        ButterKnife.bind(this, view);
-        setAnimationStyle(R.style.PopupAnimation);
+            ButterKnife.bind(this, view);
+            setAnimationStyle(R.style.PopupAnimation);
 
-        setBackgroundDrawable(new BitmapDrawable());    //边距BUG解决
-        setOutsideTouchable(true);
-        setContentView(view);
-        setWidth(WindowManager.LayoutParams.MATCH_PARENT);
-        setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
-        setFocusable(true);
+            setBackgroundDrawable(new BitmapDrawable());    //边距BUG解决
+            setOutsideTouchable(true);
+            setContentView(view);
+            setWidth(WindowManager.LayoutParams.MATCH_PARENT);
+            setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+            setFocusable(true);
 
-        this.setOnDismissListener(new OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                Window window = ((Activity)mContext).getWindow();
-                WindowManager.LayoutParams params = window.getAttributes();
-                params.alpha = 1f;
-                window.setAttributes(params);
-            }
-        });
+            this.setOnDismissListener(() -> {
+                Window window1 = ((Activity) mContext).getWindow();
+                WindowManager.LayoutParams params1 = window1.getAttributes();
+                params1.alpha = 1f;
+                window1.setAttributes(params1);
+            });
 
-        initData();
+            initData();
+        }
         showAtLocation(window.getDecorView(), Gravity.BOTTOM,0, 0);
     }
 

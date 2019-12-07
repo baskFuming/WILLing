@@ -1,34 +1,48 @@
 package com.xxx.willing.ui.wallet.fragment;
 
+import android.annotation.SuppressLint;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
+import com.xxx.willing.config.EventBusConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.WalletCoinBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.BooleanBean;
+import com.xxx.willing.model.utils.GlideUtil;
+import com.xxx.willing.model.utils.KeyBoardUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.wallet.activity.WalletExchangeRecordActivity;
+import com.xxx.willing.ui.wallet.window.WalletExchangeCheckWindow;
 
+import org.greenrobot.eventbus.EventBus;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import butterknife.OnTextChanged;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class WalletExchangeFragment extends BaseFragment {
+public class WalletExchangeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    public static WalletExchangeFragment getInstance(){
+    public static WalletExchangeFragment getInstance() {
         return new WalletExchangeFragment();
     }
 
+    @BindView(R.id.main_refresh)
+    SwipeRefreshLayout mRefresh;
     @BindView(R.id.wallet_exchange_rate)
     TextView mRate;
     @BindView(R.id.wallet_exchange_fee)
@@ -45,10 +59,23 @@ public class WalletExchangeFragment extends BaseFragment {
     @BindView(R.id.wallet_exchange_target_symbol)
     TextView mTargetSymbol;
     @BindView(R.id.wallet_exchange_target_amount)
-    EditText mTargetAmount;
+    TextView mTargetAmount;
 
-    private int baseCoinId;
-    private int targetCoinId;
+    private List<WalletCoinBean.ListBean> mBaseList = new ArrayList<>();
+    private List<WalletCoinBean.ListBean> mTargetList = new ArrayList<>();
+    private WalletExchangeCheckWindow mBaseCheckWindow;
+    private WalletExchangeCheckWindow mTargetCheckWindow;
+    private int basePosition;
+    private int targetPosition;
+
+    private double bvseBaseFee;
+    private double bvseTargetFee;
+    private double gviBaseFee;
+    private double gviTargetFee;
+
+    private boolean isExchangeParam;    //是否切换了参数
+    private double fee;
+    private double rate = 0;
 
     @Override
     protected int getLayoutId() {
@@ -57,14 +84,46 @@ public class WalletExchangeFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-//        getExchangeList();
+        mBaseCheckWindow = WalletExchangeCheckWindow.getInstance(getContext(), mBaseList, (adapter, view, position) -> {
+            WalletExchangeFragment.this.basePosition = position;
+            updateParam();
+            mBaseCheckWindow.dismiss();
+        });
+        mTargetCheckWindow = WalletExchangeCheckWindow.getInstance(getContext(), mTargetList, (adapter, view, position) -> {
+            WalletExchangeFragment.this.targetPosition = position;
+            updateParam();
+            mTargetCheckWindow.dismiss();
+        });
+
+        KeyBoardUtil.setFilters(mBaseAmount, 8 + 1);
+
+        mRefresh.setOnRefreshListener(this);
+        getExchangeList();
     }
 
-    @OnClick({R.id.wallet_exchange_change, R.id.wallet_exchange_record, R.id.wallet_exchange_btn})
+    @OnClick({R.id.wallet_exchange_base_linear, R.id.wallet_exchange_target_linear, R.id.wallet_exchange_change, R.id.wallet_exchange_record, R.id.wallet_exchange_btn})
     public void OnClick(View view) {
         switch (view.getId()) {
+            case R.id.wallet_exchange_base_linear:
+                if (isExchangeParam) {
+                    if (mTargetCheckWindow != null)
+                        mTargetCheckWindow.show();
+                } else {
+                    if (mBaseCheckWindow != null)
+                        mBaseCheckWindow.show();
+                }
+                break;
+            case R.id.wallet_exchange_target_linear:
+                if (isExchangeParam) {
+                    if (mBaseCheckWindow != null)
+                        mBaseCheckWindow.show();
+                } else {
+                    if (mTargetCheckWindow != null)
+                        mTargetCheckWindow.show();
+                }
+                break;
             case R.id.wallet_exchange_change:
-
+                exchangeParam();
                 break;
             case R.id.wallet_exchange_record:
                 WalletExchangeRecordActivity.actionStart(getActivity());
@@ -75,12 +134,93 @@ public class WalletExchangeFragment extends BaseFragment {
         }
     }
 
+    @OnTextChanged(R.id.wallet_exchange_base_amount)
+    public void OnTextChanged(CharSequence charSequence) {
+        String string = charSequence.toString();
+        double baseAmount;
+        try {
+            baseAmount = Double.parseDouble(string);
+        } catch (Exception e) {
+            baseAmount = 0;
+        }
+        String string1 = new BigDecimal(baseAmount * rate).setScale(8, BigDecimal.ROUND_DOWN).stripTrailingZeros().toPlainString();
+        mTargetAmount.setText(string1);
+    }
+
+    @Override
+    public void onRefresh() {
+        getExchangeList();
+    }
+
+    //兑换参数
+    private void exchangeParam() {
+        isExchangeParam = !isExchangeParam;
+        updateParam();
+    }
+
+    //更新参数
+    @SuppressLint("SetTextI18n")
+    private void updateParam() {
+        WalletCoinBean.ListBean baseCoinBean = mBaseList.get(basePosition);
+        WalletCoinBean.ListBean targetCoinBean = mTargetList.get(targetPosition);
+
+        if (isExchangeParam) {
+            mTargetSymbol.setText(baseCoinBean.getCoinSymbol());
+            mBaseSymbol.setText(targetCoinBean.getCoinSymbol());
+            GlideUtil.loadCircle(getContext(), baseCoinBean.getCoinUrl(), mTargetIcon);
+            GlideUtil.loadCircle(getContext(), targetCoinBean.getCoinUrl(), mBaseIcon);
+            if (baseCoinBean.getCoinId() == 10000004) {    //GVI
+                fee = gviBaseFee;
+            } else if (baseCoinBean.getCoinId() == 10000005) {  //BVSE
+                fee = bvseBaseFee;
+            }
+            rate = new BigDecimal(targetCoinBean.getCoinPriceUsdt() / baseCoinBean.getCoinPriceUsdt()).setScale(4, BigDecimal.ROUND_DOWN).doubleValue();
+        } else {
+            mBaseSymbol.setText(baseCoinBean.getCoinSymbol());
+            mTargetSymbol.setText(targetCoinBean.getCoinSymbol());
+            GlideUtil.loadCircle(getContext(), baseCoinBean.getCoinUrl(), mBaseIcon);
+            GlideUtil.loadCircle(getContext(), targetCoinBean.getCoinUrl(), mTargetIcon);
+            if (targetCoinBean.getCoinId() == 10000004) {    //GVI
+                fee = gviTargetFee;
+            } else if (targetCoinBean.getCoinId() == 10000005) {  //BVSE
+                fee = bvseTargetFee;
+            }
+            rate = new BigDecimal(baseCoinBean.getCoinPriceUsdt() / targetCoinBean.getCoinPriceUsdt()).setScale(4, BigDecimal.ROUND_DOWN).doubleValue();
+        }
+
+        mRate.setText(getString(R.string.wallet_exchange_rate) + rate);
+        mFee.setText(getString(R.string.wallet_exchange_fee) + (fee * 100) + "%");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mBaseCheckWindow != null) {
+            mBaseCheckWindow.dismiss();
+            mBaseCheckWindow = null;
+        }
+        if (mTargetCheckWindow != null) {
+            mTargetCheckWindow.dismiss();
+            mTargetCheckWindow = null;
+        }
+    }
+
     /**
      * @Model 兑换
      */
     private void exchange() {
         String baseAmount = mBaseAmount.getText().toString();
         double amount = Double.parseDouble(baseAmount);
+
+        int baseCoinId;
+        int targetCoinId;
+        if (isExchangeParam) {
+            baseCoinId = mTargetList.get(targetPosition).getCoinId();
+            targetCoinId = mBaseList.get(basePosition).getCoinId();
+        } else {
+            baseCoinId = mBaseList.get(basePosition).getCoinId();
+            targetCoinId = mTargetList.get(targetPosition).getCoinId();
+        }
 
         Api.getInstance().exchange(amount, baseCoinId, targetCoinId)
                 .subscribeOn(Schedulers.io())
@@ -91,7 +231,10 @@ public class WalletExchangeFragment extends BaseFragment {
                     public void onSuccess(BaseBean<BooleanBean> bean) {
                         if (bean != null) {
                             BooleanBean data = bean.getData();
-                            if (data != null) {
+                            if (data != null && data.isResult()) {
+                                ToastUtil.showToast(getString(R.string.exchange_success));
+                                //更新资产
+                                EventBus.getDefault().post(EventBusConfig.EVENT_UPDATE_WALLET);
                             }
                         }
                     }
@@ -122,14 +265,33 @@ public class WalletExchangeFragment extends BaseFragment {
         Api.getInstance().getExchangeList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiCallback<List<WalletCoinBean>>(getActivity()) {
+                .subscribe(new ApiCallback<WalletCoinBean>(getActivity()) {
 
                     @Override
-                    public void onSuccess(BaseBean<List<WalletCoinBean>> bean) {
+                    public void onSuccess(BaseBean<WalletCoinBean> bean) {
                         if (bean != null) {
-                            List<WalletCoinBean> list = bean.getData();
-                            if (list != null && list.size() != 0) {
+                            WalletCoinBean data = bean.getData();
+                            if (data != null) {
+                                bvseBaseFee = data.getBvseBaseFee();
+                                bvseTargetFee = data.getBvseTargetFee();
+                                gviBaseFee = data.getGviBaseFee();
+                                gviTargetFee = data.getGviTargetFee();
 
+                                List<WalletCoinBean.ListBean> list = data.getList();
+                                if (list != null && list.size() != 0) {
+                                    for (int i = 0; i < list.size(); i++) {
+                                        WalletCoinBean.ListBean walletCoinBean = list.get(i);
+                                        if (walletCoinBean.isBase()) {
+                                            mBaseList.add(walletCoinBean);
+                                        }
+                                        if (walletCoinBean.isTarget()) {
+                                            mTargetList.add(walletCoinBean);
+                                        }
+                                    }
+                                    mBaseCheckWindow.notifyData(mBaseList);
+                                    mTargetCheckWindow.notifyData(mTargetList);
+                                    updateParam();
+                                }
                             }
                         }
                     }
@@ -149,6 +311,9 @@ public class WalletExchangeFragment extends BaseFragment {
                     public void onEnd() {
                         super.onEnd();
                         hideLoading();
+                        if (mRefresh != null) {
+                            mRefresh.setRefreshing(false);
+                        }
                     }
                 });
     }

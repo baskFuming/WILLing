@@ -90,8 +90,8 @@ public interface ApiService {
             @Query("pageSize") int pageSize
     );
 
-    //获取钱包释放列表
-    @GET("/CT/invest/getDepositLogs")
+    //获取钱包兑换记录
+    @GET("/getExchangeRecordList")
     Observable<BaseBean<PageBean<WalletExchangeBean>>> getWalletExchangeList(
             @Query("pageNo") int pageNo,
             @Query("pageSize") int pageSize
@@ -106,8 +106,8 @@ public interface ApiService {
 
 
     //获取可兑换列表
-    @POST(HttpConfig.BASE_URL_PATH + "/getExchangeList")
-    Observable<BaseBean<List<WalletCoinBean>>> getExchangeList();
+    @GET(HttpConfig.BASE_URL_PATH + "/getExchangeCoinList")
+    Observable<BaseBean<WalletCoinBean>> getExchangeList();
 
 
     //----------------------------------------------------------获取信息----------------------------------------------------------------------------------------------------------------------------//
@@ -136,7 +136,7 @@ public interface ApiService {
     );
 
     //兑换
-    @POST(HttpConfig.BASE_URL_PATH + "/exchange")
+    @POST(HttpConfig.BASE_URL_PATH + "/doExchange")
     @FormUrlEncoded
     Observable<BaseBean<BooleanBean>> exchange(
             @Field("amount") double baseAmount,

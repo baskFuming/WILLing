@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="84dp"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:layout_marginBottom="6dp"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:background="@drawable/shape_back_item"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
     android:padding="16dp">
 
     <LinearLayout
-        android:id="@+id/linear_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <ImageView
@@ -32,11 +36,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linear_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@id/linear_1"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
@@ -62,15 +65,14 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginLeft="38dp"
-        android:layout_toRightOf="@id/linear_2"
-        android:gravity="right"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/item_wallet_market_usa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:text="$0.0"
             android:textColor="#999999"
             android:textSize="14dp" />
@@ -79,8 +81,8 @@
             android:id="@+id/item_wallet_market_rmb"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:layout_gravity="bottom|right"
             android:layout_weight="1"
-            android:gravity="bottom"
             android:text="￥0.0"
             android:textColor="#333333"
             android:textSize="21dp"
@@ -92,12 +94,11 @@
         android:id="@+id/item_wallet_market_rate"
         android:layout_width="90dp"
         android:layout_height="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
+        android:layout_marginLeft="26dp"
         android:background="@drawable/shape_item_wallet_default"
         android:gravity="center"
         android:text="0.00%"
         android:textColor="#FFFFFF"
         android:textSize="19dp" />
 
-</RelativeLayout>
+</LinearLayout>

@@ -30,10 +30,13 @@ public class WalletMarketAdapter extends BaseQuickAdapter<WalletMarketBean, Base
         TextView tvRate = helper.getView(R.id.item_wallet_market_rate);
         if (item.getCoinFluctuation().contains("+")) {
             tvRate.setBackgroundResource(R.drawable.shape_item_wallet_rise);
+            tvRate.setText(item.getCoinFluctuation());
         } else if (item.getCoinFluctuation().contains("-")) {
             tvRate.setBackgroundResource(R.drawable.shape_item_wallet_fall);
+            tvRate.setText(item.getCoinFluctuation());
         } else {
             tvRate.setBackgroundResource(R.drawable.shape_item_wallet_default);
+            tvRate.setText("0.00%");
         }
 
         GlideUtil.loadCircle(mContext, item.getCoinUrl(), helper.getView(R.id.item_wallet_market_icon));

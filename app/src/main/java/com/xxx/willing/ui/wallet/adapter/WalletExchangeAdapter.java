@@ -17,11 +17,10 @@ public class WalletExchangeAdapter extends BaseQuickAdapter<WalletExchangeBean, 
 
     @Override
     protected void convert(BaseViewHolder helper, WalletExchangeBean item) {
-//        helper.setText(R.id.item_wallet_exchange_base_amount, "")
-//                .setText(R.id.item_wallet_exchange_base_amount, "")
-//                .setText(R.id.item_wallet_exchange_target_symbol, "")
-//                .setText(R.id.item_wallet_exchange_target_amount, "")
-//                .setText(R.id.item_wallet_exchange_time, "")
-//                .setText(R.id.item_wallet_exchange_year, "");
+        helper.setText(R.id.item_wallet_exchange_base_amount, item.getBaseCoinSymbol())
+                .setText(R.id.item_wallet_exchange_base_amount, item.getBaseCoinAmount())
+                .setText(R.id.item_wallet_exchange_target_symbol, item.getTargetCoinSymbol())
+                .setText(R.id.item_wallet_exchange_target_amount, item.getTargetCoinAmount())
+                .setText(R.id.item_wallet_exchange_time, item.getCreateTime());
     }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_back_window_exchange"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_marginLeft="17dp"
+        android:gravity="center"
+        android:text="@string/window_exchange_check_toast"
+        android:textColor="#333333"
+        android:textSize="17dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/window_exchange_check_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

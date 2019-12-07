@@ -81,13 +81,6 @@ public class WalletExchangeRecordActivity extends BaseTitleActivity implements S
     }
 
     private void loadData() {
-        mRefresh.setRefreshing(false);
-        for (int i = 0; i < 10; i++) {
-            mList.add(new WalletExchangeBean());
-        }
-        mAdapter.notifyDataSetChanged();
-        if (true) return;
-
         Api.getInstance().getWalletExchangeList(page, UIConfig.PAGE_SIZE)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

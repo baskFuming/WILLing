@@ -25,34 +25,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-<<<<<<< HEAD
-=======
-        <activity android:name=".ui.vote.activity.NoticeCenterActivity"></activity>
-        <activity android:name=".ui.app.vote.activity.gvishop.my.address.AddressManagerActivity" />
-        <activity android:name=".ui.app.vote.activity.gvishop.my.address.SettingAddressActivity" />
-        <activity android:name=".ui.app.vote.activity.gvishop.my.address.ShipAddressActivity" />
-        <activity android:name=".ui.app.vote.activity.gvishop.my.order.MyOrderActivity" />
-        <activity android:name=".ui.app.vote.activity.gvishop.GVIShopActivity" />
-        <activity android:name=".ui.app.vote.activity.partner.PartnerActivity" />
-        <activity android:name=".ui.app.vote.activity.rank.CmpRankActivity" />
-        <activity android:name=".ui.app.vote.activity.vote.JoinDetailsActivity" />
-        <activity android:name=".ui.app.vote.activity.vote.VoteJoinActivity" />
-        <activity android:name=".ui.app.vote.activity.GameActivity" />
-        <activity android:name=".ui.login.activity.ChoiceActivity" />
-        <activity android:name=".ui.login.activity.ChoiceActivity" />
-        <activity android:name=".ui.my.activity.team.MyChildActivity" />
-        <activity android:name=".ui.my.activity.record.MoRecordActivity" />
-        <activity android:name=".ui.my.activity.join.UpdatePhotoActivity" />
-        <activity android:name=".ui.my.activity.join.UpdateCardActivity" />
-        <activity android:name=".ui.my.activity.join.JoinApplyActivity" />
-        <activity android:name=".ui.my.activity.sign.TaskRulesActivity" />
-        <activity android:name=".ui.my.activity.sign.SignActivity" />
-        <activity android:name=".ui.my.activity.team.MyTeamActivity" />
-        <activity android:name=".ui.my.activity.vote.VoteRecordActivity" />
-        <activity android:name=".ui.my.activity.vote.MyVoteActivity" />
-        <activity android:name=".ui.my.activity.userinfo.ModifyNameActivity" />
-        <activity android:name=".ui.my.activity.userinfo.AccountInfoActivity" />
->>>>>>> 3de0e53c1d53a5ca635b2b385cdccd2e0e262d3c
         <activity android:name=".ui.main.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

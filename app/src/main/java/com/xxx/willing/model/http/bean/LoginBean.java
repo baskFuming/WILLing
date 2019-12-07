@@ -2,60 +2,17 @@ package com.xxx.willing.model.http.bean;
 
 public class LoginBean {
 
-    private String username;
-    private LocationBean location;
-    private int memberLevel;
-    private String token;
-    private Object realName;
-    private CountryBean country;
-    private Object avatar;
-    private String promotionCode;
-    private int id;
-    private int loginCount;
-    private String superPartner;
-    private String promotionPrefix;
-    private boolean signInAbility;
-    private boolean signInActivity;
-    private Object memberRate;
+    /**
+     * userId : 5
+     * token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1IiwiaWF0IjoxNTc1NjIyNTU2LCJ0b2tlbiI6ImU2ZjJkMWQ2LTY0N2ItNDRkYy04OTM4LTUzYmNmNjU1NzgzNCJ9.2EcwQvMtJ6mlOqHt5ctIvKs6vplkySarRtnhhRhtCd4
+     */
 
-    public String getUsername() {
-        return username;
-    }
+    private int userId;
+
+    private String token;
 
     public String getToken() {
         return token;
     }
 
-    public CountryBean getCountry() {
-        return country;
-    }
-
-    public String getPromotionCode() {
-        return promotionCode;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    private static class LocationBean {
-        private String country;
-        private Object province;
-        private Object city;
-        private Object district;
-    }
-
-    public static class CountryBean {
-
-        private String zhName;
-        private String enName;
-        private String areaCode;
-        private String language;
-        private String localCurrency;
-        private int sort;
-
-        public String getZhName() {
-            return zhName;
-        }
-    }
 }

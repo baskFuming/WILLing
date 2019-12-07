@@ -9,11 +9,14 @@ import android.widget.TextView;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
+import com.xxx.willing.config.EventBusConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.UserInfo;
 import com.xxx.willing.model.http.bean.base.BaseBean;
+import com.xxx.willing.model.sp.SharedConst;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
+import com.xxx.willing.model.utils.GlideUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.login.activity.LoginActivity;
 import com.xxx.willing.ui.my.activity.AccountSettingActivity;
@@ -24,6 +27,8 @@ import com.xxx.willing.ui.my.activity.sign.SignActivity;
 import com.xxx.willing.ui.my.activity.team.MyTeamActivity;
 import com.xxx.willing.ui.my.activity.userinfo.AccountInfoActivity;
 import com.xxx.willing.ui.my.activity.vote.MyVoteActivity;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -58,13 +63,14 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     @SuppressLint("SetTextI18n")
     @Override
     protected void initData() {
+        loadData();
         mRefresh.setOnRefreshListener(this);
-//        loadInfo();
     }
 
     @Override
     public void onRefresh() {
-        loadInfo();
+        EventBus.getDefault().post(EventBusConfig.EVENT_NOTICE_USER);
+        mRefresh.setRefreshing(false);
     }
 
     @OnClick({R.id.img_sign, R.id.invite_friend, R.id.re_my_vote, R.id.account_info, R.id.re_my_team, R.id.re_my_join,
@@ -98,87 +104,32 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
         }
     }
 
-    /**
-     * @Model 获取用户信息
-     */
-    private void loadInfo() {
-        Api.getInstance().getUserinfo()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiCallback<UserInfo>(getActivity()) {
-
-                    @Override
-                    public void onSuccess(BaseBean<UserInfo> bean) {
-                        if (bean != null) {
-                            UserInfo data = bean.getData();
-                            if (data != null) {
-                                mName.setText(data.getUserName());
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onError(int errorCode, String errorMessage) {
-                        ToastUtil.showToast(errorMessage);
-                    }
-
-                    @Override
-                    public void onStart(Disposable d) {
-                        super.onStart(d);
-                        if (mRefresh != null) {
-                            mRefresh.setRefreshing(true);
-                        }
-                    }
-
-                    @Override
-                    public void onEnd() {
-                        super.onEnd();
-                        if (mRefresh != null) {
-                            mRefresh.setRefreshing(false);
-                        }
-                    }
-                });
-    }
-
     @Override
-    public void onResume() {
-        super.onResume();
-//        loadInfo();
+    public void onEventBus(String eventFlag) {
+        super.onEventBus(eventFlag);
+        switch (eventFlag) {
+            case EventBusConfig.EVENT_UPDATE_USER:
+                loadData();
+                break;
+        }
     }
 
-    /**
-     * @Model 退出登录
-     */
-    private void outLogin() {
-        Api.getInstance().outLogin()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiCallback<Object>(getActivity()) {
-                    @Override
-                    public void onSuccess(BaseBean<Object> bean) {
-                        if (bean != null) {
-                            ToastUtil.showToast(bean.getMessage());
-                            SharedPreferencesUtil.getInstance().cleanAll(); //清空所有数据
-                            startActivity(new Intent(getActivity(), LoginActivity.class));
-                        }
-                    }
+    private void loadData() {
+        SharedPreferencesUtil instance = SharedPreferencesUtil.getInstance();
+        String name = instance.getString(SharedConst.VALUE_USER_NAME);
+        String phone = instance.getString(SharedConst.VALUE_USER_PHONE);
+        String icon = instance.getString(SharedConst.VALUE_USER_ICON);
+        int star = instance.getInt(SharedConst.VALUE_USER_STAR);
 
-                    @Override
-                    public void onError(int errorCode, String errorMessage) {
-                        ToastUtil.showToast(errorMessage);
-                    }
+        mName.setText(name);
+        mPhone.setText(phone);
+        GlideUtil.loadCircle(getContext(), icon, mIcon);
+        switch (star) {
+            case 1:
+                mLevel.setImageResource(R.mipmap.level_0);
+                break;
+        }
 
-                    @Override
-                    public void onStart(Disposable d) {
-                        super.onStart(d);
-                        showLoading();
-                    }
-
-                    @Override
-                    public void onEnd() {
-                        super.onEnd();
-                        hideLoading();
-                    }
-                });
     }
+
 }

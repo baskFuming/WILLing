@@ -20,12 +20,18 @@ import com.xxx.willing.model.http.bean.base.BooleanBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -71,14 +77,14 @@ public interface ApiService {
     );
 
     //获取钱包账号列表
-    @GET("/myWallet")
+    @GET("/getUserWalletList")
     Observable<BaseBean<PageBean<WalletAccountBean>>> getWalletAccountList(
             @Query("pageNo") int pageNo,
             @Query("pageSize") int pageSize
     );
 
     //获取钱包释放列表
-    @GET("/CT/invest/getDepositLogs")
+    @GET("/getReleaseRecordList")
     Observable<BaseBean<PageBean<WalletReleaseBean>>> getWalletReleaseList(
             @Query("pageNo") int pageNo,
             @Query("pageSize") int pageSize
@@ -92,7 +98,7 @@ public interface ApiService {
     );
 
     //获取钱包行情列表
-    @GET("/CT/invest/getDepositLogs")
+    @GET("/getMarketList")
     Observable<BaseBean<PageBean<WalletMarketBean>>> getWalletMarketList(
             @Query("pageNo") int pageNo,
             @Query("pageSize") int pageSize
@@ -126,8 +132,7 @@ public interface ApiService {
             @Field("amount") double amount,
             @Field("fee") double fee,
             @Field("address") String address,
-            @Field("jyPassword") String jyPassword,
-            @Field("remark") String remark
+            @Field("jyPassword") String jyPassword
     );
 
     //兑换
@@ -164,8 +169,18 @@ public interface ApiService {
     Observable<BaseBean<Object>> sendUpdateSMSCode();
 
     //注册
+//    @FormUrlEncoded
+//    @POST(HttpConfig.BASE_URL_PATH + "/register")
+//    Observable<BaseBean<Object>> register(
+//            @Field("phone") String phone,
+//            @Field("password") String password,
+//            @Field("code") String smsCode,
+//            @Field("area") String area
+//    );
+
+    //注册
     @FormUrlEncoded
-    @POST(HttpConfig.BASE_URL_PATH + "/register")
+    @POST(HttpConfig.BASE_URL_PATH + "/registerTest")
     Observable<BaseBean<Object>> register(
             @Field("phone") String phone,
             @Field("password") String password,
@@ -228,7 +243,32 @@ public interface ApiService {
     );
 
     //获取用户信息
-    @POST(HttpConfig.BASE_URL_PATH + "/getUser")
-    Observable<BaseBean<UserInfo>> getUserinfo();
+    @POST(HttpConfig.BASE_URL_PATH + "/getUserInfo")
+    Observable<BaseBean<UserInfo>> getUserInfo();
+
+    //上传单张图片
+    @Multipart
+    @POST(HttpConfig.BASE_URL_PATH + "/upLoadImg")
+    Observable<BaseBean<String>> upLoadPhoto(
+            @Part MultipartBody.Part part
+    );
+
+    //上传多张图片
+    @Multipart
+    @POST(HttpConfig.BASE_URL_PATH + "/upLoadImgMap")
+    Observable<BaseBean<Map<String, String>>> upLoadPhotoMap(
+            @PartMap Map<String, RequestBody> files
+    );
+
+    //实名认证
+    @FormUrlEncoded
+    @POST(HttpConfig.BASE_URL_PATH + "/uc/approve/real/name")
+    Observable<BaseBean<String>> realName(
+            @Field("realName") String realName,
+            @Field("idCard") String idCard,
+            @Field("idCardFront") String idCardFront,
+            @Field("idCardBack") String idCardBack,
+            @Field("handHeldIdCard") String handHeldIdCard
+    );
 
 }

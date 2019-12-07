@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.xxx.willing.base.activity.BaseActivity;
 import com.xxx.willing.config.EventBusConfig;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -28,6 +29,7 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         inflate = inflater.inflate(getLayoutId(), container, false);
         unbinder = ButterKnife.bind(this, inflate);
+        EventBus.getDefault().register(this);
         return inflate;
     }
 
@@ -46,11 +48,14 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+        if (unbinder != null) {
+            unbinder.unbind();
+            unbinder = null;
+        }
+        EventBus.getDefault().unregister(this);
     }
 
     public void showLoading() {

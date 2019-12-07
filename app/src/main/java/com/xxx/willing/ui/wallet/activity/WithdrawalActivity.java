@@ -195,7 +195,7 @@ public class WithdrawalActivity extends BaseTitleActivity implements PasswordWin
      * @Model 提现
      */
     private void withdrawal(String password) {
-        Api.getInstance().withdrawal(coinId, amount, fee, address, password, "")
+        Api.getInstance().withdrawal(coinId, amount, fee, address, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<BooleanBean>(this) {

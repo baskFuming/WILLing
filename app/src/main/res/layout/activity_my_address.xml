@@ -279,7 +279,7 @@
                             android:layout_height="16dp"
                             android:layout_gravity="center"
                             android:background="@mipmap/reduce_bg"
-                            android:button="null"
+                            android:button="@null"
                             android:gravity="center" />
 
                         <TextView
@@ -300,7 +300,7 @@
                             android:layout_height="16dp"
                             android:layout_gravity="center"
                             android:background="@mipmap/add_bg"
-                            android:button="null"
+                            android:button="@null"
                             android:gravity="center" />
                     </LinearLayout>
                 </RelativeLayout>
@@ -406,7 +406,7 @@
                         android:textSize="12dp"
                         android:layout_marginLeft="20dp"
                         android:layout_toRightOf="@+id/text_3"
-                        android:background="null"
+                        android:background="@null"
                         />
                 </RelativeLayout>
             </LinearLayout>

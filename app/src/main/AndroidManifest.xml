@@ -25,30 +25,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.app.vote.activity.gvishop.my.address.AddressManagerActivity"></activity>
-        <activity android:name=".ui.app.vote.activity.gvishop.my.address.SettingAddressActivity" />
-        <activity android:name=".ui.app.vote.activity.gvishop.my.address.ShipAddressActivity" />
-        <activity android:name=".ui.app.vote.activity.gvishop.my.order.MyOrderActivity" />
-        <activity android:name=".ui.app.vote.activity.gvishop.GVIShopActivity" />
-        <activity android:name=".ui.app.vote.activity.partner.PartnerActivity" />
-        <activity android:name=".ui.app.vote.activity.rank.CmpRankActivity" />
-        <activity android:name=".ui.app.vote.activity.vote.JoinDetailsActivity" />
-        <activity android:name=".ui.app.vote.activity.vote.VoteJoinActivity" />
-        <activity android:name=".ui.app.vote.activity.GameActivity" />
-        <activity android:name=".ui.login.activity.ChoiceActivity" />
-        <activity android:name=".ui.login.activity.ChoiceActivity" />
-        <activity android:name=".ui.my.activity.team.MyChildActivity" />
-        <activity android:name=".ui.my.activity.record.MoRecordActivity" />
-        <activity android:name=".ui.my.activity.join.UpdatePhotoActivity" />
-        <activity android:name=".ui.my.activity.join.UpdateCardActivity" />
-        <activity android:name=".ui.my.activity.join.JoinApplyActivity" />
-        <activity android:name=".ui.my.activity.sign.TaskRulesActivity" />
-        <activity android:name=".ui.my.activity.sign.SignActivity" />
-        <activity android:name=".ui.my.activity.team.MyTeamActivity" />
-        <activity android:name=".ui.my.activity.vote.VoteRecordActivity" />
-        <activity android:name=".ui.my.activity.vote.MyVoteActivity" />
-        <activity android:name=".ui.my.activity.userinfo.ModifyNameActivity" />
-        <activity android:name=".ui.my.activity.userinfo.AccountInfoActivity" />
         <activity android:name=".ui.main.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -75,24 +51,50 @@
 
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.main.SweepActivity" />
-        <activity android:name=".ui.login.activity.SelectCountyActivity" />
+
         <activity android:name=".ui.login.activity.LoginActivity" />
         <activity android:name=".ui.login.activity.RegisterActivity" />
         <activity android:name=".ui.login.activity.ForgetLoginPswActivity" />
-        <activity android:name=".ui.my.activity.AccountSettingActivity" />
-        <activity android:name=".ui.my.activity.CallMeActivity" />
-        <activity android:name=".ui.my.activity.FeedBackActivity" />
-        <activity android:name=".ui.my.activity.InviteFriendActivity" />
-        <activity android:name=".ui.my.activity.LanguageActivity" />
-        <activity android:name=".ui.my.activity.UseHelpActivity" />
         <activity android:name=".ui.login.activity.ModifyLoginPswActivity" />
         <activity android:name=".ui.login.activity.ModifyPayPswActivity" />
         <activity android:name=".ui.login.activity.PasswordSettingActivity" />
         <activity android:name=".ui.login.activity.SettingPayPswActivity" />
+        <activity android:name=".ui.login.activity.ChoiceActivity" />
+
         <activity android:name=".ui.wallet.activity.WalletExchangeRecordActivity" />
         <activity android:name=".ui.wallet.activity.WalletCoinDetailActivity" />
         <activity android:name=".ui.wallet.activity.RechargeActivity" />
         <activity android:name=".ui.wallet.activity.WithdrawalActivity" />
+
+        <activity android:name=".ui.app.vote.activity.gvishop.my.address.AddressManagerActivity"/>
+        <activity android:name=".ui.app.vote.activity.gvishop.my.address.SettingAddressActivity" />
+        <activity android:name=".ui.app.vote.activity.gvishop.my.address.ShipAddressActivity" />
+        <activity android:name=".ui.app.vote.activity.gvishop.my.order.MyOrderActivity" />
+        <activity android:name=".ui.app.vote.activity.gvishop.GVIShopActivity" />
+        <activity android:name=".ui.app.vote.activity.partner.PartnerActivity" />
+        <activity android:name=".ui.app.vote.activity.rank.CmpRankActivity" />
+        <activity android:name=".ui.app.vote.activity.vote.JoinDetailsActivity" />
+        <activity android:name=".ui.app.vote.activity.vote.VoteJoinActivity" />
+        <activity android:name=".ui.app.vote.activity.GameActivity" />
+
+        <activity android:name=".ui.my.activity.team.MyChildActivity" />
+        <activity android:name=".ui.my.activity.record.MoRecordActivity" />
+        <activity android:name=".ui.my.activity.join.UpdatePhotoActivity" />
+        <activity android:name=".ui.my.activity.join.UpdateCardActivity" />
+        <activity android:name=".ui.my.activity.join.JoinApplyActivity" />
+        <activity android:name=".ui.my.activity.sign.TaskRulesActivity" />
+        <activity android:name=".ui.my.activity.sign.SignActivity" />
+        <activity android:name=".ui.my.activity.team.MyTeamActivity" />
+        <activity android:name=".ui.my.activity.vote.VoteRecordActivity" />
+        <activity android:name=".ui.my.activity.vote.MyVoteActivity" />
+        <activity android:name=".ui.my.activity.userinfo.ModifyNameActivity" />
+        <activity android:name=".ui.my.activity.userinfo.AccountInfoActivity" />
+        <activity android:name=".ui.my.activity.AccountSettingActivity" />
+        <activity android:name=".ui.my.activity.CallMeActivity" />
+        <activity android:name=".ui.my.activity.InviteFriendActivity" />
+        <activity android:name=".ui.my.activity.LanguageActivity" />
+        <activity android:name=".ui.my.activity.UseHelpActivity" />
+
     </application>
 
 </manifest>

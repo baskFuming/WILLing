@@ -27,14 +27,12 @@ import butterknife.BindView;
 
 public class BaseWebActivity extends BaseTitleActivity {
 
-
     public static void actionStart(Activity activity, String webUrl, String title) {
         Intent intent = new Intent(activity, BaseWebActivity.class);
         intent.putExtra("webUrl", webUrl);
         intent.putExtra("title", title);
         activity.startActivity(intent);
     }
-
 
     private void initBund() {
         Intent intent = getIntent();

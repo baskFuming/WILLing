@@ -1,5 +1,7 @@
 package com.xxx.willing.ui.wallet.fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
+import com.xxx.willing.base.activity.ActivityManager;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
@@ -17,8 +20,11 @@ import com.xxx.willing.model.http.bean.WalletAccountBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.utils.ToastUtil;
+import com.xxx.willing.ui.main.MainActivity;
 import com.xxx.willing.ui.wallet.activity.WalletCoinDetailActivity;
 import com.xxx.willing.ui.wallet.adapter.WalletAccountAdapter;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +36,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class WalletAccountFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, BaseQuickAdapter.OnItemClickListener {
 
-    public static WalletAccountFragment getInstance(){
+    public static WalletAccountFragment getInstance() {
         return new WalletAccountFragment();
     }
 
@@ -67,7 +73,8 @@ public class WalletAccountFragment extends BaseFragment implements SwipeRefreshL
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        WalletCoinDetailActivity.actionStart(getActivity(),1,"AKB","0x1816816qwd81q8w1qw81rq861");
+        WalletAccountBean bean = mList.get(position);
+        WalletCoinDetailActivity.actionStart(getActivity(), bean);
     }
 
     @Override
@@ -83,13 +90,6 @@ public class WalletAccountFragment extends BaseFragment implements SwipeRefreshL
     }
 
     private void loadData() {
-        mRefresh.setRefreshing(false);
-        for (int i = 0; i < 10; i++) {
-            mList.add(new WalletAccountBean());
-        }
-        mAdapter.notifyDataSetChanged();
-        if (true) return;
-
         Api.getInstance().getWalletAccountList(page, UIConfig.PAGE_SIZE)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

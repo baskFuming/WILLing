@@ -494,6 +494,43 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="#fffe3848"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:text="@string/apply_photo_1"
+                    android:textColor="#ff333333"
+                    android:textSize="14dp" />
+
+
+                <ImageView
+                    android:id="@+id/join_photo_add"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="38dp"
+                    android:src="@mipmap/join_add" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="#EFEFEF" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="bottom"
                     android:text="@string/apply_photo"
@@ -692,7 +729,7 @@
                     android:textSize="12dp" />
             </LinearLayout>
 
-            <TextView
+            <Button
                 android:id="@+id/ed_submit"
                 style="@style/LoginButtonStyle"
                 android:layout_width="262dp"

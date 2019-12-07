@@ -72,13 +72,6 @@ public class WalletMarketFragment extends BaseFragment implements SwipeRefreshLa
     }
 
     private void loadData() {
-        mRefresh.setRefreshing(false);
-        for (int i = 0; i < 10; i++) {
-            mList.add(new WalletMarketBean());
-        }
-        mAdapter.notifyDataSetChanged();
-        if (true) return;
-
         Api.getInstance().getWalletMarketList(page, UIConfig.PAGE_SIZE)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

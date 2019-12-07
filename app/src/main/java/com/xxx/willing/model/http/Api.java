@@ -9,6 +9,9 @@ import com.xxx.willing.config.HttpConfig;
 import java.io.File;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLContext;
@@ -83,6 +86,19 @@ public class Api {
         File file = new File(fileName);
         RequestBody requestBody = RequestBody.create(MediaType.parse("file/*"), file);
         return MultipartBody.Part.createFormData("file", file.getName(), requestBody);
+    }
+
+    /**
+     * 获取上传多张文件的请求体
+     */
+    public static Map<String, RequestBody> getMapFileRequestBody(List<String> fileNameList) {
+        Map<String, RequestBody> images = new HashMap<>();
+        for (String name : fileNameList) {
+            File file = new File(name);
+            RequestBody requestBody = RequestBody.create(MediaType.parse("file/*"), file);
+            images.put(name,requestBody);
+        }
+        return images;
     }
 
     public static class TrustAllCerts implements X509TrustManager {

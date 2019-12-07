@@ -38,8 +38,7 @@ public class WalletReleaseFragment extends BaseFragment implements SwipeRefreshL
     LinearLayout mNotData;
     @BindView(R.id.main_refresh)
     SwipeRefreshLayout mRefresh;
-
-    @BindView(R.id.wallet_release_linear)
+    @BindView(R.id.main_linear)
     LinearLayout mLinear;
 
     private int page = UIConfig.PAGE_DEFAULT;
@@ -75,13 +74,6 @@ public class WalletReleaseFragment extends BaseFragment implements SwipeRefreshL
     }
 
     private void loadData() {
-        mRefresh.setRefreshing(false);
-        for (int i = 0; i < 10; i++) {
-            mList.add(new WalletReleaseBean());
-        }
-        mAdapter.notifyDataSetChanged();
-        if (true) return;
-
         Api.getInstance().getWalletReleaseList(page, UIConfig.PAGE_SIZE)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

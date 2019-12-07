@@ -25,6 +25,8 @@
         app:tabSelectedTextColor="#333333"
         app:tabIndicatorColor="#FFFFFF" />
 
+    <View style="@style/dividingLine"/>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/wallet_view_pager"
         android:layout_width="match_parent"

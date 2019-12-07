@@ -1,37 +1,69 @@
 package com.xxx.willing.model.http.bean;
 
 public class UserInfo {
+
     /**
-     * node : false
-     * userName : 18310005980
-     * value : 欢迎来到Noah钱包
+     * star : 0
+     * investCode : 123123
+     * telphone : 15100000000
+     * nickname : 15100000000
+     * inviter : null
+     * avatar : null
+     * areacode : 86
      */
 
-    private boolean node;
-    private String userName;
-    private String value;
+    private int star;
+    private String investCode;
+    private String telphone;
+    private String nickname;
+    private String avatar;
+    private String areacode;
 
-    public boolean isNode() {
-        return node;
+    public int getStar() {
+        return star;
     }
 
-    public void setNode(boolean node) {
-        this.node = node;
+    public void setStar(int star) {
+        this.star = star;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getInvestCode() {
+        return investCode;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setInvestCode(String investCode) {
+        this.investCode = investCode;
     }
 
-    public String getValue() {
-        return value;
+    public String getTelphone() {
+        return telphone;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setTelphone(String telphone) {
+        this.telphone = telphone;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getAreacode() {
+        return areacode;
+    }
+
+    public void setAreacode(String areacode) {
+        this.areacode = areacode;
     }
 }

@@ -28,7 +28,7 @@
                     android:id="@+id/user_icon"
                     android:layout_width="76dp"
                     android:layout_height="76dp"
-                    android:background="@mipmap/my_icon" />
+                    android:src="@mipmap/my_icon" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"

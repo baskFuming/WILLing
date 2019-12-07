@@ -140,7 +140,7 @@ public class RegisterActivity extends BaseTitleActivity {
     private void sendSMSCode() {
         String account = mAccountEdit.getText().toString();
         if (account.isEmpty()) {
-            ToastUtil.showToast(R.string.login_error_psw_again_1);
+            ToastUtil.showToast(R.string.login_error_phone_1);
             showEditError(mAccountEdit);
             return;
         }
@@ -245,9 +245,10 @@ public class RegisterActivity extends BaseTitleActivity {
                 .subscribe(new ApiCallback<Object>(this) {
                     @Override
                     public void onSuccess(BaseBean<Object> bean) {
-                        ToastUtil.showToast(bean.getMessage());
+                        ToastUtil.showToast(R.string.register_success);
                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                         intent.putExtra("account", account);
+                        intent.putExtra("password", password);
                         setResult(UIConfig.RESULT_CODE, intent);
                         finish();
                     }

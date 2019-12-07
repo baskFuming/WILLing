@@ -29,6 +29,9 @@ import com.xxx.willing.ui.app.AppFragment;
 import com.xxx.willing.ui.my.MyFragment;
 import com.xxx.willing.ui.vote.VoteFragment;
 import com.xxx.willing.ui.wallet.WalletFragment;
+import com.xxx.willing.ui.wallet.activity.WalletCoinDetailActivity;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -89,13 +92,15 @@ public class MainActivity extends BaseActivity {
         //初始化双击退出
         exitAppUtil = ExitAppUtil.getInstance();
 
-//        //检测是否设置过支付密码
-//        checkIsSettingPayPassword();
-//
-//        //版本更新
-//        if (!BuildConfig.DEBUG) {
-//            checkAppVersion();
-//        }
+        //检测是否设置过支付密码
+        checkIsSettingPayPassword();
+        //加载用户信息
+        loadInfo();
+
+        //版本更新
+        if (!BuildConfig.DEBUG) {
+            checkAppVersion();
+        }
 
         //加载首页数据
         selectorItem();
@@ -139,6 +144,10 @@ public class MainActivity extends BaseActivity {
                     //加载用户信息
                     loadInfo();
                 });
+                break;
+            case EventBusConfig.EVENT_NOTICE_USER:
+                //加载用户信息
+                loadInfo();
                 break;
         }
     }
@@ -207,6 +216,7 @@ public class MainActivity extends BaseActivity {
                 break;
         }
     }
+
     /**
      * @Model 检查App版本
      */
@@ -284,12 +294,11 @@ public class MainActivity extends BaseActivity {
                 });
     }
 
-
     /**
      * @Model 获取用户信息
      */
     private void loadInfo() {
-        Api.getInstance().getUserinfo()
+        Api.getInstance().getUserInfo()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<UserInfo>(this) {
@@ -299,7 +308,14 @@ public class MainActivity extends BaseActivity {
                         if (bean != null) {
                             UserInfo data = bean.getData();
                             if (data != null) {
-                                SharedPreferencesUtil.getInstance().saveBoolean(SharedConst.IS_SETTING_NODE, data.isNode());
+                                SharedPreferencesUtil.getInstance().saveString(SharedConst.VALUE_COUNTY_CODE, data.getAreacode());
+                                SharedPreferencesUtil.getInstance().saveString(SharedConst.VALUE_INVITE_CODE, data.getInvestCode());
+                                SharedPreferencesUtil.getInstance().saveString(SharedConst.VALUE_USER_ICON, data.getAvatar());
+                                SharedPreferencesUtil.getInstance().saveString(SharedConst.VALUE_USER_NAME, data.getNickname());
+                                SharedPreferencesUtil.getInstance().saveString(SharedConst.VALUE_USER_PHONE, data.getTelphone());
+                                SharedPreferencesUtil.getInstance().saveInt(SharedConst.VALUE_USER_STAR, data.getStar());
+
+                                EventBus.getDefault().post(EventBusConfig.EVENT_UPDATE_USER);
                             }
                         }
                     }

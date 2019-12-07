@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.sp.SharedConst;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
+import com.xxx.willing.ui.login.activity.LoginActivity;
 
 import java.lang.ref.WeakReference;
 
@@ -37,14 +38,11 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void checkUI() {
-//        if (isLogin) {
-//            MainActivity.actionStart(this);
-//        } else {
-//            LoginActivity.actionStart(this);
-//        }
-//        finish();
-
-        MainActivity.actionStart(this);
+        if (isLogin) {
+            MainActivity.actionStart(this);
+        } else {
+            LoginActivity.actionStart(this);
+        }
         finish();
     }
 

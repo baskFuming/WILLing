@@ -110,7 +110,15 @@ public class LoginActivity extends BaseTitleActivity {
         if (resultCode == UIConfig.RESULT_CODE) {
             if (data != null) {
                 String account = data.getStringExtra("account");
-                mAccountEdit.setText(account);
+                String password = data.getStringExtra("password");
+                if (account != null && !account.isEmpty()) {
+                    mAccountEdit.setText(account);
+                    mAccountEdit.setSelection(account.length());
+                }
+                if (password != null && !password.isEmpty()) {
+                    mPasswordEdit.setText(password);
+                    mPasswordEdit.setSelection(password.length());
+                }
             }
         }
         if (resultCode == ChoiceActivity.resultCode) {
@@ -165,17 +173,9 @@ public class LoginActivity extends BaseTitleActivity {
                         if (bean != null) {
                             LoginBean data = bean.getData();
                             if (data != null) {
-                                ToastUtil.showToast(bean.getMessage());
+                                ToastUtil.showToast(R.string.login_success);
                                 SharedPreferencesUtil util = SharedPreferencesUtil.getInstance();
-                                util.saveString(SharedConst.VALUE_USER_PHONE, account);
-                                util.saveString(SharedConst.VALUE_USER_NAME, data.getUsername());
-                                util.saveString(SharedConst.VALUE_INVITE_CODE, data.getPromotionCode());
-                                util.saveString(SharedConst.VALUE_USER_ID, String.valueOf(data.getId()));
                                 util.saveBoolean(SharedConst.IS_LOGIN, true);
-                                LoginBean.CountryBean country = data.getCountry();
-                                if (country != null) {
-                                    util.saveString(SharedConst.VALUE_COUNTY_CITY, country.getZhName());
-                                }
                                 //x-token
                                 util.saveString(SharedConst.ENCRYPT_VALUE_TOKEN, data.getToken());
 

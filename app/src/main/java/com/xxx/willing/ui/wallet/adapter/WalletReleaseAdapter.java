@@ -17,8 +17,8 @@ public class WalletReleaseAdapter extends BaseQuickAdapter<WalletReleaseBean, Ba
 
     @Override
     protected void convert(BaseViewHolder helper, WalletReleaseBean item) {
-//        helper.setText(R.id.item_wallet_release_number, "")
-//                .setText(R.id.item_wallet_release_time, "")
-//                .setText(R.id.item_wallet_release_type, "");
+        helper.setText(R.id.item_wallet_release_number, "+" + item.getAmount() + item.getCoinSymbol())
+                .setText(R.id.item_wallet_release_time, item.getCreateTime())
+                .setText(R.id.item_wallet_release_type, item.getType(mContext));
     }
 }

@@ -77,6 +77,11 @@
     <string name="main_wallet">钱包</string>
     <string name="main_my">我的</string>
 
+    <string name="notice_detail">公告详情</string>
+    <string name="to_view_content">查看全文</string>
+    <string name="pack_up_content">收起全文</string>
+    <string name="view_content">展开</string>
+    <string name="pack_content">收起</string>
     <string name="main_my_title">我的</string>
     <string name="main_my_feedback">问题反馈</string>
     <string name="main_my_setting">账户设置</string>

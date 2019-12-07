@@ -1,7 +1,10 @@
 package com.xxx.willing.base.activity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 
 import com.gyf.barlibrary.ImmersionBar;
@@ -75,6 +78,7 @@ public abstract class BaseActivity extends BaseLanguageActivity {
             editTextShakeHelper.shake(views);
         }
     }
+
     @Override
     public void finish() {
         super.finish();
@@ -109,5 +113,4 @@ public abstract class BaseActivity extends BaseLanguageActivity {
 
     //初始化数据
     protected abstract void initData();
-
 }

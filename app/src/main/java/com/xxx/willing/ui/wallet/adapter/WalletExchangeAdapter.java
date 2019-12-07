@@ -17,7 +17,7 @@ public class WalletExchangeAdapter extends BaseQuickAdapter<WalletExchangeBean, 
 
     @Override
     protected void convert(BaseViewHolder helper, WalletExchangeBean item) {
-        helper.setText(R.id.item_wallet_exchange_base_amount, item.getBaseCoinSymbol())
+        helper.setText(R.id.item_wallet_exchange_base_symbol, item.getBaseCoinSymbol())
                 .setText(R.id.item_wallet_exchange_base_amount, item.getBaseCoinAmount())
                 .setText(R.id.item_wallet_exchange_target_symbol, item.getTargetCoinSymbol())
                 .setText(R.id.item_wallet_exchange_target_amount, item.getTargetCoinAmount())

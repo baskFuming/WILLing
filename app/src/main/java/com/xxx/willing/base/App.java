@@ -19,6 +19,7 @@ public class App extends Application {
         super.attachBaseContext(LocalManageUtil.setLocal(base));
     }
 
+
     @Override
     public void onCreate() {
         super.onCreate();

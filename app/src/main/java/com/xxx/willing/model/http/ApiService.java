@@ -78,10 +78,7 @@ public interface ApiService {
 
     //获取钱包账号列表
     @GET("/getUserWalletList")
-    Observable<BaseBean<PageBean<WalletAccountBean>>> getWalletAccountList(
-            @Query("pageNo") int pageNo,
-            @Query("pageSize") int pageSize
-    );
+    Observable<BaseBean<WalletAccountBean>> getWalletAccountList();
 
     //获取钱包释放列表
     @GET("/getReleaseRecordList")

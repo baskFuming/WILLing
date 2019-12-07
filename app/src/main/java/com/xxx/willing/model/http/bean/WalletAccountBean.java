@@ -1,80 +1,94 @@
 package com.xxx.willing.model.http.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class WalletAccountBean implements Serializable{
+public class WalletAccountBean implements Serializable {
 
-    /**
-     * symbol : NEO
-     * coinId : 10000029
-     * amount : 1000000.0
-     * usaAmount : 8690000.0
-     * address : null
-     * fee : 0.01
-     * coinIcon : img/usdt_default_pic.png
-     */
+    private double totalAsset;
+    private List<ListBean> list;
 
-    private String symbol;
-    private int coinId;
-    private double amount;
-    private double usaAmount;
-    private String address;
-    private double fee;
-    private String coinIcon;
-
-    public String getSymbol() {
-        return symbol;
+    public double getTotalAsset() {
+        return totalAsset;
     }
 
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
+    public List<ListBean> getList() {
+        return list;
     }
 
-    public int getCoinId() {
-        return coinId;
-    }
+    public static class ListBean implements Serializable  {
+        /**
+         * symbol : NEO
+         * coinId : 10000029
+         * amount : 1000000.0
+         * usaAmount : 8690000.0
+         * address : null
+         * fee : 0.01
+         * coinIcon : img/usdt_default_pic.png
+         */
 
-    public void setCoinId(int coinId) {
-        this.coinId = coinId;
-    }
+        private String symbol;
+        private int coinId;
+        private double amount;
+        private double usaAmount;
+        private String address;
+        private double fee;
+        private String coinIcon;
 
-    public double getAmount() {
-        return amount;
-    }
+        public String getSymbol() {
+            return symbol;
+        }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
+        public void setSymbol(String symbol) {
+            this.symbol = symbol;
+        }
 
-    public double getUsaAmount() {
-        return usaAmount;
-    }
+        public int getCoinId() {
+            return coinId;
+        }
 
-    public void setUsaAmount(double usaAmount) {
-        this.usaAmount = usaAmount;
-    }
+        public void setCoinId(int coinId) {
+            this.coinId = coinId;
+        }
 
-    public String getAddress() {
-        return address;
-    }
+        public double getAmount() {
+            return amount;
+        }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+        public void setAmount(double amount) {
+            this.amount = amount;
+        }
 
-    public double getFee() {
-        return fee;
-    }
+        public double getUsaAmount() {
+            return usaAmount;
+        }
 
-    public void setFee(double fee) {
-        this.fee = fee;
-    }
+        public void setUsaAmount(double usaAmount) {
+            this.usaAmount = usaAmount;
+        }
 
-    public String getCoinIcon() {
-        return coinIcon;
-    }
+        public String getAddress() {
+            return address;
+        }
 
-    public void setCoinIcon(String coinIcon) {
-        this.coinIcon = coinIcon;
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+        public double getFee() {
+            return fee;
+        }
+
+        public void setFee(double fee) {
+            this.fee = fee;
+        }
+
+        public String getCoinIcon() {
+            return coinIcon;
+        }
+
+        public void setCoinIcon(String coinIcon) {
+            this.coinIcon = coinIcon;
+        }
     }
 }

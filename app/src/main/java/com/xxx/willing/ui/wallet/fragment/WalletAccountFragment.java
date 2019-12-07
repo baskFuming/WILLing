@@ -1,6 +1,8 @@
 package com.xxx.willing.ui.wallet.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,7 +13,9 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
+import com.xxx.willing.base.App;
 import com.xxx.willing.base.activity.ActivityManager;
+import com.xxx.willing.base.activity.BaseActivity;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.EventBusConfig;
 import com.xxx.willing.config.UIConfig;
@@ -37,7 +41,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class WalletAccountFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, BaseQuickAdapter.OnItemClickListener {
+public class WalletAccountFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     public static WalletAccountFragment getInstance() {
         return new WalletAccountFragment();
@@ -53,9 +57,8 @@ public class WalletAccountFragment extends BaseFragment implements SwipeRefreshL
     @BindView(R.id.wallet_account_total_asset)
     TextView mTotalAsset;
 
-    private int page = UIConfig.PAGE_DEFAULT;
     private WalletAccountAdapter mAdapter;
-    private List<WalletAccountBean> mList = new ArrayList<>();
+    private List<WalletAccountBean.ListBean> mList = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
@@ -68,17 +71,10 @@ public class WalletAccountFragment extends BaseFragment implements SwipeRefreshL
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycler.setAdapter(mAdapter);
         mRefresh.setOnRefreshListener(this);
-        mAdapter.setOnLoadMoreListener(this, mRecycler);
-        mAdapter.setOnItemClickListener(this);
 
         loadData();
     }
 
-    @Override
-    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        WalletAccountBean bean = mList.get(position);
-        WalletCoinDetailActivity.actionStart(getActivity(), bean);
-    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventBus(String eventFlag) {
@@ -92,58 +88,44 @@ public class WalletAccountFragment extends BaseFragment implements SwipeRefreshL
 
     @Override
     public void onRefresh() {
-        page = UIConfig.PAGE_DEFAULT;
-        loadData();
-    }
-
-    @Override
-    public void onLoadMoreRequested() {
-        page++;
         loadData();
     }
 
     private void loadData() {
-        Api.getInstance().getWalletAccountList(page, UIConfig.PAGE_SIZE)
+        Api.getInstance().getWalletAccountList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiCallback<PageBean<WalletAccountBean>>(getActivity()) {
+                .subscribe(new ApiCallback<WalletAccountBean>(getActivity()) {
 
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void onSuccess(BaseBean<PageBean<WalletAccountBean>> bean) {
+                    public void onSuccess(BaseBean<WalletAccountBean> bean) {
                         if (bean == null) {
                             mNotData.setVisibility(View.VISIBLE);
                             mRecycler.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
                             return;
                         }
-                        PageBean<WalletAccountBean> data = bean.getData();
+                        WalletAccountBean data = bean.getData();
                         if (data == null) {
                             mNotData.setVisibility(View.VISIBLE);
                             mRecycler.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
                             return;
                         }
-                        List<WalletAccountBean> list = data.getList();
-                        if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
+                        double totalAsset = data.getTotalAsset();
+                        mTotalAsset.setText(totalAsset + "");
+                        List<WalletAccountBean.ListBean> list = data.getList();
+                        if (list == null || list.size() == 0 ) {
                             mNotData.setVisibility(View.VISIBLE);
                             mRecycler.setVisibility(View.GONE);
-                            mAdapter.loadMoreEnd(true);
-                            return;
-                        }
-
-                        mNotData.setVisibility(View.GONE);
-                        mRecycler.setVisibility(View.VISIBLE);
-                        if (page == UIConfig.PAGE_DEFAULT) {
+                        }else {
+                            mNotData.setVisibility(View.GONE);
+                            mRecycler.setVisibility(View.VISIBLE);
                             mList.clear();
+                            mList.addAll(list);
+                            mAdapter.notifyDataSetChanged();
                         }
-
-                        mList.addAll(list);
-                        if (list.size() < UIConfig.PAGE_SIZE) {
-                            mAdapter.loadMoreEnd(true);
-                        } else {
-                            mAdapter.loadMoreComplete();
-                        }
-                        mAdapter.notifyDataSetChanged();
                     }
 
                     @Override
@@ -158,7 +140,7 @@ public class WalletAccountFragment extends BaseFragment implements SwipeRefreshL
                     @Override
                     public void onStart(Disposable d) {
                         super.onStart(d);
-                        if (mRefresh != null && page == UIConfig.PAGE_DEFAULT) {
+                        if (mRefresh != null) {
                             mRefresh.setRefreshing(true);
                         }
                     }
@@ -172,4 +154,7 @@ public class WalletAccountFragment extends BaseFragment implements SwipeRefreshL
                     }
                 });
     }
+
 }
+
+

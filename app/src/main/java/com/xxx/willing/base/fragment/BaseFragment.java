@@ -1,5 +1,8 @@
 package com.xxx.willing.base.fragment;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,9 +25,8 @@ import butterknife.Unbinder;
 public abstract class BaseFragment extends Fragment {
 
     protected Unbinder unbinder;
-    private View inflate;
+    public View inflate;
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         inflate = inflater.inflate(getLayoutId(), container, false);

@@ -22,6 +22,8 @@ import com.xxx.willing.ui.my.activity.userinfo.AccountInfoActivity;
 import com.xxx.willing.ui.my.activity.vote.MyVoteActivity;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -44,6 +46,10 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     TextView mReview;
     @BindView(R.id.main_my_refresh)
     SwipeRefreshLayout mRefresh;
+
+    private String name;
+    private String phone;
+    private String icon;
 
     @Override
     protected int getLayoutId() {
@@ -74,7 +80,7 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 InviteFriendActivity.actionStart(getActivity());
                 break;
             case R.id.account_info://账户信息
-                AccountInfoActivity.actionStart(getActivity());
+                AccountInfoActivity.actionStart(getActivity(), icon, name, phone);
                 break;
             case R.id.re_my_vote://我的投票
                 MyVoteActivity.actionStart(getActivity());
@@ -93,6 +99,12 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 break;
         }
     }
+
+//    //头像监听事件
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void onUserInfoEvent(UserInfoEntry infoEntry) {
+//
+//    }
 
     @Override
     public void onEventBus(String eventFlag) {
@@ -128,5 +140,4 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
         }
 
     }
-
 }

@@ -8,10 +8,14 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 
+import com.xxx.willing.config.UIConfig;
+import com.xxx.willing.model.log.LogConst;
+import com.xxx.willing.model.log.LogUtil;
+
 public class PermissionUtil {
 
     //授权请求码
-    private static final int REQUEST_PERMISSION_CODE = 0;
+    public  static final int REQUEST_PERMISSION_CODE = 0;
 
     @SuppressLint("InlinedApi")
     public static final String READ_PERMISSION = Manifest.permission.READ_EXTERNAL_STORAGE; //写入权限
@@ -40,6 +44,7 @@ public class PermissionUtil {
     public static boolean onRequestPermissionsResult(@NonNull String[] permissions, @NonNull int[] grantResults) {
         for (int i = 0; i < grantResults.length; i++) {
             if (grantResults[i] == -1) {
+                LogUtil.showLog(LogConst.PERMISSION_TAG, "用户未授权该权限：" + permissions[i]);
                 return false;
             }
         }

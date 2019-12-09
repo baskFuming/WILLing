@@ -2,6 +2,7 @@ package com.xxx.willing.ui.app.vote.activity.partner;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
@@ -13,7 +14,6 @@ import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.model.http.utils.ApiType;
 import com.xxx.willing.ui.app.vote.activity.partner.fragment.PartnerFragment;
 import com.xxx.willing.ui.app.vote.adapter.ViewPagerAdapter;
-import com.xxx.willing.view.TabLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +45,7 @@ public class PartnerActivity extends BaseTitleActivity {
     @BindView(R.id.main_view_pager)
     ViewPager mViewPager;
     private List<BaseFragment> fragments = new ArrayList<>();
-
+    private String mTitle;
 
     @Override
     protected String initTitle() {
@@ -59,8 +59,9 @@ public class PartnerActivity extends BaseTitleActivity {
 
     @Override
     protected void initData() {
+        mTitle = getString(R.string.partner_rules);
         mContent.setVisibility(View.VISIBLE);
-        mContent.setText(R.string.partner_rules);
+        mContent.setText(mTitle);
         List<String> list = Arrays.asList(status);
 
         fragments.add(PartnerFragment.getInstance(ApiType.PARTNER_LIST_ALL, list.get(0)));
@@ -77,7 +78,7 @@ public class PartnerActivity extends BaseTitleActivity {
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.main_content:
-                BaseWebActivity.actionStart(this, "", getString(R.string.partner_rules));
+                BaseWebActivity.actionStart(this, "", mTitle);
                 break;
         }
     }

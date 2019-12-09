@@ -428,4 +428,7 @@
     <string name="exchange_error_2">不能选择相同的币种</string>
     <string name="join_success">申请加盟成功</string>
 
+    <string name="chose_camer">从相册选取</string>
+    <string name="take_photo">拍照</string>
+    <string name="modify_success" >修改成功</string>
 </resources>

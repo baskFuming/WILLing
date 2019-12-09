@@ -2,11 +2,15 @@ package com.xxx.willing.ui.my.activity.record;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -21,6 +25,15 @@ public class MoRecordActivity extends BaseTitleActivity {
         Intent intent = new Intent(activity, MoRecordActivity.class);
         activity.startActivity(intent);
     }
+
+    @BindView(R.id.main_recycler)
+    RecyclerView mRecycler;
+    @BindView(R.id.wallet_coin_detail_linear)
+    LinearLayout mLinear;
+    @BindView(R.id.main_not_data)
+    LinearLayout mNotData;
+    @BindView(R.id.main_refresh)
+    SwipeRefreshLayout mRefresh;
 
     @Override
     protected String initTitle() {

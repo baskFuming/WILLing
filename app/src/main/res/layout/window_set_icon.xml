@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F8F8F8"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/window_set_icon_photo"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#FFFFFF"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:gravity="center"
+        android:text="@string/chose_camer"
+        android:textColor="#333333"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/window_set_icon_camera"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:background="#FFFFFF"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:gravity="center"
+        android:text="@string/take_photo"
+        android:textColor="#333333"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/window_set_icon_finish"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:background="#FFFFFF"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:gravity="center"
+        android:text="@string/btn_cancel"
+        android:textColor="#333333"
+        android:textSize="16dp" />
+
+</LinearLayout>

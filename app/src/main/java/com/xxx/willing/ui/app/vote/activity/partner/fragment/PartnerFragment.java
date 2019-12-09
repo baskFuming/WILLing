@@ -22,8 +22,10 @@ public class PartnerFragment extends BaseFragment implements SwipeRefreshLayout.
         fragment.setArguments(bundle);
         return fragment;
     }
+
     private int status;
     private String statusStr;
+
     @Override
     protected int getLayoutId() {
         return R.layout.partner_fragment;

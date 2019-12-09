@@ -12,10 +12,12 @@ import android.widget.TextView;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.config.EventBusConfig;
 import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.base.BaseBean;
+import com.xxx.willing.model.http.bean.base.BooleanBean;
 import com.xxx.willing.model.http.utils.ApiType;
 import com.xxx.willing.model.utils.BitmapUtils;
 import com.xxx.willing.model.utils.CameraUtil;
@@ -28,6 +30,7 @@ import com.xxx.willing.ui.my.activity.window.SetIconPopup;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
+import java.util.function.Function;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -47,8 +50,8 @@ public class AccountInfoActivity extends BaseTitleActivity implements SetIconPop
     public static void actionStart(Activity activity, String icon, String name, String phone) {
         Intent intent = new Intent(activity, AccountInfoActivity.class);
         intent.putExtra("icon", icon);
-        intent.putExtra("icon", name);
-        intent.putExtra("icon", phone);
+        intent.putExtra("name", name);
+        intent.putExtra("phone", phone);
         activity.startActivity(intent);
     }
 
@@ -89,9 +92,10 @@ public class AccountInfoActivity extends BaseTitleActivity implements SetIconPop
     @Override
     protected void initData() {
         initBundle();
-        GlideUtil.loadCircle(this, icon, GlideUtil.MY_ICON_DEFAULT, mImg);
+        GlideUtil.loadCircle(this, icon, mImg);
         mNickName.setText(nickName);
         mPhone.setText(phone);
+
         mSetIconPopup = SetIconPopup.getInstance(this, this);
     }
 
@@ -104,7 +108,7 @@ public class AccountInfoActivity extends BaseTitleActivity implements SetIconPop
                 }
                 break;
             case R.id.update_nick://修改昵称
-                ModifyNameActivity.actionStart(this,nickName);
+                ModifyNameActivity.actionStart(this, nickName);
                 break;
         }
     }
@@ -144,12 +148,9 @@ public class AccountInfoActivity extends BaseTitleActivity implements SetIconPop
                 mNickName.setText(name);
             }
         } else {
-            CameraUtil.onActivityResult(this, requestCode, resultCode, data, new CameraUtil.CallBack() {
-                @Override
-                public void callback(Bitmap bitmap, File file) {
-                    mImg.setImageBitmap(bitmap);
-                    upLoadIcon(file);
-                }
+            CameraUtil.onActivityResult(this, requestCode, resultCode, data, (bitmap, file) -> {
+                mImg.setImageBitmap(bitmap);
+                upLoadIcon(file);
             });
         }
     }
@@ -167,51 +168,48 @@ public class AccountInfoActivity extends BaseTitleActivity implements SetIconPop
         CameraUtil.openPhoto(this);
         mSetIconPopup.dismiss();
     }
+
     /**
      * @Model 上传头像
      */
     private void upLoadIcon(final File file) {
-        String base64 = null;
-        if (file != null) {
-            base64 = "data:image/jpeg;base64," + BitmapUtils.imgToBase64(BitmapFactory.decodeFile(file.getAbsolutePath()));
-        }
-        if (base64 == null) {
-            ToastUtil.showToast("图片格式有误");
-            return;
-        }
-//        Api.getInstance().upLoadIcon(base64)
-//                .flatMap(new Function<BaseBean<String>, ObservableSource<BaseBean<Object>>>() {
-//                    @Override
-//                    public ObservableSource<BaseBean<Object>> apply(BaseBean<String> stringBaseBean) {
-//                        return Api.getInstance().setIcon(StatusData.userId, stringBaseBean.getData());
-//                    }
-//                })
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new ApiCallback<Object>(this) {
-//                    @Override
-//                    public void onSuccess(Object data) {
-//                        ToastUtil.showToast(getString(R.string.modify_success));
-//                        //发送EventBus 更新首页
-//                        EventBus.getDefault().post(new UserInfoEntry(nickName, icon));
-//                    }
-//
-//                    @Override
-//                    public void onError(int errorCode, String errorMessage) {
-//                        ToastUtil.showToast(errorMessage);
-//                    }
-//
-//                    @Override
-//                    public void onStart(Disposable d) {
-//                        super.onStart(d);
-//                        showLoading();
-//                    }
-//
-//                    @Override
-//                    public void onEnd() {
-//                        super.onEnd();
-//                        hideLoading();
-//                    }
-//                });
+        Api.getInstance().upLoadPhoto(Api.getFileRequestBody(file.getName()))
+                .flatMap((io.reactivex.functions.Function<BaseBean<String>, ObservableSource<BaseBean<BooleanBean>>>) baseBean -> {
+                    String data = baseBean.getData();
+                    if (data == null || data.isEmpty()) throw new RuntimeException();
+                    return Api.getInstance().updateUserInfo(data, null);
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiCallback<BooleanBean>(this) {
+                    @Override
+                    public void onSuccess(BaseBean<BooleanBean> bean) {
+                        if (bean != null) {
+                            BooleanBean data = bean.getData();
+                            if (data != null && data.isResult()) {
+                                ToastUtil.showToast(getString(R.string.modify_success));
+                            }
+                            //发送EventBus 更新首页
+                            EventBus.getDefault().post(EventBusConfig.EVENT_NOTICE_USER);
+                        }
+                    }
+
+                    @Override
+                    public void onError(int errorCode, String errorMessage) {
+                        ToastUtil.showToast(errorMessage);
+                    }
+
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        showLoading();
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        hideLoading();
+                    }
+                });
     }
 }

@@ -2,9 +2,12 @@ package com.xxx.willing.model.http;
 
 import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.http.bean.AppVersionBean;
+import com.xxx.willing.model.http.bean.BannerBean;
+import com.xxx.willing.model.http.bean.BrandBean;
 import com.xxx.willing.model.http.bean.IsSettingPayPswBean;
 import com.xxx.willing.model.http.bean.JoinInfoBean;
 import com.xxx.willing.model.http.bean.LoginBean;
+import com.xxx.willing.model.http.bean.MessageBean;
 import com.xxx.willing.model.http.bean.MyTeamBean;
 import com.xxx.willing.model.http.bean.MyVoteBean;
 import com.xxx.willing.model.http.bean.UserInfo;
@@ -18,6 +21,7 @@ import com.xxx.willing.model.http.bean.WalletTransactionBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.BooleanBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
+import com.youth.banner.Banner;
 
 import java.util.List;
 import java.util.Map;
@@ -38,25 +42,40 @@ public interface ApiService {
 
     //----------------------------------------------------------展示列表----------------------------------------------------------------------------------------------------------------------------//
 
+    //获取品牌列表
+    @GET("/brandsList")
+    Observable<BaseBean<PageBean<BrandBean>>> getBrandList();
+
+    //获取首页轮播
+    @GET("/getBannerList")
+    Observable<BaseBean<PageBean<BannerBean>>> getBannerList();
+
+    //获取公告信息
+    @GET("/getMessageList")
+    Observable<BaseBean<PageBean<MessageBean>>> getMessageList(
+            @Query("pageNum") int pageNum,
+            @Query("pageSize") int pageSize
+    );
+    
     //获取我的团队
     @GET("/CT/invest/getDepositLogs")
     Observable<BaseBean<PageBean<MyTeamBean>>> getMyTeamList(
-            @Query("pageNo") int pageNo,
+            @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );
-
+    
     //获取我的团队
     @GET("/CT/invest/getDepositLogs")
     Observable<BaseBean<PageBean<MyTeamBean>>> getMyTeamList(
             @Query("userId") int userId,
-            @Query("pageNo") int pageNo,
+            @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );
 
     //获取我的投票
     @GET("/CT/invest/getDepositLogs")
     Observable<BaseBean<PageBean<MyVoteBean>>> getMyVoteList(
-            @Query("pageNo") int pageNo,
+            @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );
 
@@ -64,7 +83,7 @@ public interface ApiService {
     @GET("/CT/invest/getDepositLogs")
     Observable<BaseBean<PageBean<VoteRecordBean>>> getVoteRecordList(
             @Query("voteId") int voteId,
-            @Query("pageNo") int pageNo,
+            @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );
 
@@ -72,7 +91,7 @@ public interface ApiService {
     @GET("/CT/invest/getDepositLogs")
     Observable<BaseBean<PageBean<WalletTransactionBean>>> getTransferRecordList(
             @Query("type") int type,
-            @Query("pageNo") int pageNo,
+            @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );
 
@@ -83,21 +102,21 @@ public interface ApiService {
     //获取钱包释放列表
     @GET("/getReleaseRecordList")
     Observable<BaseBean<PageBean<WalletReleaseBean>>> getWalletReleaseList(
-            @Query("pageNo") int pageNo,
+            @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );
 
     //获取钱包兑换记录
     @GET("/getExchangeRecordList")
     Observable<BaseBean<PageBean<WalletExchangeBean>>> getWalletExchangeList(
-            @Query("pageNo") int pageNo,
+            @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );
 
     //获取钱包行情列表
     @GET("/getMarketList")
     Observable<BaseBean<PageBean<WalletMarketBean>>> getWalletMarketList(
-            @Query("pageNo") int pageNo,
+            @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );
 
@@ -250,11 +269,19 @@ public interface ApiService {
     @POST(HttpConfig.BASE_URL_PATH + "/getUserInfo")
     Observable<BaseBean<UserInfo>> getUserInfo();
 
+    //上传用户信息
+    @FormUrlEncoded
+    @POST(HttpConfig.BASE_URL_PATH + "/getUserInfo")
+    Observable<BaseBean<BooleanBean>> updateUserInfo(
+            @Field("picUrl") String picUrl,
+            @Field("nickName") String nickName
+    );
+
     //上传单张图片
     @Multipart
     @POST(HttpConfig.BASE_URL_PATH + "/upLoadImg")
     Observable<BaseBean<String>> upLoadPhoto(
-            @Part MultipartBody.Part part
+            @Part MultipartBody.Part file
     );
 
     //上传多张图片

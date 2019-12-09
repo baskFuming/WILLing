@@ -100,12 +100,6 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
         }
     }
 
-//    //头像监听事件
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void onUserInfoEvent(UserInfoEntry infoEntry) {
-//
-//    }
-
     @Override
     public void onEventBus(String eventFlag) {
         super.onEventBus(eventFlag);
@@ -118,9 +112,9 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
 
     private void loadData() {
         SharedPreferencesUtil instance = SharedPreferencesUtil.getInstance();
-        String name = instance.getString(SharedConst.VALUE_USER_NAME);
-        String phone = instance.getString(SharedConst.VALUE_USER_PHONE);
-        String icon = instance.getString(SharedConst.VALUE_USER_ICON);
+        name = instance.getString(SharedConst.VALUE_USER_NAME);
+        phone = instance.getString(SharedConst.VALUE_USER_PHONE);
+        icon = instance.getString(SharedConst.VALUE_USER_ICON);
         int star = instance.getInt(SharedConst.VALUE_USER_STAR);
         boolean isSettingJoin = instance.getBoolean(SharedConst.IS_SETTING_JOIN);
 

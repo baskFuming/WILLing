@@ -29,29 +29,17 @@
             android:layout_marginLeft="15.5dp"
             android:src="@mipmap/vote_notice" />
 
-        <TextView
-            android:id="@+id/vote_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="17dp"
-            android:textColor="#BB3C7FFF"
-            android:textSize="12dp" />
-
-        <TextView
-            android:id="@+id/vote_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15.5dp"
-            android:layout_marginRight="48dp"
-            android:layout_toLeftOf="@id/vote_time"
+        <ViewFlipper
             android:layout_toRightOf="@id/image1"
-            android:ellipsize="end"
-            android:lines="1"
-            android:textColor="#3C7FFF"
-            android:textSize="14dp" />
+            android:id="@+id/main_home_view_flipper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:autoStart="true"
+            android:flipInterval="3000"
+            android:inAnimation="@anim/anim_flipper_in"
+            android:outAnimation="@anim/anim_flipper_out" />
 
     </RelativeLayout>
 

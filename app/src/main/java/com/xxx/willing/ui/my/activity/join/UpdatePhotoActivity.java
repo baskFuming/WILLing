@@ -3,12 +3,11 @@ package com.xxx.willing.ui.my.activity.join;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
@@ -18,6 +17,7 @@ import com.xxx.willing.model.utils.CameraUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,23 +32,21 @@ import io.reactivex.annotations.NonNull;
  */
 public class UpdatePhotoActivity extends BaseTitleActivity implements BaseQuickAdapter.OnItemClickListener {
 
-    private JoinPhotoAdapter mAdapter;
-
-    public static void actionStart(Activity activity, JoinEntry joinEntry) {
+    public static void actionStart(Activity activity, List<File> transList) {
         Intent intent = new Intent(activity, UpdatePhotoActivity.class);
-        intent.putExtra("entry", joinEntry);
-        activity.startActivity(intent);
+        intent.putExtra("transList", (Serializable) transList);
+        activity.startActivityForResult(intent, UIConfig.REQUEST_CODE);
     }
 
     private void initBundle() {
         Intent intent = getIntent();
-        joinEntry = (JoinEntry) intent.getSerializableExtra("entry");
+        mList = (List<File>) intent.getSerializableExtra("transList");
     }
 
     @BindView(R.id.main_recycler)
     RecyclerView mRecycler;
 
-    private JoinEntry joinEntry;
+    private JoinPhotoAdapter mAdapter;
     private List<File> mList;
     private int position;
 
@@ -67,16 +65,13 @@ public class UpdatePhotoActivity extends BaseTitleActivity implements BaseQuickA
     protected void initData() {
         initBundle();
 
-        if (joinEntry == null) {
-            joinEntry = new JoinEntry();
-        }
-        mList = joinEntry.getFileList();
-        if (mList == null) {
+        if (mList.size() == 0) {
             mList = new ArrayList<>();
             mList.add(null);
         }
 
         mAdapter = new JoinPhotoAdapter(mList);
+        mRecycler.setLayoutManager(new LinearLayoutManager(this));
         mRecycler.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(this);
     }
@@ -125,7 +120,9 @@ public class UpdatePhotoActivity extends BaseTitleActivity implements BaseQuickA
             ToastUtil.showToast(R.string.update_card_error);
             return;
         }
-        joinEntry.setFileList(mList);
+        Intent intent = new Intent();
+        intent.putExtra("transList", (Serializable) mList);
+        setResult(UIConfig.RESULT_CODE + 2,intent);
         finish();
     }
 

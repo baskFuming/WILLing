@@ -1,15 +1,11 @@
 package com.xxx.willing.ui.app.vote.activity.gvishop.my.order.window;
 
-import android.content.Context;
 import android.view.View;
-import android.widget.EditText;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseActivity;
 import com.xxx.willing.base.dialog.BaseDialog;
-import com.xxx.willing.ui.wallet.window.PasswordWindow;
 
-import butterknife.BindView;
 import butterknife.OnClick;
 
 /**

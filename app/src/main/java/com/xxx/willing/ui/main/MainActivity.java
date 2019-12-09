@@ -29,7 +29,6 @@ import com.xxx.willing.ui.app.AppFragment;
 import com.xxx.willing.ui.my.MyFragment;
 import com.xxx.willing.ui.vote.VoteFragment;
 import com.xxx.willing.ui.wallet.WalletFragment;
-import com.xxx.willing.ui.wallet.activity.WalletCoinDetailActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -314,6 +313,7 @@ public class MainActivity extends BaseActivity {
                                 SharedPreferencesUtil.getInstance().saveString(SharedConst.VALUE_USER_NAME, data.getNickname());
                                 SharedPreferencesUtil.getInstance().saveString(SharedConst.VALUE_USER_PHONE, data.getTelphone());
                                 SharedPreferencesUtil.getInstance().saveInt(SharedConst.VALUE_USER_STAR, data.getStar());
+                                SharedPreferencesUtil.getInstance().saveBoolean(SharedConst.IS_SETTING_JOIN, true);
 
                                 EventBus.getDefault().post(EventBusConfig.EVENT_UPDATE_USER);
                             }

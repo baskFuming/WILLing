@@ -126,6 +126,7 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
         mUsa.setText("≈$" + usaAmount);
         mAddress.setText(address);
         GlideUtil.loadCircle(this, coinIcon, mIcon);
+
         loadData();
     }
 

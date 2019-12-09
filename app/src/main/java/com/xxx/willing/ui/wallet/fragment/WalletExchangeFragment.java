@@ -7,7 +7,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.EventBusConfig;
@@ -95,7 +94,7 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
             mBaseCheckWindow.dismiss();
         });
         mTargetCheckWindow = WalletExchangeCheckWindow.getInstance(getContext(), mTargetList, (adapter, view, position) -> {
-            WalletCoinBean.ListBean listBean = mBaseList.get(position);
+            WalletCoinBean.ListBean listBean = mTargetList.get(position);
             if (listBean.getCoinId() == mBaseList.get(basePosition).getCoinId()) {
                 ToastUtil.showToast(getString(R.string.exchange_error_2));
                 return;
@@ -104,6 +103,8 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
             updateParam();
             mTargetCheckWindow.dismiss();
         });
+
+        mBaseAmount.setHint(getString(R.string.wallet_exchange_base_amount) + 0);
 
         KeyBoardUtil.setFilters(mBaseAmount, 8 + 1);
 
@@ -173,6 +174,7 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
     private void updateParam() {
         WalletCoinBean.ListBean baseCoinBean = mBaseList.get(basePosition);
         WalletCoinBean.ListBean targetCoinBean = mTargetList.get(targetPosition);
+        String rate;
 
         if (isExchangeParam) {
             mTargetSymbol.setText(baseCoinBean.getCoinSymbol());
@@ -183,10 +185,12 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
                 fee = gviBaseFee;
             } else if (baseCoinBean.getCoinId() == 10000005) {  //BVSE
                 fee = bvseBaseFee;
+            } else {
+                fee = 0;
             }
-            rate = new BigDecimal(targetCoinBean.getCoinPriceUsdt() / baseCoinBean.getCoinPriceUsdt()).setScale(baseCoinBean.getCoinDecimal(), BigDecimal.ROUND_DOWN).doubleValue();
+            mBaseAmount.setHint(getString(R.string.wallet_exchange_base_amount) + targetCoinBean.getBalance());
+            rate = new BigDecimal(targetCoinBean.getCoinPriceUsdt()).divide(new BigDecimal(baseCoinBean.getCoinPriceUsdt()), baseCoinBean.getCoinDecimal(), BigDecimal.ROUND_DOWN).toPlainString();
         } else {
-
             mBaseSymbol.setText(baseCoinBean.getCoinSymbol());
             mTargetSymbol.setText(targetCoinBean.getCoinSymbol());
             GlideUtil.loadCircle(getContext(), baseCoinBean.getCoinUrl(), mBaseIcon);
@@ -195,10 +199,15 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
                 fee = gviTargetFee;
             } else if (targetCoinBean.getCoinId() == 10000005) {  //BVSE
                 fee = bvseTargetFee;
+            } else {
+                fee = 0;
             }
-            rate = new BigDecimal(baseCoinBean.getCoinPriceUsdt() / targetCoinBean.getCoinPriceUsdt()).setScale(baseCoinBean.getCoinDecimal(), BigDecimal.ROUND_DOWN).doubleValue();
+            mBaseAmount.setHint(getString(R.string.wallet_exchange_base_amount) + baseCoinBean.getBalance());
+            rate = new BigDecimal(baseCoinBean.getCoinPriceUsdt()).divide(new BigDecimal(targetCoinBean.getCoinPriceUsdt()), baseCoinBean.getCoinDecimal(), BigDecimal.ROUND_DOWN).toPlainString();
         }
 
+
+        this.rate = Double.parseDouble(rate);
         mRate.setText(getString(R.string.wallet_exchange_rate) + rate);
         mFee.setText(getString(R.string.wallet_exchange_fee) + (fee * 100) + "%");
     }

@@ -4,23 +4,21 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lljjcoder.Interface.OnCustomCityPickerItemClickListener;
 import com.lljjcoder.bean.CustomCityData;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.base.activity.BaseWebActivity;
-import com.xxx.willing.config.EventBusConfig;
 import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
@@ -28,34 +26,28 @@ import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.JoinInfoBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.BooleanBean;
-import com.xxx.willing.model.http.utils.ApiCode;
-import com.xxx.willing.model.http.utils.ApiType;
+import com.xxx.willing.model.utils.CameraUtil;
 import com.xxx.willing.model.utils.ToastUtil;
-import com.xxx.willing.ui.login.activity.PasswordSettingActivity;
-import com.xxx.willing.ui.wallet.activity.WithdrawalActivity;
 import com.xxx.willing.view.CityPickerUtil;
 import com.xxx.willing.view.CityPickerView;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
-import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.RequestBody;
 
 /**
  * @author FM
@@ -63,7 +55,7 @@ import okhttp3.RequestBody;
  * @date 2019-11-28
  */
 
-public class JoinApplyActivity extends BaseTitleActivity {
+public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAdapter.OnItemChildClickListener {
 
     public static void actionStart(Activity activity) {
         Intent intent = new Intent(activity, JoinApplyActivity.class);
@@ -84,37 +76,31 @@ public class JoinApplyActivity extends BaseTitleActivity {
             EditText mJoinIntroduce;
     @BindView(R.id.ed_join_ed_number)   //简介长度
             TextView mNumber1;
-    @BindView(R.id.ed_join_role)    //角色
-            EditText mJoinRole;
-    @BindView(R.id.ed_join_user_name)  //姓名
-            EditText mName;
-    @BindView(R.id.ed_join_phone)     //电话
-            EditText mPhone;
-    @BindView(R.id.join_photo_add)     //形象照
-            ImageView mPhoto;
-    @BindView(R.id.ed_join_person_introduce)  //用户简介
-            EditText mJoinPerIntroduce;
-    @BindView(R.id.ed_join_ed_person_number)   //简介
-            TextView mNumber2;
-    @BindView(R.id.ed_check)   //简介
-            CheckBox mCheck;
-    @BindView(R.id.ed_join_card)   //证件照片
-            TextView mCard;
     @BindView(R.id.ed_join_trans_photo)   //宣传照片
             TextView mPhoto2;
+    @BindView(R.id.ed_check)    //确认
+            CheckBox mCheck;
+
+    @BindView(R.id.team_linear)
+    RecyclerView mRecycler;     //创始人团队
+
 
     private PopupMenu mCheckBrandMenu;
     private PopupMenu mCheckTimeMenu;
     private CityPickerView mCityPickerView;
 
-    private List<Object> mBrandList = new ArrayList<>();//品牌集合
-    private List<Object> mTimeList = new ArrayList<>(); //加盟周期
-    private JoinEntry joinEntry;
+    private List<JoinEntry> mJoinRoleList = new ArrayList<>();  //团队
+    private List<File> mTransList = new ArrayList<>(); //宣传图片
+    private List<JoinInfoBean.BrandListBean> mBrandList = new ArrayList<>();//品牌集合
+    private List<String> mTimeList = new ArrayList<>(); //加盟周期
     private int checkTimeId;
     private int checkBrandId;
     private String province;
     private String city;
     private String district;
+
+    private JoinAdapter mAdapter;
+    private int position;
 
     @Override
     protected String initTitle() {
@@ -128,8 +114,12 @@ public class JoinApplyActivity extends BaseTitleActivity {
 
     @Override
     protected void initData() {
-        //初始化身份证实体类
-        joinEntry = new JoinEntry();
+        //初始化加盟团队
+        mJoinRoleList.add(new JoinEntry());
+        mAdapter = new JoinAdapter(mJoinRoleList);
+        mRecycler.setLayoutManager(new LinearLayoutManager(this));
+        mRecycler.setAdapter(mAdapter);
+        mAdapter.setOnItemChildClickListener(this);
 
         //初始化地址选择
         mCityPickerView = CityPickerUtil.getInstance(this, mJoinIntroduce, new OnCustomCityPickerItemClickListener() {
@@ -160,29 +150,23 @@ public class JoinApplyActivity extends BaseTitleActivity {
         mNumber1.setText(length + "/500");
     }
 
-    @SuppressLint("SetTextI18n")
-    @OnTextChanged({R.id.ed_join_person_introduce})
-    public void OnTextChanged1(CharSequence charSequence) {
-        int length = charSequence.length();
-        mNumber2.setText(length + "/500");
-    }
-
-    @OnClick({R.id.ed_submit, R.id.ed_agree_click, R.id.re_click_address, R.id.re_click_card, R.id.ed_join_trans_photo, R.id.ed_join_rand, R.id.ed_join_time})
+    @OnClick({R.id.ed_submit, R.id.ed_agree_click, R.id.ed_create_click, R.id.re_click_address, R.id.ed_join_trans_photo, R.id.ed_join_rand, R.id.ed_join_time})
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.ed_agree_click://结盟协议
                 BaseWebActivity.actionStart(this, HttpConfig.JOIN_HELP_URL, getString(R.string.join_agree_web));
                 break;
+            case R.id.ed_create_click://添加信息
+                mJoinRoleList.add(new JoinEntry());
+                mAdapter.notifyDataSetChanged();
+                break;
+            case R.id.ed_join_trans_photo: //上传图片
+                UpdatePhotoActivity.actionStart(this, mTransList);
+                break;
             case R.id.re_click_address://选择地址
                 if (mCityPickerView != null) {
                     mCityPickerView.showCityPicker();
                 }
-                break;
-            case R.id.re_click_card://证件照上传
-                UpdateCardActivity.actionStart(this, joinEntry);
-                break;
-            case R.id.ed_join_trans_photo: //上传图片
-                UpdatePhotoActivity.actionStart(this, joinEntry);
                 break;
             case R.id.ed_join_rand:
                 if (mCheckBrandMenu != null) {
@@ -200,21 +184,55 @@ public class JoinApplyActivity extends BaseTitleActivity {
         }
     }
 
+
+    @Override
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+        switch (view.getId()) {
+            case R.id.re_click_card://证件照上传
+                UpdateCardActivity.actionStart(this, mJoinRoleList.get(position));
+                break;
+            case R.id.join_photo_add://形象照上传
+                CameraUtil.openPhoto(this);
+                break;
+        }
+        this.position = position;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @android.support.annotation.NonNull @NonNull String[] permissions, @android.support.annotation.NonNull @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        CameraUtil.openPhoto(this);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == UIConfig.RESULT_CODE) {
-            if (joinEntry.getFileHand() != null && joinEntry.getFileReverse() != null && joinEntry.getFilePositive() != null) {
-                mCard.setText("上传完成");
-            } else {
-                mCard.setText("点击上传");
+        if (resultCode == UIConfig.RESULT_CODE + 2 && data != null) {
+            List<File> transList = (List<File>) data.getSerializableExtra("transList");
+            if (transList != null) {
+                mTransList.clear();
+                mTransList.addAll(transList);
             }
-            if (joinEntry.getFileList() == null || joinEntry.getFileList().size() <= 0) {
-                mPhoto2.setText("上传完成");
+            if (mTransList.size() <= 0) {
+                mPhoto2.setText("继续上传");
             } else {
                 mPhoto2.setText("点击上传");
             }
         }
+
+        if (resultCode == UIConfig.RESULT_CODE + 1 && data != null) {
+            JoinEntry joinEntry = (JoinEntry) data.getSerializableExtra("joinEntry");
+            if (joinEntry != null) {
+                mJoinRoleList.set(position, joinEntry);
+            }
+            mAdapter.notifyItemChanged(this.position);
+        }
+
+        CameraUtil.onActivityResult(this, requestCode, resultCode, data, (bitmap, file) -> {
+            JoinEntry joinEntry = mJoinRoleList.get(position);
+            joinEntry.setFilePhoto(file);
+            mAdapter.notifyItemChanged(this.position);
+        });
     }
 
     @Override
@@ -238,12 +256,12 @@ public class JoinApplyActivity extends BaseTitleActivity {
         mCheckBrandMenu = new PopupMenu(this, mJoinRand);
         Menu menu = mCheckBrandMenu.getMenu();
         for (int i = 0; i < mBrandList.size(); i++) {
-            menu.add(android.view.Menu.NONE, android.view.Menu.FIRST + i, i, (String) mBrandList.get(i));
+            menu.add(android.view.Menu.NONE, android.view.Menu.FIRST + i, i, mBrandList.get(i).getName());
         }
         mCheckBrandMenu.setOnMenuItemClickListener(menuItem -> {
-            Object bean = mBrandList.get(menuItem.getItemId() - 1);
-            checkBrandId = 1;
-            String time = (String) bean;
+            JoinInfoBean.BrandListBean brandListBean = mBrandList.get(menuItem.getItemId() - 1);
+            checkBrandId = brandListBean.getId();
+            String time = brandListBean.getName();
             mJoinRand.setText(time);
             return false;
         });
@@ -254,11 +272,11 @@ public class JoinApplyActivity extends BaseTitleActivity {
         mCheckTimeMenu = new PopupMenu(this, mJoinTime);
         Menu menu = mCheckTimeMenu.getMenu();
         for (int i = 0; i < mTimeList.size(); i++) {
-            menu.add(android.view.Menu.NONE, android.view.Menu.FIRST + i, i, (String) mTimeList.get(i));
+            menu.add(android.view.Menu.NONE, android.view.Menu.FIRST + i, i, mTimeList.get(i));
         }
         mCheckTimeMenu.setOnMenuItemClickListener(menuItem -> {
             Object bean = mTimeList.get(menuItem.getItemId() - 1);
-            checkTimeId = 1;
+            checkTimeId = menuItem.getItemId();
             String time = (String) bean;
             mJoinTime.setText(time);
             return false;
@@ -291,6 +309,7 @@ public class JoinApplyActivity extends BaseTitleActivity {
             ToastUtil.showToast("加盟商");
             return;
         }
+        String address = province + city + district;
         if (province.isEmpty() || city.isEmpty()) {
             showEditError(mAddress);
             ToastUtil.showToast("地址不能为空");
@@ -302,41 +321,14 @@ public class JoinApplyActivity extends BaseTitleActivity {
             ToastUtil.showToast("节点介绍不能为空");
             return;
         }
-        String personnelRole = mJoinRole.getText().toString();
-        if (personnelRole.isEmpty()) {
-            showEditError(mJoinRole);
-            ToastUtil.showToast("人员角色不能为空");
+        String joinLines = mJoinLines.getText().toString();
+
+        List<JoinEntry> data = mAdapter.getData(this);
+        if (data == null) {
             return;
         }
-        String personnelName = mName.getText().toString();
-        if (personnelName.isEmpty()) {
-            showEditError(mName);
-            ToastUtil.showToast("姓名不能为空");
-            return;
-        }
-        String phone = mPhone.getText().toString();
-        if (phone.isEmpty()) {
-            showEditError(mPhone);
-            ToastUtil.showToast("联系电话不能为空");
-            return;
-        }
-        if (joinEntry.getFilePhoto() == null) {
-            showEditError(mPhone);
-            ToastUtil.showToast("请上传形象照片");
-            return;
-        }
-        if (joinEntry.getFileHand() == null || joinEntry.getFileReverse() == null || joinEntry.getFilePositive() == null) {
-            showEditError(mCard);
-            ToastUtil.showToast("请先上传证件照片");
-            return;
-        }
-        String perIntroduce = mJoinPerIntroduce.getText().toString();
-        if (perIntroduce.isEmpty()) {
-            showEditError(mJoinPerIntroduce);
-            ToastUtil.showToast("简介不能为空");
-            return;
-        }
-        if (joinEntry.getFileList() == null || joinEntry.getFileList().size() <= 0) {
+
+        if (mTransList.size() <= 1) {
             showEditError(mPhoto2);
             ToastUtil.showToast("请先上传宣传照片");
             return;
@@ -349,22 +341,48 @@ public class JoinApplyActivity extends BaseTitleActivity {
         }
 
         List<String> list = new ArrayList<>();
-        List<File> fileList = joinEntry.getFileList();
-        list.add(joinEntry.getFileHand().getName());
-        list.add(joinEntry.getFilePositive().getName());
-        list.add(joinEntry.getFileReverse().getName());
-        list.add(joinEntry.getFilePhoto().getName());
-        for (int i = 0; i < fileList.size(); i++) {
-            File file = fileList.get(i);
-            list.add(file.getName());
+        for (JoinEntry joinEntry : data) {
+            list.add(joinEntry.getFileHand().getName());
+            list.add(joinEntry.getFileBack().getName());
+            list.add(joinEntry.getFileFront().getName());
+            list.add(joinEntry.getFilePhoto().getName());
+        }
+
+        for (int i = 0; i < mTransList.size(); i++) {
+            File file = mTransList.get(i);
+            if (file != null) {
+                list.add(file.getName());
+            }
         }
         Api.getInstance().upLoadPhotoMap(Api.getMapFileRequestBody(list))
-                .flatMap(new Function<BaseBean<Map<String, String>>, ObservableSource<BaseBean<BooleanBean>>>() {
-                    @Override
-                    public ObservableSource<BaseBean<BooleanBean>> apply(BaseBean<Map<String, String>> mapBaseBean) {
+                .flatMap((Function<BaseBean<Map<String, String>>, ObservableSource<BaseBean<BooleanBean>>>) bean -> {
+                    if (bean == null) throw new RuntimeException();
+                    Map<String, String> map = bean.getData();
+                    if (map == null) throw new RuntimeException();
 
-                        return Api.getInstance().submitJoin(1);
+                    List<Map<String, String>> list1 = new ArrayList<>();
+                    for (int i = 0; i < data.size(); i++) {
+                        JoinEntry joinEntry = data.get(i);
+                        Map<String, String> dataMap = new HashMap<>();
+                        dataMap.put("cardFront", Objects.requireNonNull(map.get(joinEntry.getFileHand().getName())));
+                        dataMap.put("cardBack", Objects.requireNonNull(map.get(joinEntry.getFileFront().getName())));
+                        dataMap.put("holdCard", Objects.requireNonNull(map.get(joinEntry.getFileBack().getName())));
+                        dataMap.put("userImg", Objects.requireNonNull(map.get(joinEntry.getFilePhoto().getName())));
+                        dataMap.put("userRole", joinEntry.getRole());
+                        dataMap.put("name", joinEntry.getName());
+                        dataMap.put("phone", joinEntry.getPhone());
+                        list1.add(dataMap);
                     }
+
+                    List<String> list2 = new ArrayList<>();
+                    for (int i = 0; i < mTransList.size(); i++) {
+                        File file = mTransList.get(i);
+                        if (file != null) {
+                            list2.add(map.get(file.getName()));
+                        }
+                    }
+
+                    return Api.getInstance().submitJoin(joinName, checkBrandId, checkTimeId, address, joinIntroduce, joinLines, list2, list1);
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -372,6 +390,7 @@ public class JoinApplyActivity extends BaseTitleActivity {
 
                     @Override
                     public void onSuccess(BaseBean<BooleanBean> data) {
+                        ToastUtil.showToast(getString(R.string.join_success));
                         finish();
                     }
 
@@ -398,15 +417,6 @@ public class JoinApplyActivity extends BaseTitleActivity {
      * @Model 获取加盟信息
      */
     private void getJoinInfo() {
-        if (true) {
-            for (int i = 0; i < 5; i++) {
-                mBrandList.add("腾讯" + i);
-                mTimeList.add(i + "个月");
-            }
-            initCheckBrandMenu();
-            initCheckTimeMenu();
-            return;
-        }
         Api.getInstance().getJoinInfo()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -414,8 +424,17 @@ public class JoinApplyActivity extends BaseTitleActivity {
 
                     @Override
                     public void onSuccess(BaseBean<JoinInfoBean> bean) {
-                        initCheckBrandMenu();
-                        initCheckTimeMenu();
+                        if (bean != null) {
+                            JoinInfoBean data = bean.getData();
+                            if (data != null) {
+                                mBrandList.clear();
+                                mBrandList.addAll(data.getBrandList());
+                                mTimeList.clear();
+                                mTimeList.addAll(data.getTimeList());
+                                initCheckBrandMenu();
+                                initCheckTimeMenu();
+                            }
+                        }
                     }
 
                     @Override
@@ -436,5 +455,4 @@ public class JoinApplyActivity extends BaseTitleActivity {
                     }
                 });
     }
-
 }

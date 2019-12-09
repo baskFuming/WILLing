@@ -1,7 +1,6 @@
 package com.xxx.willing.ui.my.activity.vote;
 
 import android.support.annotation.Nullable;
-import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;

@@ -1,9 +1,6 @@
 package com.xxx.willing.ui.wallet.fragment;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,25 +8,16 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
-import com.xxx.willing.base.App;
-import com.xxx.willing.base.activity.ActivityManager;
-import com.xxx.willing.base.activity.BaseActivity;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.EventBusConfig;
-import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.WalletAccountBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
-import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.utils.ToastUtil;
-import com.xxx.willing.ui.main.MainActivity;
-import com.xxx.willing.ui.wallet.activity.WalletCoinDetailActivity;
 import com.xxx.willing.ui.wallet.adapter.WalletAccountAdapter;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -74,7 +62,6 @@ public class WalletAccountFragment extends BaseFragment implements SwipeRefreshL
 
         loadData();
     }
-
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventBus(String eventFlag) {

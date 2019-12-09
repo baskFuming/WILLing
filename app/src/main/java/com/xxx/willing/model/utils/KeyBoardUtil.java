@@ -3,7 +3,6 @@ package com.xxx.willing.model.utils;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.text.InputFilter;
-import android.text.Spanned;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.inputmethod.InputMethodManager;
@@ -76,21 +75,18 @@ public class KeyBoardUtil {
      * @param count    位数
      */
     public static void setFilters(EditText editText, final int count) {
-        editText.setFilters(new InputFilter[]{new InputFilter() {
-            @Override
-            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-                if (source.equals(".") && dest.toString().length() == 0) {
-                    return "0.";
-                }
-                if (dest.toString().contains(".")) {
-                    int index = dest.toString().indexOf(".");
-                    int length = dest.toString().substring(index).length();
-                    if (length == count + 1) {
-                        return "";
-                    }
-                }
-                return null;
+        editText.setFilters(new InputFilter[]{(source, start, end, dest, dstart, dend) -> {
+            if (source.equals(".") && dest.toString().length() == 0) {
+                return "0.";
             }
+            if (dest.toString().contains(".")) {
+                int index = dest.toString().indexOf(".");
+                int length = dest.toString().substring(index).length();
+                if (length == count + 1) {
+                    return "";
+                }
+            }
+            return null;
         }});
     }
 }

@@ -2,59 +2,93 @@ package com.xxx.willing.ui.my.activity.join;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.List;
 
 public class JoinEntry implements Serializable {
 
+    private String role;
+    private String name;
+    private String phone;
+    private String perIntroduce;
+
+    private File fileFront;
+    private File fileBack;
     private File fileHand;
-    private File fileReverse;
-    private File filePositive;
 
     private File filePhoto;
-
-    private List<File> fileList;
 
     JoinEntry() {
 
     }
 
-    public void setFilePhoto(File filePhoto) {
-        this.filePhoto = filePhoto;
+    public String isSettingCard() {
+        if (fileFront != null && fileBack != null && fileHand != null) {
+            return "上传完成";
+        } else {
+            return "点击上传";
+        }
     }
 
-    public void setFileList(List<File> fileList) {
-        this.fileList = fileList;
+    public String getRole() {
+        return role;
     }
 
-    public void setFileHand(File fileHand) {
-        this.fileHand = fileHand;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-    public void setFilePositive(File filePositive) {
-        this.filePositive = filePositive;
+    public String getName() {
+        return name;
     }
 
-    public void setFileReverse(File fileReverse) {
-        this.fileReverse = fileReverse;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPerIntroduce() {
+        return perIntroduce;
+    }
+
+    public void setPerIntroduce(String perIntroduce) {
+        this.perIntroduce = perIntroduce;
+    }
+
+    public File getFileFront() {
+        return fileFront;
+    }
+
+    public void setFileFront(File fileFront) {
+        this.fileFront = fileFront;
+    }
+
+    public File getFileBack() {
+        return fileBack;
+    }
+
+    public void setFileBack(File fileBack) {
+        this.fileBack = fileBack;
     }
 
     public File getFileHand() {
         return fileHand;
     }
 
-    public File getFilePositive() {
-        return filePositive;
-    }
-
-    public File getFileReverse() {
-        return fileReverse;
+    public void setFileHand(File fileHand) {
+        this.fileHand = fileHand;
     }
 
     public File getFilePhoto() {
         return filePhoto;
     }
 
-    public List<File> getFileList() {
-        return fileList;
+    public void setFilePhoto(File filePhoto) {
+        this.filePhoto = filePhoto;
     }
 }

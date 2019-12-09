@@ -22,8 +22,8 @@ import com.xxx.willing.model.http.utils.ApiCode;
 import com.xxx.willing.model.utils.KeyBoardUtil;
 import com.xxx.willing.model.utils.PermissionUtil;
 import com.xxx.willing.model.utils.ToastUtil;
-import com.xxx.willing.ui.main.SweepActivity;
 import com.xxx.willing.ui.login.activity.PasswordSettingActivity;
+import com.xxx.willing.ui.main.SweepActivity;
 import com.xxx.willing.ui.wallet.window.PasswordWindow;
 
 import butterknife.BindView;
@@ -88,8 +88,8 @@ public class WithdrawalActivity extends BaseTitleActivity implements PasswordWin
     @Override
     protected void initData() {
         initBundle();
-        mBalance.setText(String.valueOf(balance));
-        mFee.setText(getString(R.string.withdrawal_fee) + 10 + "BVSE");
+        mBalance.setText(getString(R.string.withdrawal_balance) + balance);
+        mFee.setText(getString(R.string.withdrawal_fee) + fee + "BVSE");
 
         //初始化密码弹框
         mPasswordWindow = PasswordWindow.getInstance(this);

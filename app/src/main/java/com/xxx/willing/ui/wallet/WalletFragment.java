@@ -1,26 +1,15 @@
 package com.xxx.willing.ui.wallet;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
 import com.xxx.willing.R;
-import com.xxx.willing.base.activity.BaseActivity;
 import com.xxx.willing.base.fragment.BaseFragment;
-import com.xxx.willing.config.EventBusConfig;
-import com.xxx.willing.model.http.bean.WalletAccountBean;
-import com.xxx.willing.ui.main.MainActivity;
-import com.xxx.willing.ui.wallet.activity.WalletCoinDetailActivity;
 import com.xxx.willing.ui.wallet.adapter.WalletAdapter;
 import com.xxx.willing.ui.wallet.fragment.WalletAccountFragment;
 import com.xxx.willing.ui.wallet.fragment.WalletExchangeFragment;
 import com.xxx.willing.ui.wallet.fragment.WalletMarketFragment;
 import com.xxx.willing.ui.wallet.fragment.WalletReleaseFragment;
-
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 

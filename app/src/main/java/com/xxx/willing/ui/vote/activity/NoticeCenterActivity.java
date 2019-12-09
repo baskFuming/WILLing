@@ -1,30 +1,21 @@
 package com.xxx.willing.ui.vote.activity;
 
-import android.os.BaseBundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.config.UIConfig;
-import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.bean.base.BaseBean;
-import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.ui.vote.adapter.NoticeCenterAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  *  @desc   公告中心

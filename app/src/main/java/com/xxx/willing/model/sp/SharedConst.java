@@ -28,7 +28,6 @@ public class SharedConst {
      */
     public static final String IS_LOGIN = "is_login";   //是否登陆
     public static final String IS_SETTING_PAY_PSW = "is_setting_pay_psw";   //是否设置过支付密码
-    public static final String IS_SETTING_NODE = "is_setting_node";   //  是否有节点
-
+    public static final String IS_SETTING_JOIN = "is_setting_join";   //  是否提交过审核
 
 }

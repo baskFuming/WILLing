@@ -109,7 +109,7 @@ public interface ApiService {
 
     //----------------------------------------------------------获取信息----------------------------------------------------------------------------------------------------------------------------//
     //获取加盟信息
-    @POST("/CT/invest/getDepositLogs")
+    @POST("/franchiseeInfo")
     Observable<BaseBean<JoinInfoBean>> getJoinInfo();
 
     //----------------------------------------------------------执行操作----------------------------------------------------------------------------------------------------------------------------//
@@ -118,7 +118,14 @@ public interface ApiService {
     @POST("/CT/invest/getDepositLogs")
     @FormUrlEncoded
     Observable<BaseBean<BooleanBean>> submitJoin(
-            @Field("coinId") int coinId
+            @Field("franName") String franName,
+            @Field("brandId") int brandId,
+            @Field("period") int period,
+            @Field("address") String address,
+            @Field("details") String details,
+            @Field("exTurnover") String exTurnover,
+            @Field("imgBanner")  List<String> imgBanner,
+            @Field("list") List<Map<String, String>> list
     );
 
     //转账

@@ -14,7 +14,6 @@ import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
-import com.xxx.willing.model.http.bean.MyVoteBean;
 import com.xxx.willing.model.http.bean.VoteRecordBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;

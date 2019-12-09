@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,6 +12,14 @@ import java.util.Date;
  * 字符串工具类
  */
 public class StringUtil {
+
+    /**
+     * 把科学计数法显示出全部数字
+     */
+    public static String getDoubleStr(double d) {
+        NumberFormat nf = NumberFormat.getInstance();
+        return nf.format(d);
+    }
 
     /**
      * 手机号脱敏

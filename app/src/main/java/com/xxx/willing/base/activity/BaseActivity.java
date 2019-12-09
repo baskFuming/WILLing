@@ -1,10 +1,7 @@
 package com.xxx.willing.base.activity;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 
 import com.gyf.barlibrary.ImmersionBar;

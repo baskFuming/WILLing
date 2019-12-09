@@ -13,8 +13,8 @@ import com.xxx.willing.model.http.bean.AppVersionBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.utils.SystemUtil;
 import com.xxx.willing.model.utils.ToastUtil;
-import com.xxx.willing.ui.main.UpdateWindow;
 import com.xxx.willing.ui.login.activity.PasswordSettingActivity;
+import com.xxx.willing.ui.main.UpdateWindow;
 
 import butterknife.BindView;
 import butterknife.OnClick;

@@ -1,7 +1,6 @@
 package com.xxx.willing.ui.my;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,15 +9,9 @@ import android.widget.TextView;
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.EventBusConfig;
-import com.xxx.willing.model.http.Api;
-import com.xxx.willing.model.http.ApiCallback;
-import com.xxx.willing.model.http.bean.UserInfo;
-import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.sp.SharedConst;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.GlideUtil;
-import com.xxx.willing.model.utils.ToastUtil;
-import com.xxx.willing.ui.login.activity.LoginActivity;
 import com.xxx.willing.ui.my.activity.AccountSettingActivity;
 import com.xxx.willing.ui.my.activity.InviteFriendActivity;
 import com.xxx.willing.ui.my.activity.join.JoinApplyActivity;
@@ -32,9 +25,6 @@ import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * @Page 我的布局
@@ -120,6 +110,7 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
         String phone = instance.getString(SharedConst.VALUE_USER_PHONE);
         String icon = instance.getString(SharedConst.VALUE_USER_ICON);
         int star = instance.getInt(SharedConst.VALUE_USER_STAR);
+        boolean isSettingJoin = instance.getBoolean(SharedConst.IS_SETTING_JOIN);
 
         mName.setText(name);
         mPhone.setText(phone);
@@ -128,6 +119,12 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
             case 1:
                 mLevel.setImageResource(R.mipmap.level_0);
                 break;
+        }
+
+        if (isSettingJoin) {
+            mReview.setText(R.string.my_submitted_review);
+        } else {
+            mReview.setText("");
         }
 
     }

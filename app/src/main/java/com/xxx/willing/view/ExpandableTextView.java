@@ -22,7 +22,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
-
 import com.xxx.willing.R;
 
 import java.lang.reflect.Field;

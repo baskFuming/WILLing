@@ -137,6 +137,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
+                            android:ellipsize="end"
+                            android:lines="1"
                             android:text="--"
                             android:textColor="#999999"
                             android:textSize="17dp" />
@@ -150,9 +152,9 @@
                         android:layout_marginTop="20dp"
                         android:background="@drawable/shape_edit_wallet_exchange"
                         android:gravity="center_vertical"
+                        android:hint="@string/wallet_exchange_target_amount"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
-                        android:text="@string/wallet_exchange_target_amount"
                         android:textColor="#333333"
                         android:textSize="14dp" />
 

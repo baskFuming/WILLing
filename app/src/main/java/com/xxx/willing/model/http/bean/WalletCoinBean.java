@@ -73,8 +73,13 @@ public class WalletCoinBean {
         private String coinUrl;
         private String coinPriceUsdt;
         private int coinDecimal;
+        private double balance;
         private boolean isBase;
         private boolean isTarget;
+
+        public double getBalance() {
+            return balance;
+        }
 
         public boolean isTarget() {
             return isTarget;

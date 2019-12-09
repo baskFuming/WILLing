@@ -21,6 +21,7 @@
             android:paddingStart="43dp">
 
             <LinearLayout
+                android:id="@+id/li_card_front"
                 android:layout_width="match_parent"
                 android:layout_height="217dp"
                 android:layout_marginTop="22dp"
@@ -28,7 +29,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/img_positive"
+                    android:id="@+id/img_card_front"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -36,7 +37,7 @@
                     android:src="@mipmap/crad_photo" />
 
                 <TextView
-                    android:id="@+id/img_click_positive"
+                    android:id="@+id/tv_card_front"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -49,6 +50,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/li_card_back"
                 android:layout_width="match_parent"
                 android:layout_height="217dp"
                 android:layout_gravity="center"
@@ -57,7 +59,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/img_reverse"
+                    android:id="@+id/img_card_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -65,7 +67,7 @@
                     android:src="@mipmap/crad_photo" />
 
                 <TextView
-                    android:id="@+id/img_click_reverse"
+                    android:id="@+id/tv_card_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -78,6 +80,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/li_hold_card"
                 android:layout_width="match_parent"
                 android:layout_height="217dp"
                 android:layout_gravity="center"
@@ -86,7 +89,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/img_hand"
+                    android:id="@+id/img_hold_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -94,7 +97,7 @@
                     android:src="@mipmap/crad_photo" />
 
                 <TextView
-                    android:id="@+id/img_click_hand"
+                    android:id="@+id/tv_hold_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

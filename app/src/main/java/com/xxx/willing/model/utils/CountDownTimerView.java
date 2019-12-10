@@ -19,9 +19,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- *  @desc   时间倒计时
- *  @author FM
- *  @date   2019-12-03
+ * @author FM
+ * @desc 时间倒计时
+ * @date 2019-12-03
  */
 @SuppressLint("HandlerLeak")
 public class CountDownTimerView extends LinearLayout {
@@ -66,7 +66,7 @@ public class CountDownTimerView extends LinearLayout {
         tv_sec_decade = (TextView) view.findViewById(R.id.tv_sec_decade);
         tv_sec_unit = (TextView) view.findViewById(R.id.tv_sec_unit);
 
-        TypedArray array = context.obtainStyledAttributes(attrs,R.styleable.CountDownTimerView);
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CountDownTimerView);
         int size = array.getInteger(R.styleable.CountDownTimerView_viewSize, 12);
 
 
@@ -76,8 +76,8 @@ public class CountDownTimerView extends LinearLayout {
         tv_min_unit.setTextSize(size);
         tv_sec_decade.setTextSize(size);
         tv_sec_unit.setTextSize(size);
-        ((TextView)view.findViewById(R.id.colon_minute)).setTextSize(size);
-        ((TextView)view.findViewById(R.id.colon_hour)).setTextSize(size);
+        ((TextView) view.findViewById(R.id.colon_minute)).setTextSize(size);
+        ((TextView) view.findViewById(R.id.colon_hour)).setTextSize(size);
     }
 
 
@@ -101,10 +101,23 @@ public class CountDownTimerView extends LinearLayout {
         }
     }
 
+    public void setTime(long total) {
+        if (total <= 0) {
+            setTime(0, 0, 0);
+        } else {
+            //第一步计算小时
+            int h = (int) (total / 3600);
+            //第二步计算分钟
+            int m = (int) (total % 3600 / 60);
+            //第三步计算秒
+            int s = (int) (total % 3600 % 60);
+            setTime(h, m, s);
+        }
+    }
+
 
     public void setTime(int hour, int min, int sec) {
-
-        if (hour >= 60 || min >= 60 || sec >= 60 || hour < 0 || min < 0
+        if (hour >= 100 || min >= 60 || sec >= 60 || hour < 0 || min < 0
                 || sec < 0) {
             throw new RuntimeException(String.valueOf(R.string.time_error));
         }

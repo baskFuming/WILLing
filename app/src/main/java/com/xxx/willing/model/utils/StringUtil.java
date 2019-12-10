@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -12,6 +13,22 @@ import java.util.Date;
  * 字符串工具类
  */
 public class StringUtil {
+
+    /**
+     * 把科学计数法显示出全部数字
+     */
+    public static long getTime(String s) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd hh:MM:ss");
+        try {
+            Date parse = simpleDateFormat.parse(s);
+            return parse.getTime();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
 
     /**
      * 把科学计数法显示出全部数字

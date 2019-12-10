@@ -1,12 +1,12 @@
 package com.xxx.willing.ui.vote;
 
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
-import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.BannerBean;
@@ -14,14 +14,13 @@ import com.xxx.willing.model.http.bean.BrandBean;
 import com.xxx.willing.model.http.bean.MessageBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
-import com.xxx.willing.model.sp.SharedConst;
-import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.BannerUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.vote.activity.NoticeCenterActivity;
+import com.xxx.willing.ui.vote.adapter.VoteAdapter;
+import com.xxx.willing.ui.vote.fragment.VoteItemFragment;
 import com.xxx.willing.view.TabLayout;
 import com.youth.banner.Banner;
-import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +37,15 @@ public class VoteFragment extends BaseFragment {
     Banner mBanner;
     @BindView(R.id.vote_tab_layout)
     TabLayout mTabLayout;
+    @BindView(R.id.vote_view_pager)
+    ViewPager mViewPager;
     @BindView(R.id.main_home_view_flipper)
     ViewFlipper mViewFlipper;
 
     private List<MessageBean> mNoticeList = new ArrayList<>();
+    private List<BaseFragment> mFragment = new ArrayList<>();
+    private List<String> mTitle = new ArrayList<>();
+    private VoteAdapter mAdapter;
 
     @Override
     protected int getLayoutId() {
@@ -52,6 +56,11 @@ public class VoteFragment extends BaseFragment {
     protected void initData() {
         getBannerList();
         getMessageList();
+        getBrandList();
+
+        mAdapter = new VoteAdapter(getChildFragmentManager(), mFragment, mTitle);
+        mViewPager.setAdapter(mAdapter);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     @OnClick({R.id.vote_relative})
@@ -64,9 +73,9 @@ public class VoteFragment extends BaseFragment {
     }
 
     /**
-     * @Model 获取
+     * @Model 获取品牌列表
      */
-    private void getBrandList(){
+    private void getBrandList() {
         Api.getInstance().getBrandList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -77,27 +86,15 @@ public class VoteFragment extends BaseFragment {
                         if (bean != null) {
                             PageBean<BrandBean> data = bean.getData();
                             if (data != null) {
+                                mTitle.clear();
+                                mFragment.clear();
                                 List<BrandBean> list = data.getList();
                                 for (int i = 0; i < list.size(); i++) {
                                     BrandBean brandBean = list.get(i);
-//                                    mTabLayout.addTab(mTabLayout.newTab().setText(brandBean));
+                                    mTitle.add(brandBean.getName());
+                                    mFragment.add(VoteItemFragment.getInstance(brandBean));
                                 }
-                                mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-                                    @Override
-                                    public void onTabSelected(TabLayout.Tab var1) {
-
-                                    }
-
-                                    @Override
-                                    public void onTabUnselected(TabLayout.Tab var1) {
-
-                                    }
-
-                                    @Override
-                                    public void onTabReselected(TabLayout.Tab var1) {
-
-                                    }
-                                });
+                                mAdapter.notifyDataSetChanged();
                             }
                         }
                     }
@@ -105,6 +102,22 @@ public class VoteFragment extends BaseFragment {
                     @Override
                     public void onError(int errorCode, String errorMessage) {
                         ToastUtil.showToast(errorMessage);
+                    }
+
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        showLoading();
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        hideLoading();
+                    }
+
+                    private void addOnClick(final List<BrandBean> list) {
+
                     }
                 });
     }

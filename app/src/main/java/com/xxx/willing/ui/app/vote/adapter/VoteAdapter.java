@@ -1,11 +1,14 @@
 package com.xxx.willing.ui.app.vote.adapter;
 
 import android.support.annotation.Nullable;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
 import com.xxx.willing.model.http.bean.base.BaseBean;
+import com.xxx.willing.model.utils.CountDownTimerView;
 
 import java.util.List;
 
@@ -23,6 +26,13 @@ public class VoteAdapter extends BaseQuickAdapter<BaseBean, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, BaseBean item) {
+//        mVoteImg = (ImageView) findViewById(R.id.vote_img);
+//        mVoteName = (TextView) findViewById(R.id.vote_name);
+//        mVoteId = (TextView) findViewById(R.id.vote_id);
+//        mVotes = (TextView) findViewById(R.id.votes);
+//        mVoteBtn = (TextView) findViewById(R.id.vote_btn);
+//        mVoteTime = (CountDownTimerView) findViewById(R.id.vote_time);
+//        mVoteTeStatus = (TextView) findViewById(R.id.vote_te_status);
 
     }
 }

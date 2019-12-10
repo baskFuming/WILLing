@@ -4,6 +4,7 @@ import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.http.bean.AppVersionBean;
 import com.xxx.willing.model.http.bean.BannerBean;
 import com.xxx.willing.model.http.bean.BrandBean;
+import com.xxx.willing.model.http.bean.FranchiseeBean;
 import com.xxx.willing.model.http.bean.IsSettingPayPswBean;
 import com.xxx.willing.model.http.bean.JoinInfoBean;
 import com.xxx.willing.model.http.bean.LoginBean;
@@ -41,6 +42,14 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     //----------------------------------------------------------展示列表----------------------------------------------------------------------------------------------------------------------------//
+    //获取加盟商列表
+    @POST("/franchiseesKList")
+    @FormUrlEncoded
+    Observable<BaseBean<PageBean<FranchiseeBean>>> getFranchiseeList(
+            @Field("brandId") int brandId,
+            @Field("pageNum") int pageNum,
+            @Field("pageSize") int pageSize
+    );
 
     //获取品牌列表
     @GET("/brandsList")
@@ -56,14 +65,14 @@ public interface ApiService {
             @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );
-    
+
     //获取我的团队
     @GET("/CT/invest/getDepositLogs")
     Observable<BaseBean<PageBean<MyTeamBean>>> getMyTeamList(
             @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );
-    
+
     //获取我的团队
     @GET("/CT/invest/getDepositLogs")
     Observable<BaseBean<PageBean<MyTeamBean>>> getMyTeamList(
@@ -143,7 +152,7 @@ public interface ApiService {
             @Field("address") String address,
             @Field("details") String details,
             @Field("exTurnover") String exTurnover,
-            @Field("imgBanner")  List<String> imgBanner,
+            @Field("imgBanner") List<String> imgBanner,
             @Field("list") List<Map<String, String>> list
     );
 

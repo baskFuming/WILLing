@@ -76,6 +76,8 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
 
     //地址选择
-    implementation  'liji.library.dev:citypickerview:5.0.0'
+    implementation 'liji.library.dev:citypickerview:5.0.0'
 
+    //多选菜单
+    implementation 'com.github.dongjunkun:DropDownMenu:1.0.3'
 }

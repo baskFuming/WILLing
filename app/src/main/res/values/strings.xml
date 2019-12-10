@@ -437,4 +437,6 @@
     <string name="item_vote_not_start">未开始</string>
     <string name="item_vote_end">失败</string>
     <string name="item_vote_title">加盟竞选</string>
+    <string name="item_poundage">手续费</string>
+    <string name="item_balance">余额 </string>
 </resources>

@@ -31,6 +31,9 @@ import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.view.CityPickerUtil;
 import com.xxx.willing.view.CityPickerView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -42,6 +45,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
+import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
@@ -120,6 +124,7 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
         mRecycler.setAdapter(mAdapter);
         mAdapter.setOnItemChildClickListener(this);
+        mAdapter.bindToRecyclerView(mRecycler);
 
         //初始化地址选择
         mCityPickerView = CityPickerUtil.getInstance(this, mJoinIntroduce, new OnCustomCityPickerItemClickListener() {
@@ -310,7 +315,7 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
             return;
         }
         String address = province + city + district;
-        if (province.isEmpty() || city.isEmpty()) {
+        if (province == null || city == null || province.isEmpty() || city.isEmpty()) {
             showEditError(mAddress);
             ToastUtil.showToast("地址不能为空");
             return;
@@ -340,18 +345,18 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
             return;
         }
 
-        List<String> list = new ArrayList<>();
+        List<File> list = new ArrayList<>();
         for (JoinEntry joinEntry : data) {
-            list.add(joinEntry.getFileHand().getName());
-            list.add(joinEntry.getFileBack().getName());
-            list.add(joinEntry.getFileFront().getName());
-            list.add(joinEntry.getFilePhoto().getName());
+            list.add(joinEntry.getFileHand());
+            list.add(joinEntry.getFileBack());
+            list.add(joinEntry.getFileFront());
+            list.add(joinEntry.getFilePhoto());
         }
 
         for (int i = 0; i < mTransList.size(); i++) {
             File file = mTransList.get(i);
             if (file != null) {
-                list.add(file.getName());
+                list.add(file);
             }
         }
         Api.getInstance().upLoadPhotoMap(Api.getMapFileRequestBody(list))
@@ -360,18 +365,18 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
                     Map<String, String> map = bean.getData();
                     if (map == null) throw new RuntimeException();
 
-                    List<Map<String, String>> list1 = new ArrayList<>();
+                    JSONArray list1 = new JSONArray();
                     for (int i = 0; i < data.size(); i++) {
                         JoinEntry joinEntry = data.get(i);
-                        Map<String, String> dataMap = new HashMap<>();
-                        dataMap.put("cardFront", Objects.requireNonNull(map.get(joinEntry.getFileHand().getName())));
-                        dataMap.put("cardBack", Objects.requireNonNull(map.get(joinEntry.getFileFront().getName())));
-                        dataMap.put("holdCard", Objects.requireNonNull(map.get(joinEntry.getFileBack().getName())));
-                        dataMap.put("userImg", Objects.requireNonNull(map.get(joinEntry.getFilePhoto().getName())));
-                        dataMap.put("userRole", joinEntry.getRole());
-                        dataMap.put("name", joinEntry.getName());
-                        dataMap.put("phone", joinEntry.getPhone());
-                        list1.add(dataMap);
+                        JSONObject jsonObject = new JSONObject();
+                        jsonObject.put("cardFront", Objects.requireNonNull(map.get(joinEntry.getFileHand().getName())));
+                        jsonObject.put("cardBack", Objects.requireNonNull(map.get(joinEntry.getFileFront().getName())));
+                        jsonObject.put("holdCard", Objects.requireNonNull(map.get(joinEntry.getFileBack().getName())));
+                        jsonObject.put("userImg", Objects.requireNonNull(map.get(joinEntry.getFilePhoto().getName())));
+                        jsonObject.put("userRole", joinEntry.getRole());
+                        jsonObject.put("name", joinEntry.getName());
+                        jsonObject.put("phone", joinEntry.getPhone());
+                        list1.put(jsonObject);
                     }
 
                     List<String> list2 = new ArrayList<>();
@@ -382,7 +387,7 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
                         }
                     }
 
-                    return Api.getInstance().submitJoin(joinName, checkBrandId, checkTimeId, address, joinIntroduce, joinLines, list2, list1);
+                    return Api.getInstance().submitJoin(joinName, checkBrandId, checkTimeId, address, joinIntroduce, joinLines, list2, list1.toString());
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

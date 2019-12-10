@@ -9,6 +9,7 @@ import com.xxx.willing.config.HttpConfig;
 import java.io.File;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,8 +83,7 @@ public class Api {
     /**
      * 获取上传文件的请求体
      */
-    public static MultipartBody.Part getFileRequestBody(String fileName) {
-        File file = new File(fileName);
+    public static MultipartBody.Part getFileRequestBody(File file) {
         RequestBody requestBody = RequestBody.create(MediaType.parse("file/*"), file);
         return MultipartBody.Part.createFormData("file", file.getName(), requestBody);
     }
@@ -91,12 +91,10 @@ public class Api {
     /**
      * 获取上传多张文件的请求体
      */
-    public static Map<String, RequestBody> getMapFileRequestBody(List<String> fileNameList) {
-        Map<String, RequestBody> images = new HashMap<>();
-        for (String name : fileNameList) {
-            File file = new File(name);
-            RequestBody requestBody = RequestBody.create(MediaType.parse("file/*"), file);
-            images.put(name,requestBody);
+    public static List<MultipartBody.Part> getMapFileRequestBody(List<File> fileNameList) {
+        List<MultipartBody.Part> images = new ArrayList<>();
+        for (File file : fileNameList) {
+            images.add(getFileRequestBody(file));
         }
         return images;
     }

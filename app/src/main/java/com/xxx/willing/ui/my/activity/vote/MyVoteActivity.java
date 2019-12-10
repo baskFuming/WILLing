@@ -16,7 +16,6 @@ import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.MyVoteBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
-import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -75,13 +74,14 @@ public class MyVoteActivity extends BaseTitleActivity implements SwipeRefreshLay
 
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-        int voteId = 0;
+        MyVoteBean bean = mList.get(position);
+
         switch (view.getId()) {
             case R.id.re_join_name:     //商家
 
                 break;
             case R.id.re_vote_number:  //记录
-                VoteRecordActivity.actionStart(this, voteId);
+                VoteRecordActivity.actionStart(this, bean.getList());
                 break;
         }
     }
@@ -99,30 +99,14 @@ public class MyVoteActivity extends BaseTitleActivity implements SwipeRefreshLay
     }
 
     private void loadData() {
-        if (true){
-            for (int i = 0; i < 10; i++) {
-                mList.add(new MyVoteBean());
-            }
-            mAdapter.notifyDataSetChanged();
-            hideLoading();
-            mRefresh.setRefreshing(false);
-            return;
-        }
         Api.getInstance().getMyVoteList(page, UIConfig.PAGE_SIZE)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiCallback<PageBean<MyVoteBean>>(this) {
+                .subscribe(new ApiCallback<List<MyVoteBean>>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<MyVoteBean>> bean) {
-                        PageBean<MyVoteBean> data = bean.getData();
-                        if (data == null) {
-                            mNotData.setVisibility(View.VISIBLE);
-                            mRecycler.setVisibility(View.GONE);
-                            mAdapter.loadMoreEnd(true);
-                            return;
-                        }
-                        List<MyVoteBean> list = data.getList();
+                    public void onSuccess(BaseBean<List<MyVoteBean>> bean) {
+                        List<MyVoteBean> list = bean.getData();
                         if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
                             mNotData.setVisibility(View.VISIBLE);
                             mRecycler.setVisibility(View.GONE);

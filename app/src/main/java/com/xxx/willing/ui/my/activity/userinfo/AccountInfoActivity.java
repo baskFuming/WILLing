@@ -173,7 +173,7 @@ public class AccountInfoActivity extends BaseTitleActivity implements SetIconPop
      * @Model 上传头像
      */
     private void upLoadIcon(final File file) {
-        Api.getInstance().upLoadPhoto(Api.getFileRequestBody(file.getName()))
+        Api.getInstance().upLoadPhoto(Api.getFileRequestBody(file))
                 .flatMap((io.reactivex.functions.Function<BaseBean<String>, ObservableSource<BaseBean<BooleanBean>>>) baseBean -> {
                     String data = baseBean.getData();
                     if (data == null || data.isEmpty()) throw new RuntimeException();
@@ -188,9 +188,9 @@ public class AccountInfoActivity extends BaseTitleActivity implements SetIconPop
                             BooleanBean data = bean.getData();
                             if (data != null && data.isResult()) {
                                 ToastUtil.showToast(getString(R.string.modify_success));
+                                //发送EventBus 更新首页
+                                EventBus.getDefault().post(EventBusConfig.EVENT_NOTICE_USER);
                             }
-                            //发送EventBus 更新首页
-                            EventBus.getDefault().post(EventBusConfig.EVENT_NOTICE_USER);
                         }
                     }
 

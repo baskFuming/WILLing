@@ -13,7 +13,6 @@ import com.xxx.willing.model.http.bean.MyTeamBean;
 import com.xxx.willing.model.http.bean.MyVoteBean;
 import com.xxx.willing.model.http.bean.TotalFranchiseeBean;
 import com.xxx.willing.model.http.bean.UserInfo;
-import com.xxx.willing.model.http.bean.VoteRecordBean;
 import com.xxx.willing.model.http.bean.WalletAccountBean;
 import com.xxx.willing.model.http.bean.WalletCoinBean;
 import com.xxx.willing.model.http.bean.WalletExchangeBean;
@@ -23,7 +22,8 @@ import com.xxx.willing.model.http.bean.WalletTransactionBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.BooleanBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
-import com.youth.banner.Banner;
+
+import org.json.JSONObject;
 
 import java.util.List;
 import java.util.Map;
@@ -92,16 +92,8 @@ public interface ApiService {
     );
 
     //获取我的投票
-    @GET("/getMyVoteList")
-    Observable<BaseBean<PageBean<MyVoteBean>>> getMyVoteList(
-            @Query("pageNum") int pageNum,
-            @Query("pageSize") int pageSize
-    );
-
-    //获取投票记录
-    @GET("/CT/invest/getDepositLogs")
-    Observable<BaseBean<PageBean<VoteRecordBean>>> getVoteRecordList(
-            @Query("voteId") int voteId,
+    @GET("/getMyVote")
+    Observable<BaseBean<List<MyVoteBean>>> getMyVoteList(
             @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );
@@ -153,7 +145,7 @@ public interface ApiService {
     //----------------------------------------------------------执行操作----------------------------------------------------------------------------------------------------------------------------//
 
     //申请加盟
-    @POST("/CT/invest/getDepositLogs")
+    @POST("/inFranchisees")
     @FormUrlEncoded
     Observable<BaseBean<BooleanBean>> submitJoin(
             @Field("franName") String franName,
@@ -163,7 +155,7 @@ public interface ApiService {
             @Field("details") String details,
             @Field("exTurnover") String exTurnover,
             @Field("imgBanner") List<String> imgBanner,
-            @Field("list") List<Map<String, String>> list
+            @Field("list") String s
     );
 
     //转账
@@ -290,7 +282,7 @@ public interface ApiService {
 
     //上传用户信息
     @FormUrlEncoded
-    @POST(HttpConfig.BASE_URL_PATH + "/getUserInfo")
+    @POST(HttpConfig.BASE_URL_PATH + "/updateUserInfo")
     Observable<BaseBean<BooleanBean>> updateUserInfo(
             @Field("picUrl") String picUrl,
             @Field("nickName") String nickName
@@ -307,18 +299,7 @@ public interface ApiService {
     @Multipart
     @POST(HttpConfig.BASE_URL_PATH + "/upLoadImgMap")
     Observable<BaseBean<Map<String, String>>> upLoadPhotoMap(
-            @PartMap Map<String, RequestBody> files
-    );
-
-    //实名认证
-    @FormUrlEncoded
-    @POST(HttpConfig.BASE_URL_PATH + "/uc/approve/real/name")
-    Observable<BaseBean<String>> realName(
-            @Field("realName") String realName,
-            @Field("idCard") String idCard,
-            @Field("idCardFront") String idCardFront,
-            @Field("idCardBack") String idCardBack,
-            @Field("handHeldIdCard") String handHeldIdCard
+            @Part List<MultipartBody.Part> file
     );
 
 }

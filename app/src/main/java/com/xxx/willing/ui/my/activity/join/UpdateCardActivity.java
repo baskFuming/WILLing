@@ -99,27 +99,27 @@ public class UpdateCardActivity extends BaseTitleActivity {
         if (fileBack != null) {
             mImgBack.setVisibility(View.GONE);
             mTvBack.setVisibility(View.GONE);
-            GlideUtil.loadBack(this, fileFront, mLiBack);
+            GlideUtil.loadBack(this, fileBack, mLiBack);
         }
         if (fileHand != null) {
             mImgHand.setVisibility(View.GONE);
             mTvHand.setVisibility(View.GONE);
-            GlideUtil.loadBack(this, fileFront, mLiHand);
+            GlideUtil.loadBack(this, fileHand, mLiHand);
         }
     }
 
-    @OnClick({R.id.img_card_front, R.id.img_card_back, R.id.img_hold_card, R.id.btn_save})
+    @OnClick({R.id.li_card_front, R.id.li_card_back, R.id.li_hold_card, R.id.btn_save})
     public void OnClick(View view) {
         switch (view.getId()) {
-            case R.id.img_card_front:
+            case R.id.li_card_front:
                 type = TYPE_CARD_FRONT;
                 CameraUtil.openPhoto(this);
                 break;
-            case R.id.img_card_back:
+            case R.id.li_card_back:
                 type = TYPE_CARD_BACK;
                 CameraUtil.openPhoto(this);
                 break;
-            case R.id.img_hold_card:
+            case R.id.li_hold_card:
                 type = TYPE_HAND_CARD;
                 CameraUtil.openPhoto(this);
                 break;

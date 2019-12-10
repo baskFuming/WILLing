@@ -25,17 +25,27 @@ public class JoinAdapter extends BaseQuickAdapter<JoinEntry, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, JoinEntry item) {
-        TextView joinRole = helper.itemView.findViewById(R.id.ed_join_role);
-        TextView name = helper.itemView.findViewById(R.id.ed_join_user_name);
-        TextView phone = helper.itemView.findViewById(R.id.ed_join_phone);
+        EditText joinRole = helper.itemView.findViewById(R.id.ed_join_role);
+        EditText joinName = helper.itemView.findViewById(R.id.ed_join_user_name);
+        EditText joinPhone = helper.itemView.findViewById(R.id.ed_join_phone);
+        TextView joinCard = helper.itemView.findViewById(R.id.ed_join_card);
+
         EditText editText = helper.itemView.findViewById(R.id.ed_join_person_introduce);
-        TextView card = helper.itemView.findViewById(R.id.ed_join_card);
         ImageView imageView = helper.itemView.findViewById(R.id.join_photo_add);
 
-        joinRole.setText(item.getRole());
-        name.setText(item.getName());
-        phone.setText(item.getPhone());
-        card.setText(item.isSettingCard());
+        String role = item.getRole();
+        if (role != null && !role.isEmpty()) {
+            joinRole.setText(role);
+        }
+        String name = item.getName();
+        if (name != null && !name.isEmpty()) {
+            joinName.setText(name);
+        }
+        String phone = item.getRole();
+        if (phone != null && !phone.isEmpty()) {
+            joinPhone.setText(phone);
+        }
+        joinCard.setText(item.isSettingCard());
 
         helper.itemView.findViewById(R.id.ed_join_role);
         helper.itemView.findViewById(R.id.ed_join_user_name);
@@ -77,11 +87,12 @@ public class JoinAdapter extends BaseQuickAdapter<JoinEntry, BaseViewHolder> {
         for (int i = 0; i < data.size(); i++) {
             JoinEntry joinEntry = data.get(i);
 
-            TextView joinRole = (TextView) getViewByPosition(i, R.id.ed_join_role);
-            TextView name = (TextView) getViewByPosition(i, R.id.ed_join_user_name);
-            TextView phone = (TextView) getViewByPosition(i, R.id.ed_join_phone);
-            ImageView card = (ImageView) getViewByPosition(i, R.id.ed_join_card);
+            EditText joinRole = (EditText) getViewByPosition(i, R.id.ed_join_role);
+            EditText name = (EditText) getViewByPosition(i, R.id.ed_join_user_name);
+            EditText phone = (EditText) getViewByPosition(i, R.id.ed_join_phone);
             EditText joinPerIntroduce = (EditText) getViewByPosition(i, R.id.ed_join_person_introduce);
+
+            TextView card = (TextView) getViewByPosition(i, R.id.ed_join_card);
 
             if (joinRole == null) return null;
             if (name == null) return null;
@@ -123,6 +134,9 @@ public class JoinAdapter extends BaseQuickAdapter<JoinEntry, BaseViewHolder> {
                 ToastUtil.showToast("简介不能为空");
                 return null;
             }
+            joinEntry.setName(personnelName);
+            joinEntry.setPhone(phoneStr);
+            joinEntry.setRole(personnelRole);
         }
         return data;
     }

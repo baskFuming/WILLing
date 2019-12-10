@@ -420,8 +420,7 @@
                     android:layout_width="14dp"
                     android:layout_height="14dp"
                     android:layout_gravity="center"
-                    android:background="@mipmap/check_bg"
-                    android:button="@null"
+                    android:button="@drawable/selector_vote_check"
                     android:gravity="center" />
 
                 <TextView

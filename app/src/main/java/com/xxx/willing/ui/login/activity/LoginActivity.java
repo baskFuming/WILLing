@@ -178,7 +178,8 @@ public class LoginActivity extends BaseTitleActivity {
                                 util.saveBoolean(SharedConst.IS_LOGIN, true);
                                 //x-token
                                 util.saveString(SharedConst.ENCRYPT_VALUE_TOKEN, data.getToken());
-
+                                //userId
+                                util.saveInt(SharedConst.VALUE_USER_ID, data.getUserId());
                                 //判断下是否进入过首页
                                 Activity activity = ActivityManager.getInstance().getActivity(MainActivity.class.getName());
                                 if (activity != null) {

@@ -80,4 +80,7 @@ dependencies {
 
     //多选菜单
     implementation 'com.github.dongjunkun:DropDownMenu:1.0.3'
+
+    //banner
+    implementation 'com.github.dzs-yaodi:Banner:1.2'
 }

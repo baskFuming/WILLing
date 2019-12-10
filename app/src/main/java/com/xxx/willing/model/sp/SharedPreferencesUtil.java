@@ -105,6 +105,7 @@ public class SharedPreferencesUtil {
                 .remove(SharedConst.VALUE_USER_PHONE)
                 .remove(SharedConst.VALUE_USER_ICON)
                 .remove(SharedConst.VALUE_USER_STAR)
+                .remove(SharedConst.VALUE_USER_ID)
                 .apply();
     }
 }

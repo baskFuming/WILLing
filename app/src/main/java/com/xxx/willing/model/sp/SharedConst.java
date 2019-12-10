@@ -16,6 +16,7 @@ public class SharedConst {
     /**
      * 保存的值
      */
+    public static final String VALUE_USER_ID = "value_user_id";   //用户Token
     public static final String VALUE_USER_ICON = "value_user_icon";   //用户头像
     public static final String VALUE_USER_NAME = "value_user_name";   //用户姓名
     public static final String VALUE_USER_PHONE = "value_user_phone";   //用户手机号

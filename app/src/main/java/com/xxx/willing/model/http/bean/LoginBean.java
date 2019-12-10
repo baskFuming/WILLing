@@ -11,8 +11,11 @@ public class LoginBean {
 
     private String token;
 
+    public int getUserId() {
+        return userId;
+    }
+
     public String getToken() {
         return token;
     }
-
 }

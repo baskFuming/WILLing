@@ -19,9 +19,11 @@
             <android.support.design.widget.AppBarLayout
                 android:id="@+id/main_app_bar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:layout_behavior=".view.FlingBehavior">
 
                 <android.support.design.widget.CollapsingToolbarLayout
+                    android:id="@+id/ll_ring_top_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
@@ -32,18 +34,27 @@
                         android:background="#FFFFFF"
                         android:orientation="vertical">
 
-                        <com.youth.banner.Banner
-                            android:id="@+id/vote_banner"
+                        <com.xw.banner.Banner
+                            android:id="@+id/vote_banner_init"
                             android:layout_width="match_parent"
-                            android:layout_height="184dp" />
+                            android:layout_height="184dp"
+                            app:banner_layout="@layout/banner_layout"
+                            app:indicator_drawable_selected="@drawable/banner_selected_shape"
+                            app:indicator_drawable_unselected="@drawable/banner_unselected_shape" />
+
+                        <!--<com.youth.banner.Banner-->
+                            <!--android:id="@+id/vote_banner"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="184dp"-->
+                            <!--android:visibility="gone" />-->
 
                         <RelativeLayout
                             android:id="@+id/vote_relative"
                             android:layout_width="match_parent"
                             android:layout_height="49dp"
                             android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
                             android:layout_marginTop="12dp"
+                            android:layout_marginRight="16dp"
                             android:background="@drawable/shape_back_vote_notice">
 
                             <ImageView
@@ -73,19 +84,25 @@
                 </android.support.design.widget.CollapsingToolbarLayout>
 
                 <LinearLayout
+                    android:id="@+id/ring_tab_outside"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FFFFFF"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                    <com.xxx.willing.view.TabLayout
+                    <!--<com.xxx.willing.view.TabLayout-->
+                    <!--android:id="@+id/vote_tab_layout"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="42dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--app:tabMode="scrollable"-->
+                    <!--app:tabSelectedTextColor="#3C7FFF"-->
+                    <!--app:tabTextColor="#666666" />-->
+                    <com.xxx.willing.view.MyTabLayout
                         android:id="@+id/vote_tab_layout"
                         android:layout_width="match_parent"
-                        android:layout_height="42dp"
-                        android:layout_marginTop="10dp"
-                        app:tabMode="scrollable"
-                        app:tabSelectedTextColor="#3C7FFF"
-                        app:tabTextColor="#666666" />
+                        android:layout_height="wrap_content" />
 
                     <View
                         android:layout_width="match_parent"
@@ -101,9 +118,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
         </android.support.design.widget.CoordinatorLayout>
-
     </LinearLayout>
-
 </android.support.v4.widget.SwipeRefreshLayout>

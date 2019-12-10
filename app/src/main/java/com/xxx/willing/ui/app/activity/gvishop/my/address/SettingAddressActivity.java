@@ -1,4 +1,4 @@
-package com.xxx.willing.ui.app.vote.activity.gvishop.my.address;
+package com.xxx.willing.ui.app.activity.gvishop.my.address;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

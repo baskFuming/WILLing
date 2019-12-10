@@ -1,4 +1,4 @@
-package com.xxx.willing.ui.app.vote.activity;
+package com.xxx.willing.ui.app.activity;
 
 import android.app.Activity;
 import android.content.Intent;

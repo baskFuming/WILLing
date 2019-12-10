@@ -78,6 +78,7 @@
         <activity android:name=".ui.app.activity.vote.JoinDetailsActivity" />
         <activity android:name=".ui.app.activity.vote.VoteJoinActivity" />
         <activity android:name=".ui.app.activity.GameActivity" />
+        <activity android:name=".ui.app.activity.StudyActivity" />
 
         <activity android:name=".ui.my.activity.team.MyChildActivity" />
         <activity android:name=".ui.my.activity.record.MoRecordActivity" />

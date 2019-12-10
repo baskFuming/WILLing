@@ -1,4 +1,4 @@
-package com.xxx.willing.ui.app.vote.activity.gvishop.my.address;
+package com.xxx.willing.ui.app.activity.gvishop.my.address;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -45,7 +45,7 @@ public class AddressManagerActivity extends BaseTitleActivity implements SwipeRe
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.add_new_address://添加新地址
-                SettingAddressActivity.actionStart(this, SettingAddressActivity.ADD_TAG);
+                com.xxx.willing.ui.app.vote.activity.gvishop.my.address.SettingAddressActivity.actionStart(this, com.xxx.willing.ui.app.vote.activity.gvishop.my.address.SettingAddressActivity.ADD_TAG);
                 break;
         }
     }
@@ -59,7 +59,7 @@ public class AddressManagerActivity extends BaseTitleActivity implements SwipeRe
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
         switch (view.getId()) {
             case R.id.update_address_item:
-                SettingAddressActivity.actionStartForResult(this, SettingAddressActivity.UPDATE_TAG);
+                com.xxx.willing.ui.app.vote.activity.gvishop.my.address.SettingAddressActivity.actionStartForResult(this, com.xxx.willing.ui.app.vote.activity.gvishop.my.address.SettingAddressActivity.UPDATE_TAG);
                 break;
         }
     }

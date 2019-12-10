@@ -10,85 +10,30 @@
 
     <include layout="@layout/include_title_bar" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        >
 
-        <LinearLayout
+        <com.yyydjk.library.DropDownMenu
+            android:id="@+id/dropDownMenu"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            app:dddividerColor="@color/gray"
+            app:ddmaskColor="@color/mask_color"
+            app:ddmenuBackgroundColor="@color/white"
+            app:ddmenuSelectedIcon="@mipmap/vote_down"
+            app:ddmenuTextSize="14dp"
+            app:ddmenuUnselectedIcon="@mipmap/vote_pack_up"
+            app:ddtextSelectedColor="#ff333333"
+            app:ddtextUnselectedColor="#ff333333"
+            app:ddunderlineColor="#EFEFEF"
+            />
 
-            <LinearLayout
-                android:id="@+id/re_left"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
+        <include
+            android:layout_below="@+id/dropDownMenu"
+            layout="@layout/include_recycler"
+            tools:ignore="IncludeLayoutParam" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/all_text"
-                    android:textColor="#ff666666"
-                    android:textSize="14dp" />
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="6dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:src="@mipmap/down_bg" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/re_right"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/all_text"
-                    android:textColor="#ff666666"
-                    android:textSize="14dp" />
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="6dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:src="@mipmap/down_bg" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
-            android:background="#EFEFEF" />
-
-        <include layout="@layout/include_recycler" />
-
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

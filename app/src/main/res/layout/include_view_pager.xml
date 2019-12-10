@@ -14,7 +14,8 @@
         app:tabIndicatorHeight="2dp"
         app:tabSelectedTextColor="#333333"
         app:tabTextColor="#666666"
-        app:tabIndicatorFullWidth="false"/>
+        app:tabIndicatorFullWidth="false"
+        />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/main_view_pager"

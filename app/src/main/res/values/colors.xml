@@ -8,6 +8,6 @@
     <color name="colorMainFalse">#999999</color>
     <color name="main_bg">#F8FCFF</color>
     <color name="colorTextColorBtn">#FFFFFF</color>
-
-
+    <color name="tab_default_color">#ff333333</color>
+    <color name="tab_select_color">#ff333333</color>
 </resources>

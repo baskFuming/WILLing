@@ -20,7 +20,7 @@ import com.xxx.willing.model.http.bean.VoteRecordBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.utils.ToastUtil;
-import com.xxx.willing.ui.app.vote.activity.vote.JoinDetailsActivity;
+import com.xxx.willing.ui.app.activity.vote.JoinDetailsActivity;
 import com.xxx.willing.ui.vote.activity.BrandDetailActivity;
 import com.xxx.willing.ui.vote.adapter.VoteItemAdapter;
 
@@ -28,9 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 

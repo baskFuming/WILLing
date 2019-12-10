@@ -1,17 +1,11 @@
-package com.xxx.willing.ui.app.vote.activity.gvishop.my;
+package com.xxx.willing.ui.app.activity.gvishop.my;
 
 import android.view.View;
-import android.widget.TextView;
 
 import com.xxx.willing.R;
-import com.xxx.willing.base.activity.BaseWebActivity;
 import com.xxx.willing.base.fragment.BaseFragment;
-import com.xxx.willing.ui.app.vote.activity.gvishop.my.address.ShipAddressActivity;
-import com.xxx.willing.ui.app.vote.activity.gvishop.my.order.MyOrderActivity;
-
-import org.greenrobot.eventbus.EventBus;
-
-import butterknife.BindView;
+import com.xxx.willing.ui.app.activity.gvishop.my.address.ShipAddressActivity;
+import com.xxx.willing.ui.app.activity.gvishop.my.order.MyOrderActivity;
 import butterknife.OnClick;
 
 /**

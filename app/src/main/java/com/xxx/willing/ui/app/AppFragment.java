@@ -8,12 +8,12 @@ import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.AppConfig;
 import com.xxx.willing.model.utils.ToastUtil;
-import com.xxx.willing.ui.app.vote.activity.GameActivity;
-import com.xxx.willing.ui.app.vote.activity.StudyActivity;
-import com.xxx.willing.ui.app.vote.activity.gvishop.GVIShopActivity;
-import com.xxx.willing.ui.app.vote.activity.partner.PartnerActivity;
-import com.xxx.willing.ui.app.vote.activity.rank.CmpRankActivity;
-import com.xxx.willing.ui.app.vote.activity.vote.VoteJoinActivity;
+import com.xxx.willing.ui.app.activity.GameActivity;
+import com.xxx.willing.ui.app.activity.StudyActivity;
+import com.xxx.willing.ui.app.activity.gvishop.GVIShopActivity;
+import com.xxx.willing.ui.app.activity.partner.PartnerActivity;
+import com.xxx.willing.ui.app.activity.rank.CmpRankActivity;
+import com.xxx.willing.ui.app.activity.vote.VoteJoinActivity;
 
 import butterknife.OnClick;
 

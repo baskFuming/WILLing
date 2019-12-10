@@ -1,14 +1,11 @@
 package com.xxx.willing.ui.app.vote.adapter;
 
 import android.support.annotation.Nullable;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
 import com.xxx.willing.model.http.bean.base.BaseBean;
-import com.xxx.willing.model.utils.CountDownTimerView;
 
 import java.util.List;
 
@@ -21,7 +18,7 @@ import java.util.List;
 public class VoteAdapter extends BaseQuickAdapter<BaseBean, BaseViewHolder> {
 
     public VoteAdapter(@Nullable List<BaseBean> data) {
-        super(R.layout.vote_adapter, data);
+        super(R.layout.item_vote, data);
     }
 
     @Override

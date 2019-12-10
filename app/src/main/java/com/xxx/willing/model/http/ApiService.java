@@ -11,6 +11,7 @@ import com.xxx.willing.model.http.bean.LoginBean;
 import com.xxx.willing.model.http.bean.MessageBean;
 import com.xxx.willing.model.http.bean.MyTeamBean;
 import com.xxx.willing.model.http.bean.MyVoteBean;
+import com.xxx.willing.model.http.bean.TotalFranchiseeBean;
 import com.xxx.willing.model.http.bean.UserInfo;
 import com.xxx.willing.model.http.bean.VoteRecordBean;
 import com.xxx.willing.model.http.bean.WalletAccountBean;
@@ -42,6 +43,15 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     //----------------------------------------------------------展示列表----------------------------------------------------------------------------------------------------------------------------//
+
+    //获取总加盟商列表
+    @POST("/franchiseesKList")
+    @FormUrlEncoded
+    Observable<BaseBean<TotalFranchiseeBean>> getFranchiseeList(
+            @Field("pageNum") int pageNum,
+            @Field("pageSize") int pageSize
+    );
+
     //获取加盟商列表
     @POST("/franchiseesKList")
     @FormUrlEncoded
@@ -82,7 +92,7 @@ public interface ApiService {
     );
 
     //获取我的投票
-    @GET("/CT/invest/getDepositLogs")
+    @GET("/getMyVoteList")
     Observable<BaseBean<PageBean<MyVoteBean>>> getMyVoteList(
             @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize

@@ -48,7 +48,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-        <activity android:name=".base.activity.BaseWebActivity"/>
+
+        <activity android:name=".base.activity.BaseWebActivity" />
 
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.main.SweepActivity" />
@@ -67,16 +68,16 @@
         <activity android:name=".ui.wallet.activity.RechargeActivity" />
         <activity android:name=".ui.wallet.activity.WithdrawalActivity" />
 
-        <activity android:name=".ui.app.vote.activity.gvishop.my.address.AddressManagerActivity"/>
-        <activity android:name=".ui.app.vote.activity.gvishop.my.address.SettingAddressActivity" />
-        <activity android:name=".ui.app.vote.activity.gvishop.my.address.ShipAddressActivity" />
-        <activity android:name=".ui.app.vote.activity.gvishop.my.order.MyOrderActivity" />
-        <activity android:name=".ui.app.vote.activity.gvishop.GVIShopActivity" />
-        <activity android:name=".ui.app.vote.activity.partner.PartnerActivity" />
-        <activity android:name=".ui.app.vote.activity.rank.CmpRankActivity" />
-        <activity android:name=".ui.app.vote.activity.vote.JoinDetailsActivity" />
-        <activity android:name=".ui.app.vote.activity.vote.VoteJoinActivity" />
-        <activity android:name=".ui.app.vote.activity.GameActivity" />
+        <activity android:name=".ui.app.activity.gvishop.my.address.AddressManagerActivity" />
+        <activity android:name=".ui.app.activity.gvishop.my.address.SettingAddressActivity" />
+        <activity android:name=".ui.app.activity.gvishop.my.address.ShipAddressActivity" />
+        <activity android:name=".ui.app.activity.gvishop.my.order.MyOrderActivity" />
+        <activity android:name=".ui.app.activity.gvishop.GVIShopActivity" />
+        <activity android:name=".ui.app.activity.partner.PartnerActivity" />
+        <activity android:name=".ui.app.activity.rank.CmpRankActivity" />
+        <activity android:name=".ui.app.activity.vote.JoinDetailsActivity" />
+        <activity android:name=".ui.app.activity.vote.VoteJoinActivity" />
+        <activity android:name=".ui.app.activity.GameActivity" />
 
         <activity android:name=".ui.my.activity.team.MyChildActivity" />
         <activity android:name=".ui.my.activity.record.MoRecordActivity" />
@@ -96,8 +97,8 @@
         <activity android:name=".ui.my.activity.LanguageActivity" />
         <activity android:name=".ui.my.activity.UseHelpActivity" />
 
-        <activity android:name=".ui.vote.activity.NoticeCenterActivity"/>
-
+        <activity android:name=".ui.vote.activity.NoticeCenterActivity" />
+        <activity android:name=".ui.vote.activity.BrandDetailActivity"/>
     </application>
 
 </manifest>

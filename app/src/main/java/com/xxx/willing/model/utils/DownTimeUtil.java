@@ -45,28 +45,25 @@ public class DownTimeUtil {
         nowTime = time + 1;
         this.callback = callback;
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = time; i > 0; i--) {
-                    try {
-                        if (isClose) {
-                            handler.removeMessages(TIME_MSG);
-                            return;
-                        }
-                        nowTime--;
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+        new Thread(() -> {
+            for (int i = time; i > 0; i--) {
+                try {
+                    if (isClose) {
+                        handler.removeMessages(TIME_MSG);
+                        return;
                     }
-                    handler.sendEmptyMessage(TIME_MSG);
+                    nowTime--;
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                if (isClose) {
-                    handler.removeMessages(END_MSG);
-                    return;
-                }
-                handler.sendEmptyMessage(END_MSG);
+                handler.sendEmptyMessage(TIME_MSG);
             }
+            if (isClose) {
+                handler.removeMessages(END_MSG);
+                return;
+            }
+            handler.sendEmptyMessage(END_MSG);
         }).start();
     }
 

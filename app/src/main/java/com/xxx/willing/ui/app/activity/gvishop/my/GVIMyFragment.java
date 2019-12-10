@@ -30,7 +30,6 @@ public class GVIMyFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        EventBus.getDefault().register(getActivity());
     }
 
     @OnClick({R.id.re_my_order, R.id.re_my_address})
@@ -54,6 +53,5 @@ public class GVIMyFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(getActivity());
     }
 }

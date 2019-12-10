@@ -36,4 +36,10 @@ public class ApiType {
     public static final int WALLET_RELEASE_TYPE_3 = 3;   //合伙人收益
     public static final int WALLET_RELEASE_TYPE_4 = 4;   //加盟店收益
     public static final int WALLET_RELEASE_TYPE_5 = 5;  //品牌收益
+
+    //投票状态
+    public static final int VOTE_PROGRESS_STATUE = 1;  //进行中
+    public static final int VOTE_SUCCESS_STATUE = 2;    //已授权
+    public static final int VOTE_NOT_START_STATUE = 3;   //未开始
+    public static final int VOTE_END_STATUE = 4;   //结束
 }

@@ -21,7 +21,7 @@ import java.util.List;
 public class NoticeCenterAdapter extends BaseQuickAdapter<MessageBean, BaseViewHolder> {
 
     public NoticeCenterAdapter(@Nullable List<MessageBean> data) {
-        super(R.layout.notice_item, data);
+        super(R.layout.item_notice, data);
     }
 
     @Override

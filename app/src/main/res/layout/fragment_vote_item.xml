@@ -1,69 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     tools:context=".ui.vote.VoteFragment">
 
-    <RelativeLayout
-        android:id="@+id/vote_item_linear"
-        android:layout_width="match_parent"
-        android:layout_height="171dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/shape_back_item"
-        android:padding="16dp">
-
-        <TextView
-            android:id="@+id/vote_item_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="7"
-            android:textColor="#666666"
-            android:textSize="14dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:drawablePadding="5dp"
-            android:drawableRight="@mipmap/vote_down"
-            android:text="@string/vote_down"
-            android:textColor="#333333"
-            android:textSize="14dp"
-            android:textStyle="bold" />
-
-    </RelativeLayout>
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="59dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <View
-            android:layout_width="2.5dp"
-            android:layout_height="18dp"
-            android:background="@drawable/shape_item_vote_title" />
+        <RelativeLayout
+            android:id="@+id/vote_item_linear"
+            android:layout_width="match_parent"
+            android:layout_height="171dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/shape_back_item"
+            android:padding="16dp">
 
-        <TextView
+            <TextView
+                android:id="@+id/vote_item_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lineSpacingExtra="3dp"
+                android:lines="7"
+                android:textColor="#666666"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="5dp"
+                android:drawableRight="@mipmap/vote_down"
+                android:text="@string/vote_down"
+                android:textColor="#333333"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="2.5dp"
+                android:layout_height="18dp"
+                android:background="@drawable/shape_item_vote_title" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:text="@string/item_vote_title"
+                android:textColor="#FF333333"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:text="@string/item_vote_title"
-            android:textColor="#FF333333"
-            android:textSize="19dp"
-            android:textStyle="bold" />
+            android:descendantFocusability="blocksDescendants">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/main_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/main_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-</LinearLayout>
+</android.support.v4.widget.NestedScrollView>

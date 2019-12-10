@@ -1,4 +1,4 @@
-package com.xxx.willing.ui.app.vote.activity.gvishop;
+package com.xxx.willing.ui.app.activity.gvishop;
 
 import android.app.Activity;
 import android.content.Intent;

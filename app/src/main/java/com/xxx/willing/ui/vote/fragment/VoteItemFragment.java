@@ -16,9 +16,12 @@ import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.BrandBean;
 import com.xxx.willing.model.http.bean.FranchiseeBean;
+import com.xxx.willing.model.http.bean.VoteRecordBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.utils.ToastUtil;
+import com.xxx.willing.ui.app.vote.activity.vote.JoinDetailsActivity;
+import com.xxx.willing.ui.vote.activity.BrandDetailActivity;
 import com.xxx.willing.ui.vote.adapter.VoteItemAdapter;
 
 import java.util.ArrayList;
@@ -36,7 +39,7 @@ import io.reactivex.schedulers.Schedulers;
  * @date 2019-12-07
  */
 
-public class VoteItemFragment extends BaseFragment implements BaseQuickAdapter.RequestLoadMoreListener {
+public class VoteItemFragment extends BaseFragment implements BaseQuickAdapter.RequestLoadMoreListener, BaseQuickAdapter.OnItemChildClickListener {
 
     public static VoteItemFragment getInstance(BrandBean brandBean) {
         VoteItemFragment voteFragment = new VoteItemFragment();
@@ -80,34 +83,40 @@ public class VoteItemFragment extends BaseFragment implements BaseQuickAdapter.R
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycler.setAdapter(mAdapter);
         mAdapter.setOnLoadMoreListener(this, mRecycler);
+        mAdapter.setOnItemChildClickListener(this);
 
-        getBrandList();
+        getFranchiseeList();
     }
 
     @OnClick({R.id.vote_item_linear})
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.vote_item_linear:
-
+                BrandDetailActivity.actionStart(getActivity(), bean.getName(), bean.getDetails(), bean.getImg());
                 break;
         }
     }
 
+    @Override
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+        JoinDetailsActivity.actionStart(getActivity(), bean.getId());
+    }
+
     public void onRefresh() {
         page = UIConfig.PAGE_DEFAULT;
-        getBrandList();
+        getFranchiseeList();
     }
 
     @Override
     public void onLoadMoreRequested() {
         page++;
-        getBrandList();
+        getFranchiseeList();
     }
 
     /**
-     * @Model 获取品牌列表
+     * @Model 获取投票加盟列表
      */
-    private void getBrandList() {
+    private void getFranchiseeList() {
         Api.getInstance().getFranchiseeList(bean.getId(), page, UIConfig.PAGE_SIZE)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -121,6 +130,11 @@ public class VoteItemFragment extends BaseFragment implements BaseQuickAdapter.R
                             if (list != null && list.size() != 0) {
                                 mList.clear();
                                 mList.addAll(list);
+                                if (list.size() < UIConfig.PAGE_SIZE) {
+                                    mAdapter.loadMoreEnd(true);
+                                } else {
+                                    mAdapter.loadMoreComplete();
+                                }
                                 mAdapter.notifyDataSetChanged();
                             }
                         }
@@ -132,5 +146,6 @@ public class VoteItemFragment extends BaseFragment implements BaseQuickAdapter.R
                     }
                 });
     }
+
 
 }

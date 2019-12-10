@@ -14,14 +14,24 @@ public class FranchiseeBean {
      * status : 0
      */
 
+    private int id;
     private String imgUrl;
     private String franName;
     private String franId;
+    private String detail;
     private String releaseTime;
     private String endTime;
     private String nowTime;
     private int voteNum;
     private int status;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
 
     public String getFranName() {
         return franName;

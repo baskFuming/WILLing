@@ -18,6 +18,7 @@ import butterknife.BindView;
  */
 
 public class StudyActivity extends BaseActivity {
+
     public static void actionStart(Activity activity, String url) {
         Intent intent = new Intent(activity, StudyActivity.class);
         intent.putExtra("Url", url);
@@ -37,6 +38,7 @@ public class StudyActivity extends BaseActivity {
     private String funName;
     private String gameName;
     private String amount;
+
     @BindView(R.id.main_title)
     TextView title;
     @BindView(R.id.web_progress)

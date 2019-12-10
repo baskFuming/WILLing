@@ -1,6 +1,9 @@
 package com.xxx.willing.ui.vote;
 
+import android.support.design.widget.AppBarLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -31,21 +34,27 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class VoteFragment extends BaseFragment {
+public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    @BindView(R.id.vote_banner)
-    Banner mBanner;
     @BindView(R.id.vote_tab_layout)
     TabLayout mTabLayout;
     @BindView(R.id.vote_view_pager)
     ViewPager mViewPager;
+    @BindView(R.id.main_app_bar)
+    AppBarLayout mAppBar;
+    @BindView(R.id.main_refresh)
+    SwipeRefreshLayout mRefresh;
+
     @BindView(R.id.main_home_view_flipper)
     ViewFlipper mViewFlipper;
+    @BindView(R.id.vote_banner)
+    Banner mBanner;
 
     private List<MessageBean> mNoticeList = new ArrayList<>();
     private List<BaseFragment> mFragment = new ArrayList<>();
     private List<String> mTitle = new ArrayList<>();
     private VoteAdapter mAdapter;
+    private int position;
 
     @Override
     protected int getLayoutId() {
@@ -58,18 +67,50 @@ public class VoteFragment extends BaseFragment {
         getMessageList();
         getBrandList();
 
+        mAppBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
+            if (verticalOffset >= 0) {
+                mRefresh.setEnabled(true);
+            } else {
+                mRefresh.setEnabled(false);
+            }
+        });
+        mRefresh.setOnRefreshListener(this);
+
         mAdapter = new VoteAdapter(getChildFragmentManager(), mFragment, mTitle);
         mViewPager.setAdapter(mAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                position = i;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
     }
 
     @OnClick({R.id.vote_relative})
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.vote_relative:
-
+                NoticeCenterActivity.actionStart(getActivity());
                 break;
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        VoteItemFragment item = (VoteItemFragment) mAdapter.getItem(position);
+        item.onRefresh();
+        mRefresh.setRefreshing(false);
     }
 
     /**
@@ -146,7 +187,7 @@ public class VoteFragment extends BaseFragment {
                                 if (list.size() == 1) {
                                     addView(list.get(0));
                                 }
-                                addOnClick();
+//                                addOnClick();
                             }
                         }
                     }
@@ -207,4 +248,5 @@ public class VoteFragment extends BaseFragment {
                     }
                 });
     }
+
 }

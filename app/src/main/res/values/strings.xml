@@ -430,7 +430,7 @@
 
     <string name="chose_camer">从相册选取</string>
     <string name="take_photo">拍照</string>
-    <string name="modify_success" >修改成功</string>
+    <string name="modify_success">修改成功</string>
     <string name="item_vote_number">票</string>
     <string name="item_vote_progress">进行中</string>
     <string name="item_vote_success">已授权</string>
@@ -439,4 +439,6 @@
     <string name="item_vote_title">加盟竞选</string>
     <string name="item_poundage">手续费</string>
     <string name="item_balance">余额 </string>
+    <string name="exchange_error">请输入正确的数量</string>
+    <string name="brand_detail_title">品牌介绍</string>
 </resources>

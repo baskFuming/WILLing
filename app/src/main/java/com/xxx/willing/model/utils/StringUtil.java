@@ -14,11 +14,8 @@ import java.util.Date;
  */
 public class StringUtil {
 
-    /**
-     * 把科学计数法显示出全部数字
-     */
     public static long getTime(String s) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd hh:MM:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         try {
             Date parse = simpleDateFormat.parse(s);
             return parse.getTime();
@@ -27,15 +24,6 @@ public class StringUtil {
         }
 
         return 0;
-    }
-
-
-    /**
-     * 把科学计数法显示出全部数字
-     */
-    public static String getDoubleStr(double d) {
-        NumberFormat nf = NumberFormat.getInstance();
-        return nf.format(d);
     }
 
     /**
@@ -50,13 +38,6 @@ public class StringUtil {
         return phone;
     }
 
-    /**
-     * 获取时间
-     */
-    public static String getSimpleDataFormatTime(String pattern, long time) {
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat(pattern);
-        return format.format(new Date(time));
-    }
 
     /**
      * 获取币

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.Resource;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -26,31 +27,31 @@ public class GlideUtil {
     /**
      * 加载圆角图片
      */
-    public static void load(Context context, String url,  final ImageView imageView) {
+    public static void load(Context context, String url, final ImageView imageView) {
         if (context != null) {
             Util.loadImage(Glide.with(context).load(url), imageView);
         }
     }
 
-    public static void load(Context context, File url,  final ImageView imageView) {
+    public static void load(Context context, File url, final ImageView imageView) {
         if (context != null) {
             Util.loadImage(Glide.with(context).load(url), imageView);
         }
     }
 
-    public static void loadCircle(Context context, String url,  final ImageView imageView) {
+    public static void loadCircle(Context context, String url, final ImageView imageView) {
         if (context != null) {
             Util.loadCircleImage(Glide.with(context).load(url), context, imageView);
         }
     }
 
-    public static void loadFillet(Context context, String url,  final ImageView imageView) {
+    public static void loadFillet(Context context, String url, final ImageView imageView) {
         if (context != null) {
             Util.loadFilletImage(Glide.with(context).load(url), context, imageView);
         }
     }
 
-    public static void loadBack(Context context, String url,  final View view) {
+    public static void loadBack(Context context, String url, final View view) {
         if (context != null) {
             Util.loadBackGround(Glide.with(context).load(url), context, view);
         }
@@ -62,22 +63,18 @@ public class GlideUtil {
         }
     }
 
-    public static void getBitmap(Context context, String url, SimpleTarget<Bitmap> simpleTarget) {
-        Glide.with(context).load(url).asBitmap().into(simpleTarget);
-    }
-
     //工具类
     private static class Util {
 
         //加载原图
-        private static void loadImage(DrawableTypeRequest<?> drawableTypeRequest,  final ImageView imageView) {
+        private static void loadImage(DrawableTypeRequest<?> drawableTypeRequest, final ImageView imageView) {
             drawableTypeRequest
                     .error(R.mipmap.my_icon)//设置缓存
                     .into(imageView);
         }
 
         //加载圆形
-        private static void loadCircleImage(DrawableTypeRequest<?> drawableTypeRequest,  final Context context, final ImageView imageView) {
+        private static void loadCircleImage(DrawableTypeRequest<?> drawableTypeRequest, final Context context, final ImageView imageView) {
             drawableTypeRequest.asBitmap()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .skipMemoryCache(true)
@@ -93,7 +90,7 @@ public class GlideUtil {
         }
 
         //加载圆角
-        private static void loadFilletImage(DrawableTypeRequest<?> drawableTypeRequest,  final Context context, final ImageView imageView) {
+        private static void loadFilletImage(DrawableTypeRequest<?> drawableTypeRequest, final Context context, final ImageView imageView) {
             drawableTypeRequest.asBitmap()
                     .error(R.mipmap.my_icon)//设置缓存
                     .into(new BitmapImageViewTarget(imageView) {
@@ -107,8 +104,9 @@ public class GlideUtil {
                     });
         }
 
+
         //加载背景图
-        private static void loadBackGround(DrawableTypeRequest<?> drawableTypeRequest,  final Context context, final View view) {
+        private static void loadBackGround(DrawableTypeRequest<?> drawableTypeRequest, final Context context, final View view) {
             drawableTypeRequest.asBitmap()
                     .error(R.mipmap.my_icon)//设置缓存
                     .into(new SimpleTarget<Bitmap>() {

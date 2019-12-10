@@ -23,6 +23,7 @@
             app:ddmenuBackgroundColor="@color/white"
             app:ddmenuSelectedIcon="@mipmap/vote_down"
             app:ddmenuTextSize="14dp"
+            app:ddmenuUnselectedIcon="@mipmap/vote_down"
             app:ddtextSelectedColor="#ff333333"
             app:ddtextUnselectedColor="#ff333333"
             app:ddunderlineColor="#EFEFEF" />

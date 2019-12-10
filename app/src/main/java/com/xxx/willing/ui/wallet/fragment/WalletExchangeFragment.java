@@ -230,7 +230,13 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
      */
     private void exchange() {
         String baseAmount = mBaseAmount.getText().toString();
-        double amount = Double.parseDouble(baseAmount);
+        double amount;
+        try {
+            amount = Double.parseDouble(baseAmount);
+        } catch (Exception e) {
+            ToastUtil.showToast(getString(R.string.exchange_error));
+            return;
+        }
 
         int baseCoinId;
         int targetCoinId;

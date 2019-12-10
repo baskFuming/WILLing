@@ -11,8 +11,8 @@ import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.base.activity.BaseWebActivity;
 import com.xxx.willing.base.fragment.FragmentManager;
+import com.xxx.willing.ui.app.activity.gvishop.my.GVIMyFragment;
 import com.xxx.willing.ui.app.vote.activity.gvishop.home.GVIHomeFragment;
-import com.xxx.willing.ui.app.vote.activity.gvishop.my.GVIMyFragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/main_bg"
     android:orientation="vertical"
+    android:id="@+id/main"
     tools:context=".ui.my.activity.record.MoRecordActivity">
 
     <include layout="@layout/include_title_bar" />
@@ -21,17 +22,16 @@
             app:dddividerColor="@color/gray"
             app:ddmaskColor="@color/mask_color"
             app:ddmenuBackgroundColor="@color/white"
-            app:ddmenuSelectedIcon="@mipmap/vote_down"
+            app:ddmenuSelectedIcon="@mipmap/vote_pack_up"
             app:ddmenuTextSize="14dp"
             app:ddmenuUnselectedIcon="@mipmap/vote_down"
             app:ddtextSelectedColor="#ff333333"
             app:ddtextUnselectedColor="#ff333333"
             app:ddunderlineColor="#EFEFEF" />
 
-        <include
-            layout="@layout/include_recycler"
-            android:layout_below="@+id/dropDownMenu"
-            tools:ignore="IncludeLayoutParam" />
-
+        <!--<include-->
+            <!--layout="@layout/include_recycler"-->
+            <!--android:layout_below="@+id/dropDownMenu"-->
+            <!--tools:ignore="IncludeLayoutParam" />-->
     </RelativeLayout>
 </LinearLayout>

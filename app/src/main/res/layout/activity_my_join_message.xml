@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_bg"
     android:orientation="vertical"
-    tools:context=".ui.app.activity.vote.JoinDetailsActivity">
-
+    tools:context=".ui.my.activity.join.MyJoinMessageActivity">
     <include layout="@layout/include_title_bar" />
 
     <android.support.v4.widget.NestedScrollView
@@ -82,43 +82,6 @@
                     android:textColor="#ff666666"
                     android:textSize="12dp" />
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:orientation="horizontal">
-
-                <ProgressBar
-                    android:id="@+id/task_progress"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="344dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="center"
-                    android:max="100"
-                    android:progress="50"
-                    android:progressDrawable="@drawable/progressbar_bgs" />
-
-                <TextView
-                    android:id="@+id/task_progress_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="80%"
-                    android:textColor="#ff3c7fff"
-                    android:textSize="14dp" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/vote_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/activity_Top_margin"
-                android:text="100332/100000票"
-                android:textColor="#ff666666"
-                android:textSize="14dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -311,7 +274,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="@string/join_introduce"
+                android:text="@string/node_introduce"
                 android:textColor="#ff333333"
                 android:textSize="16dp" />
 
@@ -363,7 +326,7 @@
                 android:layout_marginBottom="40dp"
                 android:layout_marginTop="40dp"
                 android:gravity="center"
-                android:text="@string/vote_btn" />
+                />
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

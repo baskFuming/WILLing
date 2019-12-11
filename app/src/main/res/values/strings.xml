@@ -214,6 +214,7 @@
     <string name="my_vote">我的投票</string>
     <string name="my_team">我的团队</string>
     <string name="my_join">加盟申请</string>
+    <string name="my_join_message">我的加盟详情</string>
     <string name="my_money">资金记录</string>
     <string name="my_account">账户设置</string>
     <string name="my_submitted_review">已提交审核</string>
@@ -443,4 +444,6 @@
     <string name="exchange_error">请输入正确的数量</string>
     <string name="brand_detail_title">品牌介绍</string>
     <string name="vote_success" tools:ignore="ExtraTranslation">投票成功</string>
+    <string name="join_brand_name">所属品牌</string>
+    <string name="node_introduce">节点介绍</string>
 </resources>

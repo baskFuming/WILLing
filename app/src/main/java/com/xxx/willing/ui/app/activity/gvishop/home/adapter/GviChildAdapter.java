@@ -17,15 +17,15 @@ import java.util.List;
  * @date 2019-12-06
  */
 
-public class GviChildAdapter extends BaseQuickAdapter<GviBean.DataBean.ListBean, BaseViewHolder> {
+public class GviChildAdapter extends BaseQuickAdapter<GviBean.ListBean, BaseViewHolder> {
 
 
-    public GviChildAdapter(@Nullable List<GviBean.DataBean.ListBean> data) {
+    public GviChildAdapter(@Nullable List<GviBean.ListBean> data) {
         super(R.layout.gvi_child_item, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, GviBean.DataBean.ListBean item) {
+    protected void convert(BaseViewHolder helper, GviBean.ListBean item) {
         helper.setText(R.id.item_title, mContext.getString(R.string.item_phone_securities) + item.getPrice())
                 .setText(R.id.item_price, item.getGviPrice() + "GVI");
         GlideUtil.load(mContext, item.getLogos(), helper.getView(R.id.item_img));

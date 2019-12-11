@@ -47,7 +47,7 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
 
     private int page = UIConfig.PAGE_DEFAULT;
     private GviAdapter adapter;
-    private List<GviBean.DataBean> mList = new ArrayList<>();
+    private List<GviBean> mList = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
@@ -99,7 +99,7 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
                             return;
                         }
 
-                        List<GviBean.DataBean> list = bean.getData().get(0).getData();
+                        List<GviBean> list = bean.getData();
                         if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
                             mNotData.setVisibility(View.VISIBLE);
                             mRecycler.setVisibility(View.GONE);

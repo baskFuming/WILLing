@@ -18,21 +18,14 @@ import java.util.List;
  * @date 2019-12-06
  */
 
-public class GviAdapter extends BaseQuickAdapter<GviBean.DataBean, BaseViewHolder> {
+public class GviAdapter extends BaseQuickAdapter<GviBean, BaseViewHolder> {
 
-    private GviBean.DataBean bean;
-
-    public void notify(GviBean.DataBean bean) {
-        this.bean = bean;
-        notifyDataSetChanged();
-    }
-
-    public GviAdapter(@Nullable List<GviBean.DataBean> data) {
+    public GviAdapter(@Nullable List<GviBean> data) {
         super(R.layout.gvi_item, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, GviBean.DataBean item) {
+    protected void convert(BaseViewHolder helper, GviBean item) {
         helper.setText(R.id.life_type, item.getName())
                 .setText(R.id.title, item.getDetails());
         RecyclerView recyclerView = helper.getView(R.id.item_recycler);
@@ -41,12 +34,12 @@ public class GviAdapter extends BaseQuickAdapter<GviBean.DataBean, BaseViewHolde
         Object tag = recyclerView.getTag();
         GviChildAdapter gviChildAdapter;
         if (tag == null) {
-            gviChildAdapter = new GviChildAdapter(bean.getList());
+            gviChildAdapter = new GviChildAdapter(item.getList());
             recyclerView.setTag(gviChildAdapter);
             recyclerView.setAdapter(gviChildAdapter);
         } else {
             gviChildAdapter = (GviChildAdapter) tag;
-            bean.getList();
+            gviChildAdapter.setNewData(item.getList());
             gviChildAdapter.notifyDataSetChanged();
         }
     }

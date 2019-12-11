@@ -1,4 +1,4 @@
-package com.xxx.willing.ui.app.vote.activity.gvishop.my.order.fragment;
+package com.xxx.willing.ui.app.activity.gvishop.my.order.fragment;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;

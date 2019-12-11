@@ -114,21 +114,11 @@ public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshL
             dropDownMenu.closeMenu();
         });
 
-
-        //init context view
-        TextView contentView = new TextView(this);
-        contentView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        contentView.setText("内容显示区域");
-        contentView.setGravity(Gravity.CENTER);
-        contentView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-
         final RecyclerView mRecycler = new RecyclerView(this);
         mRecycler.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         dropDownAdapter = new DropDownAdapter(mList);
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
         mRecycler.setAdapter(dropDownAdapter);
-        contentView.setGravity(Gravity.TOP);
-//        mRefresh.setOnRefreshListener(this);
         dropDownAdapter.setOnLoadMoreListener(this, mRecycler);
 
         //添加到菜单

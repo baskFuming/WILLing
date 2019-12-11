@@ -14,6 +14,7 @@ import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.model.http.utils.ApiType;
 import com.xxx.willing.ui.app.vote.activity.partner.fragment.PartnerFragment;
 import com.xxx.willing.ui.app.vote.adapter.ViewPagerAdapter;
+import com.xxx.willing.view.MyTabLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,7 +42,7 @@ public class PartnerActivity extends BaseTitleActivity {
     @BindView(R.id.main_content)
     TextView mContent;
     @BindView(R.id.main_tab_layout)
-    TabLayout mTabLayout;
+    MyTabLayout mTabLayout;
     @BindView(R.id.main_view_pager)
     ViewPager mViewPager;
     private List<BaseFragment> fragments = new ArrayList<>();
@@ -68,6 +69,14 @@ public class PartnerActivity extends BaseTitleActivity {
         fragments.add(PartnerFragment.getInstance(ApiType.PARTNER_LIST_AERA_ALL, list.get(1)));
         fragments.add(PartnerFragment.getInstance(ApiType.PARTNER_LIST_CITY_ALL, list.get(2)));
         fragments.add(PartnerFragment.getInstance(ApiType.PARTNER_LIST_DIRECTOR_ALL, list.get(3)));
+
+        mTabLayout.setSelectedIndicatorHeight(6);
+        mTabLayout.setTabIndicatorWidth(80);
+        mTabLayout.setTabTextColors(getResources().getColor(R.color.main_tab_default_color), getResources().getColor(R.color.main_tab_select_color));
+        mTabLayout.setTabTextSize(38, 44);
+        mTabLayout.setTextSelectedBold(true);
+        mTabLayout.setTabMode(MyTabLayout.GRAVITY_CENTER);
+        mTabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.main_tab_select_color));
 
         mViewPager.setOffscreenPageLimit(fragments.size() - 1);
         mViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), fragments, list));

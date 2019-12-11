@@ -10,7 +10,7 @@ import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.model.http.utils.ApiType;
-import com.xxx.willing.ui.app.vote.activity.gvishop.my.order.fragment.MyOrderFragment;
+import com.xxx.willing.ui.app.activity.gvishop.my.order.fragment.MyOrderFragment;
 import com.xxx.willing.ui.app.vote.adapter.ViewPagerAdapter;
 import com.xxx.willing.view.MyTabLayout;
 
@@ -74,8 +74,8 @@ public class MyOrderActivity extends BaseTitleActivity {
         mTabLayout.setTabMode(MyTabLayout.GRAVITY_CENTER);
         mTabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.main_tab_select_color));
 
-        mViewPager.setOffscreenPageLimit(fragments.size() - 1);
         mViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), fragments, list));
         mTabLayout.setupWithViewPager(mViewPager);
+        mViewPager.setOffscreenPageLimit(fragments.size() - 1);
     }
 }

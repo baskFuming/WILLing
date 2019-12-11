@@ -1,13 +1,19 @@
 package com.xxx.willing.ui.vote;
 
+import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import com.xw.banner.listener.OnBannerListener;
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.model.http.Api;
@@ -17,11 +23,13 @@ import com.xxx.willing.model.http.bean.BrandBean;
 import com.xxx.willing.model.http.bean.MessageBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
+import com.xxx.willing.model.utils.BannerInitUtil;
 import com.xxx.willing.model.utils.BannerUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.vote.activity.NoticeCenterActivity;
 import com.xxx.willing.ui.vote.adapter.VoteAdapter;
 import com.xxx.willing.ui.vote.fragment.VoteItemFragment;
+import com.xxx.willing.view.MyTabLayout;
 import com.xxx.willing.view.TabLayout;
 import com.youth.banner.Banner;
 
@@ -36,8 +44,10 @@ import io.reactivex.schedulers.Schedulers;
 
 public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
+    //    @BindView(R.id.vote_tab_layout)
+//    TabLayout mTabLayout;
     @BindView(R.id.vote_tab_layout)
-    TabLayout mTabLayout;
+    MyTabLayout myTabLayout;
     @BindView(R.id.vote_view_pager)
     ViewPager mViewPager;
     @BindView(R.id.main_app_bar)
@@ -47,8 +57,10 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     @BindView(R.id.main_home_view_flipper)
     ViewFlipper mViewFlipper;
-    @BindView(R.id.vote_banner)
-    Banner mBanner;
+    //    @BindView(R.id.vote_banner)
+//    Banner mBanner;
+    @BindView(R.id.vote_banner_init)
+    com.xw.banner.Banner banner;
 
     private List<MessageBean> mNoticeList = new ArrayList<>();
     private List<BaseFragment> mFragment = new ArrayList<>();
@@ -66,7 +78,15 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         getBannerList();
         getMessageList();
         getBrandList();
-
+        //滑动卡顿
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) mAppBar.getLayoutParams();
+        AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
+        behavior.setDragCallback(new AppBarLayout.Behavior.DragCallback() {
+            @Override
+            public boolean canDrag(@NonNull AppBarLayout appBarLayout) {
+                return true;
+            }
+        });
         mAppBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if (verticalOffset >= 0) {
                 mRefresh.setEnabled(true);
@@ -76,9 +96,17 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         });
         mRefresh.setOnRefreshListener(this);
 
+        myTabLayout.setSelectedIndicatorHeight(6);
+        myTabLayout.setTabIndicatorWidth(80);
+        myTabLayout.setTabTextColors(getResources().getColor(R.color.main_tab_default_color), getResources().getColor(R.color.main_tab_select_color));
+        myTabLayout.setTabTextSize(38, 44);
+        myTabLayout.setTextSelectedBold(true);
+        myTabLayout.setTabMode(MyTabLayout.GRAVITY_CENTER);
+        myTabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.main_tab_select_color));
+
         mAdapter = new VoteAdapter(getChildFragmentManager(), mFragment, mTitle);
         mViewPager.setAdapter(mAdapter);
-        mTabLayout.setupWithViewPager(mViewPager);
+        myTabLayout.setupWithViewPager(mViewPager);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
@@ -235,7 +263,7 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                                 for (int i = 0; i < list.size(); i++) {
                                     list1.add(list.get(i).getImg());
                                 }
-                                BannerUtil.init(mBanner, list1, position -> {
+                                BannerInitUtil.init(banner, list1, 2, position -> {
                                     String url = list.get(position).getUrl();
                                 });
                             }
@@ -248,5 +276,4 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                     }
                 });
     }
-
 }

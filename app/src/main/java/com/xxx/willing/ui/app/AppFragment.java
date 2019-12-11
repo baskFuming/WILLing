@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.view.View;
 
 import com.xxx.willing.R;
+import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.base.activity.BaseWebActivity;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.AppConfig;
 import com.xxx.willing.model.utils.ToastUtil;
@@ -52,20 +54,19 @@ public class AppFragment extends BaseFragment {
                 uri = Uri.parse(AppConfig.APP_BTC_BROWSER);
                 break;
             case R.id.app_H_coin:
-//                uri = Uri.parse(ConfigClass.APP_BTC_BROWSER);
+                uri = Uri.parse(AppConfig.APP_HCOIN_BROWSER);
                 break;
             case R.id.app_huo_bi:
-//                uri = Uri.parse(ConfigClass.APP_BTC_BROWSER);
+                uri = Uri.parse(AppConfig.APP_HUOBI_BROWSER);
                 break;
             case R.id.app_plane:
                 GameActivity.actionStart(getActivity(), "");
                 break;
             case R.id.app_not:
-                //TODO 敬请期待
                 ToastUtil.showToast(getString(R.string.app_not));
                 break;
             case R.id.app_kong_yi_college:
-                StudyActivity.actionStart(getActivity(), "");
+                BaseWebActivity.actionStart(getActivity(), getString(R.string.app_kong_yi_college), AppConfig.APP_Study_BROWSER);
                 break;
         }
         if (uri != null) {

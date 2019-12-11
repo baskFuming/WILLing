@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical"
+    tools:context=".ui.vote.activity.BrandIntroductionActivity">
+
+    <include layout="@layout/include_title_bar" />
+
+    <RelativeLayout
+        android:paddingLeft="@dimen/activity_left_margin"
+        android:paddingRight="@dimen/activity_right_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/brand_img"
+            android:layout_width="365dp"
+            android:layout_height="205dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:background="@mipmap/vote_bg" />
+
+        <TextView
+            android:layout_marginTop="32dp"
+            android:id="@+id/brand_name"
+            android:layout_width="82dp"
+            android:layout_height="34dp"
+            android:text="优e学"
+            android:textColor="#ffffffff"
+            android:textSize="19sp"
+            android:gravity="center"
+            android:background="@drawable/shape_btn_main_blue"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/text_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ff666666"
+        android:textSize="14dp" />
+</LinearLayout>

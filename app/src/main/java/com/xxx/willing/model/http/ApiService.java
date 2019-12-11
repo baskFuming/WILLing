@@ -6,6 +6,7 @@ import com.xxx.willing.model.http.bean.AssetRecordBean;
 import com.xxx.willing.model.http.bean.BannerBean;
 import com.xxx.willing.model.http.bean.BrandBean;
 import com.xxx.willing.model.http.bean.FranchiseeBean;
+import com.xxx.willing.model.http.bean.GviBean;
 import com.xxx.willing.model.http.bean.IsSettingPayPswBean;
 import com.xxx.willing.model.http.bean.JoinInfoBean;
 import com.xxx.willing.model.http.bean.LoginBean;
@@ -327,5 +328,9 @@ public interface ApiService {
     Observable<BaseBean<Map<String, String>>> upLoadPhotoMap(
             @Part List<MultipartBody.Part> file
     );
+
+    //GVI商城
+    @POST(HttpConfig.BASE_URL_PATH + "/gviShop")
+    Observable<BaseBean<List<GviBean>>> getShop();
 
 }

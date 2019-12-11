@@ -17,6 +17,7 @@ import com.xxx.willing.model.utils.GlideUtil;
 import com.xxx.willing.ui.my.activity.AccountSettingActivity;
 import com.xxx.willing.ui.my.activity.InviteFriendActivity;
 import com.xxx.willing.ui.my.activity.join.JoinApplyActivity;
+import com.xxx.willing.ui.my.activity.join.MyJoinMessageActivity;
 import com.xxx.willing.ui.my.activity.record.MoRecordActivity;
 import com.xxx.willing.ui.my.activity.sign.SignActivity;
 import com.xxx.willing.ui.my.activity.team.MyTeamActivity;
@@ -52,6 +53,7 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     private String name;
     private String phone;
     private String icon;
+    private SharedPreferencesUtil instance;
 
     @Override
     protected int getLayoutId() {
@@ -61,6 +63,7 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     @SuppressLint("SetTextI18n")
     @Override
     protected void initData() {
+        instance = SharedPreferencesUtil.getInstance();
         loadData();
         mRefresh.setOnRefreshListener(this);
     }
@@ -91,7 +94,12 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 MyTeamActivity.actionStart(getActivity());
                 break;
             case R.id.re_my_join://  加盟申请
-                JoinApplyActivity.actionStart(getActivity());
+                boolean isSettingJoin = instance.getBoolean(SharedConst.IS_SETTING_JOIN);
+                if (isSettingJoin) {//提交完成
+                    MyJoinMessageActivity.actionStart(getActivity());
+                } else {//已提交
+                    JoinApplyActivity.actionStart(getActivity());
+                }
                 break;
             case R.id.re_my_money: //资金记录
                 MoRecordActivity.actionStart(getActivity());
@@ -113,7 +121,6 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     }
 
     private void loadData() {
-        SharedPreferencesUtil instance = SharedPreferencesUtil.getInstance();
         name = instance.getString(SharedConst.VALUE_USER_NAME);
         phone = instance.getString(SharedConst.VALUE_USER_PHONE);
         icon = instance.getString(SharedConst.VALUE_USER_ICON);

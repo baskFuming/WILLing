@@ -7,8 +7,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -46,12 +48,12 @@ public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshL
     @BindView(R.id.dropDownMenu)
     DropDownMenu dropDownMenu;
 
-    @BindView(R.id.main_recycler)
-    RecyclerView mRecycler;
-    @BindView(R.id.main_not_data)
-    LinearLayout mNotData;
-    @BindView(R.id.main_refresh)
-    SwipeRefreshLayout mRefresh;
+//    @BindView(R.id.main_recycler)
+//    RecyclerView mRecycler;
+//    @BindView(R.id.main_not_data)
+//    LinearLayout mNotData;
+//    @BindView(R.id.main_refresh)
+//    SwipeRefreshLayout mRefresh;
 
     private String headers[] = {"全部", "全部"};
     private List<View> popupViews = new ArrayList<>();
@@ -112,11 +114,21 @@ public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshL
             dropDownMenu.closeMenu();
         });
 
-        //RecyclerView显示真是数据切换
+
+        //init context view
+        TextView contentView = new TextView(this);
+        contentView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        contentView.setText("内容显示区域");
+        contentView.setGravity(Gravity.CENTER);
+        contentView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+
+        final RecyclerView mRecycler = new RecyclerView(this);
+        mRecycler.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         dropDownAdapter = new DropDownAdapter(mList);
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
         mRecycler.setAdapter(dropDownAdapter);
-        mRefresh.setOnRefreshListener(this);
+        contentView.setGravity(Gravity.TOP);
+//        mRefresh.setOnRefreshListener(this);
         dropDownAdapter.setOnLoadMoreListener(this, mRecycler);
 
         //添加到菜单

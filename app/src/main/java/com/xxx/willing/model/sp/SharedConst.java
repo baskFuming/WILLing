@@ -24,6 +24,9 @@ public class SharedConst {
     public static final String VALUE_COUNTY_CODE = "value_county_code";   //用户手机号编码
     public static final String VALUE_USER_STAR = "value_user_star";   //用户等级
 
+
+    public static final String STATUS_FRAN = "status_fran";   //提交审核状态
+
     /**
      * 保存的状态
      */

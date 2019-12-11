@@ -119,6 +119,7 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
         icon = instance.getString(SharedConst.VALUE_USER_ICON);
         int star = instance.getInt(SharedConst.VALUE_USER_STAR);
         boolean isSettingJoin = instance.getBoolean(SharedConst.IS_SETTING_JOIN);
+        Integer statusFran = instance.getInt(SharedConst.STATUS_FRAN);
 
         mName.setText(name);
         mPhone.setText(phone);
@@ -133,6 +134,15 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
             mReview.setText(R.string.my_submitted_review);
         } else {
             mReview.setText("");
+        }
+
+        switch (statusFran){
+            case 1:
+
+                break;
+            case 2:
+
+                break;
         }
 
     }

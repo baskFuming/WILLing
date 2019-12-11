@@ -17,7 +17,12 @@ public class UserInfo {
     private String telphone;
     private String nickname;
     private String avatar;
+    private Integer franStatus;
     private String areacode;
+
+    public Integer getFranStatus() {
+        return franStatus;
+    }
 
     public int getStar() {
         return star;

@@ -38,6 +38,7 @@ public class WalletFragment extends BaseFragment {
         list.add(WalletExchangeFragment.getInstance());
         list.add(WalletMarketFragment.getInstance());
 
+
         mTabLayout.setSelectedIndicatorHeight(6);
         mTabLayout.setTabIndicatorWidth(80);
         mTabLayout.setTabTextColors(getResources().getColor(R.color.wallet_tab_default_color), getResources().getColor(R.color.wallet_tab_select_color));

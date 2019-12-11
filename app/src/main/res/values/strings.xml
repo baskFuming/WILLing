@@ -441,4 +441,5 @@
     <string name="item_balance">余额 </string>
     <string name="exchange_error">请输入正确的数量</string>
     <string name="brand_detail_title">品牌介绍</string>
+    <string name="vote_success">投票成功</string>
 </resources>

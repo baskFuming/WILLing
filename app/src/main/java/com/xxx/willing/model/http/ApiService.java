@@ -13,6 +13,7 @@ import com.xxx.willing.model.http.bean.MyTeamBean;
 import com.xxx.willing.model.http.bean.MyVoteBean;
 import com.xxx.willing.model.http.bean.TotalFranchiseeBean;
 import com.xxx.willing.model.http.bean.UserInfo;
+import com.xxx.willing.model.http.bean.VoteDetailBean;
 import com.xxx.willing.model.http.bean.WalletAccountBean;
 import com.xxx.willing.model.http.bean.WalletCoinBean;
 import com.xxx.willing.model.http.bean.WalletExchangeBean;
@@ -142,6 +143,13 @@ public interface ApiService {
     @POST("/franchiseeInfo")
     Observable<BaseBean<JoinInfoBean>> getJoinInfo();
 
+    //获取投票详情
+    @POST("/getFranchiseesOne")
+    @FormUrlEncoded
+    Observable<BaseBean<VoteDetailBean>> getVoteDetail(
+            @Field("id") Integer id
+    );
+
     //----------------------------------------------------------执行操作----------------------------------------------------------------------------------------------------------------------------//
 
     //申请加盟
@@ -157,6 +165,15 @@ public interface ApiService {
             @Field("imgBanner") List<String> imgBanner,
             @Field("list") String s
     );
+
+    //投票
+    @POST("/addVotes")
+    @FormUrlEncoded
+    Observable<BaseBean<BooleanBean>> vote(
+            @Field("franId") int franId,
+            @Field("value") double value
+    );
+
 
     //转账
     @POST(HttpConfig.BASE_URL_PATH + "/doChange")

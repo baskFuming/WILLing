@@ -213,11 +213,6 @@ public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshL
                     @Override
                     public void onSuccess(BaseBean<PageBean<AssetRecordBean>> bean) {
                         PageBean<AssetRecordBean> data = bean.getData();
-                        if (data == null) {
-                            mNotData.setVisibility(View.VISIBLE);
-                            dropDownAdapter.loadMoreEnd(true);
-                            return;
-                        }
                         List<AssetRecordBean> list = data.getList();
                         if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
                             mNotData.setVisibility(View.VISIBLE);

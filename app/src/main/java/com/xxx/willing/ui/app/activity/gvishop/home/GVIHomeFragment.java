@@ -1,4 +1,4 @@
-package com.xxx.willing.ui.app.vote.activity.gvishop.home;
+package com.xxx.willing.ui.app.activity.gvishop.home;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;

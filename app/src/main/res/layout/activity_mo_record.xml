@@ -11,28 +11,18 @@
 
     <include layout="@layout/include_title_bar" />
 
-    <LinearLayout
-        android:id="@+id/main_linear"
+    <com.yyydjk.library.DropDownMenu
+        android:id="@+id/dropDownMenu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <com.yyydjk.library.DropDownMenu
-            android:id="@+id/dropDownMenu"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:dddividerColor="@color/gray"
-            app:ddmaskColor="@color/mask_color"
-            app:ddmenuBackgroundColor="@color/white"
-            app:ddmenuSelectedIcon="@mipmap/vote_pack_up"
-            app:ddmenuTextSize="14dp"
-            app:ddmenuUnselectedIcon="@mipmap/vote_down"
-            app:ddtextSelectedColor="#ff333333"
-            app:ddtextUnselectedColor="#ff333333"
-            app:ddunderlineColor="#EFEFEF" />
-
-    </LinearLayout>
-
-    <include layout="@layout/include_not_data"/>
+        app:dddividerColor="@color/gray"
+        app:ddmaskColor="@color/mask_color"
+        app:ddmenuBackgroundColor="@color/white"
+        app:ddmenuSelectedIcon="@mipmap/vote_pack_up"
+        app:ddmenuTextSize="14dp"
+        app:ddmenuUnselectedIcon="@mipmap/vote_down"
+        app:ddtextSelectedColor="#ff333333"
+        app:ddtextUnselectedColor="#ff333333"
+        app:ddunderlineColor="#EFEFEF" />
 
 </LinearLayout>

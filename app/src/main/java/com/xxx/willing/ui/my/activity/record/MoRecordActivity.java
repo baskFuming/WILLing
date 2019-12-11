@@ -63,10 +63,7 @@ public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshL
 
     @BindView(R.id.dropDownMenu)
     DropDownMenu dropDownMenu;
-    @BindView(R.id.main_linear)
-    LinearLayout mLinear;
-    @BindView(R.id.main_not_data)
-    LinearLayout mNotData;
+    View mNotData;
 
     private String headers[] = {"全部", "全部"};
     private List<View> popupViews = new ArrayList<>();
@@ -142,6 +139,9 @@ public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshL
         mRecycler.setAdapter(dropDownAdapter);
         dropDownAdapter.setOnLoadMoreListener(this, mRecycler);
 
+        mNotData = LayoutInflater.from(this).inflate(R.layout.include_not_data, null);
+        dropDownAdapter.addFooterView(mNotData);
+
         //添加到菜单
         dropDownMenu.setDropDownMenu(Arrays.asList(headers), popupViews, mRecycler);
 
@@ -215,19 +215,16 @@ public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshL
                         PageBean<AssetRecordBean> data = bean.getData();
                         if (data == null) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mLinear.setVisibility(View.GONE);
                             dropDownAdapter.loadMoreEnd(true);
                             return;
                         }
                         List<AssetRecordBean> list = data.getList();
                         if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mLinear.setVisibility(View.GONE);
                             dropDownAdapter.loadMoreEnd(true);
                             return;
                         }
                         mNotData.setVisibility(View.GONE);
-                        mLinear.setVisibility(View.VISIBLE);
                         if (page == UIConfig.PAGE_DEFAULT) {
                             mList.clear();
                         }
@@ -244,7 +241,6 @@ public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshL
                     public void onError(int errorCode, String errorMessage) {
                         if (mList.size() == 0) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mLinear.setVisibility(View.GONE);
                         }
                         ToastUtil.showToast(errorMessage);
                     }

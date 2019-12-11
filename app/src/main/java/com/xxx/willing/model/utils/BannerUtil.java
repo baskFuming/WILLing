@@ -4,14 +4,12 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.xw.banner.loader.ImageLoaderInterface;
-import com.xw.banner.view.RoundAngleImageView;
-import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.Transformer;
-import com.youth.banner.listener.OnBannerListener;
-import com.youth.banner.loader.ImageLoader;
+
+import com.xw.banner.Banner;
+import com.xw.banner.BannerConfig;
+import com.xw.banner.Transformer;
+import com.xw.banner.listener.OnBannerListener;
+import com.xw.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.EventBusConfig;
@@ -16,6 +17,7 @@ import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.WalletAccountBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.utils.ToastUtil;
+import com.xxx.willing.ui.wallet.activity.WalletCoinDetailActivity;
 import com.xxx.willing.ui.wallet.adapter.WalletAccountAdapter;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -29,7 +31,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class WalletAccountFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class WalletAccountFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.OnItemClickListener {
 
     public static WalletAccountFragment getInstance() {
         return new WalletAccountFragment();
@@ -59,8 +61,14 @@ public class WalletAccountFragment extends BaseFragment implements SwipeRefreshL
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycler.setAdapter(mAdapter);
         mRefresh.setOnRefreshListener(this);
+        mAdapter.setOnItemClickListener(this);
 
         loadData();
+    }
+
+    @Override
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        WalletCoinDetailActivity.actionStart(getContext(), mList.get(position));
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

@@ -2,7 +2,9 @@ package com.xxx.willing.ui.wallet.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,9 +27,11 @@ import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.http.utils.ApiType;
 import com.xxx.willing.model.utils.GlideUtil;
 import com.xxx.willing.model.utils.KeyBoardUtil;
+import com.xxx.willing.model.utils.StringUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.wallet.adapter.WalletTransactionAdapter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +43,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLayout.BaseOnTabSelectedListener, SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
 
-    public static void actionStart(Activity activity, WalletAccountBean bean) {
+    public static void actionStart(Context activity, WalletAccountBean.ListBean bean) {
         Intent intent = new Intent(activity, WalletCoinDetailActivity.class);
         intent.putExtra("bean", bean);
         activity.startActivity(intent);
@@ -47,18 +51,8 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
 
     private void initBundle() {
         Intent intent = getIntent();
-//        bean = (WalletAccountBean) intent.getSerializableExtra("bean");
-//        if (bean == null) {
-//            bean = new WalletAccountBean();
-//        }
-        coinIcon = intent.getStringExtra("coinIcon");
-        coinId = intent.getIntExtra("coinId", 0);
-        amount = intent.getDoubleExtra("amount", 0);
-        usaAmount = intent.getDoubleExtra("usaAmount", 0);
-        free = intent.getDoubleExtra("free", 0);
-        symbol = intent.getStringExtra("symbol");
-        address = intent.getStringExtra("address");
-
+        bean = (WalletAccountBean.ListBean) intent.getSerializableExtra("bean");
+        if (bean == null) bean = new WalletAccountBean.ListBean();
     }
 
     @BindView(R.id.wallet_coin_detail_icon)
@@ -81,23 +75,16 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
     @BindView(R.id.main_refresh)
     SwipeRefreshLayout mRefresh;
 
+    private WalletAccountBean.ListBean bean;
 
     private int type;
     private int page = UIConfig.PAGE_DEFAULT;
     private WalletTransactionAdapter mAdapter;
     private List<WalletTransactionBean> mList = new ArrayList<>();
 
-    private String coinIcon;
-    private int coinId;
-    private double amount;
-    private double free;
-    private String symbol;
-    private String address;
-    private double usaAmount;
-
     @Override
     protected String initTitle() {
-        return symbol;
+        return bean.getSymbol();
     }
 
     @Override
@@ -122,10 +109,10 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
         mRefresh.setOnRefreshListener(this);
         mAdapter.setOnLoadMoreListener(this, mRecycler);
 
-        mBalance.setText(amount + "");
-        mUsa.setText("≈$" + usaAmount);
-        mAddress.setText(address);
-        GlideUtil.loadCircle(this, coinIcon, mIcon);
+        mBalance.setText(bean.getAmount() + "");
+        mUsa.setText("≈$" + bean.getUsaAmount());
+        mAddress.setText(StringUtil.getAddress(bean.getAddress()));
+        GlideUtil.loadCircle(this, bean.getCoinIcon(), mIcon);
 
         loadData();
     }
@@ -134,13 +121,13 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.wallet_coin_detail_copy:
-                KeyBoardUtil.copy(this, address);
+                KeyBoardUtil.copy(this, bean.getAddress());
                 break;
             case R.id.wallet_coin_detail_transfer:
-                WithdrawalActivity.actionStart(this, coinId, symbol, amount, free);
+                WithdrawalActivity.actionStart(this, bean.getCoinId(), bean.getSymbol(), bean.getAmount(), bean.getFee());
                 break;
             case R.id.wallet_coin_detail_recharge:
-                RechargeActivity.actionStart(this, address, symbol);
+                RechargeActivity.actionStart(this, bean.getAddress(), bean.getSymbol());
                 break;
         }
     }
@@ -181,6 +168,15 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
     public void onLoadMoreRequested() {
         page++;
         loadData();
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == UIConfig.RESULT_CODE) {
+            finish();
+        }
     }
 
     private void loadData() {

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.model.utils.KeyBoardUtil;
+import com.xxx.willing.model.utils.StringUtil;
 import com.xxx.willing.model.utils.ZXingUtil;
 
 import butterknife.BindView;
@@ -28,7 +29,7 @@ public class RechargeActivity extends BaseTitleActivity {
         activity.startActivity(intent);
     }
 
-    private void initBundle(){
+    private void initBundle() {
         Intent intent = getIntent();
         address = intent.getStringExtra("address");
         symbol = intent.getStringExtra("symbol");
@@ -56,7 +57,7 @@ public class RechargeActivity extends BaseTitleActivity {
     protected void initData() {
         initBundle();
 
-        mAddress.setText(address);
+        mAddress.setText(StringUtil.getAddress(address));
         Bitmap bitmap = ZXingUtil.createQRCode(address, (int) getResources().getDimension(R.dimen.zxCode_size));
         mImage.setImageBitmap(bitmap);
     }

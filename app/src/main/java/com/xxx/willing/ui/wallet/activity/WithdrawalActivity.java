@@ -13,6 +13,7 @@ import com.google.zxing.client.android.Intents;
 import com.journeyapps.barcodescanner.CaptureActivity;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.config.EventBusConfig;
 import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
@@ -25,6 +26,8 @@ import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.login.activity.PasswordSettingActivity;
 import com.xxx.willing.ui.main.SweepActivity;
 import com.xxx.willing.ui.wallet.window.PasswordWindow;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -44,7 +47,7 @@ public class WithdrawalActivity extends BaseTitleActivity implements PasswordWin
         intent.putExtra("symbol", symbol);
         intent.putExtra("balance", balance);
         intent.putExtra("fee", fee);
-        activity.startActivity(intent);
+        activity.startActivityForResult(intent, UIConfig.REQUEST_CODE);
     }
 
     private void initBundle() {
@@ -202,11 +205,17 @@ public class WithdrawalActivity extends BaseTitleActivity implements PasswordWin
 
                     @Override
                     public void onSuccess(BaseBean<BooleanBean> bean) {
-                        mPasswordWindow.dismiss();
-                        mPasswordWindow = null;
-                        balance -= (amount + fee);
-                        mBalance.setText(String.valueOf(balance));
-                        mAmount.setText("");
+                        balance -= amount;
+
+                        if (mPasswordWindow != null) {
+                            mPasswordWindow.dismiss();
+                            mPasswordWindow = null;
+                        }
+
+                        EventBus.getDefault().post(EventBusConfig.EVENT_UPDATE_WALLET);
+                        ToastUtil.showToast("转账成功");
+                        setResult(UIConfig.RESULT_CODE);
+                        finish();
                     }
 
                     @Override

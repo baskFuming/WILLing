@@ -11,8 +11,10 @@ import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.AppVersionBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
+import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.SystemUtil;
 import com.xxx.willing.model.utils.ToastUtil;
+import com.xxx.willing.ui.login.activity.LoginActivity;
 import com.xxx.willing.ui.login.activity.PasswordSettingActivity;
 import com.xxx.willing.ui.main.UpdateWindow;
 
@@ -56,7 +58,7 @@ public class AccountSettingActivity extends BaseTitleActivity {
         mVersionCode.setText(versionName);
     }
 
-    @OnClick({R.id.account_setting_set_password, R.id.account_setting_address_manager, R.id.account_setting_check_version, R.id.call_my})
+    @OnClick({R.id.account_setting_out_login, R.id.account_setting_set_password, R.id.account_setting_address_manager, R.id.account_setting_check_version, R.id.call_my})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.account_setting_set_password:
@@ -71,7 +73,46 @@ public class AccountSettingActivity extends BaseTitleActivity {
             case R.id.account_setting_check_version:
                 checkAppVersion();
                 break;
+            case R.id.account_setting_out_login:
+                outLogin();
+                break;
         }
+    }
+
+    /**
+     * @Model 退出登录
+     */
+    private void outLogin() {
+        Api.getInstance().outLogin()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiCallback<Object>(this) {
+                    @Override
+                    public void onSuccess(BaseBean<Object> bean) {
+                        if (bean != null) {
+                            SharedPreferencesUtil.getInstance().cleanAll();
+                            startActivity(new Intent(AccountSettingActivity.this, LoginActivity.class));
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void onError(int errorCode, String errorMessage) {
+                        ToastUtil.showToast(errorMessage);
+                    }
+
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        showLoading();
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        hideLoading();
+                    }
+                });
     }
 
     /**
@@ -111,7 +152,6 @@ public class AccountSettingActivity extends BaseTitleActivity {
                     @Override
                     public void onEnd() {
                         super.onEnd();
-                        instance.dismiss();
                         hideLoading();
                     }
                 });

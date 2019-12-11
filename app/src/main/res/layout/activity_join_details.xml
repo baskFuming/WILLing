@@ -354,7 +354,7 @@
 
             <include layout="@layout/include_recycler" />
 
-            <TextView
+            <Button
                 android:id="@+id/vote_btn"
                 style="@style/LoginButtonStyle"
                 android:layout_width="262dp"

@@ -83,6 +83,8 @@ public class JoinDetailsActivity extends BaseTitleActivity implements BaseQuickA
 
     @Override
     protected void initData() {
+        initBundle();
+
         mContent.setVisibility(View.VISIBLE);
         mContent.setText(R.string.vote_rules);
 
@@ -91,16 +93,19 @@ public class JoinDetailsActivity extends BaseTitleActivity implements BaseQuickA
         mRecycler.setAdapter(mAdapter);
         mRefresh.setOnRefreshListener(this);
         mAdapter.setOnLoadMoreListener(this, mRecycler);
-        getVoteDetail();
-
         mAdapter.setOnItemClickListener(this);
+
+        getVoteDetail();
     }
 
-    @OnClick({R.id.main_content})
+    @OnClick({R.id.main_content,R.id.vote_btn})
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.main_content:
                 BaseWebActivity.actionStart(this, "", getString(R.string.vote_details));
+                break;
+            case R.id.vote_btn:
+                vote();
                 break;
         }
     }

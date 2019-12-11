@@ -17,13 +17,11 @@
         android:textSize="20dp"
         android:textStyle="bold" />
 
-    <android.support.design.widget.TabLayout
+    <com.xxx.willing.view.MyTabLayout
         android:id="@+id/wallet_tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="49dp"
-        app:tabTextColor="#666666"
-        app:tabSelectedTextColor="#333333"
-        app:tabIndicatorColor="#FFFFFF" />
+        android:layout_height="wrap_content"
+       />
 
     <View style="@style/dividingLine"/>
 

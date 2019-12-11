@@ -14,4 +14,7 @@
 
     <color name="main_tab_default_color">#ff666666</color>
     <color name="main_tab_select_color">#ff3c7fff</color>
+
+    <color name="wallet_tab_default_color">#ff666666</color>
+    <color name="wallet_tab_select_color">#ff333333</color>
 </resources>

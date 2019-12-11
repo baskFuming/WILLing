@@ -1,10 +1,11 @@
-package com.xxx.willing.ui.app.vote.activity.gvishop.home.adapter;
+package com.xxx.willing.ui.app.activity.gvishop.home.adapter;
 
 import android.support.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
+import com.xxx.willing.model.http.bean.GviBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.utils.GlideUtil;
 
@@ -16,16 +17,17 @@ import java.util.List;
  * @date 2019-12-06
  */
 
-public class GviChildAdapter extends BaseQuickAdapter<BaseBean, BaseViewHolder> {
+public class GviChildAdapter extends BaseQuickAdapter<GviBean.DataBean.ListBean, BaseViewHolder> {
 
-    public GviChildAdapter(@Nullable List<BaseBean> data) {
+
+    public GviChildAdapter(@Nullable List<GviBean.DataBean.ListBean> data) {
         super(R.layout.gvi_child_item, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, BaseBean item) {
-        helper.setText(R.id.item_title, "")
-                .setText(R.id.item_price, "");
-        GlideUtil.load(mContext, "", helper.getView(R.id.item_img));
+    protected void convert(BaseViewHolder helper, GviBean.DataBean.ListBean item) {
+        helper.setText(R.id.item_title, mContext.getString(R.string.item_phone_securities) + item.getPrice())
+                .setText(R.id.item_price, item.getGviPrice() + "GVI");
+        GlideUtil.load(mContext, item.getLogos(), helper.getView(R.id.item_img));
     }
 }

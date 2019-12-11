@@ -470,4 +470,5 @@
         <item>ETH</item>
         <item>USDT</item>
     </string-array>
+    <string name="item_phone_securities">话费代金券¥</string>
 </resources>

@@ -1,8 +1,6 @@
 package com.xxx.willing.model.utils;
 
 import android.content.Context;
-import android.graphics.Paint;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -10,9 +8,9 @@ import com.xw.banner.Banner;
 import com.xw.banner.BannerConfig;
 import com.xw.banner.Transformer;
 import com.xw.banner.listener.OnBannerListener;
+import com.xw.banner.loader.ImageLoader;
 import com.xw.banner.loader.ImageLoaderInterface;
 import com.xw.banner.view.RoundAngleImageView;
-import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +54,7 @@ public class BannerInitUtil {
                 .start();
     }
 
-    private static class CustomRoundedImageLoader extends com.xw.banner.loader.ImageLoader {
+    private static class CustomRoundedImageLoader extends ImageLoader {
 
         @Override
         public void displayImage(Context context, Object path, ImageView imageView) {

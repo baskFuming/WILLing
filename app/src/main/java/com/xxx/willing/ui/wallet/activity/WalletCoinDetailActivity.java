@@ -77,7 +77,7 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
 
     private WalletAccountBean.ListBean bean;
 
-    private int type;
+    private int type = ApiType.ASSET_RECORD_ALL_TYPE;
     private int page = UIConfig.PAGE_DEFAULT;
     private WalletTransactionAdapter mAdapter;
     private List<WalletTransactionBean> mList = new ArrayList<>();
@@ -136,15 +136,16 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
     public void onTabSelected(TabLayout.Tab tab) {
         switch (tab.getPosition()) {
             case 0:
-                type = 0;
+                type = ApiType.ASSET_RECORD_ALL_TYPE;
                 break;
             case 1:
-                type = ApiType.TRANSFER_TYPE;
+                type = ApiType.ASSET_RECORD_TRANSFER_TYPE;
                 break;
             case 2:
-                type = ApiType.RECHARGE_TYPE;
+                type = ApiType.ASSET_RECORD_RECHARGE_TYPE;
                 break;
         }
+        loadData();
     }
 
     @Override
@@ -156,7 +157,6 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
     public void onTabReselected(TabLayout.Tab tab) {
 
     }
-
 
     @Override
     public void onRefresh() {
@@ -170,7 +170,6 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
         loadData();
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -180,7 +179,7 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
     }
 
     private void loadData() {
-        Api.getInstance().getTransferRecordList(type, page, UIConfig.PAGE_SIZE)
+        Api.getInstance().getTransferRecordList(bean.getCoinId(), type, page, UIConfig.PAGE_SIZE)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<PageBean<WalletTransactionBean>>(this) {

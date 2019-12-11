@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
+import com.xxx.willing.ui.my.activity.record.MoRecordEntry;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ import butterknife.ButterKnife;
 public class DropDownLeftAdapter extends BaseAdapter {
 
     private Context context;
-    private List<String> list;
+    private List<MoRecordEntry> list;
     private int checkItemPosition = 0;
 
     public void setCheckItem(int position) {
@@ -34,7 +35,7 @@ public class DropDownLeftAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public DropDownLeftAdapter(Context context, List<String> list) {
+    public DropDownLeftAdapter(Context context, List<MoRecordEntry> list) {
         this.context = context;
         this.list = list;
     }
@@ -69,7 +70,7 @@ public class DropDownLeftAdapter extends BaseAdapter {
     }
 
     private void fillValue(int position, ViewHolder viewHolder) {
-        viewHolder.mText.setText(list.get(position));
+        viewHolder.mText.setText(list.get(position).getName());
         if (checkItemPosition != -1) {
             if (checkItemPosition == position) {
                 viewHolder.mText.setTextColor(context.getResources().getColor(R.color.tab_select_color));

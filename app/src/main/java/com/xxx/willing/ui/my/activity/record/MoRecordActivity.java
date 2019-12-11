@@ -19,7 +19,17 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.config.UIConfig;
+import com.xxx.willing.model.http.Api;
+import com.xxx.willing.model.http.ApiCallback;
+import com.xxx.willing.model.http.bean.AppVersionBean;
+import com.xxx.willing.model.http.bean.AssetRecordBean;
+import com.xxx.willing.model.http.bean.MyVoteBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
+import com.xxx.willing.model.http.bean.base.PageBean;
+import com.xxx.willing.model.http.utils.ApiType;
+import com.xxx.willing.model.utils.ToastUtil;
+import com.xxx.willing.ui.main.UpdateWindow;
+import com.xxx.willing.ui.my.activity.AccountSettingActivity;
 import com.xxx.willing.ui.my.activity.adapter.DropDownAdapter;
 import com.xxx.willing.ui.my.activity.adapter.DropDownLeftAdapter;
 import com.xxx.willing.ui.my.activity.adapter.DropDownRightAdapter;
@@ -31,6 +41,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author FM
@@ -40,6 +53,9 @@ import butterknife.BindView;
 
 public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
 
+    private int leftType;
+    private int rightType;
+
     public static void actionStart(Activity activity) {
         Intent intent = new Intent(activity, MoRecordActivity.class);
         activity.startActivity(intent);
@@ -47,13 +63,10 @@ public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshL
 
     @BindView(R.id.dropDownMenu)
     DropDownMenu dropDownMenu;
-
-//    @BindView(R.id.main_recycler)
-//    RecyclerView mRecycler;
-//    @BindView(R.id.main_not_data)
-//    LinearLayout mNotData;
-//    @BindView(R.id.main_refresh)
-//    SwipeRefreshLayout mRefresh;
+    @BindView(R.id.main_linear)
+    LinearLayout mLinear;
+    @BindView(R.id.main_not_data)
+    LinearLayout mNotData;
 
     private String headers[] = {"全部", "全部"};
     private List<View> popupViews = new ArrayList<>();
@@ -63,11 +76,10 @@ public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshL
     private DropDownAdapter dropDownAdapter;
 
     //添加集合数据
-    private String citys[] = {"不限", "武汉", "北京", "上海", "成都", "广州", "深圳", "重庆", "天津", "西安", "南京", "杭州"};
-    private String ages[] = {"不限", "18岁以下", "18-22岁", "23-26岁", "27-35岁", "35岁以上"};
-    private List<BaseBean> mList = new ArrayList<>();
+    private List<AssetRecordBean> mList = new ArrayList<>();
+    private List<MoRecordEntry> mLeft = new ArrayList<>();
+    private List<MoRecordEntry> mRight = new ArrayList<>();
 
-    private int position;
     private int page = UIConfig.PAGE_DEFAULT;
 
 
@@ -83,16 +95,15 @@ public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshL
 
     @Override
     protected void initData() {
-
         //左边
         final ListView cityView = new ListView(this);
-        dropDownLeftAdapter = new DropDownLeftAdapter(this, Arrays.asList(citys));
+        dropDownLeftAdapter = new DropDownLeftAdapter(this, mLeft);
         cityView.setDividerHeight(0);
         cityView.setAdapter(dropDownLeftAdapter);
 
         //右边
         final ListView agesView = new ListView(this);
-        dropDownRightAdapter = new DropDownRightAdapter(this, Arrays.asList(ages));
+        dropDownRightAdapter = new DropDownRightAdapter(this, mRight);
         agesView.setDividerHeight(0);
         agesView.setAdapter(dropDownRightAdapter);
 
@@ -102,19 +113,29 @@ public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshL
 
         //左边点击事件
         cityView.setOnItemClickListener((parent, view, position, id) -> {
+            page = UIConfig.PAGE_DEFAULT;
+            MoRecordEntry moRecordEntry = mLeft.get(position);
+            leftType = moRecordEntry.getType();
             dropDownLeftAdapter.setCheckItem(position);
-            dropDownMenu.setTabText(position == 0 ? headers[0] : citys[position]);
+            dropDownMenu.setTabText(moRecordEntry.getName());
             dropDownMenu.closeMenu();
+
+            loadData();
         });
 
         //右边点击事件
         agesView.setOnItemClickListener((parent, view, position, id) -> {
+            page = UIConfig.PAGE_DEFAULT;
+            MoRecordEntry moRecordEntry = mLeft.get(position);
+            rightType = moRecordEntry.getType();
             dropDownRightAdapter.setCheckItem(position);
-            dropDownMenu.setTabText(position == 0 ? headers[1] : ages[position]);
+            dropDownMenu.setTabText(moRecordEntry.getName());
             dropDownMenu.closeMenu();
+            //加载数据
+            loadData();
         });
 
-        final RecyclerView mRecycler = new RecyclerView(this);
+        RecyclerView mRecycler = new RecyclerView(this);
         mRecycler.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         dropDownAdapter = new DropDownAdapter(mList);
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
@@ -126,19 +147,21 @@ public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshL
 
         leftLoadDate();
         RightLoadDate();
-        LoadDate();
+
+        loadData();
     }
 
     @Override
     public void onRefresh() {
         page = UIConfig.PAGE_DEFAULT;
+        loadData();
     }
 
     @Override
     public void onLoadMoreRequested() {
         page++;
+        loadData();
     }
-
 
     @Override
     public void onBackPressed() {
@@ -152,15 +175,91 @@ public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshL
 
     //左边网络数据请求
     private void leftLoadDate() {
-
+        String[] left = getResources().getStringArray(R.array.asset_record_left);
+        mLeft.add(new MoRecordEntry(left[0], ApiType.ASSET_RECORD_ALL_TYPE));
+        mLeft.add(new MoRecordEntry(left[1], ApiType.ASSET_RECORD_RECHARGE_TYPE));
+        mLeft.add(new MoRecordEntry(left[2], ApiType.ASSET_RECORD_TRANSFER_TYPE));
+        mLeft.add(new MoRecordEntry(left[3], ApiType.ASSET_RECORD_EXCHANGE_TYPE));
+        mLeft.add(new MoRecordEntry(left[4], ApiType.ASSET_RECORD_VOTE_TYPE));
+        mLeft.add(new MoRecordEntry(left[5], ApiType.ASSET_RECORD_TEAM_VOTE_TYPE));
+        mLeft.add(new MoRecordEntry(left[6], ApiType.ASSET_RECORD_SIGN_TYPE));
+//        mLeft.add(new MoRecordEntry(left[7], ApiType.ASSET_RECORD_JOIN_TYPE));
+//        mLeft.add(new MoRecordEntry(left[8], ApiType.ASSET_RECORD_BRAND_TYPE));
+        mLeft.add(new MoRecordEntry(left[9], ApiType.ASSET_RECORD_TASK_TYPE));
+        mLeft.add(new MoRecordEntry(left[10], ApiType.ASSET_RECORD_RANK_TYPE));
+        mLeft.add(new MoRecordEntry(left[11], ApiType.ASSET_RECORD_CEO_TYPE));
+        dropDownRightAdapter.notifyDataSetChanged();
     }
 
     //右边网络数据请求
     private void RightLoadDate() {
+        String[] right = getResources().getStringArray(R.array.asset_record_right);
+        mRight.add(new MoRecordEntry(right[0], ApiType.ASSET_RECORD_COIN_ALL_TYPE));
+        mRight.add(new MoRecordEntry(right[1], ApiType.ASSET_RECORD_GVI_TYPE));
+        mRight.add(new MoRecordEntry(right[2], ApiType.ASSET_RECORD_BVSE_TYPE));
+        mRight.add(new MoRecordEntry(right[3], ApiType.ASSET_RECORD_BTC_TYPE));
+        mRight.add(new MoRecordEntry(right[4], ApiType.ASSET_RECORD_ETH_TYPE));
+        mRight.add(new MoRecordEntry(right[5], ApiType.ASSET_RECORD_USDT_VOTE_TYPE));
+        dropDownRightAdapter.notifyDataSetChanged();
     }
 
     //条件查询数据
-    private void LoadDate() {
+    private void loadData() {
+        Api.getInstance().getAssetRecordList(rightType, leftType, page, UIConfig.PAGE_SIZE)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiCallback<PageBean<AssetRecordBean>>(this) {
 
+                    @Override
+                    public void onSuccess(BaseBean<PageBean<AssetRecordBean>> bean) {
+                        PageBean<AssetRecordBean> data = bean.getData();
+                        if (data == null) {
+                            mNotData.setVisibility(View.VISIBLE);
+                            mLinear.setVisibility(View.GONE);
+                            dropDownAdapter.loadMoreEnd(true);
+                            return;
+                        }
+                        List<AssetRecordBean> list = data.getList();
+                        if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
+                            mNotData.setVisibility(View.VISIBLE);
+                            mLinear.setVisibility(View.GONE);
+                            dropDownAdapter.loadMoreEnd(true);
+                            return;
+                        }
+                        mNotData.setVisibility(View.GONE);
+                        mLinear.setVisibility(View.VISIBLE);
+                        if (page == UIConfig.PAGE_DEFAULT) {
+                            mList.clear();
+                        }
+                        mList.addAll(list);
+                        if (list.size() < UIConfig.PAGE_SIZE) {
+                            dropDownAdapter.loadMoreEnd(true);
+                        } else {
+                            dropDownAdapter.loadMoreComplete();
+                        }
+                        dropDownAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onError(int errorCode, String errorMessage) {
+                        if (mList.size() == 0) {
+                            mNotData.setVisibility(View.VISIBLE);
+                            mLinear.setVisibility(View.GONE);
+                        }
+                        ToastUtil.showToast(errorMessage);
+                    }
+
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        showLoading();
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        hideLoading();
+                    }
+                });
     }
 }

@@ -95,9 +95,11 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 break;
             case R.id.re_my_join://  加盟申请
                 boolean isSettingJoin = instance.getBoolean(SharedConst.IS_SETTING_JOIN);
-                if (isSettingJoin) {//提交完成
+                if (isSettingJoin) {
+                    //提交完成
                     MyJoinMessageActivity.actionStart(getActivity());
-                } else {//已提交
+                } else {
+                    //已提交
                     JoinApplyActivity.actionStart(getActivity());
                 }
                 break;
@@ -143,7 +145,7 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
             mReview.setText("");
         }
 
-        switch (statusFran){
+        switch (statusFran) {
             case 1:
 
                 break;

@@ -2,6 +2,7 @@ package com.xxx.willing.model.http;
 
 import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.http.bean.AppVersionBean;
+import com.xxx.willing.model.http.bean.AssetRecordBean;
 import com.xxx.willing.model.http.bean.BannerBean;
 import com.xxx.willing.model.http.bean.BrandBean;
 import com.xxx.willing.model.http.bean.FranchiseeBean;
@@ -45,21 +46,28 @@ public interface ApiService {
 
     //----------------------------------------------------------展示列表----------------------------------------------------------------------------------------------------------------------------//
 
+    //获取资金记录
+    @GET("/getAssetRecord")
+    Observable<BaseBean<PageBean<AssetRecordBean>>> getAssetRecordList(
+            @Query("coinId") int coinId,
+            @Query("type") int type,
+            @Query("pageNum") int pageNum,
+            @Query("pageSize") int pageSize
+    );
+
     //获取总加盟商列表
-    @POST("/franchiseesKList")
-    @FormUrlEncoded
+    @GET("/franchiseesKList")
     Observable<BaseBean<TotalFranchiseeBean>> getFranchiseeList(
-            @Field("pageNum") int pageNum,
-            @Field("pageSize") int pageSize
+            @Query("pageNum") int pageNum,
+            @Query("pageSize") int pageSize
     );
 
     //获取加盟商列表
-    @POST("/franchiseesKList")
-    @FormUrlEncoded
+    @GET("/franchiseesKList")
     Observable<BaseBean<PageBean<FranchiseeBean>>> getFranchiseeList(
-            @Field("brandId") int brandId,
-            @Field("pageNum") int pageNum,
-            @Field("pageSize") int pageSize
+            @Query("brandId") int brandId,
+            @Query("pageNum") int pageNum,
+            @Query("pageSize") int pageSize
     );
 
     //获取品牌列表
@@ -100,8 +108,9 @@ public interface ApiService {
     );
 
     //获取钱包充值转账记录
-    @GET("/CT/invest/getDepositLogs")
+    @GET("/getTransferRecord")
     Observable<BaseBean<PageBean<WalletTransactionBean>>> getTransferRecordList(
+            @Query("coinId") int coinId,
             @Query("type") int type,
             @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize

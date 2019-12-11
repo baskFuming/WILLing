@@ -2,18 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_bg"
     android:orientation="vertical"
-    android:id="@+id/main"
     tools:context=".ui.my.activity.record.MoRecordActivity">
 
     <include layout="@layout/include_title_bar" />
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/main_linear"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <com.yyydjk.library.DropDownMenu
             android:id="@+id/dropDownMenu"
@@ -29,9 +31,8 @@
             app:ddtextUnselectedColor="#ff333333"
             app:ddunderlineColor="#EFEFEF" />
 
-        <!--<include-->
-            <!--layout="@layout/include_recycler"-->
-            <!--android:layout_below="@+id/dropDownMenu"-->
-            <!--tools:ignore="IncludeLayoutParam" />-->
-    </RelativeLayout>
+    </LinearLayout>
+
+    <include layout="@layout/include_not_data"/>
+
 </LinearLayout>

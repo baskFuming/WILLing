@@ -1,24 +1,33 @@
 package com.xxx.willing.model.http.bean;
 
-public class WalletTransactionBean {
+public class AssetRecordBean {
 
     /**
+     * targetSymbol : ETH
      * amount : 100.0
      * types : 2
-     * coinUrl : img/eth_default_pic.png
+     * balance : 404.5
      * createTime : 2019-12-11 14:39:07
+     * fee : 0.0
+     * baseSymbol : ETH
      * status : 0
      */
 
+    private String targetSymbol;
     private double amount;
     private int types;
-    private String coinUrl;
-    private String address;
+    private double balance;
     private String createTime;
+    private double fee;
+    private String baseSymbol;
     private int status;
 
-    public String getAddress() {
-        return address;
+    public String getTargetSymbol() {
+        return targetSymbol;
+    }
+
+    public void setTargetSymbol(String targetSymbol) {
+        this.targetSymbol = targetSymbol;
     }
 
     public double getAmount() {
@@ -37,12 +46,12 @@ public class WalletTransactionBean {
         this.types = types;
     }
 
-    public String getCoinUrl() {
-        return coinUrl;
+    public double getBalance() {
+        return balance;
     }
 
-    public void setCoinUrl(String coinUrl) {
-        this.coinUrl = coinUrl;
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 
     public String getCreateTime() {
@@ -51,6 +60,22 @@ public class WalletTransactionBean {
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
+    }
+
+    public double getFee() {
+        return fee;
+    }
+
+    public void setFee(double fee) {
+        this.fee = fee;
+    }
+
+    public String getBaseSymbol() {
+        return baseSymbol;
+    }
+
+    public void setBaseSymbol(String baseSymbol) {
+        this.baseSymbol = baseSymbol;
     }
 
     public int getStatus() {

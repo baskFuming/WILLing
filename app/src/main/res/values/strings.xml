@@ -446,4 +446,28 @@
     <string name="vote_success" tools:ignore="ExtraTranslation">投票成功</string>
     <string name="join_brand_name">所属品牌</string>
     <string name="node_introduce">节点介绍</string>
+
+    <string-array name="asset_record_left">
+        <item>全部</item>
+        <item>充值</item>
+        <item>转账</item>
+        <item>兑换</item>
+        <item>投票释放</item>
+        <item>团队投票收益</item>
+        <item>签到收益</item>
+        <item>加盟店收益</item>
+        <item>品牌收益</item>
+        <item>任务收益</item>
+        <item>排名收益</item>
+        <item>总裁收益</item>
+    </string-array>
+
+    <string-array name="asset_record_right">
+        <item>全部</item>
+        <item>GVI</item>
+        <item>BVSE</item>
+        <item>BTC</item>
+        <item>ETH</item>
+        <item>USDT</item>
+    </string-array>
 </resources>

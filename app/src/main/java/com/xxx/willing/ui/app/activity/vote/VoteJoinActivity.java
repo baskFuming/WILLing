@@ -81,6 +81,8 @@ public class VoteJoinActivity extends BaseTitleActivity implements SwipeRefreshL
         mAdapter.setOnLoadMoreListener(this, mRecycler);
 
         mAdapter.setOnItemChildClickListener(this);
+
+        getFranchiseeList();
     }
 
     @OnClick({R.id.main_content})
@@ -94,7 +96,8 @@ public class VoteJoinActivity extends BaseTitleActivity implements SwipeRefreshL
 
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-        JoinDetailsActivity.actionStart(this, 0);
+        FranchiseeBean franchiseeBean = mList.get(position);
+        JoinDetailsActivity.actionStart(this, franchiseeBean.getId());
     }
 
     public void onRefresh() {

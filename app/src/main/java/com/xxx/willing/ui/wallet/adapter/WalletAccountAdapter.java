@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.http.bean.WalletAccountBean;
 import com.xxx.willing.model.utils.GlideUtil;
 
@@ -22,6 +23,6 @@ public class WalletAccountAdapter extends BaseQuickAdapter<WalletAccountBean.Lis
                 .setText(R.id.item_wallet_account_number, item.getAmount() + "")
                 .setText(R.id.item_wallet_account_rmb, "≈$" + item.getUsaAmount());
 
-        GlideUtil.loadCircle(mContext, item.getCoinIcon(), helper.getView(R.id.item_wallet_account_icon));
+        GlideUtil.loadCircle(mContext, HttpConfig.BASE_URL + item.getCoinIcon(), helper.getView(R.id.item_wallet_account_icon));
     }
 }

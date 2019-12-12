@@ -8,7 +8,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
 import com.xxx.willing.base.popup.BasePopup;
 import com.xxx.willing.model.http.bean.WalletCoinBean;
-import com.xxx.willing.ui.wallet.activity.WalletExchangeCheckAdapter;
+import com.xxx.willing.ui.wallet.adapter.WalletExchangeCheckAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

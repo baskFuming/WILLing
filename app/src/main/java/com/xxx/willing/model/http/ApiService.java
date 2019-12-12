@@ -51,7 +51,7 @@ public interface ApiService {
     //----------------------------------------------------------展示列表----------------------------------------------------------------------------------------------------------------------------//
 
     //获取资金记录
-    @GET("/getAssetRecord")
+    @GET(HttpConfig.BASE_URL_PATH + "/getAssetRecord")
     Observable<BaseBean<PageBean<AssetRecordBean>>> getAssetRecordList(
             @Query("coinId") int coinId,
             @Query("type") int type,
@@ -60,14 +60,14 @@ public interface ApiService {
     );
 
     //获取总加盟商列表
-    @GET("/getTotalFranchiseeList")
+    @GET(HttpConfig.BASE_URL_PATH + "/getTotalFranchiseeList")
     Observable<BaseBean<TotalFranchiseeBean>> getFranchiseeList(
             @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );
 
     //获取加盟商列表
-    @GET("/franchiseesKList")
+    @GET(HttpConfig.BASE_URL_PATH + "/franchiseesKList")
     Observable<BaseBean<PageBean<FranchiseeBean>>> getFranchiseeList(
             @Query("brandId") int brandId,
             @Query("pageNum") int pageNum,
@@ -75,29 +75,29 @@ public interface ApiService {
     );
 
     //获取品牌列表
-    @GET("/brandsList")
+    @GET(HttpConfig.BASE_URL_PATH + "/brandsList")
     Observable<BaseBean<PageBean<BrandBean>>> getBrandList();
 
     //获取首页轮播
-    @GET("/getBannerList")
+    @GET(HttpConfig.BASE_URL_PATH + "/getBannerList")
     Observable<BaseBean<PageBean<BannerBean>>> getBannerList();
 
     //获取公告信息
-    @GET("/getMessageList")
+    @GET(HttpConfig.BASE_URL_PATH + "/getMessageList")
     Observable<BaseBean<PageBean<MessageBean>>> getMessageList(
             @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );
 
     //获取我的团队
-    @GET("/getMyTeam")
+    @GET(HttpConfig.BASE_URL_PATH + "/getMyTeam")
     Observable<BaseBean<MyTeamBean>> getMyTeamList(
             @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );
 
     //获取我的团队
-    @GET("/getMyTeam")
+    @GET(HttpConfig.BASE_URL_PATH + "/getMyTeam")
     Observable<BaseBean<MyTeamBean>> getMyTeamList(
             @Query("userId") int userId,
             @Query("pageNum") int pageNum,
@@ -105,14 +105,14 @@ public interface ApiService {
     );
 
     //获取我的投票
-    @GET("/getMyVote")
+    @GET(HttpConfig.BASE_URL_PATH + "/getMyVote")
     Observable<BaseBean<List<MyVoteBean>>> getMyVoteList(
             @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );
 
     //获取钱包充值转账记录
-    @GET("/getTransferRecord")
+    @GET(HttpConfig.BASE_URL_PATH + "/getTransferRecord")
     Observable<BaseBean<PageBean<WalletTransactionBean>>> getTransferRecordList(
             @Query("coinId") int coinId,
             @Query("type") int type,
@@ -121,25 +121,25 @@ public interface ApiService {
     );
 
     //获取钱包账号列表
-    @GET("/getUserWalletList")
+    @GET(HttpConfig.BASE_URL_PATH + "/getUserWalletList")
     Observable<BaseBean<WalletAccountBean>> getWalletAccountList();
 
     //获取钱包释放列表
-    @GET("/getReleaseRecordList")
+    @GET(HttpConfig.BASE_URL_PATH + "/getReleaseRecordList")
     Observable<BaseBean<PageBean<WalletReleaseBean>>> getWalletReleaseList(
             @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );
 
     //获取钱包兑换记录
-    @GET("/getExchangeRecordList")
+    @GET(HttpConfig.BASE_URL_PATH + "/getExchangeRecordList")
     Observable<BaseBean<PageBean<WalletExchangeBean>>> getWalletExchangeList(
             @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );
 
     //获取钱包行情列表
-    @GET("/getMarketList")
+    @GET(HttpConfig.BASE_URL_PATH + "/getMarketList")
     Observable<BaseBean<PageBean<WalletMarketBean>>> getWalletMarketList(
             @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
@@ -153,20 +153,20 @@ public interface ApiService {
 
     //----------------------------------------------------------获取信息----------------------------------------------------------------------------------------------------------------------------//
     //获取加盟信息
-    @POST("/franchiseeInfo")
+    @POST(HttpConfig.BASE_URL_PATH + "/franchiseeInfo")
     Observable<BaseBean<JoinInfoBean>> getJoinInfo();
 
     //获取投票详情
-    @POST("/getFranchiseesOne")
+    @POST(HttpConfig.BASE_URL_PATH + "/getFranchiseesOne")
     @FormUrlEncoded
     Observable<BaseBean<VoteDetailBean>> getVoteDetail(
             @Field("id") Integer id
     );
 
-    @POST("/getSignInfo")
+    @POST(HttpConfig.BASE_URL_PATH + "/getSignInfo")
     Observable<BaseBean<List<SignInfoBean>>> getSignInfo();
 
-    @POST("/getTaskInfo")
+    @POST(HttpConfig.BASE_URL_PATH + "/getTaskInfo")
     Observable<BaseBean<List<TaskInfoBean>>> getTaskInfo();
 
 
@@ -174,18 +174,18 @@ public interface ApiService {
 
 
     //投票
-    @POST("/sign")
+    @POST(HttpConfig.BASE_URL_PATH + "/sign")
     Observable<BaseBean<BooleanBean>> sign();
 
     //完成任务
-    @POST("/addTask")
+    @POST(HttpConfig.BASE_URL_PATH + "/addTask")
     @FormUrlEncoded
     Observable<BaseBean<BooleanBean>> task(
             @Field("taskId") int taskId
     );
 
     //申请加盟
-    @POST("/inFranchisees")
+    @POST(HttpConfig.BASE_URL_PATH + "/inFranchisees")
     @FormUrlEncoded
     Observable<BaseBean<BooleanBean>> submitJoin(
             @Field("franName") String franName,
@@ -199,7 +199,7 @@ public interface ApiService {
     );
 
     //投票
-    @POST("/addVotes")
+    @POST(HttpConfig.BASE_URL_PATH + "/addVotes")
     @FormUrlEncoded
     Observable<BaseBean<BooleanBean>> vote(
             @Field("franId") int franId,

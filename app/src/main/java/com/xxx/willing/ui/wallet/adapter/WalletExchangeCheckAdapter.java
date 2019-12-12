@@ -1,10 +1,11 @@
-package com.xxx.willing.ui.wallet.activity;
+package com.xxx.willing.ui.wallet.adapter;
 
 import android.support.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.http.bean.WalletCoinBean;
 import com.xxx.willing.model.utils.GlideUtil;
 
@@ -20,6 +21,6 @@ public class WalletExchangeCheckAdapter extends BaseQuickAdapter<WalletCoinBean.
     protected void convert(BaseViewHolder helper, WalletCoinBean.ListBean item) {
         helper.setText(R.id.item_window_exchange_check_symbol, item.getCoinSymbol());
 
-        GlideUtil.loadCircle(mContext, item.getCoinUrl(), helper.getView(R.id.item_window_exchange_check_icon));
+        GlideUtil.loadCircle(mContext, HttpConfig.BASE_URL + item.getCoinUrl(), helper.getView(R.id.item_window_exchange_check_icon));
     }
 }

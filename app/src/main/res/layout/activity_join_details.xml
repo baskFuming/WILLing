@@ -88,32 +88,36 @@
                         android:textSize="12dp" />
                 </LinearLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:orientation="horizontal">
 
-                    <ProgressBar
-                        android:id="@+id/task_progress"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="344dp"
-                        android:layout_height="15dp"
-                        android:layout_gravity="center"
-                        android:max="100"
-                        android:progress="50"
-                        android:progressDrawable="@drawable/progressbar_bgs" />
-
                     <TextView
                         android:id="@+id/task_progress_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
                         android:layout_marginLeft="8dp"
                         android:text="80%"
                         android:textColor="#ff3c7fff"
                         android:textSize="14dp" />
 
-                </LinearLayout>
+                    <ProgressBar
+                        android:id="@+id/task_progress"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_toLeftOf="@id/task_progress_number"
+                        android:max="100"
+                        android:progress="50"
+                        android:progressDrawable="@drawable/progressbar_bgs" />
+
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/vote_number"

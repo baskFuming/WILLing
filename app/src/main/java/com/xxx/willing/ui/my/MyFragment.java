@@ -93,7 +93,7 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
             case R.id.re_my_join://  加盟申请
                 Integer statusFran = instance.getInt(SharedConst.STATUS_FRAN);
                 if (statusFran == ApiType.VOTE_SUCCESS_STATUS) {
-                    JoinDetailsActivity.actionStart(getActivity(), instance.getInt(SharedConst.VALUE_FRAN_ID));
+                    JoinDetailsActivity.actionStarts(getActivity(), instance.getInt(SharedConst.VALUE_FRAN_ID));
                 } else {
                     JoinApplyActivity.actionStart(getActivity());
                 }

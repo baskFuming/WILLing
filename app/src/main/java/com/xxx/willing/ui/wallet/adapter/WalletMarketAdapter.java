@@ -6,6 +6,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.http.bean.WalletMarketBean;
 import com.xxx.willing.model.utils.GlideUtil;
 
@@ -39,6 +40,6 @@ public class WalletMarketAdapter extends BaseQuickAdapter<WalletMarketBean, Base
             tvRate.setText("0.00%");
         }
 
-        GlideUtil.loadCircle(mContext, item.getCoinUrl(), helper.getView(R.id.item_wallet_market_icon));
+        GlideUtil.loadCircle(mContext, HttpConfig.BASE_URL + item.getCoinUrl(), helper.getView(R.id.item_wallet_market_icon));
     }
 }

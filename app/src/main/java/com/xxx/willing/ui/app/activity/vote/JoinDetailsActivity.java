@@ -30,6 +30,8 @@ import com.xxx.willing.model.utils.BannerUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.adapter.TeamMesAdapter;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,11 +56,18 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
         activity.startActivity(intent);
     }
 
+    public static void actionStarts(Activity activity, int franId) {
+        Intent intent = new Intent(activity, JoinDetailsActivity.class);
+        intent.putExtra("franId", franId);
+        intent.putExtra("isMy", true);
+        activity.startActivity(intent);
+    }
+
     private void initBundle() {
         Intent intent = getIntent();
         franId = intent.getIntExtra("franId", 0);
-        int franId = SharedPreferencesUtil.getInstance().getInt(SharedConst.VALUE_FRAN_ID);
-        if (franId == this.franId) {
+        boolean isMy = intent.getBooleanExtra("isMy", false);
+        if (isMy) {
             //自己的不显示按钮
             mBtn.setVisibility(View.GONE);
         }
@@ -208,7 +217,8 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
                         mProgress.setMax(total);
                         mProgress.setProgress(progress);
                         mNumber.setText(progress + "/" + total + "票");
-                        mProgressNumber.setText((progress / total * 100) + "%");
+                        String string = new BigDecimal(((double) progress / (double) total * 100)).setScale(2, RoundingMode.DOWN).toPlainString();
+                        mProgressNumber.setText(string + "%");
 
                         BannerUtil.init(mBanner, data.getBanner(), position -> {
                             //TODO 等待跳转

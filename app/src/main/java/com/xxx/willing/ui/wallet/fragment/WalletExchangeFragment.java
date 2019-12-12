@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.EventBusConfig;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.WalletCoinBean;
@@ -179,8 +180,8 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
         if (isExchangeParam) {
             mTargetSymbol.setText(baseCoinBean.getCoinSymbol());
             mBaseSymbol.setText(targetCoinBean.getCoinSymbol());
-            GlideUtil.loadCircle(getContext(), baseCoinBean.getCoinUrl(), mTargetIcon);
-            GlideUtil.loadCircle(getContext(), targetCoinBean.getCoinUrl(), mBaseIcon);
+            GlideUtil.loadCircle(getContext(), HttpConfig.BASE_URL + baseCoinBean.getCoinUrl(), mTargetIcon);
+            GlideUtil.loadCircle(getContext(), HttpConfig.BASE_URL + targetCoinBean.getCoinUrl(), mBaseIcon);
             if (targetCoinBean.getCoinId() == 10000004) {    //GVI
                 fee = gviTargetFee;
             } else if (targetCoinBean.getCoinId() == 10000005) {  //BVSE
@@ -193,8 +194,8 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
         } else {
             mBaseSymbol.setText(baseCoinBean.getCoinSymbol());
             mTargetSymbol.setText(targetCoinBean.getCoinSymbol());
-            GlideUtil.loadCircle(getContext(), baseCoinBean.getCoinUrl(), mBaseIcon);
-            GlideUtil.loadCircle(getContext(), targetCoinBean.getCoinUrl(), mTargetIcon);
+            GlideUtil.loadCircle(getContext(), HttpConfig.BASE_URL + baseCoinBean.getCoinUrl(), mBaseIcon);
+            GlideUtil.loadCircle(getContext(), HttpConfig.BASE_URL + targetCoinBean.getCoinUrl(), mTargetIcon);
             if (baseCoinBean.getCoinId() == 10000004) {    //GVI
                 fee = gviBaseFee;
             } else if (baseCoinBean.getCoinId() == 10000005) {  //BVSE
@@ -206,7 +207,8 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
             rate = new BigDecimal(baseCoinBean.getCoinPriceUsdt()).divide(new BigDecimal(targetCoinBean.getCoinPriceUsdt()), baseCoinBean.getCoinDecimal(), BigDecimal.ROUND_DOWN).toPlainString();
         }
 
-
+        mBaseAmount.setText("");
+        mTargetAmount.setText("");
         this.rate = Double.parseDouble(rate);
         mRate.setText(getString(R.string.wallet_exchange_rate) + rate);
         mFee.setText(getString(R.string.wallet_exchange_fee) + (fee * 100) + "%");

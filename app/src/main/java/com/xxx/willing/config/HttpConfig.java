@@ -11,11 +11,13 @@ public class HttpConfig {
     /**
      * 测试服务器地址
      */
-    public static final String BASE_URL = "http://192.168.31.95:8080";
-    public static final String BASE_URL_PATH = "";
+//    public static final String BASE_URL = "http://192.168.31.95:8080";
+    public static final String BASE_URL = "http://192.168.31.12/";
+    public static final String BASE_URL_PATH = "/willing";
 
     //WebView网页
     public static final String BASE_WEB = BASE_URL + "?language=zh";
+
     /**
      * 网络请求基本参数配置
      */
@@ -29,14 +31,14 @@ public class HttpConfig {
      * 网页地址
      */
     public static final String INVITE_URL = BASE_URL + "/download/register.html";    //邀请好友地址
-    public static final String USE_HELP_URL = BASE_WEB+"/help";                      //使用帮助地址
-    public static final String JOIN_HELP_URL = BASE_WEB+"/joinin";                   //加盟协议地址
-    public static final String USER_AGREEMENT_URL = BASE_WEB+"/useragreement";       //用户协议
-    public static final String VOTE_URL = BASE_WEB+"/vote";                          //投票规则
-    public static final String PARTNER_URL = BASE_WEB+"/partnership";                //合伙人规则
-    public static final String COMPETITION_URL = BASE_WEB+"/competition";            //竞赛规则
-    public static final String EXCHANGE_URL = BASE_WEB+"/exchange";                  //兑换须知
-    public static final String TASK_URL = BASE_WEB+"/task";                          //任务规则
+    public static final String USE_HELP_URL = BASE_WEB + "/help";                      //使用帮助地址
+    public static final String JOIN_HELP_URL = BASE_WEB + "/joinin";                   //加盟协议地址
+    public static final String USER_AGREEMENT_URL = BASE_WEB + "/useragreement";       //用户协议
+    public static final String VOTE_URL = BASE_WEB + "/vote";                          //投票规则
+    public static final String PARTNER_URL = BASE_WEB + "/partnership";                //合伙人规则
+    public static final String COMPETITION_URL = BASE_WEB + "/competition";            //竞赛规则
+    public static final String EXCHANGE_URL = BASE_WEB + "/exchange";                  //兑换须知
+    public static final String TASK_URL = BASE_WEB + "/task";                          //任务规则
 
     public static final String CALL_MY_CODE = "1231231";                             //联系我们微信号
 }

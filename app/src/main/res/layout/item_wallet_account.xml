@@ -42,6 +42,7 @@
         android:layout_height="46dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="16dp"
+        android:scaleType="fitXY"
         android:src="@mipmap/ic_launcher" />
 
     <TextView

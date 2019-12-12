@@ -19,6 +19,7 @@ public class BannerUtil {
 
     public static void init(Banner banner, List<String> list, OnBannerListener onBannerListener) {
         List<String> title = new ArrayList<>();
+        if (list == null) return;
         for (int i = 0; i < list.size(); i++) {
             title.add("");
         }

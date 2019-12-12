@@ -41,7 +41,9 @@ import io.reactivex.schedulers.Schedulers;
  * @date 2019-12-03
  */
 
-public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.OnItemChildClickListener {
+public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.OnItemChildClickListener, VoteWindow.Callback {
+
+    private VoteWindow mVoteWindow;
 
     public static void actionStart(Activity activity, int franId) {
         Intent intent = new Intent(activity, JoinDetailsActivity.class);
@@ -115,6 +117,9 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
         mRefresh.setOnRefreshListener(this);
         mAdapter.setOnItemChildClickListener(this);
 
+        mVoteWindow = VoteWindow.getInstance(this);
+        mVoteWindow.setCallback(this);
+
         getVoteDetail();
     }
 
@@ -125,11 +130,33 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
                 BaseWebActivity.actionStart(this, "", getString(R.string.vote_details));
                 break;
             case R.id.vote_btn:
-                vote();
+                if (mVoteWindow != null) {
+                    mVoteWindow.show();
+                }
                 break;
         }
     }
 
+    @OnClick({R.id.content_open, R.id.vote_btn})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.content_open:
+
+                break;
+            case R.id.vote_btn:
+
+                break;
+        }
+    }
+
+    @Override
+    public void callback(int amount) {
+        if (amount <= 0) {
+            ToastUtil.showToast(getString(R.string.vote_error_1));
+            return;
+        }
+        vote(amount);
+    }
 
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
@@ -141,6 +168,15 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
         getVoteDetail();
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mVoteWindow != null) {
+            mVoteWindow.dismiss();
+            mVoteWindow = null;
+        }
+    }
 
     /**
      * @Model 获取投票加盟详情
@@ -197,6 +233,9 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
                     public void onEnd() {
                         super.onEnd();
                         hideLoading();
+                        if (mRefresh != null) {
+                            mRefresh.setRefreshing(false);
+                        }
                     }
                 });
     }
@@ -204,8 +243,8 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
     /**
      * @Model 投票
      */
-    private void vote() {
-        Api.getInstance().vote(franId, 2)
+    private void vote(int amount) {
+        Api.getInstance().vote(franId, amount)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<BooleanBean>(this) {
@@ -215,6 +254,11 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
                             BooleanBean data = bean.getData();
                             if (data != null && data.isResult()) {
                                 ToastUtil.showToast(getString(R.string.vote_success));
+
+                                if (mVoteWindow != null) {
+                                    mVoteWindow.dismiss();
+                                }
+                                getVoteDetail();
                             }
                         }
                     }
@@ -238,20 +282,4 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
                 });
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
-    @OnClick({R.id.content_open, R.id.vote_btn})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.content_open:
-                break;
-            case R.id.vote_btn:
-                break;
-        }
-    }
 }

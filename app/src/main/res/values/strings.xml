@@ -474,4 +474,8 @@
     </string-array>
     <string name="item_phone_securities">话费代金券¥</string>
     <string name="search_default_null">搜索内容不能为空</string>
+    <string name="window_vote_btn">确定</string>
+    <string name="window_vote_edit">请输入投票数量</string>
+    <string name="window_vote_title">投票</string>
+    <string name="vote_error_1">投票数量必须大于0</string>
 </resources>

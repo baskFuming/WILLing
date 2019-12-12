@@ -202,7 +202,7 @@ public interface ApiService {
     @FormUrlEncoded
     Observable<BaseBean<BooleanBean>> vote(
             @Field("franId") int franId,
-            @Field("value") double value
+            @Field("value") int value
     );
 
     //转账

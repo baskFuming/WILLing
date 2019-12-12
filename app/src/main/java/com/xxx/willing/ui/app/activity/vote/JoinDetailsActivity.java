@@ -2,12 +2,14 @@ package com.xxx.willing.ui.app.activity.vote;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -21,6 +23,8 @@ import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.VoteDetailBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.BooleanBean;
+import com.xxx.willing.model.sp.SharedConst;
+import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.BannerUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.adapter.TeamMesAdapter;
@@ -43,8 +47,6 @@ import io.reactivex.schedulers.Schedulers;
 
 public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.OnItemChildClickListener, VoteWindow.Callback {
 
-    private VoteWindow mVoteWindow;
-
     public static void actionStart(Activity activity, int franId) {
         Intent intent = new Intent(activity, JoinDetailsActivity.class);
         intent.putExtra("franId", franId);
@@ -54,12 +56,14 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
     private void initBundle() {
         Intent intent = getIntent();
         franId = intent.getIntExtra("franId", 0);
+        int franId = SharedPreferencesUtil.getInstance().getInt(SharedConst.VALUE_FRAN_ID);
+        if (franId == this.franId) {
+            //自己的不显示按钮
+            mBtn.setVisibility(View.GONE);
+        }
     }
 
-    @Override
-    protected String initTitle() {
-        return getString(R.string.vote_details);
-    }
+    private VoteWindow mVoteWindow;
 
     @BindView(R.id.main_content)
     TextView mContent;
@@ -68,6 +72,8 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
     @BindView(R.id.main_refresh)
     SwipeRefreshLayout mRefresh;
 
+    @BindView(R.id.vote_btn)
+    Button mBtn;
     @BindView(R.id.join_banner)
     Banner mBanner;
     @BindView(R.id.join_name)
@@ -98,6 +104,11 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
     private TeamMesAdapter mAdapter;
     private List<VoteDetailBean.ListBean> mList = new ArrayList<>();
     private Integer franId;
+
+    @Override
+    protected String initTitle() {
+        return getString(R.string.vote_details);
+    }
 
     @Override
     protected int getLayoutId() {

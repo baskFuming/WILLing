@@ -23,9 +23,9 @@ public class SharedConst {
     public static final String VALUE_INVITE_CODE = "value_invite_code";   //用户邀请码
     public static final String VALUE_COUNTY_CODE = "value_county_code";   //用户手机号编码
     public static final String VALUE_USER_STAR = "value_user_star";   //用户等级
+    public static final String VALUE_FRAN_ID = "value_fran_id";   //用户投票ID
 
-
-    public static final String STATUS_FRAN = "status_fran";   //提交审核状态
+    public static final String STATUS_FRAN = "status_fran";   //投票状态
 
     /**
      * 保存的状态

@@ -9,6 +9,9 @@ public class ApiType {
     //地址管理默认地址标识
     public static final int FLAG_ADDRESS_DEFAULT = 1;
 
+    //加盟申请审核成功
+    public static final int VOTE_SUCCESS_STATUS = 1;
+
     //转账状态
     public static final int TRANSFER_WAIT_STATUS = 0;   //等待打包
     public static final int RECHARGE_SUCCESS_STATUS = 1;       //交易成功

@@ -314,6 +314,7 @@ public class MainActivity extends BaseActivity {
                                 SharedPreferencesUtil.getInstance().saveString(SharedConst.VALUE_USER_PHONE, data.getTelphone());
                                 SharedPreferencesUtil.getInstance().saveInt(SharedConst.VALUE_USER_STAR, data.getStar());
 
+                                SharedPreferencesUtil.getInstance().saveInt(SharedConst.VALUE_FRAN_ID, data.getFranId());
                                 SharedPreferencesUtil.getInstance().saveInt(SharedConst.STATUS_FRAN, data.getFranStatus());
 
                                 EventBus.getDefault().post(EventBusConfig.EVENT_UPDATE_USER);

@@ -9,13 +9,14 @@ import android.widget.TextView;
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.EventBusConfig;
+import com.xxx.willing.model.http.utils.ApiType;
 import com.xxx.willing.model.sp.SharedConst;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.GlideUtil;
+import com.xxx.willing.ui.app.activity.vote.JoinDetailsActivity;
 import com.xxx.willing.ui.my.activity.AccountSettingActivity;
 import com.xxx.willing.ui.my.activity.InviteFriendActivity;
 import com.xxx.willing.ui.my.activity.join.JoinApplyActivity;
-import com.xxx.willing.ui.my.activity.join.MyJoinMessageActivity;
 import com.xxx.willing.ui.my.activity.record.MoRecordActivity;
 import com.xxx.willing.ui.my.activity.sign.SignActivity;
 import com.xxx.willing.ui.my.activity.team.MyTeamActivity;
@@ -91,11 +92,9 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 break;
             case R.id.re_my_join://  加盟申请
                 Integer statusFran = instance.getInt(SharedConst.STATUS_FRAN);
-                if (statusFran == 1) {
-                    //提交完成
-                    MyJoinMessageActivity.actionStart(getActivity());
+                if (statusFran == ApiType.VOTE_SUCCESS_STATUS) {
+                    JoinDetailsActivity.actionStart(getActivity(), instance.getInt(SharedConst.VALUE_FRAN_ID));
                 } else {
-                    //已提交
                     JoinApplyActivity.actionStart(getActivity());
                 }
                 break;
@@ -134,7 +133,7 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 break;
         }
 
-        if (statusFran == 1) {
+        if (statusFran == ApiType.VOTE_SUCCESS_STATUS) {
             mReview.setText(R.string.my_submitted_review);
         } else {
             mReview.setText("");

@@ -35,6 +35,7 @@ public class JoinPhotoAdapter extends BaseQuickAdapter<File, BaseViewHolder> {
             view.setVisibility(View.VISIBLE);
         } else {
             imageView.setVisibility(View.VISIBLE);
+            relativeLayout.setBackgroundResource(R.drawable.creat_btn_bg);
             view.setVisibility(View.GONE);
         }
     }

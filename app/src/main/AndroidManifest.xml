@@ -25,7 +25,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.my.activity.join.MyJoinMessageActivity"></activity>
         <activity android:name=".ui.main.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,7 +49,6 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".base.activity.BaseWebActivity" />
         <activity android:name=".base.activity.BaseWebActivity" />
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.main.SweepActivity" />

@@ -18,10 +18,15 @@ public class UserInfo {
     private String nickname;
     private String avatar;
     private int franStatus;
+    private int franId;
     private String areacode;
 
     public int getFranStatus() {
         return franStatus;
+    }
+
+    public int getFranId() {
+        return franId;
     }
 
     public int getStar() {

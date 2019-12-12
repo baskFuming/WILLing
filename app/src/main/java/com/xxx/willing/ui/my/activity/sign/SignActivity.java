@@ -9,6 +9,14 @@ import android.widget.TextView;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.model.http.Api;
+import com.xxx.willing.model.http.ApiCallback;
+import com.xxx.willing.model.http.bean.SignInfoBean;
+import com.xxx.willing.model.http.bean.TaskInfoBean;
+import com.xxx.willing.model.http.bean.WalletCoinBean;
+import com.xxx.willing.model.http.bean.base.BaseBean;
+import com.xxx.willing.model.http.bean.base.BooleanBean;
+import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.my.activity.InviteFriendActivity;
 import com.xxx.willing.ui.my.activity.sign.view.StepBean;
 import com.xxx.willing.ui.my.activity.sign.view.StepsView;
@@ -20,6 +28,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author FM
@@ -111,5 +122,143 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
             signPopWindow.dismiss();
             signPopWindow = null;
         }
+    }
+
+    /**
+     * @Model 获取签到信息
+     */
+    private void getSignInfo() {
+        Api.getInstance().getSignInfo()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiCallback<List<SignInfoBean>>(this) {
+
+                    @Override
+                    public void onSuccess(BaseBean<List<SignInfoBean>> bean) {
+                        if (bean != null) {
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(int errorCode, String errorMessage) {
+                        ToastUtil.showToast(errorMessage);
+                    }
+
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        showLoading();
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        hideLoading();
+                    }
+                });
+    }
+
+    /**
+     * @Model 获取任务信息
+     */
+    private void getTaskInfo() {
+        Api.getInstance().getTaskInfo()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiCallback<List<TaskInfoBean>>(this) {
+
+                    @Override
+                    public void onSuccess(BaseBean<List<TaskInfoBean>> bean) {
+                        if (bean != null) {
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(int errorCode, String errorMessage) {
+                        ToastUtil.showToast(errorMessage);
+                    }
+
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        showLoading();
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        hideLoading();
+                    }
+                });
+    }
+
+    /**
+     * @Model 签到
+     */
+    private void sign() {
+        Api.getInstance().sign()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiCallback<BooleanBean>(this) {
+
+                    @Override
+                    public void onSuccess(BaseBean<BooleanBean> bean) {
+                        if (bean != null) {
+                        }
+                    }
+
+                    @Override
+                    public void onError(int errorCode, String errorMessage) {
+                        ToastUtil.showToast(errorMessage);
+                    }
+
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        showLoading();
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        hideLoading();
+                    }
+                });
+    }
+
+    /**
+     * @Model 任务
+     */
+    private void task(int taskId) {
+        Api.getInstance().task(taskId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiCallback<BooleanBean>(this) {
+
+                    @Override
+                    public void onSuccess(BaseBean<BooleanBean> bean) {
+                        if (bean != null) {
+                        }
+                    }
+
+                    @Override
+                    public void onError(int errorCode, String errorMessage) {
+                        ToastUtil.showToast(errorMessage);
+                    }
+
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        showLoading();
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        hideLoading();
+                    }
+                });
     }
 }

@@ -92,7 +92,7 @@ public class WithdrawalActivity extends BaseTitleActivity implements PasswordWin
     protected void initData() {
         initBundle();
         mBalance.setText(getString(R.string.withdrawal_balance) + balance);
-        mFee.setText(getString(R.string.withdrawal_fee) + fee + "BVSE");
+        mFee.setText(getString(R.string.withdrawal_fee) + fee + "% BVSE");
 
         //初始化密码弹框
         mPasswordWindow = PasswordWindow.getInstance(this);
@@ -166,19 +166,17 @@ public class WithdrawalActivity extends BaseTitleActivity implements PasswordWin
             return;
         }
         try {
-            if (Double.parseDouble(amount) + fee > balance) {
-                ToastUtil.showToast(R.string.withdrawal_error_3);
-                showEditError(mAmount);
-                return;
-            }
-
+//            if (Double.parseDouble(amount) + fee > balance) {
+//                ToastUtil.showToast(R.string.withdrawal_error_3);
+//                showEditError(mAmount);
+//                return;
+//            }
+            this.amount = Double.parseDouble(amount);
         } catch (Exception e) {
             ToastUtil.showToast(R.string.withdrawal_error_4);
             showEditError(mAmount);
             return;
         }
-
-        this.amount = Double.parseDouble(amount);
 
         if (mPasswordWindow != null && !mPasswordWindow.isShowing()) {
             mPasswordWindow.show();
@@ -198,7 +196,7 @@ public class WithdrawalActivity extends BaseTitleActivity implements PasswordWin
      * @Model 提现
      */
     private void withdrawal(String password) {
-        Api.getInstance().withdrawal(coinId, amount, fee, address, password)
+        Api.getInstance().withdrawal(coinId, amount, address, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<BooleanBean>(this) {

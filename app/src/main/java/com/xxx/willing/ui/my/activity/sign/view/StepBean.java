@@ -10,7 +10,7 @@ public class StepBean {
     /**
      * 未完成
      */
-    public static final int STEP_UNDO = -1;
+    public static final int STEP_UNDO = 0;
     /**
      * 已完成
      */

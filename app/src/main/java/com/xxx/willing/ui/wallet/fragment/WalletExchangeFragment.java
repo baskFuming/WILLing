@@ -181,10 +181,10 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
             mBaseSymbol.setText(targetCoinBean.getCoinSymbol());
             GlideUtil.loadCircle(getContext(), baseCoinBean.getCoinUrl(), mTargetIcon);
             GlideUtil.loadCircle(getContext(), targetCoinBean.getCoinUrl(), mBaseIcon);
-            if (baseCoinBean.getCoinId() == 10000004) {    //GVI
-                fee = gviBaseFee;
-            } else if (baseCoinBean.getCoinId() == 10000005) {  //BVSE
-                fee = bvseBaseFee;
+            if (targetCoinBean.getCoinId() == 10000004) {    //GVI
+                fee = gviTargetFee;
+            } else if (targetCoinBean.getCoinId() == 10000005) {  //BVSE
+                fee = bvseTargetFee;
             } else {
                 fee = 0;
             }
@@ -195,10 +195,10 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
             mTargetSymbol.setText(targetCoinBean.getCoinSymbol());
             GlideUtil.loadCircle(getContext(), baseCoinBean.getCoinUrl(), mBaseIcon);
             GlideUtil.loadCircle(getContext(), targetCoinBean.getCoinUrl(), mTargetIcon);
-            if (targetCoinBean.getCoinId() == 10000004) {    //GVI
-                fee = gviTargetFee;
-            } else if (targetCoinBean.getCoinId() == 10000005) {  //BVSE
-                fee = bvseTargetFee;
+            if (baseCoinBean.getCoinId() == 10000004) {    //GVI
+                fee = gviBaseFee;
+            } else if (baseCoinBean.getCoinId() == 10000005) {  //BVSE
+                fee = bvseBaseFee;
             } else {
                 fee = 0;
             }

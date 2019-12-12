@@ -142,17 +142,17 @@ public class PartnerActivity extends BaseTitleActivity {
                         ToastUtil.showToast(errorMessage);
                     }
 
-                    @Override
-                    public void onStart(Disposable d) {
-                        super.onStart(d);
-                        showLoading();
-                    }
-
-                    @Override
-                    public void onEnd() {
-                        super.onEnd();
-                        hideLoading();
-                    }
+//                    @Override
+//                    public void onStart(Disposable d) {
+//                        super.onStart(d);
+//                        showLoading();
+//                    }
+//
+//                    @Override
+//                    public void onEnd() {
+//                        super.onEnd();
+//                        hideLoading();
+//                    }
                 });
     }
 }

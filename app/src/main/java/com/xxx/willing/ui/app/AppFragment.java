@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseWebActivity;
 import com.xxx.willing.base.fragment.BaseFragment;
@@ -26,7 +27,6 @@ public class AppFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-
     }
 
     @OnClick({R.id.app_vote, R.id.app_partner, R.id.app_competition, R.id.app_shop, R.id.app_eth, R.id.app_btc, R.id.app_H_coin, R.id.app_huo_bi, R.id.app_plane, R.id.app_not, R.id.app_kong_yi_college})
@@ -65,7 +65,7 @@ public class AppFragment extends BaseFragment {
                 ToastUtil.showToast(getString(R.string.app_not));
                 break;
             case R.id.app_kong_yi_college:
-                BaseWebActivity.actionStart(getActivity(), getString(R.string.app_kong_yi_college), AppConfig.APP_Study_BROWSER);
+                BaseWebActivity.actionStart(getActivity(), AppConfig.APP_Study_BROWSER,getString(R.string.app_kong_yi_college));
                 break;
         }
         if (uri != null) {

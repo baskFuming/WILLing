@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.net.http.SslError;
 import android.os.Build;
 import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -72,12 +74,7 @@ public class BaseWebActivity extends BaseTitleActivity {
         webSetting.setJavaScriptEnabled(true);  //支持js
         webSetting.setJavaScriptCanOpenWindowsAutomatically(true);  //支持弹窗
         webSetting.setBlockNetworkImage(false);
-        mWebView.post(new Runnable() {
-            @Override
-            public void run() {
-                webSetting.setTextZoom(getWindow().getDecorView().getWidth() / 375 * 100);
-            }
-        });
+        mWebView.post(() -> webSetting.setTextZoom(getWindow().getDecorView().getWidth() / 375 * 100));
         webSetting.setCacheMode(WebSettings.LOAD_NO_CACHE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             webSetting.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
@@ -107,12 +104,42 @@ public class BaseWebActivity extends BaseTitleActivity {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 if (newProgress == 100) {
-                    mProgress.setVisibility(View.GONE);
+                    if (mProgress != null) {
+                        mProgress.setVisibility(View.GONE);
+                    }
                 } else {
-                    mProgress.setVisibility(View.VISIBLE);
-                    mProgress.setProgress(newProgress);
+                    if (mProgress != null) {
+                        mProgress.setVisibility(View.VISIBLE);
+                        mProgress.setProgress(newProgress);
+                    }
                 }
             }
         });
+    }
+
+    @Override
+    protected void onPause() {
+        mWebView.reload();
+        mWebView.onPause();
+        super.onPause();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //清空所有Cookie
+        CookieSyncManager.createInstance(this);
+        CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.removeAllCookie();
+        CookieSyncManager.getInstance().sync();
+        if (mWebView != null) {
+            mWebView.setWebChromeClient(null);
+            mWebView.setWebViewClient(null);
+            mWebView.getSettings().setJavaScriptEnabled(false);
+            mWebView.clearCache(true);
+            mWebView.stopLoading();
+            mWebView.destroy();
+        }
     }
 }

@@ -191,7 +191,6 @@ public class CmpRankActivity extends BaseTitleActivity implements SwipeRefreshLa
                         if (mRefresh != null && page == UIConfig.PAGE_DEFAULT) {
                             mRefresh.setRefreshing(true);
                         }
-                        showLoading();
                     }
 
                     @Override
@@ -200,7 +199,6 @@ public class CmpRankActivity extends BaseTitleActivity implements SwipeRefreshLa
                         if (mRefresh != null) {
                             mRefresh.setRefreshing(false);
                         }
-                        hideLoading();
                     }
                 });
     }

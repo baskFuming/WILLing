@@ -67,7 +67,7 @@ public class GVIMyFragment extends BaseFragment {
                     public void onSuccess(BaseBean<ShopUser> bean) {
                         if (bean != null) {
                             mName.setText(bean.getData().getUserName());
-                            mAccount.setText(bean.getData().getGviAmount());
+                            mAccount.setText(bean.getData().getGviAmount()+"");
                             GlideUtil.loadCircle(getActivity(), bean.getData().getImg(), mIcon);
                         }
                     }

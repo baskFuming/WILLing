@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/main_bg"
     android:orientation="vertical"
-    tools:context=".ui.app.vote.activity.vote.VoteJoinActivity"
     tools:ignore="RtlHardcoded">
 
     <include layout="@layout/include_title_bar" />
@@ -102,9 +101,10 @@
                     android:textSize="17dp" />
             </RelativeLayout>
             <TextView
+                android:id="@+id/date_end_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="本次排名截止日期："
+                android:text="@string/date_end_time"
                 android:textColor="#ffffffff"
                 android:textSize="11dp"
                 android:layout_marginBottom="15dp"

@@ -20,6 +20,7 @@ import com.xxx.willing.model.http.bean.ShopUser;
 import com.xxx.willing.model.http.bean.SignInfoBean;
 import com.xxx.willing.model.http.bean.TaskInfoBean;
 import com.xxx.willing.model.http.bean.TotalFranchiseeBean;
+import com.xxx.willing.model.http.bean.TotalRankBean;
 import com.xxx.willing.model.http.bean.UserInfo;
 import com.xxx.willing.model.http.bean.VoteDetailBean;
 import com.xxx.willing.model.http.bean.WalletAccountBean;
@@ -376,6 +377,13 @@ public interface ApiService {
     //获取合伙人Tab
     @GET(HttpConfig.BASE_URL_PATH + "/partnerRatios")
     Observable<BaseBean<PageBean<PartnerListBean>>> partnerRatios(
+            @Query("pageNum") int pageNum,
+            @Query("pageSize") int pageSize
+    );
+
+    //竞赛排名
+    @GET(HttpConfig.BASE_URL_PATH + "/rankingsList")
+    Observable<BaseBean<TotalRankBean>> getrankings(
             @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );

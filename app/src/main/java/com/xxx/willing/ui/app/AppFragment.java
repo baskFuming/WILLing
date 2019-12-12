@@ -58,7 +58,8 @@ public class AppFragment extends BaseFragment {
                 uri = Uri.parse(AppConfig.APP_HUOBI_BROWSER);
                 break;
             case R.id.app_plane:
-                GameActivity.actionStart(getActivity(), "");
+//                GameActivity.actionStart(getActivity(), "");
+                ToastUtil.showToast(getString(R.string.app_not));
                 break;
             case R.id.app_not:
                 ToastUtil.showToast(getString(R.string.app_not));

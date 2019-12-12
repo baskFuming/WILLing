@@ -9,6 +9,8 @@ import com.xxx.willing.R;
 import com.xxx.willing.model.http.bean.PartnerBean;
 import com.xxx.willing.model.utils.GlideUtil;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +20,7 @@ import java.util.List;
  */
 
 public class PartnerApapter extends BaseQuickAdapter<PartnerBean, BaseViewHolder> {
+    private List<PartnerBean> data = new ArrayList<>();
 
     public PartnerApapter(@Nullable List<PartnerBean> data) {
         super(R.layout.partner_item, data);
@@ -30,15 +33,16 @@ public class PartnerApapter extends BaseQuickAdapter<PartnerBean, BaseViewHolder
                 .setText(R.id.partner_count, item.getPrice());
         GlideUtil.loadCircle(mContext, String.valueOf(item.getAvatar()), helper.getView(R.id.partner_icon));
         TextView mLevel = helper.getView(R.id.partner_level);
-        if (item.getLevel() == 1) {
+        int position = helper.getLayoutPosition();
+        if (position == 0) {
             helper.getView(R.id.partner_level).setBackgroundResource(R.drawable.rank_1);
-            mLevel.setText("TOP1");
-        } else if (item.getLevel() == 2) {
+            mLevel.setText("Top1");
+        } else if (position == 2) {
             helper.getView(R.id.partner_level).setBackgroundResource(R.drawable.rank_2);
-            mLevel.setText("TOP2");
-        } else if (item.getLevel() == 3) {
+            mLevel.setText("Top2");
+        } else if (position == 3) {
             helper.getView(R.id.partner_level).setBackgroundResource(R.drawable.rank_3);
-            mLevel.setText("TOP3");
+            mLevel.setText("Top3");
         }
     }
 }

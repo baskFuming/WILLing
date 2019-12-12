@@ -127,70 +127,70 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
      * @Model 获取签到信息
      */
     private void getSignInfo() {
-        Api.getInstance().getSignInfo()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiCallback<List<SignInfoBean>>(this) {
-
-                    @Override
-                    public void onSuccess(BaseBean<List<SignInfoBean>> bean) {
-                        if (bean != null) {
-
-                        }
-                    }
-
-                    @Override
-                    public void onError(int errorCode, String errorMessage) {
-                        ToastUtil.showToast(errorMessage);
-                    }
-
-                    @Override
-                    public void onStart(Disposable d) {
-                        super.onStart(d);
-                        showLoading();
-                    }
-
-                    @Override
-                    public void onEnd() {
-                        super.onEnd();
-                        hideLoading();
-                    }
-                });
+//        Api.getInstance().getSignInfo()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new ApiCallback<List<SignInfoBean>>(this) {
+//
+//                    @Override
+//                    public void onSuccess(BaseBean<List<SignInfoBean>> bean) {
+//                        if (bean != null) {
+//
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onError(int errorCode, String errorMessage) {
+//                        ToastUtil.showToast(errorMessage);
+//                    }
+//
+//                    @Override
+//                    public void onStart(Disposable d) {
+//                        super.onStart(d);
+//                        showLoading();
+//                    }
+//
+//                    @Override
+//                    public void onEnd() {
+//                        super.onEnd();
+//                        hideLoading();
+//                    }
+//                });
     }
 
     /**
      * @Model 获取任务信息
      */
     private void getTaskInfo() {
-        Api.getInstance().getTaskInfo()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiCallback<List<TaskInfoBean>>(this) {
-
-                    @Override
-                    public void onSuccess(BaseBean<List<TaskInfoBean>> bean) {
-                        if (bean != null) {
-
-                        }
-                    }
-
-                    @Override
-                    public void onError(int errorCode, String errorMessage) {
-                        ToastUtil.showToast(errorMessage);
-                    }
-
-                    @Override
-                    public void onStart(Disposable d) {
-                        super.onStart(d);
-                        showLoading();
-                    }
-
-                    @Override
-                    public void onEnd() {
-                        super.onEnd();
-                        hideLoading();
-                    }
-                });
+//        Api.getInstance().getTaskInfo()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new ApiCallback<List<TaskInfoBean>>(this) {
+//
+//                    @Override
+//                    public void onSuccess(BaseBean<List<TaskInfoBean>> bean) {
+//                        if (bean != null) {
+//
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onError(int errorCode, String errorMessage) {
+//                        ToastUtil.showToast(errorMessage);
+//                    }
+//
+//                    @Override
+//                    public void onStart(Disposable d) {
+//                        super.onStart(d);
+//                        showLoading();
+//                    }
+//
+//                    @Override
+//                    public void onEnd() {
+//                        super.onEnd();
+//                        hideLoading();
+//                    }
+//                });
     }
 
     /**

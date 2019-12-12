@@ -348,11 +348,13 @@
                 android:layout_marginTop="25dp"
                 android:text="@string/team_mess"
                 android:textColor="#ff333333"
-                android:textSize="16dp"
+                android:textSize="16dp" />
 
-                />
-
-            <include layout="@layout/include_recycler" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/main_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
 
             <Button
                 android:id="@+id/vote_btn"
@@ -364,6 +366,7 @@
                 android:layout_marginTop="40dp"
                 android:gravity="center"
                 android:text="@string/vote_btn" />
+
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

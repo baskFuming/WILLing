@@ -13,7 +13,6 @@ import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.SignInfoBean;
 import com.xxx.willing.model.http.bean.TaskInfoBean;
-import com.xxx.willing.model.http.bean.WalletCoinBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.BooleanBean;
 import com.xxx.willing.model.utils.ToastUtil;

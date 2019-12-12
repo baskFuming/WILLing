@@ -1,9 +1,7 @@
 package com.xxx.willing.model.utils;
 
 import android.content.Context;
-import android.view.View;
 import android.widget.ImageView;
-
 
 import com.xw.banner.Banner;
 import com.xw.banner.BannerConfig;

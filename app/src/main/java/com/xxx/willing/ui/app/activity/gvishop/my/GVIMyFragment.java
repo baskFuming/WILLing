@@ -6,18 +6,14 @@ import android.widget.TextView;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
-import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
-import com.xxx.willing.model.http.bean.GviBean;
 import com.xxx.willing.model.http.bean.ShopUser;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.utils.GlideUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.activity.gvishop.my.address.ShipAddressActivity;
 import com.xxx.willing.ui.app.activity.gvishop.my.order.MyOrderActivity;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;

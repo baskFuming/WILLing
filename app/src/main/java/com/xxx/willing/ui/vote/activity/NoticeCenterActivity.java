@@ -1,6 +1,5 @@
 package com.xxx.willing.ui.vote.activity;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -19,7 +18,6 @@ import com.xxx.willing.model.http.bean.MessageBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.utils.ToastUtil;
-import com.xxx.willing.ui.login.activity.ForgetLoginPswActivity;
 import com.xxx.willing.ui.vote.adapter.NoticeCenterAdapter;
 
 import java.util.ArrayList;

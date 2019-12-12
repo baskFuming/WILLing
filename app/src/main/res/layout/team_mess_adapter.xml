@@ -46,6 +46,7 @@
                     android:textSize="14dp"
                     />
                 <TextView
+                    android:id="@+id/job_all"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"

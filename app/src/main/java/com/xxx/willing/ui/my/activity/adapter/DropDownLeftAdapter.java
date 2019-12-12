@@ -1,15 +1,12 @@
 package com.xxx.willing.ui.my.activity.adapter;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
 import com.xxx.willing.ui.my.activity.record.MoRecordEntry;
 

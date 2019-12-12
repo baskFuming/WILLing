@@ -2,7 +2,6 @@ package com.xxx.willing.ui.app.activity.gvishop.my.order;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.widget.TextView;
 
@@ -11,7 +10,7 @@ import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.model.http.utils.ApiType;
 import com.xxx.willing.ui.app.activity.gvishop.my.order.fragment.MyOrderFragment;
-import com.xxx.willing.ui.app.vote.adapter.ViewPagerAdapter;
+import com.xxx.willing.ui.app.adapter.ViewPagerAdapter;
 import com.xxx.willing.view.MyTabLayout;
 
 import java.util.ArrayList;

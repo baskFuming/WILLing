@@ -17,6 +17,8 @@ import com.xxx.willing.model.http.bean.PartnerBean;
 import com.xxx.willing.model.http.bean.PartnerListBean;
 import com.xxx.willing.model.http.bean.SearchShopBean;
 import com.xxx.willing.model.http.bean.ShopUser;
+import com.xxx.willing.model.http.bean.SignInfoBean;
+import com.xxx.willing.model.http.bean.TaskInfoBean;
 import com.xxx.willing.model.http.bean.TotalFranchiseeBean;
 import com.xxx.willing.model.http.bean.UserInfo;
 import com.xxx.willing.model.http.bean.VoteDetailBean;
@@ -30,21 +32,17 @@ import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.BooleanBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
 
-import org.json.JSONObject;
-
 import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
-import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -91,15 +89,15 @@ public interface ApiService {
     );
 
     //获取我的团队
-    @GET("/CT/invest/getDepositLogs")
-    Observable<BaseBean<PageBean<MyTeamBean>>> getMyTeamList(
+    @GET("/getMyTeam")
+    Observable<BaseBean<MyTeamBean>> getMyTeamList(
             @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
     );
 
     //获取我的团队
-    @GET("/CT/invest/getDepositLogs")
-    Observable<BaseBean<PageBean<MyTeamBean>>> getMyTeamList(
+    @GET("/getMyTeam")
+    Observable<BaseBean<MyTeamBean>> getMyTeamList(
             @Query("userId") int userId,
             @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize
@@ -164,6 +162,13 @@ public interface ApiService {
             @Field("id") Integer id
     );
 
+    @POST("/getSignInfo")
+    Observable<BaseBean<List<SignInfoBean>>> getSignInfo();
+
+    @POST("/getTaskInfo")
+    Observable<BaseBean<List<TaskInfoBean>>> getTaskInfo();
+
+
     //----------------------------------------------------------执行操作----------------------------------------------------------------------------------------------------------------------------//
 
 
@@ -200,14 +205,12 @@ public interface ApiService {
             @Field("value") double value
     );
 
-
     //转账
     @POST(HttpConfig.BASE_URL_PATH + "/doChange")
     @FormUrlEncoded
     Observable<BaseBean<BooleanBean>> withdrawal(
             @Field("coinId") int coinId,
             @Field("amount") double amount,
-            @Field("fee") double fee,
             @Field("address") String address,
             @Field("jyPassword") String jyPassword
     );
@@ -245,7 +248,7 @@ public interface ApiService {
     @POST(HttpConfig.BASE_URL_PATH + "/sendUpdatePhoneMassage")
     Observable<BaseBean<Object>> sendUpdateSMSCode();
 
-//    注册
+    //    注册
     @FormUrlEncoded
     @POST(HttpConfig.BASE_URL_PATH + "/register")
     Observable<BaseBean<Object>> register(

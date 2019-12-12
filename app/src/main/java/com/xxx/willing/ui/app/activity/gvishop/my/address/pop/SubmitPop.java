@@ -1,4 +1,4 @@
-package com.xxx.willing.ui.app.vote.activity.gvishop.my.address.pop;
+package com.xxx.willing.ui.app.activity.gvishop.my.address.pop;
 
 import android.content.Context;
 import android.view.View;

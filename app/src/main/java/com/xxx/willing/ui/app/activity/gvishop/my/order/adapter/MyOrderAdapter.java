@@ -1,4 +1,4 @@
-package com.xxx.willing.ui.app.vote.activity.gvishop.my.order.adapter;
+package com.xxx.willing.ui.app.activity.gvishop.my.order.adapter;
 
 import android.support.annotation.Nullable;
 

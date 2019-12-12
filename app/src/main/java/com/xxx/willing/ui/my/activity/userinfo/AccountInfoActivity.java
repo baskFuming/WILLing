@@ -2,8 +2,6 @@ package com.xxx.willing.ui.my.activity.userinfo;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -18,19 +16,15 @@ import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.BooleanBean;
-import com.xxx.willing.model.http.utils.ApiType;
-import com.xxx.willing.model.utils.BitmapUtils;
 import com.xxx.willing.model.utils.CameraUtil;
 import com.xxx.willing.model.utils.GlideUtil;
 import com.xxx.willing.model.utils.PermissionUtil;
 import com.xxx.willing.model.utils.ToastUtil;
-import com.xxx.willing.ui.login.area.SelectPhoneCode;
 import com.xxx.willing.ui.my.activity.window.SetIconPopup;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
-import java.util.function.Function;
 
 import butterknife.BindView;
 import butterknife.OnClick;

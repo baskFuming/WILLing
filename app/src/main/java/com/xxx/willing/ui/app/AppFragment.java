@@ -5,13 +5,11 @@ import android.net.Uri;
 import android.view.View;
 
 import com.xxx.willing.R;
-import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.base.activity.BaseWebActivity;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.AppConfig;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.activity.GameActivity;
-import com.xxx.willing.ui.app.activity.StudyActivity;
 import com.xxx.willing.ui.app.activity.gvishop.GVIShopActivity;
 import com.xxx.willing.ui.app.activity.partner.PartnerActivity;
 import com.xxx.willing.ui.app.activity.rank.CmpRankActivity;

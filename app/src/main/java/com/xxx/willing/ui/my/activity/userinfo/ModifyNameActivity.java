@@ -14,17 +14,12 @@ import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.BooleanBean;
-import com.xxx.willing.model.sp.SharedConst;
-import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.io.File;
-
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;

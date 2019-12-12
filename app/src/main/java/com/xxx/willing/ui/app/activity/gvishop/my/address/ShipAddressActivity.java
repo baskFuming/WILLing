@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
-import com.xxx.willing.ui.app.activity.gvishop.my.address.SettingAddressActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

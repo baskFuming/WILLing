@@ -17,6 +17,7 @@ import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.MyVoteBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.utils.ToastUtil;
+import com.xxx.willing.ui.app.activity.vote.JoinDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +79,7 @@ public class MyVoteActivity extends BaseTitleActivity implements SwipeRefreshLay
 
         switch (view.getId()) {
             case R.id.re_join_name:     //商家
-
+                JoinDetailsActivity.actionStart(this , bean.getFranId());
                 break;
             case R.id.re_vote_number:  //记录
                 VoteRecordActivity.actionStart(this, bean.getList());

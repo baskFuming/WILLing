@@ -13,14 +13,12 @@ import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
-import com.xxx.willing.model.http.bean.BrandBean;
 import com.xxx.willing.model.http.bean.PartnerBean;
 import com.xxx.willing.model.http.bean.PartnerListBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.adapter.PartnerApapter;
-import com.xxx.willing.ui.vote.fragment.VoteItemFragment;
 
 import java.util.ArrayList;
 import java.util.List;

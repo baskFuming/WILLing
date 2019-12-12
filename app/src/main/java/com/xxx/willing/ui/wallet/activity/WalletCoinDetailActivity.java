@@ -1,7 +1,6 @@
 package com.xxx.willing.ui.wallet.activity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
@@ -31,7 +30,6 @@ import com.xxx.willing.model.utils.StringUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.wallet.adapter.WalletTransactionAdapter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

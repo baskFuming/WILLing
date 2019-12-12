@@ -2,7 +2,6 @@ package com.xxx.willing.ui.app.activity.partner;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
@@ -15,24 +14,16 @@ import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
-import com.xxx.willing.model.http.bean.BrandBean;
 import com.xxx.willing.model.http.bean.PartnerListBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
-import com.xxx.willing.model.http.utils.ApiType;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.activity.partner.fragment.PartnerFragment;
-import com.xxx.willing.ui.app.vote.adapter.ViewPagerAdapter;
 import com.xxx.willing.ui.vote.adapter.VoteAdapter;
-import com.xxx.willing.ui.vote.fragment.VoteItemFragment;
-import com.xxx.willing.ui.wallet.adapter.WalletAdapter;
-import com.xxx.willing.view.MyTabLayout;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;

@@ -8,7 +8,6 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 
-import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.log.LogConst;
 import com.xxx.willing.model.log.LogUtil;
 

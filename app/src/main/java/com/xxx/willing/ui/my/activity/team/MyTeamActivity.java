@@ -17,7 +17,6 @@ import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.MyTeamBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
-import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -54,7 +53,7 @@ public class MyTeamActivity extends BaseTitleActivity implements SwipeRefreshLay
 
     private int page = UIConfig.PAGE_DEFAULT;
     private MyTeamAdapter mAdapter;
-    private List<MyTeamBean> mList = new ArrayList<>();
+    private List<MyTeamBean.ListBean> mList = new ArrayList<>();
 
     @Override
     protected String initTitle() {
@@ -98,30 +97,23 @@ public class MyTeamActivity extends BaseTitleActivity implements SwipeRefreshLay
     }
 
     private void loadData() {
-        if (true) {
-            for (int i = 0; i < 10; i++) {
-                mList.add(new MyTeamBean());
-            }
-            mAdapter.notifyDataSetChanged();
-            hideLoading();
-            mRefresh.setRefreshing(false);
-            return;
-        }
         Api.getInstance().getMyTeamList(page, UIConfig.PAGE_SIZE)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiCallback<PageBean<MyTeamBean>>(this) {
+                .subscribe(new ApiCallback<MyTeamBean>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<MyTeamBean>> bean) {
-                        PageBean<MyTeamBean> data = bean.getData();
+                    public void onSuccess(BaseBean<MyTeamBean> bean) {
+                        MyTeamBean data = bean.getData();
                         if (data == null) {
                             mNotData.setVisibility(View.VISIBLE);
                             mLinear.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
                             return;
                         }
-                        List<MyTeamBean> list = data.getList();
+                        double totalAchievement = data.getTotalAchievement();
+                        mTeamCount.setText(totalAchievement + "");
+                        List<MyTeamBean.ListBean> list = data.getList();
                         if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
                             mNotData.setVisibility(View.VISIBLE);
                             mLinear.setVisibility(View.GONE);

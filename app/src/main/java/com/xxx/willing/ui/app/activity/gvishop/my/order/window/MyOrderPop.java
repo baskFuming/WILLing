@@ -1,4 +1,4 @@
-package com.xxx.willing.ui.app.vote.activity.gvishop.my.order.window;
+package com.xxx.willing.ui.app.activity.gvishop.my.order.window;
 
 import android.view.View;
 

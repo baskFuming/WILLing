@@ -6,10 +6,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
 import com.xxx.willing.model.http.bean.AssetRecordBean;
-import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.utils.ApiType;
-import com.xxx.willing.model.utils.StringUtil;
-import com.xxx.willing.ui.my.activity.record.MoRecordEntry;
 
 import java.util.List;
 

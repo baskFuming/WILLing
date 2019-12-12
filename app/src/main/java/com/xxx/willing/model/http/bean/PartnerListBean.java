@@ -1,7 +1,6 @@
 package com.xxx.willing.model.http.bean;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Time: ${Date}

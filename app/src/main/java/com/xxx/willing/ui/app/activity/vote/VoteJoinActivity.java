@@ -78,8 +78,8 @@ public class VoteJoinActivity extends BaseTitleActivity implements SwipeRefreshL
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
         mRecycler.setAdapter(mAdapter);
         mRefresh.setOnRefreshListener(this);
+        mRefresh.setRefreshing(true);
         mAdapter.setOnLoadMoreListener(this, mRecycler);
-
         mAdapter.setOnItemChildClickListener(this);
     }
 
@@ -181,6 +181,7 @@ public class VoteJoinActivity extends BaseTitleActivity implements SwipeRefreshL
                         if (mRefresh != null && page == UIConfig.PAGE_DEFAULT) {
                             mRefresh.setRefreshing(true);
                         }
+                        showLoading();
                     }
 
                     @Override

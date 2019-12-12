@@ -102,7 +102,8 @@
                     <com.xxx.willing.view.MyTabLayout
                         android:id="@+id/vote_tab_layout"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        app:tabMode="scrollable"/>
 
                     <View
                         android:layout_width="match_parent"

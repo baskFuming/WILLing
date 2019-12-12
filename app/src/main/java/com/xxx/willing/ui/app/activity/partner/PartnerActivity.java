@@ -7,13 +7,25 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
 
+import com.androidkun.xtablayout.XTabLayout;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.base.activity.BaseWebActivity;
 import com.xxx.willing.base.fragment.BaseFragment;
+import com.xxx.willing.config.UIConfig;
+import com.xxx.willing.model.http.Api;
+import com.xxx.willing.model.http.ApiCallback;
+import com.xxx.willing.model.http.bean.BrandBean;
+import com.xxx.willing.model.http.bean.PartnerListBean;
+import com.xxx.willing.model.http.bean.base.BaseBean;
+import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.http.utils.ApiType;
-import com.xxx.willing.ui.app.vote.activity.partner.fragment.PartnerFragment;
+import com.xxx.willing.model.utils.ToastUtil;
+import com.xxx.willing.ui.app.activity.partner.fragment.PartnerFragment;
 import com.xxx.willing.ui.app.vote.adapter.ViewPagerAdapter;
+import com.xxx.willing.ui.vote.adapter.VoteAdapter;
+import com.xxx.willing.ui.vote.fragment.VoteItemFragment;
+import com.xxx.willing.ui.wallet.adapter.WalletAdapter;
 import com.xxx.willing.view.MyTabLayout;
 
 import java.util.ArrayList;
@@ -23,6 +35,9 @@ import java.util.List;
 import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author FM
@@ -37,16 +52,18 @@ public class PartnerActivity extends BaseTitleActivity {
         activity.startActivity(intent);
     }
 
-    @BindArray(R.array.partner_status)
-    String[] status;
     @BindView(R.id.main_content)
     TextView mContent;
     @BindView(R.id.main_tab_layout)
-    MyTabLayout mTabLayout;
+    XTabLayout mTabLayout;
     @BindView(R.id.main_view_pager)
     ViewPager mViewPager;
     private List<BaseFragment> fragments = new ArrayList<>();
+    private List<String> mTabTitle = new ArrayList<>();
     private String mTitle;
+    private int page = UIConfig.PAGE_DEFAULT;
+    private int position;
+    private VoteAdapter voteAdapter;
 
     @Override
     protected String initTitle() {
@@ -63,25 +80,34 @@ public class PartnerActivity extends BaseTitleActivity {
         mTitle = getString(R.string.partner_rules);
         mContent.setVisibility(View.VISIBLE);
         mContent.setText(mTitle);
-        List<String> list = Arrays.asList(status);
 
-        fragments.add(PartnerFragment.getInstance(ApiType.PARTNER_LIST_ALL, list.get(0)));
-        fragments.add(PartnerFragment.getInstance(ApiType.PARTNER_LIST_AERA_ALL, list.get(1)));
-        fragments.add(PartnerFragment.getInstance(ApiType.PARTNER_LIST_CITY_ALL, list.get(2)));
-        fragments.add(PartnerFragment.getInstance(ApiType.PARTNER_LIST_DIRECTOR_ALL, list.get(3)));
+        loadDate();
 
-        mTabLayout.setSelectedIndicatorHeight(6);
-        mTabLayout.setTabIndicatorWidth(80);
-        mTabLayout.setTabTextColors(getResources().getColor(R.color.main_tab_default_color), getResources().getColor(R.color.main_tab_select_color));
-        mTabLayout.setTabTextSize(38, 44);
-        mTabLayout.setTextSelectedBold(true);
-        mTabLayout.setTabMode(MyTabLayout.GRAVITY_CENTER);
-        mTabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.main_tab_select_color));
-
+        mTabLayout.setTabGravity(XTabLayout.GRAVITY_CENTER);
         mViewPager.setOffscreenPageLimit(fragments.size() - 1);
-        mViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), fragments, list));
+        voteAdapter = new VoteAdapter(getSupportFragmentManager(), fragments, mTabTitle);
+        mViewPager.setAdapter(voteAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
+        mViewPager.setOffscreenPageLimit(1);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                position = i;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
+
     }
+
 
     @OnClick({R.id.main_content})
     public void OnClick(View view) {
@@ -90,5 +116,51 @@ public class PartnerActivity extends BaseTitleActivity {
                 BaseWebActivity.actionStart(this, "", mTitle);
                 break;
         }
+    }
+
+    /**
+     * @Model 获取合伙人列表title
+     */
+    private void loadDate() {
+        Api.getInstance().partnerRatios(page, UIConfig.PAGE_SIZE)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiCallback<PageBean<PartnerListBean>>(this) {
+
+                    @Override
+                    public void onSuccess(BaseBean<PageBean<PartnerListBean>> bean) {
+                        if (bean != null) {
+                            PageBean<PartnerListBean> data = bean.getData();
+                            if (data != null) {
+                                mTabTitle.clear();
+                                fragments.clear();
+                                List<PartnerListBean> list = data.getList();
+                                for (int i = 0; i < list.size(); i++) {
+                                    PartnerListBean brandBean = list.get(i);
+                                    mTabTitle.add(brandBean.getName());
+                                    fragments.add(PartnerFragment.getInstance(brandBean));
+                                }
+                                voteAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(int errorCode, String errorMessage) {
+                        ToastUtil.showToast(errorMessage);
+                    }
+
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        showLoading();
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        hideLoading();
+                    }
+                });
     }
 }

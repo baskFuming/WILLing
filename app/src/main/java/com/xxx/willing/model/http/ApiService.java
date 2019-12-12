@@ -13,8 +13,10 @@ import com.xxx.willing.model.http.bean.LoginBean;
 import com.xxx.willing.model.http.bean.MessageBean;
 import com.xxx.willing.model.http.bean.MyTeamBean;
 import com.xxx.willing.model.http.bean.MyVoteBean;
-import com.xxx.willing.model.http.bean.SignInfoBean;
-import com.xxx.willing.model.http.bean.TaskInfoBean;
+import com.xxx.willing.model.http.bean.PartnerBean;
+import com.xxx.willing.model.http.bean.PartnerListBean;
+import com.xxx.willing.model.http.bean.SearchShopBean;
+import com.xxx.willing.model.http.bean.ShopUser;
 import com.xxx.willing.model.http.bean.TotalFranchiseeBean;
 import com.xxx.willing.model.http.bean.UserInfo;
 import com.xxx.willing.model.http.bean.VoteDetailBean;
@@ -162,27 +164,7 @@ public interface ApiService {
             @Field("id") Integer id
     );
 
-    //获取签到信息
-    @POST("/getSignInfo")
-    Observable<BaseBean<List<SignInfoBean>>> getSignInfo();
-
-    //获取任务信息
-    @POST("/getTaskInfo")
-    Observable<BaseBean<List<TaskInfoBean>>> getTaskInfo();
-
     //----------------------------------------------------------执行操作----------------------------------------------------------------------------------------------------------------------------//
-
-
-    //投票
-    @POST("/sign")
-    Observable<BaseBean<BooleanBean>> sign();
-
-    //投票
-    @POST("/sign")
-    @FormUrlEncoded
-    Observable<BaseBean<BooleanBean>> task(
-            @Field("taskId") int taskId
-    );
 
     //申请加盟
     @POST("/inFranchisees")
@@ -213,6 +195,7 @@ public interface ApiService {
     Observable<BaseBean<BooleanBean>> withdrawal(
             @Field("coinId") int coinId,
             @Field("amount") double amount,
+            @Field("fee") double fee,
             @Field("address") String address,
             @Field("jyPassword") String jyPassword
     );
@@ -353,5 +336,34 @@ public interface ApiService {
     //GVI商城
     @POST(HttpConfig.BASE_URL_PATH + "/gviShop")
     Observable<BaseBean<List<GviBean>>> getShop();
+
+    //查询商品
+    @GET(HttpConfig.BASE_URL_PATH + "//commodities")
+    Observable<BaseBean<PageBean<SearchShopBean>>> getCommodities(
+            @Query("name") String name,
+            @Query("pageNum") int pageNum,
+            @Query("pageSize") int pageSize
+    );
+
+    //商城用户
+    @POST(HttpConfig.BASE_URL_PATH + "/shopUser")
+    Observable<BaseBean<ShopUser>> getshopUser();
+
+    //合伙人列表
+    @FormUrlEncoded
+    @POST(HttpConfig.BASE_URL_PATH + "/getPartnerList")
+    Observable<BaseBean<PageBean<PartnerBean>>> getPartnerList(
+            @Field("level") int level,
+            @Field("pageNum") int pageNum,
+            @Field("pageSize") int pageSize
+    );
+
+    //获取合伙人Tab
+    @GET(HttpConfig.BASE_URL_PATH + "/partnerRatios")
+    Observable<BaseBean<PageBean<PartnerListBean>>> partnerRatios(
+            @Query("pageNum") int pageNum,
+            @Query("pageSize") int pageSize
+    );
+
 
 }

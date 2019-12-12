@@ -407,9 +407,11 @@
 
     <string-array name="partner_status">
         <item>全部</item>
-        <item>区级合伙人</item>
+        <item>区域合伙人</item>
         <item>市级合伙人</item>
-        <item>董事会</item>
+        <item>省级合伙人</item>
+        <item>董事</item>
+        <item>总裁</item>
     </string-array>
 
     <string-array name="order_gvi_tab" tools:ignore="InconsistentArrays">
@@ -471,4 +473,5 @@
         <item>USDT</item>
     </string-array>
     <string name="item_phone_securities">话费代金券¥</string>
+    <string name="search_default_null">搜索内容不能为空</string>
 </resources>

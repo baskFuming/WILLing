@@ -83,4 +83,7 @@ dependencies {
 
     //banner
     implementation 'com.github.dzs-yaodi:Banner:1.2'
+
+    implementation 'com.androidkun:XTabLayout:1.1.4'
+
 }

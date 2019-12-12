@@ -1049,6 +1049,7 @@ public class MyTabLayout extends HorizontalScrollView {
         int paddingStart = 0;
         if (this.mode == 0) {
             paddingStart = Math.max(0, this.contentInsetStart - this.tabPaddingStart);
+
         }
 
         ViewCompat.setPaddingRelative(this.slidingTabIndicator, paddingStart, 0, 0, 0);
@@ -1684,6 +1685,7 @@ public class MyTabLayout extends HorizontalScrollView {
                         tab.view.textView.getPaint().setFakeBoldText(isSelectedBold);
                         tab.view.textView.invalidate();
                     } else {
+                        tab.view.textView.getPaint().getStrokeWidth();
                         tab.view.textView.getPaint().setTextSize(tabTextSize);
                         tab.view.textView.getPaint().setFakeBoldText(false);
                         tab.view.textView.invalidate();

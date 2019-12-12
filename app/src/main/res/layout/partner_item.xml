@@ -94,6 +94,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/partner_level"
         android:layout_width="56dp"
         android:layout_height="20dp"
         android:layout_marginLeft="10dp"

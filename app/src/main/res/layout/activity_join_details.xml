@@ -21,7 +21,7 @@
             android:layout_marginTop="16dp"
             android:orientation="vertical">
 
-            <com.youth.banner.Banner
+            <com.xw.banner.Banner
                 android:id="@+id/join_banner"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"

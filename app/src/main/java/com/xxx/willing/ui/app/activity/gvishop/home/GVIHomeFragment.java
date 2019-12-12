@@ -4,6 +4,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
@@ -15,6 +16,7 @@ import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.GviBean;
+import com.xxx.willing.model.http.bean.SearchShopBean;
 import com.xxx.willing.model.http.bean.WalletMarketBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -44,10 +47,14 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
     LinearLayout mNotData;
     @BindView(R.id.main_refresh)
     SwipeRefreshLayout mRefresh;
+    @BindView(R.id.ed_search)
+    EditText mEditSearch;
 
     private int page = UIConfig.PAGE_DEFAULT;
     private GviAdapter adapter;
     private List<GviBean> mList = new ArrayList<>();
+    private List<SearchShopBean> mSearchList = new ArrayList<>();
+    private String edSearchName;
 
     @Override
     protected int getLayoutId() {
@@ -82,6 +89,21 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         //跳转到web
+
+    }
+
+    @OnClick({R.id.ed_search})
+    public void OnClick(View view) {
+        switch (view.getId()) {
+            case R.id.ed_search:
+                edSearchName = mEditSearch.getText().toString();
+                if (edSearchName.isEmpty()) {
+                    ToastUtil.showToast(getString(R.string.search_default_null));
+                } else {
+                    loadSearch();
+                }
+                break;
+        }
     }
 
     //获取商城
@@ -142,4 +164,37 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
                     }
                 });
     }
+
+    //查询商品
+    private void loadSearch() {
+        Api.getInstance().getCommodities(edSearchName, page, UIConfig.PAGE_SIZE)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiCallback<PageBean<SearchShopBean>>(getActivity()) {
+                    @Override
+                    public void onSuccess(BaseBean<PageBean<SearchShopBean>> bean) {
+                        if (bean != null) {
+                            loadData();
+                        }
+                    }
+
+                    @Override
+                    public void onError(int errorCode, String errorMessage) {
+                        ToastUtil.showToast(errorMessage);
+                    }
+
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        showLoading();
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        hideLoading();
+                    }
+                });
+    }
+
 }

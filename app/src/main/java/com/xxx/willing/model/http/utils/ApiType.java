@@ -16,9 +16,12 @@ public class ApiType {
 
     //合伙人列表
     public static final int PARTNER_LIST_ALL = 0;  //全部
-    public static final int PARTNER_LIST_AERA_ALL = 1;  //区级合伙人
+    public static final int PARTNER_LIST_AREA_ALL = 1;  //区域合伙人
     public static final int PARTNER_LIST_CITY_ALL = 2;  //市级合伙人
+    public static final int PARTNER_LIST_LEVEL_ALL = 3;  //省级合伙人
     public static final int PARTNER_LIST_DIRECTOR_ALL = 4;  //董事
+    public static final int PARTNER_LIST_BOSS_ALL = 5;  //总裁
+
 
     //订单交易状态
     public static final int ORDER_COMMUNITY_ALL = 0;  //全部

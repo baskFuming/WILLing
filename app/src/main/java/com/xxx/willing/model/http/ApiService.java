@@ -177,8 +177,8 @@ public interface ApiService {
     @POST("/sign")
     Observable<BaseBean<BooleanBean>> sign();
 
-    //投票
-    @POST("/sign")
+    //完成任务
+    @POST("/addTask")
     @FormUrlEncoded
     Observable<BaseBean<BooleanBean>> task(
             @Field("taskId") int taskId
@@ -250,25 +250,25 @@ public interface ApiService {
     @POST(HttpConfig.BASE_URL_PATH + "/sendUpdatePhoneMassage")
     Observable<BaseBean<Object>> sendUpdateSMSCode();
 
-    //注册
-//    @FormUrlEncoded
-//    @POST(HttpConfig.BASE_URL_PATH + "/register")
-//    Observable<BaseBean<Object>> register(
-//            @Field("phone") String phone,
-//            @Field("password") String password,
-//            @Field("code") String smsCode,
-//            @Field("area") String area
-//    );
-
-    //注册
+//    注册
     @FormUrlEncoded
-    @POST(HttpConfig.BASE_URL_PATH + "/registerTest")
+    @POST(HttpConfig.BASE_URL_PATH + "/register")
     Observable<BaseBean<Object>> register(
             @Field("phone") String phone,
             @Field("password") String password,
             @Field("code") String smsCode,
             @Field("area") String area
     );
+
+    //注册
+//    @FormUrlEncoded
+//    @POST(HttpConfig.BASE_URL_PATH + "/registerTest")
+//    Observable<BaseBean<Object>> register(
+//            @Field("phone") String phone,
+//            @Field("password") String password,
+//            @Field("code") String smsCode,
+//            @Field("area") String area
+//    );
 
     //忘记密码
     @FormUrlEncoded

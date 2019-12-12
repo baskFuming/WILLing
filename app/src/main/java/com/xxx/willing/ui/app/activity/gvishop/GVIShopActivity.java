@@ -11,6 +11,7 @@ import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.base.activity.BaseWebActivity;
 import com.xxx.willing.base.fragment.FragmentManager;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.ui.app.activity.gvishop.home.GVIHomeFragment;
 import com.xxx.willing.ui.app.activity.gvishop.my.GVIMyFragment;
 
@@ -46,7 +47,6 @@ public class GVIShopActivity extends BaseTitleActivity {
     TextView mContent;
 
     private String title;
-    private String Url;
 
     private int nowType = VOTE_TYPE;   //当前选中下标
     private int lastType = VOTE_TYPE;   //上一个下标
@@ -82,7 +82,7 @@ public class GVIShopActivity extends BaseTitleActivity {
 
         switch (view.getId()) {
             case R.id.main_content:
-                BaseWebActivity.actionStart(this, Url, title);
+                BaseWebActivity.actionStart(this, HttpConfig.EXCHANGE_URL, title);
                 break;
         }
     }

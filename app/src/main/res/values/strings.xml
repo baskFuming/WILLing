@@ -479,4 +479,14 @@
     <string name="window_vote_title">投票</string>
     <string name="vote_error_1">投票数量必须大于0</string>
     <string name="date_end_time">本次排名截止日期：</string>
+    <string name="join_businc_dafault_null">加盟商名称不能为空</string>
+    <string name="please_chose_brand">请选择品牌</string>
+    <string name="please_chose_date">请选择加盟周期</string>
+    <string name="join_busincc">加盟商</string>
+    <string name="address_dafault_null">地址不能为空</string>
+    <string name="node_dafault_null">节点介绍不能为空</string>
+    <string name="please_read_agree">请先阅读协议</string>
+    <string name="please_update_photo">请先上传宣传照片</string>
+    <string name="regist_user_help">用户协议</string>
+    <string name="please_agreement_user_help">请阅读并同意用户协议</string>
 </resources>

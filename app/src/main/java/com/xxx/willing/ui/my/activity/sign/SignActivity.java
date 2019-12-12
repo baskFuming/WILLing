@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.base.activity.BaseWebActivity;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.SignInfoBean;
@@ -75,7 +77,7 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
     @Override
     protected void initData() {
         mContent.setVisibility(View.VISIBLE);
-        mContent.setText(getString(R.string.sign_task));
+        mContent.setText(getString(R.string.sign_task_rules));
         mTeRules.setText(Html.fromHtml(String.format(getResources().getString(R.string.sign_rules))));
         mTrip.setText(Html.fromHtml(String.format(getResources().getString(R.string.task_trip))));
 
@@ -94,7 +96,8 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.main_content://任务规则
-                TaskRulesActivity.actionStart(this);
+//                TaskRulesActivity.actionStart(this);
+                BaseWebActivity.actionStart(this, HttpConfig.TASK_URL, getString(R.string.sign_task_rules));
                 break;
             case R.id.te_sign_btn://签到弹框
                 //执行签到动画

@@ -14,6 +14,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.base.activity.BaseWebActivity;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
@@ -111,7 +112,7 @@ public class CmpRankActivity extends BaseTitleActivity implements SwipeRefreshLa
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.main_content:
-                BaseWebActivity.actionStart(this, "", getString(R.string.competition_rules));
+                BaseWebActivity.actionStart(this, HttpConfig.COMPETITION_URL, getString(R.string.competition_rules));
                 break;
         }
     }

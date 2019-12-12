@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.base.activity.BaseWebActivity;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.config.MatchesConfig;
 import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
@@ -59,6 +61,9 @@ public class RegisterActivity extends BaseTitleActivity {
     @BindView(R.id.register_invite_eye)
     CheckBox mInviteEye;
 
+    @BindView(R.id.ed_check)
+    CheckBox mCheck;
+
     private DownTimeUtil mDownTimeUtil;
     private String area = "86";
 
@@ -86,7 +91,8 @@ public class RegisterActivity extends BaseTitleActivity {
             R.id.register_send_sms_code,
             R.id.register_btn,
             R.id.register_account_clean,
-            R.id.register_login})
+            R.id.register_login,
+            R.id.agree_help})
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.register_login:
@@ -108,7 +114,14 @@ public class RegisterActivity extends BaseTitleActivity {
                 sendSMSCode();
                 break;
             case R.id.register_btn:
-                register();
+                if (!mCheck.isChecked()) {
+                    ToastUtil.showToast(getString(R.string.please_agreement_user_help));
+                } else {
+                    register();
+                }
+                break;
+            case R.id.agree_help:
+                BaseWebActivity.actionStart(this, HttpConfig.USE_HELP_URL, getString(R.string.regist_user_help));
                 break;
         }
     }

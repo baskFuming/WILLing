@@ -18,6 +18,7 @@ import com.xw.banner.Banner;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.base.activity.BaseWebActivity;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.VoteDetailBean;
@@ -138,7 +139,7 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.main_content:
-                BaseWebActivity.actionStart(this, "", getString(R.string.vote_details));
+                BaseWebActivity.actionStart(this, HttpConfig.VOTE_URL, getString(R.string.vote_rules));
                 break;
             case R.id.vote_btn:
                 if (mVoteWindow != null) {

@@ -159,6 +159,42 @@
             style="@style/CheckPasswordStyle" />
 
     </RelativeLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="33dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/ed_check"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_gravity="center"
+            android:button="@drawable/selector_vote_check"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="@string/ed_agree"
+            android:textColor="#ff999999"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/agree_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="@string/regist_user_help"
+            android:textColor="#3C7FFF"
+            android:textSize="12dp" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/register_btn"

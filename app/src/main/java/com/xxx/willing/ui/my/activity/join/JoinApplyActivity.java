@@ -81,7 +81,6 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
             TextView mPhoto2;
     @BindView(R.id.ed_check)    //确认
             CheckBox mCheck;
-
     @BindView(R.id.team_linear)
     RecyclerView mRecycler;     //创始人团队
 
@@ -302,36 +301,36 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
     private void submitJoin() {
         String joinName = mJoinName.getText().toString();
         if (joinName.isEmpty()) {
-            ToastUtil.showToast("加盟商名称不能为空");
+            ToastUtil.showToast(getString(R.string.join_businc_dafault_null));
             showEditError(mJoinName);
             return;
         }
         if (checkBrandId == 0) {
-            ToastUtil.showToast("请选择品牌");
+            ToastUtil.showToast(getString(R.string.please_chose_brand));
             showEditError(mJoinRand);
             return;
         }
         if (checkTimeId == 0) {
-            ToastUtil.showToast("请选择加盟周期");
+            ToastUtil.showToast(getString(R.string.please_chose_date));
             showEditError(mJoinTime);
             return;
         }
         String name = mJoinName.getText().toString();
         if (name.isEmpty()) {
             showEditError(mJoinName);
-            ToastUtil.showToast("加盟商");
+            ToastUtil.showToast(getString(R.string.join_busincc));
             return;
         }
         String address = province + city + district;
         if (province == null || city == null || province.isEmpty() || city.isEmpty()) {
             showEditError(mAddress);
-            ToastUtil.showToast("地址不能为空");
+            ToastUtil.showToast(getString(R.string.address_dafault_null));
             return;
         }
         String joinIntroduce = mJoinIntroduce.getText().toString();
         if (joinIntroduce.isEmpty()) {
             showEditError(mJoinName);
-            ToastUtil.showToast("节点介绍不能为空");
+            ToastUtil.showToast(getString(R.string.node_dafault_null));
             return;
         }
         String joinLines = mJoinLines.getText().toString();
@@ -343,13 +342,13 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
 
         if (mTransList.size() <= 1) {
             showEditError(mPhoto2);
-            ToastUtil.showToast("请先上传宣传照片");
+            ToastUtil.showToast(getString(R.string.please_update_photo));
             return;
         }
         boolean checked = mCheck.isChecked();
         if (checked) {
             showEditError(mCheck);
-            ToastUtil.showToast("请先阅读协议");
+            ToastUtil.showToast(getString(R.string.please_read_agree));
             return;
         }
 

@@ -192,12 +192,23 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
         switch (view.getId()) {
             case R.id.re_click_card://证件照上传
                 UpdateCardActivity.actionStart(this, mJoinRoleList.get(position));
+                this.position = position;
                 break;
             case R.id.join_photo_add://形象照上传
                 CameraUtil.openPhoto(this);
+                this.position = position;
+                break;
+            case R.id.ib_join_delete:
+                if (mJoinRoleList.size() > 1) {
+                    mJoinRoleList.remove(position);
+                    mAdapter.notifyDataSetChanged();
+                } else {
+                    ToastUtil.showToast("至少要有一个团队成员");
+                    return;
+                }
+                this.position = position - 1;
                 break;
         }
-        this.position = position;
     }
 
     @Override

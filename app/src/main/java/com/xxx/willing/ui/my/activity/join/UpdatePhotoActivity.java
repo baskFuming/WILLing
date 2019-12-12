@@ -29,7 +29,7 @@ import io.reactivex.annotations.NonNull;
  * @desc 宣传图
  * @date 2019-11-28
  */
-public class UpdatePhotoActivity extends BaseTitleActivity implements BaseQuickAdapter.OnItemClickListener {
+public class UpdatePhotoActivity extends BaseTitleActivity implements BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.OnItemChildClickListener {
 
     public static void actionStart(Activity activity, List<File> transList) {
         Intent intent = new Intent(activity, UpdatePhotoActivity.class);
@@ -73,6 +73,7 @@ public class UpdatePhotoActivity extends BaseTitleActivity implements BaseQuickA
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
         mRecycler.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(this);
+        mAdapter.setOnItemChildClickListener(this);
     }
 
     @OnClick({R.id.btn_save})
@@ -121,9 +122,18 @@ public class UpdatePhotoActivity extends BaseTitleActivity implements BaseQuickA
         }
         Intent intent = new Intent();
         intent.putExtra("transList", (Serializable) mList);
-        setResult(UIConfig.RESULT_CODE + 2,intent);
+        setResult(UIConfig.RESULT_CODE + 2, intent);
         finish();
     }
 
+    @Override
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+        if (mList.size() < 1) {
+            ToastUtil.showToast("最少要有一张宣传图");
+            return;
+        }
+        mList.remove(position);
+        mAdapter.notifyDataSetChanged();
+    }
 }
 

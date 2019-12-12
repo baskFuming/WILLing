@@ -53,6 +53,7 @@ public class JoinAdapter extends BaseQuickAdapter<JoinEntry, BaseViewHolder> {
         helper.itemView.findViewById(R.id.ed_join_card);
 
         helper.addOnClickListener(R.id.re_click_card)
+                .addOnClickListener(R.id.ib_join_delete)
                 .addOnClickListener(R.id.join_photo_add);
 
         if (item.getFilePhoto() != null) {

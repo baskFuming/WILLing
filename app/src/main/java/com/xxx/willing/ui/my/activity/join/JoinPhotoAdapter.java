@@ -25,12 +25,17 @@ public class JoinPhotoAdapter extends BaseQuickAdapter<File, BaseViewHolder> {
     protected void convert(BaseViewHolder helper, File file) {
         ImageView imageView = helper.getView(R.id.item_join_photo_add);
         RelativeLayout relativeLayout = helper.getView(R.id.item_join_photo_bg);
+        helper.addOnClickListener(R.id.item_join_photo_delete);
+
+        View view = helper.getView(R.id.item_join_photo_delete);
 
         if (file != null) {
             imageView.setVisibility(View.GONE);
             GlideUtil.loadBack(mContext, file, relativeLayout);
+            view.setVisibility(View.VISIBLE);
         } else {
             imageView.setVisibility(View.VISIBLE);
+            view.setVisibility(View.GONE);
         }
     }
 }

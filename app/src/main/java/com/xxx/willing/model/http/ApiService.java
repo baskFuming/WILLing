@@ -57,7 +57,7 @@ public interface ApiService {
     );
 
     //获取总加盟商列表
-    @GET("/franchiseesKList")
+    @GET("/getTotalFranchiseeList")
     Observable<BaseBean<TotalFranchiseeBean>> getFranchiseeList(
             @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize

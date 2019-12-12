@@ -313,7 +313,6 @@ public class MainActivity extends BaseActivity {
                                 SharedPreferencesUtil.getInstance().saveString(SharedConst.VALUE_USER_NAME, data.getNickname());
                                 SharedPreferencesUtil.getInstance().saveString(SharedConst.VALUE_USER_PHONE, data.getTelphone());
                                 SharedPreferencesUtil.getInstance().saveInt(SharedConst.VALUE_USER_STAR, data.getStar());
-                                SharedPreferencesUtil.getInstance().saveBoolean(SharedConst.IS_SETTING_JOIN, true);
 
                                 SharedPreferencesUtil.getInstance().saveInt(SharedConst.STATUS_FRAN, data.getFranStatus());
 

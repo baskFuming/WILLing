@@ -94,8 +94,8 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 MyTeamActivity.actionStart(getActivity());
                 break;
             case R.id.re_my_join://  加盟申请
-                boolean isSettingJoin = instance.getBoolean(SharedConst.IS_SETTING_JOIN);
-                if (isSettingJoin) {
+                Integer statusFran = instance.getInt(SharedConst.STATUS_FRAN);
+                if (statusFran == 1) {
                     //提交完成
                     MyJoinMessageActivity.actionStart(getActivity());
                 } else {
@@ -127,7 +127,6 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
         phone = instance.getString(SharedConst.VALUE_USER_PHONE);
         icon = instance.getString(SharedConst.VALUE_USER_ICON);
         int star = instance.getInt(SharedConst.VALUE_USER_STAR);
-        boolean isSettingJoin = instance.getBoolean(SharedConst.IS_SETTING_JOIN);
         Integer statusFran = instance.getInt(SharedConst.STATUS_FRAN);
 
         mName.setText(name);
@@ -139,20 +138,10 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 break;
         }
 
-        if (isSettingJoin) {
+        if (statusFran == 1) {
             mReview.setText(R.string.my_submitted_review);
         } else {
             mReview.setText("");
         }
-
-        switch (statusFran) {
-            case 1:
-
-                break;
-            case 2:
-
-                break;
-        }
-
     }
 }

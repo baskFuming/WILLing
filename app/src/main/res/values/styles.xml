@@ -19,7 +19,7 @@
 
     <!-- 闪屏 -->
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!--<item name="android:windowBackground">@drawable/anim_splash</item>-->
+        <item name="android:windowBackground">@mipmap/splash_bg</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>

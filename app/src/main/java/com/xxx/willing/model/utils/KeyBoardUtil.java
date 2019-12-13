@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.xxx.willing.R;
+import com.xxx.willing.config.MatchesConfig;
 
 /**
  * 键盘工具类
@@ -87,6 +88,21 @@ public class KeyBoardUtil {
                 }
             }
             return null;
+        }});
+    }
+
+    /**
+     * 设置限定输入小点位数
+     *
+     * @param editText 输入框
+     */
+    public static void setFiltersDW(EditText editText) {
+        editText.setFilters(new InputFilter[]{(source, start, end, dest, dstart, dend) -> {
+            if (source.toString().matches(MatchesConfig.MATCHES_DW_PASSWORD)) {
+                return source;
+            } else {
+                return null;
+            }
         }});
     }
 }

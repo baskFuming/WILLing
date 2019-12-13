@@ -255,7 +255,7 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                                 for (int i = 0; i < list.size(); i++) {
                                     list1.add(list.get(i).getImg());
                                 }
-                                BannerInitUtil.init(banner, list1, 2, position -> {
+                                BannerInitUtil.init(banner, list1, 0, position -> {
                                     String url = list.get(position).getUrl();
                                 });
                             }

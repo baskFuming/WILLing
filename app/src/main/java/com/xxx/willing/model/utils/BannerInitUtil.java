@@ -29,13 +29,13 @@ public class BannerInitUtil {
         // 设置图片加载器
         if (style == 1) {
             banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
-            banner.setImageLoader((ImageLoaderInterface) new OrdinaryImageLoder());
+            banner.setImageLoader(new OrdinaryImageLoder());
         } else if (style == 2) {
             banner.setBannerStyle(BannerConfig.CUSTOM_INDICATOR);
             banner.setImageLoader(new CustomRoundedImageLoader());
         } else {
             banner.setBannerStyle(BannerConfig.CUSTOM_INDICATOR);
-            banner.setImageLoader((ImageLoaderInterface) new OrdinaryImageLoder());
+            banner.setImageLoader(new OrdinaryImageLoder());
         }
         //设置图片网址或地址的集合
         banner.setImages(list);
@@ -72,7 +72,7 @@ public class BannerInitUtil {
     private static class OrdinaryImageLoder extends ImageLoader {
         @Override
         public void displayImage(Context context, Object path, ImageView imageView) {
-            Glide.with(context).load(path).into((ImageView) imageView);
+            Glide.with(context).load(path).into(imageView);
         }
     }
 

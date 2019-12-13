@@ -359,11 +359,19 @@
                     android:textColor="#ff333333"
                     android:textSize="16dp" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/main_recycler"
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false" />
+                    android:descendantFocusability="blocksDescendants">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/main_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+
+                </RelativeLayout>
 
                 <Button
                     android:id="@+id/vote_btn"

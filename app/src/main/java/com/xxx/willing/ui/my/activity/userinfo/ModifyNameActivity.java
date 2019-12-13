@@ -14,6 +14,7 @@ import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.BooleanBean;
+import com.xxx.willing.model.utils.KeyBoardUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -64,6 +65,8 @@ public class ModifyNameActivity extends BaseTitleActivity {
     protected void initData() {
         initBundle();
 
+        KeyBoardUtil.setFiltersDW(mModifyName);
+
         if (nickName != null) {
             mModifyName.setText(nickName);
             mModifyName.setSelection(nickName.length());
@@ -76,11 +79,17 @@ public class ModifyNameActivity extends BaseTitleActivity {
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.main_content://保存
-                String string = mModifyName.getText().toString();
-                if (!string.isEmpty()) {
-                    nickName = string;
-                    upLoadName();
+                String nickName = mModifyName.getText().toString();
+                if (nickName.isEmpty()) {
+                    ToastUtil.showToast(getString(R.string.modify_name_error_1));
+                    return;
                 }
+                if (nickName.length() < 3) {
+                    ToastUtil.showToast(getString(R.string.modify_name_error_2));
+                    return;
+                }
+                upLoadName(nickName);
+
                 break;
         }
     }
@@ -88,7 +97,7 @@ public class ModifyNameActivity extends BaseTitleActivity {
     /**
      * @Model 修改昵称
      */
-    private void upLoadName() {
+    private void upLoadName(String nickName) {
         Api.getInstance().updateUserInfo(null, nickName).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<BooleanBean>(this) {

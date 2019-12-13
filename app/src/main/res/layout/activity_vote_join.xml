@@ -9,119 +9,141 @@
 
     <include layout="@layout/include_title_bar" />
 
-    <LinearLayout
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/main_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_left_margin"
-        android:paddingRight="@dimen/activity_right_margin"
-        android:paddingTop="@dimen/activity_Top_margin">
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="112dp"
-            android:background="@mipmap/team_bg"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/activity_left_margin"
-            android:paddingRight="@dimen/activity_right_margin">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="@string/total_vote"
-                    android:textColor="#ffffffff"
-                    android:textSize="17dp" />
-
-                <TextView
-                    android:id="@+id/total_vote"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/text_1"
-                    android:text="------"
-                    android:textColor="#ffffffff"
-                    android:textSize="17dp" />
-
-                <TextView
-                    android:id="@+id/text_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:gravity="bottom"
-                    android:text="GVI"
-                    android:textColor="#ffffffff"
-                    android:textSize="17dp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="@string/total_release"
-                    android:textColor="#ffffffff"
-                    android:textSize="17dp" />
-
-                <TextView
-                    android:id="@+id/total_release"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/text_2"
-                    android:text="------"
-                    android:textColor="#ffffffff"
-                    android:textSize="17dp" />
-
-                <TextView
-                    android:id="@+id/text_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:gravity="bottom"
-                    android:text="GVI"
-                    android:textColor="#ffffffff"
-                    android:textSize="17dp" />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="5dp"
-                android:layout_height="18dp"
-                android:layout_gravity="center"
-                android:layout_marginRight="@dimen/activity_Top_margin"
-                android:src="@mipmap/sign_line_bg" />
+            <LinearLayout
+                android:id="@+id/main_linear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/activity_left_margin"
+                android:paddingRight="@dimen/activity_right_margin"
+                android:paddingTop="@dimen/activity_Top_margin">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/join_campaign"
-                android:textColor="#ff333333"
-                android:textSize="19dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="112dp"
+                    android:background="@mipmap/team_bg"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/activity_left_margin"
+                    android:paddingRight="@dimen/activity_right_margin">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/total_vote"
+                            android:textColor="#ffffffff"
+                            android:textSize="17dp" />
+
+                        <TextView
+                            android:id="@+id/total_vote"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/text_1"
+                            android:text="------"
+                            android:textColor="#ffffffff"
+                            android:textSize="17dp" />
+
+                        <TextView
+                            android:id="@+id/text_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="bottom"
+                            android:text="GVI"
+                            android:textColor="#ffffffff"
+                            android:textSize="17dp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/total_release"
+                            android:textColor="#ffffffff"
+                            android:textSize="17dp" />
+
+                        <TextView
+                            android:id="@+id/total_release"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/text_2"
+                            android:text="------"
+                            android:textColor="#ffffffff"
+                            android:textSize="17dp" />
+
+                        <TextView
+                            android:id="@+id/text_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="bottom"
+                            android:text="GVI"
+                            android:textColor="#ffffffff"
+                            android:textSize="17dp" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="5dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/activity_Top_margin"
+                        android:src="@mipmap/sign_line_bg" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/join_campaign"
+                        android:textColor="#ff333333"
+                        android:textSize="19dp" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/main_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <include layout="@layout/include_not_data" />
+
         </LinearLayout>
 
-        <include layout="@layout/include_recycler" />
-    </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 </LinearLayout>

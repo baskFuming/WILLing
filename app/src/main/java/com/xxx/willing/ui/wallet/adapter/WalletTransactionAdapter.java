@@ -39,8 +39,11 @@ public class WalletTransactionAdapter extends BaseQuickAdapter<WalletTransaction
                 case ApiType.TRANSFER_FAIL_TYPE:
                     status = "失败";
                     break;
+                case ApiType.TRANSFER_AUDIT_CURRENCY_TYPE:
+                    status = "审核中";
+                    break;
                 default:
-                    status = "成功";
+                    status = "打包中";
                     break;
             }
         }

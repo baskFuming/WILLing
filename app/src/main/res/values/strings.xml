@@ -25,7 +25,7 @@
     <string name="save_image_success">保存到相册成功</string>
     <string name="save_image_fail">保存失败</string>
     <string name="token_error">登录信息失效，请重新登录</string>
-    <string name="jy_password_error">请先设置资金密码</string>
+    <string name="jy_password_error">请先设置支付密码</string>
 
     <string name="btn_confirm">确定</string>
     <string name="btn_cancel">取消</string>
@@ -123,7 +123,7 @@
 
     <string name="password_setting_title">密码设置</string>
     <string name="password_setting_modify_login">修改登录密码</string>
-    <string name="password_setting_modify_pay">修改资金密码</string>
+    <string name="password_setting_modify_pay">修改支付密码</string>
     <string name="password_setting_modify_pay_psw">修改支付密码</string>
     <string name="password_setting_setting_pay_psw">设置支付密码</string>
 
@@ -154,7 +154,7 @@
     <string name="withdrawal_error_3">余额不足</string>
     <string name="withdrawal_error_4">数量输入有误</string>
     <string name="withdrawal_error_5">密码不能为空</string>
-    <string name="withdrawal_error_6">请先设置资金密码</string>
+    <string name="withdrawal_error_6">请先设置支付密码</string>
 
     <string name="window_password_edit_hint">请输入支付密码</string>
     <string name="window_password_btn">确定</string>
@@ -280,7 +280,7 @@
     <string name="save_zxing">(长按二维码直接保存）</string>
     <string name="modify_login_pwd">修改登录密码，24小时禁止转账</string>
     <string name="enter_pwd">请输入8-20位数字与字母结合的密码</string>
-    <string name="modify_pwd">修改资金密码，24小时禁止转账</string>
+    <string name="modify_pwd">修改支付密码，24小时禁止转账</string>
     <string name="apply_name">加盟商名称</string>
     <string name="apply_brand">所属品牌</string>
     <string name="apply_time">加盟周期</string>
@@ -490,4 +490,7 @@
     <string name="regist_user_help">用户协议</string>
     <string name="please_agreement_user_help">请阅读并同意用户协议</string>
     <string name="forget_success">修改成功</string>
+    <string name="exchange_error_1">兑换数量不能少于0</string>
+    <string name="modify_name_error_1">昵称不可为空</string>
+    <string name="modify_name_error_2">昵称必须大于3位字符</string>
 </resources>

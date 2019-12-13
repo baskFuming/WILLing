@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.xxx.willing.R;
@@ -55,6 +56,8 @@ public class LoginActivity extends BaseTitleActivity {
     EditText mPasswordEdit;
     @BindView(R.id.login_password_eye)
     CheckBox mPasswordEye;
+    @BindView(R.id.main_return)
+    ImageButton mReturn;
 
     private String area = "86";
 
@@ -70,6 +73,8 @@ public class LoginActivity extends BaseTitleActivity {
 
     @Override
     protected void initData() {
+        mReturn.setVisibility(View.GONE);
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
 
@@ -187,7 +192,7 @@ public class LoginActivity extends BaseTitleActivity {
                                     EventBus.getDefault().post(EventBusConfig.EVENT_LOGIN);
                                     finish();
                                 } else {
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    MainActivity.actionStart(LoginActivity.this);
                                     finish();
                                 }
                             }

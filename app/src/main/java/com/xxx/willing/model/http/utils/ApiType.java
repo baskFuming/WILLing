@@ -16,6 +16,7 @@ public class ApiType {
     public static final int TRANSFER_WAIT_STATUS = 0;   //等待打包
     public static final int RECHARGE_SUCCESS_STATUS = 1;       //交易成功
     public static final int TRANSFER_FAIL_TYPE = 2;          //交易失败
+    public static final int TRANSFER_AUDIT_CURRENCY_TYPE = 3;          //审核放币
 
     //合伙人列表
     public static final int PARTNER_LIST_ALL = 0;  //全部

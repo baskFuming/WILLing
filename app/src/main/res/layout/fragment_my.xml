@@ -56,8 +56,9 @@
 
                         <ImageView
                             android:id="@+id/img_level"
-                            android:layout_width="23dp"
-                            android:layout_height="17dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:scaleType="fitXY"
                             android:layout_gravity="center"
                             android:layout_marginLeft="11dp"
                             android:src="@mipmap/level_0" />

@@ -38,6 +38,8 @@ import io.reactivex.schedulers.Schedulers;
 
 public class WalletExchangeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
+    private int targetDecimal;
+
     public static WalletExchangeFragment getInstance() {
         return new WalletExchangeFragment();
     }
@@ -75,7 +77,6 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
     private double gviTargetFee;
 
     private boolean isExchangeParam;    //是否切换了参数
-    private double fee;
     private double rate = 0;
 
     @Override
@@ -107,8 +108,6 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
         });
 
         mBaseAmount.setHint(getString(R.string.wallet_exchange_base_amount) + 0);
-
-        KeyBoardUtil.setFilters(mBaseAmount, 8 + 1);
 
         mRefresh.setOnRefreshListener(this);
         getExchangeList();
@@ -156,7 +155,7 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
         } catch (Exception e) {
             baseAmount = 0;
         }
-        String string1 = new BigDecimal(baseAmount * rate).setScale(8, BigDecimal.ROUND_DOWN).stripTrailingZeros().toPlainString();
+        String string1 = new BigDecimal(baseAmount * rate).setScale(targetDecimal, BigDecimal.ROUND_DOWN).stripTrailingZeros().toPlainString();
         mTargetAmount.setText(string1);
     }
 
@@ -178,6 +177,7 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
         WalletCoinBean.ListBean targetCoinBean = mTargetList.get(targetPosition);
         String rate;
 
+        double fee;
         if (isExchangeParam) {
             mTargetSymbol.setText(baseCoinBean.getCoinSymbol());
             mBaseSymbol.setText(targetCoinBean.getCoinSymbol());
@@ -191,7 +191,7 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
                 fee = 0;
             }
             mBaseAmount.setHint(getString(R.string.wallet_exchange_base_amount) + targetCoinBean.getBalance());
-            rate = new BigDecimal(targetCoinBean.getCoinPriceUsdt()).divide(new BigDecimal(baseCoinBean.getCoinPriceUsdt()), baseCoinBean.getCoinDecimal(), BigDecimal.ROUND_DOWN).toPlainString();
+            rate = new BigDecimal(targetCoinBean.getCoinPriceUsdt()).divide(new BigDecimal(baseCoinBean.getCoinPriceUsdt()), baseCoinBean.getCoinDecimal(), BigDecimal.ROUND_DOWN).stripTrailingZeros().toPlainString();
         } else {
             mBaseSymbol.setText(baseCoinBean.getCoinSymbol());
             mTargetSymbol.setText(targetCoinBean.getCoinSymbol());
@@ -205,12 +205,14 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
                 fee = 0;
             }
             mBaseAmount.setHint(getString(R.string.wallet_exchange_base_amount) + baseCoinBean.getBalance());
-            rate = new BigDecimal(baseCoinBean.getCoinPriceUsdt()).divide(new BigDecimal(targetCoinBean.getCoinPriceUsdt()), baseCoinBean.getCoinDecimal(), BigDecimal.ROUND_DOWN).toPlainString();
+            rate = new BigDecimal(baseCoinBean.getCoinPriceUsdt()).divide(new BigDecimal(targetCoinBean.getCoinPriceUsdt()), baseCoinBean.getCoinDecimal(), BigDecimal.ROUND_DOWN).stripTrailingZeros().toPlainString();
         }
 
+        KeyBoardUtil.setFilters(mBaseAmount, baseCoinBean.getCoinDecimal());
+        targetDecimal = targetCoinBean.getCoinDecimal();
+        this.rate = Double.parseDouble(rate);
         mBaseAmount.setText("");
         mTargetAmount.setText("");
-        this.rate = Double.parseDouble(rate);
         mRate.setText(getString(R.string.wallet_exchange_rate) + rate);
         mFee.setText(getString(R.string.wallet_exchange_fee) + (fee * 100) + "%");
     }
@@ -240,6 +242,10 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
             ToastUtil.showToast(getString(R.string.exchange_error));
             return;
         }
+        if (amount <= 0) {
+            ToastUtil.showToast(getString(R.string.exchange_error_1));
+            return;
+        }
 
         int baseCoinId;
         int targetCoinId;
@@ -264,6 +270,8 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
                                 ToastUtil.showToast(getString(R.string.exchange_success));
                                 //更新资产
                                 EventBus.getDefault().post(EventBusConfig.EVENT_UPDATE_WALLET);
+                                //更新当前页面
+                                getExchangeList();
                             }
                         }
                     }
@@ -337,13 +345,14 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
                     @Override
                     public void onStart(Disposable d) {
                         super.onStart(d);
-                        showLoading();
+                        if (mRefresh != null) {
+                            mRefresh.setRefreshing(false);
+                        }
                     }
 
                     @Override
                     public void onEnd() {
                         super.onEnd();
-                        hideLoading();
                         if (mRefresh != null) {
                             mRefresh.setRefreshing(false);
                         }

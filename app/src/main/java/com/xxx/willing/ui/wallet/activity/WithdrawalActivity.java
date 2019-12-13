@@ -92,7 +92,7 @@ public class WithdrawalActivity extends BaseTitleActivity implements PasswordWin
     protected void initData() {
         initBundle();
         mBalance.setText(getString(R.string.withdrawal_balance) + balance);
-        mFee.setText(getString(R.string.withdrawal_fee) + fee + "% BVSE");
+        mFee.setText(getString(R.string.withdrawal_fee) + (fee * 100) + "% BVSE");
 
         //初始化密码弹框
         mPasswordWindow = PasswordWindow.getInstance(this);

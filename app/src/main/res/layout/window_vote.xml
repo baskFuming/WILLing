@@ -37,7 +37,7 @@
         android:background="@drawable/shape_edit_window"
         android:hint="@string/window_vote_edit"
         android:inputType="phone"
-        android:maxLength="20"
+        android:maxLength="8"
         android:paddingLeft="15dp"
         android:textColor="#333333"
         android:textColorHint="#999999"

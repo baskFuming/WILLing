@@ -28,11 +28,11 @@ public class DropDownAdapter extends BaseQuickAdapter<AssetRecordBean, BaseViewH
         String amount;
         switch (item.getTypes()) {
             case ApiType.ASSET_RECORD_RECHARGE_TYPE:
-                type = "充值";
+                type = item.getTargetSymbol() + "充值";
                 amount = "+" + item.getAmount();
                 break;
             case ApiType.ASSET_RECORD_TRANSFER_TYPE:
-                type = "转账";
+                type = item.getBaseSymbol() + "转账";
                 amount = "-" + item.getAmount();
                 break;
             case ApiType.ASSET_RECORD_EXCHANGE_TYPE:
@@ -40,35 +40,35 @@ public class DropDownAdapter extends BaseQuickAdapter<AssetRecordBean, BaseViewH
                 amount = "-" + item.getAmount();
                 break;
             case ApiType.ASSET_RECORD_VOTE_TYPE:
-                type = "投票释放";
+                type = "投票释放(GVI)";
                 amount = "+" + item.getAmount();
                 break;
             case ApiType.ASSET_RECORD_TEAM_VOTE_TYPE:
-                type = "团队投票收益";
+                type = "团队投票收益(GVI)";
                 amount = "+" + item.getAmount();
                 break;
             case ApiType.ASSET_RECORD_SIGN_TYPE:
-                type = "BVSE签到奖励";
+                type = "BVSE签到奖励(BVSE)";
                 amount = "+" + item.getAmount();
                 break;
             case ApiType.ASSET_RECORD_JOIN_TYPE:
-                type = "加盟店收益";
+                type = "加盟店收益(GVI)";
                 amount = "+" + item.getAmount();
                 break;
             case ApiType.ASSET_RECORD_BRAND_TYPE:
-                type = "品牌收益";
+                type = "品牌收益(GVI)";
                 amount = "+" + item.getAmount();
                 break;
             case ApiType.ASSET_RECORD_TASK_TYPE:
-                type = "任务收益";
+                type = "任务收益(BVSE)";
                 amount = "+" + item.getAmount();
                 break;
             case ApiType.ASSET_RECORD_RANK_TYPE:
-                type = "排名收益";
+                type = "排名收益(GVI)";
                 amount = "+" + item.getAmount();
                 break;
             case ApiType.ASSET_RECORD_CEO_TYPE:
-                type = "总裁收益";
+                type = "总裁收益(GVI)";
                 amount = "+" + item.getAmount();
                 break;
             default:

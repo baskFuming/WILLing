@@ -53,6 +53,8 @@ public class VoteJoinActivity extends BaseTitleActivity implements SwipeRefreshL
 
     @BindView(R.id.main_recycler)
     RecyclerView mRecycler;
+    @BindView(R.id.main_linear)
+    LinearLayout mLinear;
     @BindView(R.id.main_refresh)
     SwipeRefreshLayout mRefresh;
     @BindView(R.id.main_not_data)
@@ -125,14 +127,14 @@ public class VoteJoinActivity extends BaseTitleActivity implements SwipeRefreshL
                     public void onSuccess(BaseBean<TotalFranchiseeBean> bean) {
                         if (bean == null) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mRecycler.setVisibility(View.GONE);
+                            mLinear.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
                             return;
                         }
                         TotalFranchiseeBean data1 = bean.getData();
                         if (data1 == null) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mRecycler.setVisibility(View.GONE);
+                            mLinear.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
                             return;
                         }
@@ -144,19 +146,19 @@ public class VoteJoinActivity extends BaseTitleActivity implements SwipeRefreshL
                         PageBean<FranchiseeBean> data = data1.getBean();
                         if (data == null) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mRecycler.setVisibility(View.GONE);
+                            mLinear.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
                             return;
                         }
                         List<FranchiseeBean> list = data.getList();
                         if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mRecycler.setVisibility(View.GONE);
+                            mLinear.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
                             return;
                         }
                         mNotData.setVisibility(View.GONE);
-                        mRecycler.setVisibility(View.VISIBLE);
+                        mLinear.setVisibility(View.VISIBLE);
                         if (page == UIConfig.PAGE_DEFAULT) {
                             mList.clear();
                         }
@@ -173,7 +175,7 @@ public class VoteJoinActivity extends BaseTitleActivity implements SwipeRefreshL
                     public void onError(int errorCode, String errorMessage) {
                         if (mList.size() == 0) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mRecycler.setVisibility(View.GONE);
+                            mLinear.setVisibility(View.GONE);
                         }
                         ToastUtil.showToast(errorMessage);
                     }

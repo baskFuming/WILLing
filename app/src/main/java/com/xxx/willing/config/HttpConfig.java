@@ -5,15 +5,14 @@ public class HttpConfig {
     /**
      * 正式服务器地址
      */
-//    public static final String BASE_URL = "https://noahglobal.me/";
-//    public static final String BASE_URL_PATH = "/NoahWallet";
+    public static final String BASE_URL = "http://192.168.31.12/";
+    public static final String BASE_URL_PATH = "/willing";
 
     /**
      * 测试服务器地址
      */
 //    public static final String BASE_URL = "http://192.168.31.95:8080";
-    public static final String BASE_URL = "http://192.168.31.12/";
-    public static final String BASE_URL_PATH = "/willing";
+//    public static final String BASE_URL_PATH = "";
 
     //WebView网页
     public static final String BASE_WEB = BASE_URL + "?language=zh";

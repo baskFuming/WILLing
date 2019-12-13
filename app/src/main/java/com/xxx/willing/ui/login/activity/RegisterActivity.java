@@ -121,7 +121,7 @@ public class RegisterActivity extends BaseTitleActivity {
                 }
                 break;
             case R.id.agree_help:
-                BaseWebActivity.actionStart(this, HttpConfig.USE_HELP_URL, getString(R.string.regist_user_help));
+                BaseWebActivity.actionStart(this, HttpConfig.USER_AGREEMENT_URL, getString(R.string.regist_user_help));
                 break;
         }
     }

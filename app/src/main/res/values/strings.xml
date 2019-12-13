@@ -493,4 +493,5 @@
     <string name="exchange_error_1">兑换数量不能少于0</string>
     <string name="modify_name_error_1">昵称不可为空</string>
     <string name="modify_name_error_2">昵称必须大于3位字符</string>
+    <string name="guidview_experience">立即体验</string>
 </resources>

@@ -333,6 +333,12 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
             ToastUtil.showToast(getString(R.string.node_dafault_null));
             return;
         }
+        String jpinLines = mJoinLines.getText().toString();
+        if (jpinLines.isEmpty()) {
+            showEditError(mJoinName);
+            ToastUtil.showToast(getString(R.string.join_apply_error));
+            return;
+        }
         String joinLines = mJoinLines.getText().toString();
 
         List<JoinEntry> data = mAdapter.getData(this);

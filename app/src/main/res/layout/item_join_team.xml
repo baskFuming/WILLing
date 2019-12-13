@@ -305,6 +305,7 @@
                     android:layout_height="match_parent"
                     android:background="@null"
                     android:hint="@string/ed_hint_11"
+                    android:maxLength="500"
                     android:paddingLeft="16dp"
                     android:paddingTop="10dp"
                     android:textColor="#ff333333"

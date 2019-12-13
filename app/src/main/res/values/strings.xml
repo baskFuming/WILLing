@@ -48,7 +48,7 @@
     <string name="forget_btn">忘记密码</string>
     <string name="login_send_sms_code_btn">获取验证码</string>
 
-    <string name="login_phone_hint">手机号/用户名/邮箱</string>
+    <string name="login_phone_hint">请输入手机号</string>
     <string name="login_send_sms_code_hint">请输入验证码</string>
     <string name="login_password_hint">请输入密码</string>
     <string name="login_password_again_hint">请再次输入密码</string>
@@ -494,4 +494,5 @@
     <string name="modify_name_error_1">昵称不可为空</string>
     <string name="modify_name_error_2">昵称必须大于3位字符</string>
     <string name="guidview_experience">立即体验</string>
+    <string name="join_apply_error">投票额度不能为空</string>
 </resources>

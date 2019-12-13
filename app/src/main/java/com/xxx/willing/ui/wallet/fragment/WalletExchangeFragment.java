@@ -184,9 +184,9 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
             GlideUtil.loadCircle(getContext(), HttpConfig.BASE_URL + baseCoinBean.getCoinUrl(), mTargetIcon);
             GlideUtil.loadCircle(getContext(), HttpConfig.BASE_URL + targetCoinBean.getCoinUrl(), mBaseIcon);
             if (targetCoinBean.getCoinId() == 10000004) {    //GVI
-                fee = gviTargetFee;
+                fee = gviBaseFee;
             } else if (targetCoinBean.getCoinId() == 10000005) {  //BVSE
-                fee = bvseTargetFee;
+                fee = bvseBaseFee;
             } else {
                 fee = 0;
             }
@@ -199,7 +199,7 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
             GlideUtil.loadCircle(getContext(), HttpConfig.BASE_URL + targetCoinBean.getCoinUrl(), mTargetIcon);
             if (baseCoinBean.getCoinId() == 10000004) {    //GVI
                 fee = gviBaseFee;
-            } else if (baseCoinBean.getCoinId() == 10000005) {  //BVSE
+            } else if (baseCoinBean.getCoinId() == 10000005 && targetCoinBean.getCoinId() != 10000004) {  //BVSE
                 fee = bvseBaseFee;
             } else {
                 fee = 0;

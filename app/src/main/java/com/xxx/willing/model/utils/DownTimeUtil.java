@@ -42,6 +42,7 @@ public class DownTimeUtil {
      * @param callback
      */
     public void openDownTime(final int time, Callback callback) {
+        isClose = true;
         nowTime = time + 1;
         this.callback = callback;
 

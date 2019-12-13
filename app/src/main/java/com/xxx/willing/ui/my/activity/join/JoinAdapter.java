@@ -29,22 +29,13 @@ public class JoinAdapter extends BaseQuickAdapter<JoinEntry, BaseViewHolder> {
         EditText joinName = helper.itemView.findViewById(R.id.ed_join_user_name);
         EditText joinPhone = helper.itemView.findViewById(R.id.ed_join_phone);
         TextView joinCard = helper.itemView.findViewById(R.id.ed_join_card);
-
         EditText editText = helper.itemView.findViewById(R.id.ed_join_person_introduce);
+
         ImageView imageView = helper.itemView.findViewById(R.id.join_photo_add);
 
-        String role = item.getRole();
-        if (role != null && !role.isEmpty()) {
-            joinRole.setText(role);
-        }
-        String name = item.getName();
-        if (name != null && !name.isEmpty()) {
-            joinName.setText(name);
-        }
-        String phone = item.getRole();
-        if (phone != null && !phone.isEmpty()) {
-            joinPhone.setText(phone);
-        }
+        joinRole.setText(item.getRole());
+        joinName.setText(item.getName());
+        joinPhone.setText(item.getRole());
         joinCard.setText(item.isSettingCard());
 
         helper.itemView.findViewById(R.id.ed_join_role);
@@ -62,23 +53,30 @@ public class JoinAdapter extends BaseQuickAdapter<JoinEntry, BaseViewHolder> {
             imageView.setImageResource(R.mipmap.join_add);
         }
 
-        KeyBoardUtil.setFilters(editText, 500);
-        editText.addTextChangedListener(new TextWatcher() {
+        joinRole.addTextChangedListener(new JoinTextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                item.setRole(s.toString());
             }
-
+        });
+        joinName.addTextChangedListener(new JoinTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                item.setName(s.toString());
+            }
+        });
+        joinPhone.addTextChangedListener(new JoinTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                item.setPhone(s.toString());
+            }
+        });
+        editText.addTextChangedListener(new JoinTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 int length = s.length();
                 item.setPerIntroduce(s.toString());
                 helper.setText(R.id.ed_join_ed_person_number, length + "/500");
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
             }
         });
     }

@@ -40,12 +40,12 @@ public class VoteItemAdapter extends BaseQuickAdapter<FranchiseeBean, BaseViewHo
 
         View view = helper.getView(R.id.item_vote_btn);
         Object tag = view.getTag();
-        if (tag != null) {
-            mDownTimeUtil = (DownTimeUtil) tag;
-            mDownTimeUtil.closeDownTime();
-        } else {
+        if (tag == null) {
             mDownTimeUtil = DownTimeUtil.getInstance();
             view.setTag(mDownTimeUtil);
+        } else {
+            mDownTimeUtil = (DownTimeUtil) tag;
+            mDownTimeUtil.closeDownTime();
         }
 
         long nowTime = StringUtil.getTime(item.getNowTime());

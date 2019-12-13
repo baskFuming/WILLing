@@ -41,6 +41,6 @@ public class GviAdapter extends BaseQuickAdapter<GviBean, BaseViewHolder> {
             gviChildAdapter.setNewData(item.getList());
             gviChildAdapter.notifyDataSetChanged();
         }
-    }
 
+    }
 }

@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
+import com.xxx.willing.base.activity.BaseWebShopActivity;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
@@ -35,7 +36,7 @@ import io.reactivex.schedulers.Schedulers;
  * @date 2019-12-04
  */
 
-public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, BaseQuickAdapter.OnItemClickListener {
+public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, BaseQuickAdapter.OnItemChildClickListener {
 
     @BindView(R.id.main_recycler)
     RecyclerView mRecycler;
@@ -65,7 +66,7 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
         mRecycler.setAdapter(adapter);
         mRefresh.setOnRefreshListener(this);
         adapter.setOnLoadMoreListener(this, mRecycler);
-        adapter.setOnItemClickListener(this);
+        adapter.setOnItemChildClickListener(this);
 
         loadData();
     }
@@ -82,11 +83,6 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
         loadData();
     }
 
-    @Override
-    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        //跳转到web
-
-    }
 
     @OnClick({R.id.ed_search})
     public void OnClick(View view) {
@@ -193,4 +189,12 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
                 });
     }
 
+    @Override
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+        //跳转到商城web
+        BaseWebShopActivity.actionStart(getActivity(),
+                String.valueOf(mList.get(position).getList().get(0).getDetails()),
+                mList.get(position).getName(),
+                mList.get(position).getList().get(0).getBrandId());
+    }
 }

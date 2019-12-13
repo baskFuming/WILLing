@@ -26,6 +26,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -318,6 +319,8 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
                                             mTargetList.add(walletCoinBean);
                                         }
                                     }
+
+                                    Collections.reverse(mTargetList);
                                     mBaseCheckWindow.notifyData(mBaseList);
                                     mTargetCheckWindow.notifyData(mTargetList);
                                     updateParam();

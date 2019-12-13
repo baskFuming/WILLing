@@ -232,11 +232,13 @@ public class ForgetLoginPswActivity extends BaseTitleActivity {
 
                     @Override
                     public void onSuccess(BaseBean<Object> bean) {
-                        ToastUtil.showToast(bean.getMessage());
-                        Intent intent = new Intent(ForgetLoginPswActivity.this, LoginActivity.class);
-                        intent.putExtra("account", account);
-                        setResult(UIConfig.RESULT_CODE, intent);
-                        finish();
+                        if (bean != null) {
+                            ToastUtil.showToast(getString(R.string.forget_success));
+                            Intent intent = new Intent(ForgetLoginPswActivity.this, LoginActivity.class);
+                            intent.putExtra("account", account);
+                            setResult(UIConfig.RESULT_CODE, intent);
+                            finish();
+                        }
                     }
 
                     @Override

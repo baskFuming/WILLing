@@ -14,6 +14,6 @@ public class ApiCode {
      */
     public static final int TOKEN_INVALID = 100001; //UC接口Token失效
 
-    public static final int PAY_NOT_SETTING = -1063; //未设置交易密码
+    public static final int PAY_NOT_SETTING = -1006; //未设置交易密码
 
 }

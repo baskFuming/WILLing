@@ -61,7 +61,7 @@ public class CallMeActivity extends BaseTitleActivity {
     @OnLongClick({R.id.call_me_wechat_code})
     public boolean OnLongClick(View view) {
         switch (view.getId()) {
-            case R.id.call_me_wechat_save:
+            case R.id.call_me_wechat_code:
                 if (bitmap != null) {
                     ImageUtil.saveImage(this, bitmap);
                 }

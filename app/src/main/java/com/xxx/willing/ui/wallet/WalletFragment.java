@@ -4,12 +4,16 @@ import android.support.v4.view.ViewPager;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
+import com.xxx.willing.config.EventBusConfig;
 import com.xxx.willing.ui.wallet.adapter.WalletAdapter;
 import com.xxx.willing.ui.wallet.fragment.WalletAccountFragment;
 import com.xxx.willing.ui.wallet.fragment.WalletExchangeFragment;
 import com.xxx.willing.ui.wallet.fragment.WalletMarketFragment;
 import com.xxx.willing.ui.wallet.fragment.WalletReleaseFragment;
 import com.xxx.willing.view.MyTabLayout;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
@@ -22,6 +26,8 @@ public class WalletFragment extends BaseFragment {
     @BindView(R.id.wallet_view_pager)
     ViewPager mViewPager;
 
+    private ArrayList<BaseFragment> list;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_wallet;
@@ -31,7 +37,7 @@ public class WalletFragment extends BaseFragment {
     protected void initData() {
         String[] title = getResources().getStringArray(R.array.wallet_tab);
 
-        ArrayList<BaseFragment> list = new ArrayList<>();
+        list = new ArrayList<>();
         list.add(WalletAccountFragment.getInstance());
         list.add(WalletReleaseFragment.getInstance());
         list.add(WalletExchangeFragment.getInstance());
@@ -50,6 +56,30 @@ public class WalletFragment extends BaseFragment {
         mViewPager.setAdapter(walletAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
         mViewPager.setOffscreenPageLimit(3);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventBus(String eventFlag) {
+        //首先调用父类
+        super.onEventBus(eventFlag);
+        switch (eventFlag) {
+            case EventBusConfig.EVENT_LOGIN:
+                for (BaseFragment baseFragment : list) {
+                    if (baseFragment instanceof WalletAccountFragment) {
+                        ((WalletAccountFragment) baseFragment).onRefresh();
+                    }
+                    if (baseFragment instanceof WalletReleaseFragment) {
+                        ((WalletReleaseFragment) baseFragment).onRefresh();
+                    }
+                    if (baseFragment instanceof WalletExchangeFragment) {
+                        ((WalletExchangeFragment) baseFragment).onRefresh();
+                    }
+                    if (baseFragment instanceof WalletMarketFragment) {
+                        ((WalletMarketFragment) baseFragment).onRefresh();
+                    }
+                }
+                break;
+        }
     }
 
 }

@@ -197,8 +197,8 @@
 
     <string name="wallet_exchange_toast1">
         1.GVI与人民币兑换比例为1:1；\n
-        2.兑换请结合行情，BTC,ETH,USDT兑换BVSE收取1%作为手续费，BVSE兑换GVI不收取手续费，GVI兑换其他币种收取2%手续费。\n
-        3.实时汇率是从主流交易所实时获取，具体兑换所得的Token数量，可在输入兑换数量后查看。
+        <!--2.兑换请结合行情，BTC,ETH,USDT兑换BVSE收取1%作为手续费，BVSE兑换GVI不收取手续费，GVI兑换其他币种收取2%手续费。\n-->
+        2.实时汇率是从主流交易所实时获取，具体兑换所得的Token数量，可在输入兑换数量后查看。
     </string>
     <string name="wallet_coin_detail_transfer">转账</string>
     <string name="wallet_coin_detail_recharge">收款</string>
@@ -489,4 +489,5 @@
     <string name="please_update_photo">请先上传宣传照片</string>
     <string name="regist_user_help">用户协议</string>
     <string name="please_agreement_user_help">请阅读并同意用户协议</string>
+    <string name="forget_success">修改成功</string>
 </resources>

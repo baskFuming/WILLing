@@ -13,7 +13,6 @@ public class FragmentManager {
 
     /**
      * 替换fragment
-     *
      */
     public static void replaceFragment(AppCompatActivity activity, Class<? extends BaseFragment> fragmentClass, int FrameLayoutId) {
         if (activity != null) {

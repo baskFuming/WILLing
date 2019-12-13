@@ -113,7 +113,7 @@ public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshL
         //右边点击事件
         agesView.setOnItemClickListener((parent, view, position, id) -> {
             page = UIConfig.PAGE_DEFAULT;
-            MoRecordEntry moRecordEntry = mLeft.get(position);
+            MoRecordEntry moRecordEntry = mRight.get(position);
             rightType = moRecordEntry.getType();
             dropDownRightAdapter.setCheckItem(position);
             dropDownMenu.setTabText(moRecordEntry.getName());
@@ -206,6 +206,8 @@ public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshL
                         PageBean<AssetRecordBean> data = bean.getData();
                         List<AssetRecordBean> list = data.getList();
                         if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
+                            mList.clear();
+                            dropDownAdapter.notifyDataSetChanged();
                             mNotData.setVisibility(View.VISIBLE);
                             dropDownAdapter.loadMoreEnd(true);
                             return;

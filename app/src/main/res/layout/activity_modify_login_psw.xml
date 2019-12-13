@@ -16,7 +16,7 @@
         android:paddingBottom="13dp"
         android:paddingLeft="15dp"
         android:paddingTop="13dp"
-        android:text="@string/modify_pwd"
+        android:text="@string/modify_login_pwd"
         android:textColor="#fffe3848"
         android:textSize="14dp" />
 

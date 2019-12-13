@@ -43,7 +43,7 @@ public class NoticeCenterAdapter extends BaseQuickAdapter<MessageBean, BaseViewH
 
         checkBox.setOnClickListener(v -> {
             boolean checked = checkBox.isChecked();
-            if (checked) {
+            if (!checked) {
                 checkBox.setText(mContext.getString(R.string.pack_up_content));
                 imageView.setBackgroundResource(R.mipmap.vote_down);
                 textView.setMaxLines(4);

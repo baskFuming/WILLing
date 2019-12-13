@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lineSpacingExtra="3dp"
-                android:lines="7"
+                android:lines="6"
                 android:textColor="#666666"
                 android:textSize="14dp" />
 

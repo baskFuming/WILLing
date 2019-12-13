@@ -173,44 +173,38 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
     //更新参数
     @SuppressLint("SetTextI18n")
     private void updateParam() {
-        WalletCoinBean.ListBean baseCoinBean = mBaseList.get(basePosition);
-        WalletCoinBean.ListBean targetCoinBean = mTargetList.get(targetPosition);
-        String rate;
-
-        double fee;
+        WalletCoinBean.ListBean baseCoinBean;
+        WalletCoinBean.ListBean targetCoinBean;
         if (isExchangeParam) {
-            mTargetSymbol.setText(baseCoinBean.getCoinSymbol());
-            mBaseSymbol.setText(targetCoinBean.getCoinSymbol());
-            GlideUtil.loadCircle(getContext(), HttpConfig.BASE_URL + baseCoinBean.getCoinUrl(), mTargetIcon);
-            GlideUtil.loadCircle(getContext(), HttpConfig.BASE_URL + targetCoinBean.getCoinUrl(), mBaseIcon);
-            if (targetCoinBean.getCoinId() == 10000004) {    //GVI
-                fee = gviBaseFee;
-            } else if (targetCoinBean.getCoinId() == 10000005) {  //BVSE
-                fee = bvseBaseFee;
-            } else {
-                fee = 0;
-            }
-            mBaseAmount.setHint(getString(R.string.wallet_exchange_base_amount) + targetCoinBean.getBalance());
-            rate = new BigDecimal(targetCoinBean.getCoinPriceUsdt()).divide(new BigDecimal(baseCoinBean.getCoinPriceUsdt()), baseCoinBean.getCoinDecimal(), BigDecimal.ROUND_DOWN).stripTrailingZeros().toPlainString();
+            targetCoinBean = mBaseList.get(basePosition);
+            baseCoinBean = mTargetList.get(targetPosition);
         } else {
-            mBaseSymbol.setText(baseCoinBean.getCoinSymbol());
-            mTargetSymbol.setText(targetCoinBean.getCoinSymbol());
-            GlideUtil.loadCircle(getContext(), HttpConfig.BASE_URL + baseCoinBean.getCoinUrl(), mBaseIcon);
-            GlideUtil.loadCircle(getContext(), HttpConfig.BASE_URL + targetCoinBean.getCoinUrl(), mTargetIcon);
-            if (baseCoinBean.getCoinId() == 10000004) {    //GVI
-                fee = gviBaseFee;
-            } else if (baseCoinBean.getCoinId() == 10000005 && targetCoinBean.getCoinId() != 10000004) {  //BVSE
-                fee = bvseBaseFee;
-            } else {
-                fee = 0;
-            }
-            mBaseAmount.setHint(getString(R.string.wallet_exchange_base_amount) + baseCoinBean.getBalance());
-            rate = new BigDecimal(baseCoinBean.getCoinPriceUsdt()).divide(new BigDecimal(targetCoinBean.getCoinPriceUsdt()), baseCoinBean.getCoinDecimal(), BigDecimal.ROUND_DOWN).stripTrailingZeros().toPlainString();
+            baseCoinBean = mBaseList.get(basePosition);
+            targetCoinBean = mTargetList.get(targetPosition);
         }
 
-        KeyBoardUtil.setFilters(mBaseAmount, baseCoinBean.getCoinDecimal());
+        double fee;
+        mBaseSymbol.setText(baseCoinBean.getCoinSymbol());
+        mTargetSymbol.setText(targetCoinBean.getCoinSymbol());
+        GlideUtil.loadCircle(getContext(), HttpConfig.BASE_URL + baseCoinBean.getCoinUrl(), mBaseIcon);
+        GlideUtil.loadCircle(getContext(), HttpConfig.BASE_URL + targetCoinBean.getCoinUrl(), mTargetIcon);
+        if (baseCoinBean.getCoinId() == 10000004) {    //GVI 左边
+            fee = gviBaseFee;
+        } else if (baseCoinBean.getCoinId() == 10000005) {  //BVSE 左边
+            fee = bvseBaseFee;
+        } else if (targetCoinBean.getCoinId() == 10000004) {  //GVI 右边
+            fee = gviTargetFee;
+        } else if (targetCoinBean.getCoinId() == 10000005) {  //BVSE 右边
+            fee = bvseTargetFee;
+        } else {
+            fee = 0;
+        }
         targetDecimal = targetCoinBean.getCoinDecimal();
+        KeyBoardUtil.setFilters(mBaseAmount, baseCoinBean.getCoinDecimal());
+        mBaseAmount.setHint(getString(R.string.wallet_exchange_base_amount) + targetCoinBean.getBalance());
+        String rate = new BigDecimal(baseCoinBean.getCoinPriceUsdt()).divide(new BigDecimal(targetCoinBean.getCoinPriceUsdt()), baseCoinBean.getCoinDecimal(), BigDecimal.ROUND_DOWN).stripTrailingZeros().toPlainString();
         this.rate = Double.parseDouble(rate);
+
         mBaseAmount.setText("");
         mTargetAmount.setText("");
         mRate.setText(getString(R.string.wallet_exchange_rate) + rate);

@@ -6,10 +6,12 @@ import com.xxx.willing.model.http.bean.AssetRecordBean;
 import com.xxx.willing.model.http.bean.BannerBean;
 import com.xxx.willing.model.http.bean.BrandBean;
 import com.xxx.willing.model.http.bean.FranchiseeBean;
+import com.xxx.willing.model.http.bean.GameBean;
 import com.xxx.willing.model.http.bean.GviBean;
 import com.xxx.willing.model.http.bean.IsSettingPayPswBean;
 import com.xxx.willing.model.http.bean.JoinInfoBean;
 import com.xxx.willing.model.http.bean.LoginBean;
+import com.xxx.willing.model.http.bean.MemberAssetBean;
 import com.xxx.willing.model.http.bean.MessageBean;
 import com.xxx.willing.model.http.bean.MyTeamBean;
 import com.xxx.willing.model.http.bean.MyVoteBean;
@@ -388,5 +390,38 @@ public interface ApiService {
             @Query("pageSize") int pageSize
     );
 
+    //获取游戏列表
+    @POST(HttpConfig.BASE_URL_PATH + "/game/getGameList")
+    Observable<BaseBean<List<GameBean>>> getGameList();
+
+    //获取游戏记录
+    @FormUrlEncoded
+    @POST(HttpConfig.BASE_URL_PATH + "/game/getGameScoreList")
+    Observable<BaseBean<List<GameBean>>> getGameScoreList(
+            @Field("gameId") int gameId
+    );
+
+    //获取游戏资产
+    @FormUrlEncoded
+    @POST(HttpConfig.BASE_URL_PATH + "/game/getMemberAsset")
+    Observable<BaseBean<MemberAssetBean>> getMemberAsset(
+            @Field("userId") int userId
+    );
+
+    //开始游戏
+    @FormUrlEncoded
+    @POST(HttpConfig.BASE_URL_PATH + "/game/startGame")
+    Observable<BaseBean<BooleanBean>> startGame(
+            @Field("userId") int userId,
+            @Field("gameId") int gameId
+    );
+
+    //更新数据
+    @FormUrlEncoded
+    @POST(HttpConfig.BASE_URL_PATH + "/game/updateScore")
+    Observable<BaseBean<BooleanBean>> updateScore(
+            @Field("userId") int userId,
+            @Field("gameId") int gameId
+    );
 
 }

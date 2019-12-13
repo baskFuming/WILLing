@@ -495,4 +495,5 @@
     <string name="modify_name_error_2">昵称必须大于3位字符</string>
     <string name="guidview_experience">立即体验</string>
     <string name="join_apply_error">投票额度不能为空</string>
+    <string name="main_app_not">即将上线</string>
 </resources>

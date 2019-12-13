@@ -1,8 +1,11 @@
 package com.xxx.willing.ui.main;
 
+import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -30,6 +33,11 @@ public class SplashActivity extends AppCompatActivity {
     //是否登录
     private boolean isLogin;
 
+    //判断是否第一次进入
+    private boolean isFirst = true;
+
+    private SharedPreferences pref;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +49,27 @@ public class SplashActivity extends AppCompatActivity {
                 decorView.setBackgroundResource(R.mipmap.splash_bg);
             }
         });
+
         //是否登录
         isLogin = SharedPreferencesUtil.getInstance().getBoolean(SharedConst.IS_LOGIN);
         // 利用消息处理器实现延迟跳转到登录窗口
         mHandler.sendEmptyMessageDelayed(0, UIConfig.SPLASH_DELAY_TIME);
+    }
+
+    @SuppressLint("ApplySharedPref")
+    private void checkIsFirst() {
+        pref = getSharedPreferences(SharedConst.IS_FIRST, MODE_PRIVATE);
+        isFirst = pref.getBoolean(SharedConst.IS_FIRST, true);
+        SharedPreferences.Editor editor = pref.edit();
+        if (isFirst) {
+            editor.putBoolean(SharedConst.IS_FIRST, false);
+            editor.commit();
+            GuidePageActivity.actionStart(this);
+        } else {
+            editor.putBoolean(SharedConst.IS_FIRST, true);
+            editor.commit();
+            checkUI();
+        }
     }
 
     private void checkUI() {
@@ -53,6 +78,7 @@ public class SplashActivity extends AppCompatActivity {
         } else {
             LoginActivity.actionStart(this);
         }
+
         finish();
     }
 
@@ -70,7 +96,7 @@ public class SplashActivity extends AppCompatActivity {
             if (msg.what == 0) {
                 SplashActivity activity = mActivity.get();
                 if (activity != null) {
-                    activity.checkUI();
+                    activity.checkIsFirst();
                 }
             }
         }

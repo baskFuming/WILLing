@@ -31,6 +31,7 @@ public class SharedConst {
      * 保存的状态
      */
     public static final String IS_LOGIN = "is_login";   //是否登陆
+    public static final String IS_FIRST = "is_first";   //是否登陆
     public static final String IS_SETTING_PAY_PSW = "is_setting_pay_psw";   //是否设置过支付密码
 
 }

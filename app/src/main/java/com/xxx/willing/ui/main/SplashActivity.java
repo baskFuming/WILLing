@@ -66,7 +66,7 @@ public class SplashActivity extends AppCompatActivity {
             editor.commit();
             GuidePageActivity.actionStart(this);
         } else {
-            editor.putBoolean(SharedConst.IS_FIRST, true);
+            editor.putBoolean(SharedConst.IS_FIRST, false);
             editor.commit();
             checkUI();
         }
@@ -78,7 +78,6 @@ public class SplashActivity extends AppCompatActivity {
         } else {
             LoginActivity.actionStart(this);
         }
-
         finish();
     }
 

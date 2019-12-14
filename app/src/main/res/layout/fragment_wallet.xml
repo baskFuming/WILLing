@@ -5,25 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/main_bg"
     tools:context=".ui.wallet.WalletFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="66dp"
-        android:gravity="center"
-        android:paddingTop="20dp"
-        android:text="@string/main_wallet"
-        android:textColor="#333333"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+    <include layout="@layout/include_title_bar" />
 
-    <com.xxx.willing.view.MyTabLayout
-        android:id="@+id/wallet_tab_layout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       />
+        android:background="@drawable/include_tobar_shadow"
+        android:orientation="vertical"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
 
-    <View style="@style/dividingLine"/>
+        <com.androidkun.xtablayout.XTabLayout
+            android:id="@+id/wallet_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:xTabIndicatorColor="@color/main_tab_select_color"
+            app:xTabIndicatorHeight="3dp"
+            app:xTabIndicatorWidth="40dp"
+            app:xTabSelectedTextColor="@color/main_tab_select_color"
+            app:xTabSelectedTextSize="19dp"
+            app:xTabTextBold="false"
+            app:xTabTextColor="@color/main_tab_default_color"
+            app:xTabTextSelectedBold="true"
+            app:xTabTextSize="16dp" />
+    </LinearLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/wallet_view_pager"

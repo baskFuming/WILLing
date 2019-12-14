@@ -68,6 +68,8 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
     RecyclerView mRecycler;
     @BindView(R.id.main_not_data)
     LinearLayout mNotData;
+    @BindView(R.id.line1)
+    LinearLayout mNotData2;
     @BindView(R.id.main_refresh)
     SwipeRefreshLayout mRefresh;
 
@@ -184,27 +186,31 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
                     public void onSuccess(BaseBean<PageBean<WalletTransactionBean>> bean) {
                         if (bean == null) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mRecycler.setVisibility(View.GONE);
+                            mNotData2.setVisibility(View.GONE);
+//                            mRecycler.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
                             return;
                         }
                         PageBean<WalletTransactionBean> data = bean.getData();
                         if (data == null) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mRecycler.setVisibility(View.GONE);
+                            mNotData2.setVisibility(View.GONE);
+//                            mRecycler.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
                             return;
                         }
                         List<WalletTransactionBean> list = data.getList();
                         if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mRecycler.setVisibility(View.GONE);
+                            mNotData2.setVisibility(View.GONE);
+//                            mRecycler.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
                             return;
                         }
 
                         mNotData.setVisibility(View.GONE);
-                        mRecycler.setVisibility(View.VISIBLE);
+                        mNotData2.setVisibility(View.VISIBLE);
+//                        mRecycler.setVisibility(View.VISIBLE);
                         if (page == UIConfig.PAGE_DEFAULT) {
                             mList.clear();
                         }
@@ -222,7 +228,8 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
                     public void onError(int errorCode, String errorMessage) {
                         if (mList.size() == 0) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mRecycler.setVisibility(View.GONE);
+                            mNotData2.setVisibility(View.GONE);
+//                            mRecycler.setVisibility(View.GONE);
                         }
                         ToastUtil.showToast(errorMessage);
                     }

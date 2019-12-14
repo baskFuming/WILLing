@@ -78,17 +78,15 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
     protected void initData() {
         mContent.setVisibility(View.VISIBLE);
         mContent.setText(getString(R.string.sign_task_rules));
-        mTeRules.setText(Html.fromHtml(String.format(getResources().getString(R.string.sign_rules))));
-        mTrip.setText(Html.fromHtml(String.format(getResources().getString(R.string.task_trip))));
 
         //TODO 假数据测试
         mList.add(new StepBean(StepBean.STEP_COMPLETED, 1));
         mList.add(new StepBean(StepBean.STEP_COMPLETED, 2));
         mList.add(new StepBean(StepBean.STEP_UNDO, 3));
         mList.add(new StepBean(StepBean.STEP_UNDO, 4));
-        mList.add(new StepBean(StepBean.STEP_UNDO, 5));
-        mList.add(new StepBean(StepBean.STEP_UNDO, 6, R.mipmap.ic_launcher));
-        mList.add(new StepBean(StepBean.STEP_UNDO, 7));
+        mList.add(new StepBean(StepBean.STEP_UNDO, 5,R.mipmap.ic_launcher));
+        mList.add(new StepBean(StepBean.STEP_UNDO, 6));
+        mList.add(new StepBean(StepBean.STEP_UNDO, 7,R.mipmap.ic_launcher));
         mStepView.setStepNum(mList);
     }
 
@@ -96,7 +94,6 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.main_content://任务规则
-//                TaskRulesActivity.actionStart(this);
                 BaseWebActivity.actionStart(this, HttpConfig.TASK_URL, getString(R.string.sign_task_rules));
                 break;
             case R.id.te_sign_btn://签到弹框
@@ -130,70 +127,70 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
      * @Model 获取签到信息
      */
     private void getSignInfo() {
-//        Api.getInstance().getSignInfo()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new ApiCallback<List<SignInfoBean>>(this) {
-//
-//                    @Override
-//                    public void onSuccess(BaseBean<List<SignInfoBean>> bean) {
-//                        if (bean != null) {
-//
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onError(int errorCode, String errorMessage) {
-//                        ToastUtil.showToast(errorMessage);
-//                    }
-//
-//                    @Override
-//                    public void onStart(Disposable d) {
-//                        super.onStart(d);
-//                        showLoading();
-//                    }
-//
-//                    @Override
-//                    public void onEnd() {
-//                        super.onEnd();
-//                        hideLoading();
-//                    }
-//                });
+        Api.getInstance().getSignInfo()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiCallback<List<SignInfoBean>>(this) {
+
+                    @Override
+                    public void onSuccess(BaseBean<List<SignInfoBean>> bean) {
+                        if (bean != null) {
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(int errorCode, String errorMessage) {
+                        ToastUtil.showToast(errorMessage);
+                    }
+
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        showLoading();
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        hideLoading();
+                    }
+                });
     }
 
     /**
      * @Model 获取任务信息
      */
     private void getTaskInfo() {
-//        Api.getInstance().getTaskInfo()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new ApiCallback<List<TaskInfoBean>>(this) {
-//
-//                    @Override
-//                    public void onSuccess(BaseBean<List<TaskInfoBean>> bean) {
-//                        if (bean != null) {
-//
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onError(int errorCode, String errorMessage) {
-//                        ToastUtil.showToast(errorMessage);
-//                    }
-//
-//                    @Override
-//                    public void onStart(Disposable d) {
-//                        super.onStart(d);
-//                        showLoading();
-//                    }
-//
-//                    @Override
-//                    public void onEnd() {
-//                        super.onEnd();
-//                        hideLoading();
-//                    }
-//                });
+        Api.getInstance().getTaskInfo()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiCallback<List<TaskInfoBean>>(this) {
+
+                    @Override
+                    public void onSuccess(BaseBean<List<TaskInfoBean>> bean) {
+                        if (bean != null) {
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(int errorCode, String errorMessage) {
+                        ToastUtil.showToast(errorMessage);
+                    }
+
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        showLoading();
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        hideLoading();
+                    }
+                });
     }
 
     /**

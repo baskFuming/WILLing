@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -14,6 +15,7 @@ import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.BrandBean;
 import com.xxx.willing.model.http.bean.FranchiseeBean;
+import com.xxx.willing.model.http.bean.WalletMarketBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.utils.ToastUtil;
@@ -27,6 +29,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -57,6 +60,10 @@ public class VoteItemFragment extends BaseFragment implements BaseQuickAdapter.R
     TextView mContent;
     @BindView(R.id.main_recycler)
     RecyclerView mRecycler;
+    @BindView(R.id.main_not_data)
+    LinearLayout mNotData;
+    @BindView(R.id.lin_1)
+    LinearLayout mNotData2;
 
     private BrandBean bean;
     private int page = UIConfig.PAGE_DEFAULT;
@@ -120,24 +127,53 @@ public class VoteItemFragment extends BaseFragment implements BaseQuickAdapter.R
 
                     @Override
                     public void onSuccess(BaseBean<PageBean<FranchiseeBean>> bean) {
-                        PageBean<FranchiseeBean> data = bean.getData();
-                        if (data != null) {
-                            List<FranchiseeBean> list = data.getList();
-                            if (list != null && list.size() != 0) {
-                                mList.clear();
-                                mList.addAll(list);
-                                if (list.size() < UIConfig.PAGE_SIZE) {
-                                    mAdapter.loadMoreEnd(true);
-                                } else {
-                                    mAdapter.loadMoreComplete();
-                                }
-                                mAdapter.notifyDataSetChanged();
-                            }
+                        if (bean == null) {
+                            mNotData.setVisibility(View.VISIBLE);
+                            mNotData2.setVisibility(View.GONE);
+//                            mRecycler.setVisibility(View.GONE);
+                            mAdapter.loadMoreEnd(true);
+                            return;
                         }
+
+                        PageBean<FranchiseeBean> data = bean.getData();
+                        if (data == null) {
+                            mNotData.setVisibility(View.VISIBLE);
+                            mNotData2.setVisibility(View.GONE);
+//                            mRecycler.setVisibility(View.GONE);
+                            mAdapter.loadMoreEnd(true);
+                            return;
+                        }
+
+                        List<FranchiseeBean> list = data.getList();
+                        if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
+                            mNotData.setVisibility(View.VISIBLE);
+                            mNotData2.setVisibility(View.GONE);
+//                            mRecycler.setVisibility(View.GONE);
+                            mAdapter.loadMoreEnd(true);
+                            return;
+                        }
+                        mNotData.setVisibility(View.GONE);
+                        mNotData2.setVisibility(View.VISIBLE);
+//                        mRecycler.setVisibility(View.VISIBLE);
+                        if (page == UIConfig.PAGE_DEFAULT) {
+                            mList.clear();
+                        }
+                        mList.addAll(list);
+                        if (list.size() < UIConfig.PAGE_SIZE) {
+                            mAdapter.loadMoreEnd(true);
+                        } else {
+                            mAdapter.loadMoreComplete();
+                        }
+                        mAdapter.notifyDataSetChanged();
                     }
 
                     @Override
                     public void onError(int errorCode, String errorMessage) {
+                        if (mList.size() == 0) {
+                            mNotData.setVisibility(View.VISIBLE);
+                            mNotData2.setVisibility(View.GONE);
+//                            mRecycler.setVisibility(View.GONE);
+                        }
                         ToastUtil.showToast(errorMessage);
                     }
                 });

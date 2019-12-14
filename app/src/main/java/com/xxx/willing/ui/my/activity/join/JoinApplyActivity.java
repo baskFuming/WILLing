@@ -151,7 +151,7 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
         mNumber1.setText(length + "/500");
     }
 
-    @OnClick({R.id.ed_submit, R.id.ed_agree_click, R.id.ed_create_click, R.id.re_click_address, R.id.ed_join_trans_photo, R.id.ed_join_rand, R.id.ed_join_time})
+    @OnClick({R.id.ed_submit, R.id.ed_agree_click, R.id.ed_create_click, R.id.re_click_address, R.id.ed_join_trans_photo, R.id.ed_join_rand_click, R.id.ed_join_time_click})
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.ed_agree_click://结盟协议
@@ -169,12 +169,12 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
                     mCityPickerView.showCityPicker();
                 }
                 break;
-            case R.id.ed_join_rand:
+            case R.id.ed_join_rand_click:
                 if (mCheckBrandMenu != null) {
                     mCheckBrandMenu.show();
                 }
                 break;
-            case R.id.ed_join_time:
+            case R.id.ed_join_time_click:
                 if (mCheckTimeMenu != null) {
                     mCheckTimeMenu.show();
                 }
@@ -447,8 +447,10 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
                             if (data != null) {
                                 mBrandList.clear();
                                 mBrandList.addAll(data.getBrandList());
-                                mTimeList.clear();
-                                mTimeList.addAll(data.getTimeList());
+                                if (mTimeList == null || mTimeList.size() != 0) {
+                                    mTimeList.clear();
+                                    mTimeList.addAll(data.getTimeList());
+                                }
                                 initCheckBrandMenu();
                                 initCheckTimeMenu();
                             }

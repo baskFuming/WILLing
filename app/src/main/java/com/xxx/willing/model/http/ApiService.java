@@ -421,7 +421,8 @@ public interface ApiService {
     @POST(HttpConfig.BASE_URL_PATH + "/game/updateScore")
     Observable<BaseBean<BooleanBean>> updateScore(
             @Field("userId") int userId,
-            @Field("gameId") int gameId
+            @Field("gameId") int gameId,
+            @Field("score") String score
     );
 
 }

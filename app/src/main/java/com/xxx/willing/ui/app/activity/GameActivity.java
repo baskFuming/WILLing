@@ -36,6 +36,8 @@ import com.xxx.willing.model.utils.ToastUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
 import butterknife.BindView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -70,7 +72,6 @@ public class GameActivity extends BaseActivity {
     private GameBean bean;
     private int userId;
     private String Url;
-    private String title;
     private String restart = null;
     private String score = null;
     private int gameid;
@@ -87,12 +88,13 @@ public class GameActivity extends BaseActivity {
     @Override
     protected void initData() {
         initBundle();
-        userId = Integer.parseInt(SharedPreferencesUtil.getInstance().getString(SharedConst.VALUE_USER_ID));
+        userId = SharedPreferencesUtil.getInstance().getInt(SharedConst.VALUE_USER_ID);
         gameid = bean.getId();
         gameName = bean.getName();
         mtitle.setText(gameName);
 
-        Url = bean.getUrl() + "?" + "userId=" + userId + "&gameId=" + bean.getId() + "&baseUrl=" + HttpConfig.BASE_URL;
+        //加载WebView
+        Url = bean.getGameUrl() + "?" + "userId=" + userId + "&gameId=" + bean.getId() + "&baseUrl=" + HttpConfig.BASE_URL;
         final WebSettings webSetting;
         webSetting = mWebView.getSettings();
         webSetting.setSupportZoom(true);
@@ -182,7 +184,7 @@ public class GameActivity extends BaseActivity {
      * @model 获取用用户资产
      */
     private void getMemberAsset() {
-        userId = Integer.parseInt(SharedPreferencesUtil.getInstance().getString(SharedConst.VALUE_USER_ID));
+        userId = SharedPreferencesUtil.getInstance().getInt(SharedConst.VALUE_USER_ID);
         Api.getInstance().getMemberAsset(userId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -211,7 +213,7 @@ public class GameActivity extends BaseActivity {
      * @model 开始游戏
      */
     private void getStartGame() {
-        userId = Integer.parseInt(SharedPreferencesUtil.getInstance().getString(SharedConst.VALUE_USER_ID));
+        userId = SharedPreferencesUtil.getInstance().getInt(SharedConst.VALUE_USER_ID);
         Api.getInstance().startGame(userId, gameid)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -270,8 +272,8 @@ public class GameActivity extends BaseActivity {
      * @model 更新比赛得分
      */
     private void getUpdateScore() {
-        userId = Integer.parseInt(SharedPreferencesUtil.getInstance().getString(SharedConst.VALUE_USER_ID));
-        Api.getInstance().updateScore(userId, gameid)
+        userId = SharedPreferencesUtil.getInstance().getInt(SharedConst.VALUE_USER_ID);
+        Api.getInstance().updateScore(userId, gameid, score)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<BooleanBean>(this) {
@@ -287,24 +289,7 @@ public class GameActivity extends BaseActivity {
                 });
     }
 
-    /**
-     * @model 获取游戏记录
-     */
-//    private void getGameScoreList() {
-//        Api.getInstance().getGameScoreList(gameid)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new ApiCallback<BooleanBean>(this) {
-//                    @Override
-//                    public void onSuccess(BaseBean<BooleanBean> bean) {
-//                    }
-//
-//                    @Override
-//                    public void onError(int errorCode, String errorMessage) {
-//                        ToastUtil.showToast(errorMessage);
-//                    }
-//                });
-//    }
+
     @Override
     protected void onResume() {
         if (mWebView != null) {
@@ -337,5 +322,4 @@ public class GameActivity extends BaseActivity {
             mWebView.destroy();
         }
     }
-
 }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import com.androidkun.xtablayout.XTabLayout;
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.model.http.Api;
@@ -36,21 +37,16 @@ import io.reactivex.schedulers.Schedulers;
 
 public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    //    @BindView(R.id.vote_tab_layout)
-//    TabLayout mTabLayout;
-    @BindView(R.id.vote_tab_layout)
-    MyTabLayout myTabLayout;
+    @BindView(R.id.main_tab_layout)
+    XTabLayout myTabLayout;
     @BindView(R.id.vote_view_pager)
     ViewPager mViewPager;
     @BindView(R.id.main_app_bar)
     AppBarLayout mAppBar;
     @BindView(R.id.main_refresh)
     SwipeRefreshLayout mRefresh;
-
     @BindView(R.id.main_home_view_flipper)
     ViewFlipper mViewFlipper;
-    //    @BindView(R.id.vote_banner)
-//    Banner mBanner;
     @BindView(R.id.vote_banner_init)
     com.xw.banner.Banner banner;
 
@@ -87,15 +83,6 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
             }
         });
         mRefresh.setOnRefreshListener(this);
-
-        myTabLayout.setSelectedIndicatorHeight(6);
-        myTabLayout.setTabIndicatorWidth(80);
-        myTabLayout.setTabTextColors(getResources().getColor(R.color.main_tab_default_color), getResources().getColor(R.color.main_tab_select_color));
-        myTabLayout.setTabTextSize(38, 44);
-        myTabLayout.setTextSelectedBold(true);
-        myTabLayout.setTabMode(MyTabLayout.GRAVITY_CENTER);
-        myTabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.main_tab_select_color));
-
         mAdapter = new VoteAdapter(getChildFragmentManager(), mFragment, mTitle);
         mViewPager.setAdapter(mAdapter);
         myTabLayout.setupWithViewPager(mViewPager);

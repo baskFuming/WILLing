@@ -34,11 +34,6 @@ public class SignPopWindow extends BaseDialog {
         return R.layout.sign_pop_window;
     }
 
-    @Override
-    protected double setWidth() {
-        return 0.8;
-    }
-
 
     @Override
     protected void initData() {

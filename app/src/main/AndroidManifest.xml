@@ -81,7 +81,6 @@
         <activity android:name=".ui.my.activity.join.UpdatePhotoActivity" />
         <activity android:name=".ui.my.activity.join.UpdateCardActivity" />
         <activity android:name=".ui.my.activity.join.JoinApplyActivity" />
-        <activity android:name=".ui.my.activity.sign.TaskRulesActivity" />
         <activity android:name=".ui.my.activity.sign.SignActivity" />
         <activity android:name=".ui.my.activity.team.MyTeamActivity" />
         <activity android:name=".ui.my.activity.vote.VoteRecordActivity" />

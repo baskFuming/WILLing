@@ -261,7 +261,8 @@
     </string>
     <string name="success_rules">完成以上任务可获得</string>
     <string name="sign_gift">签到有礼，免费送BVSE～</string>
-    <string name="sign_rules"><font color="#F62E43">连续</font>签到<font color="#F62E43">七天</font>即可点亮下方推荐任务！记得是<font color="#F62E43">连续</font>签到，中断就不算了哦～</string>
+
+    <string name="sign_rules"><font color="red">连续</font>签到<font color="red">七天</font>即可点亮下方推荐任务！记得是<font color="red">连续</font>签到，中断就不算了哦～</string>
     <string name="sign_btn">签到领BVSE～</string>
     <string name="tuijain_task">推荐任务</string>
     <string name="toupiao_task">投票任务</string>
@@ -270,7 +271,7 @@
     <string name="toupiao_number_friend">推荐朋友投票1000GVI完成第三个任务吧</string>
     <string name="go_vote">去投票</string>
     <string name="task_progress">任务进度</string>
-    <string name="task_trip">温馨提示：完成以上全部任务可获得<font color="#F62E43">2000</font>枚BVSE～</string>
+    <string name="task_trip">温馨提示：完成以上全部任务可获得<font color="red">2000</font>枚BVSE～</string>
     <string name="sign_success">签到成功！恭喜获得2枚BVSE！已放入您的账户中。</string>
     <string name="rember_tip">记得明天再来哦～</string>
     <string name="tip_ok">好的</string>
@@ -287,7 +288,7 @@
     <string name="apply_adderss">地点</string>
     <string name="apply_lines">投票额度</string>
     <string name="apply_node">节点介绍</string>
-    <string name="apply_mess">创始团队信息（<font color="#fffe3848">*</font>为必填项）</string>
+    <string name="apply_mess">创始团队信息（*为必填项）</string>
     <string name="apply_role">人员角色</string>
     <string name="apply_user_name">姓名</string>
     <string name="apply_phone">联系电话</string>
@@ -496,4 +497,9 @@
     <string name="guidview_experience">立即体验</string>
     <string name="join_apply_error">投票额度不能为空</string>
     <string name="main_app_not">即将上线</string>
+    <string name="vote_date">释放周期</string>
+    <string name="vote_running_water">预期单店流水</string>
+    <string name="vote_details_time">投票时间</string>
+    <string name="vote_earnings">预期收益</string>
+    <string name="join_details_date">加盟周期</string>
 </resources>

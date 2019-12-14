@@ -138,7 +138,7 @@ public class AppFragment extends BaseFragment implements SwipeRefreshLayout.OnRe
                         //移除未开启的游戏
                         for (int i = 0; i < list.size(); i++) {
                             GameBean gameBean = list.get(i);
-                            if (!gameBean.isOpen()) {
+                            if (!gameBean.getEnableFlag()) {//==1 开启
                                 list.remove(i);
                                 i--;
                             }
@@ -175,5 +175,15 @@ public class AppFragment extends BaseFragment implements SwipeRefreshLayout.OnRe
                         }
                     }
                 });
+    }
+
+
+    //当Fragment隐藏状态发生改变均触发该方法
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        mRefresh.post(() -> {
+            loadGameList();
+        });
     }
 }

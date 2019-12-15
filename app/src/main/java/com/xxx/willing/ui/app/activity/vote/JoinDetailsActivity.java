@@ -31,6 +31,7 @@ import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.BannerUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.adapter.TeamMesAdapter;
+import com.xxx.willing.ui.vote.window.VoteDetailsPop;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -120,6 +121,7 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
     private TeamMesAdapter mAdapter;
     private List<VoteDetailBean.ListBean> mList = new ArrayList<>();
     private Integer franId;
+    private VoteDetailsPop voteDetailsPop;
 
     @Override
     protected String initTitle() {
@@ -197,7 +199,13 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
 
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-
+        switch (view.getId()) {
+            case R.id.job_all:
+                voteDetailsPop = VoteDetailsPop.getInstance(this, mList.get(position).getUserImg(),
+                        mList.get(position).getName(), mList.get(position).getDatils());
+                voteDetailsPop.show();
+                break;
+        }
     }
 
     @Override
@@ -212,6 +220,10 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
         if (mVoteWindow != null) {
             mVoteWindow.dismiss();
             mVoteWindow = null;
+        }
+        if (voteDetailsPop != null) {
+            voteDetailsPop.dismiss();
+            voteDetailsPop = null;
         }
     }
 

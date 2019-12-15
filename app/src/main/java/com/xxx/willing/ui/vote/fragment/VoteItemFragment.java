@@ -22,6 +22,7 @@ import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.activity.vote.JoinDetailsActivity;
 import com.xxx.willing.ui.vote.activity.BrandDetailActivity;
 import com.xxx.willing.ui.vote.adapter.VoteItemAdapter;
+import com.xxx.willing.ui.vote.window.VoteDetailsPop;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +70,6 @@ public class VoteItemFragment extends BaseFragment implements BaseQuickAdapter.R
     private int page = UIConfig.PAGE_DEFAULT;
     private VoteItemAdapter mAdapter;
     private List<FranchiseeBean> mList = new ArrayList<>();
-
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_vote_item;

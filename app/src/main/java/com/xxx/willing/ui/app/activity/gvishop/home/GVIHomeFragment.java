@@ -71,7 +71,6 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
 
 
         loadData();
-
         //搜索商品
         mSearch.setOnSearchClickListener(view -> {
             edSearchName = mSearch.getText().toString();
@@ -165,7 +164,7 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
                     @Override
                     public void onSuccess(BaseBean<PageBean<SearchShopBean>> bean) {
                         if (bean != null) {
-
+                            mSearch.setText("");
                         }
                     }
 

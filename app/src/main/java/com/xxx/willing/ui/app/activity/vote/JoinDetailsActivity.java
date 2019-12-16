@@ -143,19 +143,10 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
 
         mVoteWindow = VoteWindow.getInstance(this);
         mVoteWindow.setCallback(this);
-//
-//        if (mCheck.isChecked()) {
-//            mCheck.setText(getString(R.string.pack_content));
-//            mImage.setBackgroundResource(R.mipmap.vote_pack_up);
-//        } else {
-//            mCheck.setText(getString(R.string.all_text));
-//            mImage.setBackgroundResource(R.mipmap.vote_down);
-//        }
-
         getVoteDetail();
     }
 
-    @OnClick({R.id.main_content, R.id.vote_btn, R.id.text_click})
+    @OnClick({R.id.main_content, R.id.vote_btn, R.id.item_notice_center_btn})
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.main_content:
@@ -166,17 +157,16 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
                     mVoteWindow.show();
                 }
                 break;
-            case R.id.text_click:
-                boolean checked = mCheck.isChecked();
-                if (!checked) {
-                    mCheck.setText(getString(R.string.all_text));
-                    mImage.setBackgroundResource(R.mipmap.vote_down);
-                    mDetail.setMaxLines(4);
-                    mDetail.invalidate();
-                } else {
+            case R.id.item_notice_center_btn:
+                if (mCheck.isChecked()) {
                     mCheck.setText(getString(R.string.pack_content));
                     mImage.setBackgroundResource(R.mipmap.vote_pack_up);
                     mDetail.setMaxLines(10000);
+                    mDetail.invalidate();
+                } else {
+                    mCheck.setText(getString(R.string.all_text));
+                    mImage.setBackgroundResource(R.mipmap.vote_down);
+                    mDetail.setMaxLines(4);
                     mDetail.invalidate();
                 }
 

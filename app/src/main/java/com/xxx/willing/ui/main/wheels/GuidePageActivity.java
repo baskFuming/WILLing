@@ -23,6 +23,7 @@ public class GuidePageActivity extends BaseActivity {
         Intent intent = new Intent(activity, GuidePageActivity.class);
         activity.startActivity(intent);
     }
+
     @BindView(R.id.contentFrameLayout)
     PageFrameLayout pageFrameLayout;
 

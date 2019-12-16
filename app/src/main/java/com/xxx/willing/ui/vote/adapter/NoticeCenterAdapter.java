@@ -1,8 +1,11 @@
 package com.xxx.willing.ui.vote.adapter;
 
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -30,31 +33,36 @@ public class NoticeCenterAdapter extends BaseQuickAdapter<MessageBean, BaseViewH
                 .setText(R.id.notice_date, item.getCreateTime())
                 .setText(R.id.notice_content, item.getContent());
         final CheckBox checkBox = helper.getView(R.id.item_notice_center_btn);
-        final ImageView imageView  = helper.getView(R.id.notice_img);
+        final ImageView imageView = helper.getView(R.id.notice_img);
         final TextView textView = helper.getView(R.id.notice_content);
 
-        if (item.isCheck()) {
-            checkBox.setText(mContext.getString(R.string.pack_up_content));
-            imageView.setBackgroundResource(R.mipmap.vote_pack_up);
-        } else {
-            checkBox.setText(mContext.getString(R.string.to_view_content));
-            imageView.setBackgroundResource(R.mipmap.vote_down);
-        }
-
-        checkBox.setOnClickListener(v -> {
-            boolean checked = checkBox.isChecked();
-            if (!checked) {
+        checkBox.setOnClickListener(view -> {
+            if (checkBox.isChecked()) {
                 checkBox.setText(mContext.getString(R.string.pack_up_content));
                 imageView.setBackgroundResource(R.mipmap.vote_pack_up);
-                textView.setMaxLines(4);
+                textView.setMaxLines(10000);
                 textView.invalidate();
             } else {
                 checkBox.setText(mContext.getString(R.string.to_view_content));
                 imageView.setBackgroundResource(R.mipmap.vote_down);
-                textView.setMaxLines(10000);
+                textView.setMaxLines(4);
                 textView.invalidate();
             }
         });
+        /*checkBox.setOnClickListener(v -> {
+            boolean checked = checkBox.isChecked();
+            if (checked) {
+                checkBox.setText(mContext.getString(R.string.pack_up_content));
+                imageView.setBackgroundResource(R.mipmap.vote_pack_up);
+//                textView.setMaxLines(10000);
+//                textView.invalidate();
+            } else {
+                checkBox.setText(mContext.getString(R.string.to_view_content));
+                imageView.setBackgroundResource(R.mipmap.vote_down);
+//                textView.setMaxLines(4);
+//                textView.invalidate();
+            }
+        });*/
 
     }
 }

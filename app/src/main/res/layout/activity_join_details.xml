@@ -352,10 +352,12 @@
                         android:layout_height="wrap_content"
                         android:button="@null"
                         android:text="@string/all_text"
+                        android:focusable="false"
                         android:textColor="#333333"
                         android:textSize="12dp" />
 
                     <ImageView
+                        android:focusable="false"
                         android:layout_marginLeft="5dp"
                         android:id="@+id/notice_img"
                         android:layout_width="12dp"

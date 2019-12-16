@@ -36,9 +36,10 @@ public abstract class BaseDialog extends AlertDialog {
             if (window != null) {
                 final WindowManager.LayoutParams lp = window.getAttributes();
                 window.setBackgroundDrawableResource(android.R.color.transparent);
-                window.clearFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+//                window.clearFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+                window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
                 window.getDecorView().post(() -> {
-                    lp.width = (int) (window.getDecorView().getWidth() * 0.85);
+                    lp.width = (int) (window.getDecorView().getWidth());
                     window.setGravity(Gravity.CLIP_HORIZONTAL);
                     window.setAttributes(lp);
                     initData();
@@ -51,7 +52,5 @@ public abstract class BaseDialog extends AlertDialog {
     protected abstract int getLayoutId();
 
     protected abstract void initData();
-
-    protected abstract double setWidth();
 
 }

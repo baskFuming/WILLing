@@ -20,7 +20,6 @@ import java.util.List;
  */
 
 public class PartnerApapter extends BaseQuickAdapter<PartnerBean, BaseViewHolder> {
-    private List<PartnerBean> data = new ArrayList<>();
 
     public PartnerApapter(@Nullable List<PartnerBean> data) {
         super(R.layout.partner_item, data);
@@ -28,9 +27,9 @@ public class PartnerApapter extends BaseQuickAdapter<PartnerBean, BaseViewHolder
 
     @Override
     protected void convert(BaseViewHolder helper, PartnerBean item) {
-        helper.setText(R.id.partner_des, item.getUserId())
+        helper.setText(R.id.partner_des, item.getUserId() + "")
                 .setText(R.id.partner_id, "ID：" + item.getLevel())
-                .setText(R.id.partner_count, item.getPrice());
+                .setText(R.id.partner_count, item.getPrice() + "");
         GlideUtil.loadCircle(mContext, String.valueOf(item.getAvatar()), helper.getView(R.id.partner_icon));
         TextView mLevel = helper.getView(R.id.partner_level);
         int position = helper.getLayoutPosition();

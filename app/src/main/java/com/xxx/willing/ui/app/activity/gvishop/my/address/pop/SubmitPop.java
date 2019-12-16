@@ -60,4 +60,8 @@ public class SubmitPop extends BasePopup {
     public interface Callback {
         void onCallback();
     }
+
+    public void setCallback(Callback callback) {
+        this.callback = callback;
+    }
 }

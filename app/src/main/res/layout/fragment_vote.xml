@@ -5,6 +5,7 @@
     android:id="@+id/main_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F8FCFF"
     tools:context=".ui.vote.VoteFragment">
 
     <LinearLayout
@@ -31,7 +32,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#FFFFFF"
+                        android:background="#F8FCFF"
                         android:orientation="vertical">
 
                         <com.xw.banner.Banner
@@ -87,28 +88,26 @@
                     android:id="@+id/ring_tab_outside"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#FFFFFF"
+                    android:background="#F8FCFF"
                     android:orientation="vertical"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                    <!--<com.xxx.willing.view.TabLayout-->
-                    <!--android:id="@+id/vote_tab_layout"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="42dp"-->
-                    <!--android:layout_marginTop="10dp"-->
-                    <!--app:tabMode="scrollable"-->
-                    <!--app:tabSelectedTextColor="#3C7FFF"-->
-                    <!--app:tabTextColor="#666666" />-->
-                    <com.xxx.willing.view.MyTabLayout
-                        android:id="@+id/vote_tab_layout"
+                    <com.androidkun.xtablayout.XTabLayout
+                        android:id="@+id/main_tab_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:tabMode="scrollable"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:background="#e5e5e5" />
+                        app:xTabIndicatorColor="@color/main_tab_select_color"
+                        app:xTabIndicatorHeight="3dp"
+                        app:xTabIndicatorWidth="40dp"
+                        app:xTabSelectedTextColor="@color/main_tab_select_color"
+                        app:xTabSelectedTextSize="19dp"
+                        app:xTabTextBold="false"
+                        app:xTabMode="scrollable"
+                        app:xTabTextColor="@color/main_tab_default_color"
+                        app:xTabTextSelectedBold="true"
+                        app:xTabTextSize="16dp"
+                        />
+                    <View style="@style/dividingLine" />
 
                 </LinearLayout>
 

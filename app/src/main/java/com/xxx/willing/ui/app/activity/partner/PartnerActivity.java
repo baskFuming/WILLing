@@ -75,7 +75,7 @@ public class PartnerActivity extends BaseTitleActivity {
 
         loadDate();
 
-        mTabLayout.setTabGravity(XTabLayout.GRAVITY_CENTER);
+//        mTabLayout.setTabGravity(XTabLayout.GRAVITY_CENTER);
         mViewPager.setOffscreenPageLimit(fragments.size() - 1);
         voteAdapter = new VoteAdapter(getSupportFragmentManager(), fragments, mTabTitle);
         mViewPager.setAdapter(voteAdapter);

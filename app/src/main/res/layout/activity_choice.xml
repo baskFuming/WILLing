@@ -5,14 +5,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
     android:background="@color/main_bg">
-    <View
+    <TextView
         android:id="@+id/view"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:background="#FFFFFF"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <!--<View-->
+        <!--android:id="@+id/view"-->
+        <!--android:visibility="gone"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:background="#FFFFFF"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/llTitle" />-->
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/llTitle"
@@ -44,8 +52,7 @@
             android:layout_marginBottom="14dp"
             android:text="@string/diquxuanze"
             android:textColor="#202124"
-            android:textSize="16dp"
-            android:textStyle="bold"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,8 +65,7 @@
             android:layout_marginEnd="8dp"
             android:text="@string/zhongwen"
             android:textColor="#202124"
-            android:textSize="16dp"
-            android:textStyle="bold"
+            android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView5"
@@ -96,8 +102,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_toLeftOf="@+id/quickSideBarView"
                 android:visibility="visible"
-                app:sidebarBackgroundColor="@color/colorPrimary"
-                app:sidebarTextColor="#333333"
+                app:sidebarBackgroundColor="#FFFFFF"
+                app:sidebarTextColor="@color/main_tab_select_color"
                 app:sidebarTextSize="@dimen/textSize_quicksidebartips" />
 
             <!-- 这个是字母栏的提示 -->
@@ -117,7 +123,7 @@
                 android:visibility="visible"
                 app:sidebarItemHeight="20dp"
                 app:sidebarTextColor="#FF375880"
-                app:sidebarTextColorChoose="#333333"
+                app:sidebarTextColorChoose="@color/main_tab_select_color"
                 app:sidebarTextSize="12dp"
                 app:sidebarTextSizeChoose="@dimen/textSize_quicksidebar_choose" />
 

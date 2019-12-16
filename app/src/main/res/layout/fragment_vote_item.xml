@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -24,6 +24,7 @@
                 android:id="@+id/vote_item_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_above="@+id/text_1"
                 android:ellipsize="end"
                 android:lineSpacingExtra="3dp"
                 android:lines="6"
@@ -31,12 +32,14 @@
                 android:textSize="14dp" />
 
             <TextView
+                android:id="@+id/text_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:drawablePadding="5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
                 android:drawableRight="@mipmap/vote_down"
+                android:drawablePadding="5dp"
                 android:text="@string/vote_down"
                 android:textColor="#333333"
                 android:textSize="14dp"
@@ -45,40 +48,53 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="59dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <View
-                android:layout_width="2.5dp"
-                android:layout_height="18dp"
-                android:background="@drawable/shape_item_vote_title" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:text="@string/item_vote_title"
-                android:textColor="#FF333333"
-                android:textSize="19dp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:descendantFocusability="blocksDescendants">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/main_recycler"
+            <LinearLayout
+                android:id="@+id/lin_1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="59dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
+                    <View
+                        android:layout_width="2.5dp"
+                        android:layout_height="18dp"
+                        android:background="@drawable/shape_item_vote_title" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:text="@string/item_vote_title"
+                        android:textColor="#FF333333"
+                        android:textSize="19dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:descendantFocusability="blocksDescendants">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/main_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <include layout="@layout/include_not_data" />
+        </LinearLayout>
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

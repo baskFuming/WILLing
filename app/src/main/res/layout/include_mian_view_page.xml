@@ -12,15 +12,15 @@
         android:layout_height="wrap_content"
         app:xTabIndicatorColor="@color/main_tab_select_color"
         app:xTabIndicatorHeight="3dp"
-        app:xTabIndicatorWidth="30dp"
+        app:xTabIndicatorWidth="40dp"
         app:xTabMode="scrollable"
         app:xTabSelectedTextColor="@color/main_tab_select_color"
         app:xTabSelectedTextSize="19dp"
         app:xTabTextBold="false"
         app:xTabTextColor="@color/main_tab_default_color"
         app:xTabTextSelectedBold="true"
-        app:xTabTextSize="16dp" />
-
+        app:xTabTextSize="16dp"
+        />
     <View style="@style/dividingLine" />
 
     <android.support.v4.view.ViewPager

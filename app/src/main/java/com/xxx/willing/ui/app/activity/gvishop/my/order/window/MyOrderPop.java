@@ -39,10 +39,6 @@ public class MyOrderPop extends BaseDialog {
         setCancelable(true); // 是否可以按“返回键”消失
     }
 
-    @Override
-    protected double setWidth() {
-        return 0.8;
-    }
 
     @OnClick({R.id.window_confirm_cancel, R.id.window_pay_order})
     public void OnClick(View view) {

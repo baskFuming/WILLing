@@ -38,10 +38,6 @@ public class PasswordWindow extends BaseDialog {
         setCancelable(true); // 是否可以按“返回键”消失
     }
 
-    @Override
-    protected double setWidth() {
-        return 0.8;
-    }
 
     @OnClick({R.id.window_password_btn, R.id.window_password_return})
     public void onClick(View v) {

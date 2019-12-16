@@ -36,10 +36,6 @@ public class VoteWindow extends BaseDialog {
         setCancelable(true); // 是否可以按“返回键”消失
     }
 
-    @Override
-    protected double setWidth() {
-        return 0.8;
-    }
 
     @OnClick({R.id.window_vote_btn, R.id.window_vote_return})
     public void onClick(View v) {

@@ -35,7 +35,7 @@ public class NoticeCenterAdapter extends BaseQuickAdapter<MessageBean, BaseViewH
 
         if (item.isCheck()) {
             checkBox.setText(mContext.getString(R.string.pack_up_content));
-            imageView.setBackgroundResource(R.mipmap.vote_down);
+            imageView.setBackgroundResource(R.mipmap.vote_pack_up);
         } else {
             checkBox.setText(mContext.getString(R.string.to_view_content));
             imageView.setBackgroundResource(R.mipmap.vote_down);
@@ -45,7 +45,7 @@ public class NoticeCenterAdapter extends BaseQuickAdapter<MessageBean, BaseViewH
             boolean checked = checkBox.isChecked();
             if (!checked) {
                 checkBox.setText(mContext.getString(R.string.pack_up_content));
-                imageView.setBackgroundResource(R.mipmap.vote_down);
+                imageView.setBackgroundResource(R.mipmap.vote_pack_up);
                 textView.setMaxLines(4);
                 textView.invalidate();
             } else {

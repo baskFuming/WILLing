@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/main_bg"
     android:orientation="vertical"
     tools:context=".ui.app.activity.vote.JoinDetailsActivity">
 
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v4.widget.NestedScrollView
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -22,8 +22,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/activity_left_margin"
-                android:layout_marginRight="@dimen/activity_right_margin"
                 android:layout_marginTop="16dp"
+                android:layout_marginRight="@dimen/activity_right_margin"
                 android:orientation="vertical">
 
                 <com.xw.banner.Banner
@@ -138,8 +138,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp">
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -168,14 +168,14 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp">
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="预期单店流水"
+                        android:text="@string/vote_running_water"
                         android:textColor="#ff333333"
                         android:textSize="16dp" />
 
@@ -198,14 +198,14 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp">
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="投票时间"
+                        android:text="@string/vote_details_time"
                         android:textColor="#ff333333"
                         android:textSize="16dp" />
 
@@ -229,14 +229,14 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp">
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="释放周期"
+                        android:text="@string/vote_date"
                         android:textColor="#ff333333"
                         android:textSize="16dp" />
 
@@ -259,14 +259,14 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp">
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="预期收益"
+                        android:text="@string/vote_earnings"
                         android:textColor="#ff333333"
                         android:textSize="16dp" />
 
@@ -289,14 +289,14 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp">
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="加盟周期"
+                        android:text="@string/join_details_date"
                         android:textColor="#ff333333"
                         android:textSize="16dp" />
 
@@ -331,11 +331,40 @@
                     android:layout_marginTop="13dp"
                     android:ellipsize="end"
                     android:singleLine="false"
+                    android:maxLines="4"
                     android:text="---"
                     android:textColor="#ff666666"
                     android:textSize="14dp" />
 
+                <LinearLayout
+                    android:paddingTop="10dp"
+                    android:paddingBottom="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingLeft="10dp"
+                    android:id="@+id/text_click"
+                    android:layout_gravity="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <CheckBox
+                        android:id="@+id/item_notice_center_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:text="@string/all_text"
+                        android:textColor="#333333"
+                        android:textSize="12dp" />
+
+                    <ImageView
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/notice_img"
+                        android:layout_width="12dp"
+                        android:layout_height="8dp"
+                        android:layout_gravity="center"
+                        android:background="@mipmap/vote_down" />
+                </LinearLayout>
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/content_open"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -379,14 +408,14 @@
                     android:layout_width="262dp"
                     android:layout_height="44dp"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="40dp"
                     android:layout_marginTop="40dp"
+                    android:layout_marginBottom="40dp"
                     android:gravity="center"
                     android:text="@string/vote_btn" />
 
             </LinearLayout>
 
-        </android.support.v4.widget.NestedScrollView>
+        </ScrollView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 

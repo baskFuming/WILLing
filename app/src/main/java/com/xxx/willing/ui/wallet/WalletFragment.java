@@ -1,7 +1,11 @@
 package com.xxx.willing.ui.wallet;
 
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
+import com.androidkun.xtablayout.XTabLayout;
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.EventBusConfig;
@@ -22,9 +26,14 @@ import butterknife.BindView;
 public class WalletFragment extends BaseFragment {
 
     @BindView(R.id.wallet_tab_layout)
-    MyTabLayout mTabLayout;
+    XTabLayout mTabLayout;
     @BindView(R.id.wallet_view_pager)
     ViewPager mViewPager;
+    @BindView(R.id.main_title)
+    TextView mTitle;
+    @BindView(R.id.main_return)
+    ImageButton mImgreturn;
+
 
     private ArrayList<BaseFragment> list;
 
@@ -35,6 +44,8 @@ public class WalletFragment extends BaseFragment {
 
     @Override
     protected void initData() {
+        mTitle.setText(getString(R.string.main_wallet));
+        mImgreturn.setVisibility(View.GONE);
         String[] title = getResources().getStringArray(R.array.wallet_tab);
 
         list = new ArrayList<>();
@@ -42,16 +53,7 @@ public class WalletFragment extends BaseFragment {
         list.add(WalletReleaseFragment.getInstance());
         list.add(WalletExchangeFragment.getInstance());
         list.add(WalletMarketFragment.getInstance());
-
-
-        mTabLayout.setSelectedIndicatorHeight(6);
-        mTabLayout.setTabIndicatorWidth(80);
-        mTabLayout.setTabTextColors(getResources().getColor(R.color.wallet_tab_default_color), getResources().getColor(R.color.wallet_tab_select_color));
-        mTabLayout.setTabTextSize(38, 44);
-        mTabLayout.setTextSelectedBold(true);
-        mTabLayout.setTabMode(MyTabLayout.GRAVITY_CENTER);
-        mTabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.main_tab_select_color));
-
+        mTabLayout.setTabGravity(XTabLayout.GRAVITY_FILL);
         WalletAdapter walletAdapter = new WalletAdapter(getChildFragmentManager(), list, title);
         mViewPager.setAdapter(walletAdapter);
         mTabLayout.setupWithViewPager(mViewPager);

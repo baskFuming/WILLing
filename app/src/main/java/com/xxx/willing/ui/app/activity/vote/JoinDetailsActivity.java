@@ -10,6 +10,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -29,6 +31,7 @@ import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.BannerUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.adapter.TeamMesAdapter;
+import com.xxx.willing.ui.vote.window.VoteDetailsPop;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -110,10 +113,15 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
     TextView mJoinCycle;
     @BindView(R.id.vote_content)
     TextView mDetail;
+    @BindView(R.id.item_notice_center_btn)
+    CheckBox mCheck;
+    @BindView(R.id.notice_img)
+    ImageView mImage;
 
     private TeamMesAdapter mAdapter;
     private List<VoteDetailBean.ListBean> mList = new ArrayList<>();
     private Integer franId;
+    private VoteDetailsPop voteDetailsPop;
 
     @Override
     protected String initTitle() {
@@ -140,11 +148,19 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
 
         mVoteWindow = VoteWindow.getInstance(this);
         mVoteWindow.setCallback(this);
+//
+//        if (mCheck.isChecked()) {
+//            mCheck.setText(getString(R.string.pack_content));
+//            mImage.setBackgroundResource(R.mipmap.vote_pack_up);
+//        } else {
+//            mCheck.setText(getString(R.string.all_text));
+//            mImage.setBackgroundResource(R.mipmap.vote_down);
+//        }
 
         getVoteDetail();
     }
 
-    @OnClick({R.id.main_content, R.id.vote_btn})
+    @OnClick({R.id.main_content, R.id.vote_btn, R.id.text_click})
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.main_content:
@@ -155,18 +171,20 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
                     mVoteWindow.show();
                 }
                 break;
-        }
-    }
+            case R.id.text_click:
+                boolean checked = mCheck.isChecked();
+                if (!checked) {
+                    mCheck.setText(getString(R.string.all_text));
+                    mImage.setBackgroundResource(R.mipmap.vote_down);
+                    mDetail.setMaxLines(4);
+                    mDetail.invalidate();
+                } else {
+                    mCheck.setText(getString(R.string.pack_content));
+                    mImage.setBackgroundResource(R.mipmap.vote_pack_up);
+                    mDetail.setMaxLines(10000);
+                    mDetail.invalidate();
+                }
 
-    @OnClick({R.id.content_open, R.id.vote_btn})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.content_open:
-
-                break;
-            case R.id.vote_btn:
-
-                break;
         }
     }
 
@@ -181,7 +199,13 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
 
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-
+        switch (view.getId()) {
+            case R.id.job_all:
+                voteDetailsPop = VoteDetailsPop.getInstance(this, mList.get(position).getUserImg(),
+                        mList.get(position).getName(), mList.get(position).getDatils());
+                voteDetailsPop.show();
+                break;
+        }
     }
 
     @Override
@@ -196,6 +220,10 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
         if (mVoteWindow != null) {
             mVoteWindow.dismiss();
             mVoteWindow = null;
+        }
+        if (voteDetailsPop != null) {
+            voteDetailsPop.dismiss();
+            voteDetailsPop = null;
         }
     }
 

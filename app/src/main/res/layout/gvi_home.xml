@@ -18,7 +18,7 @@
         />
 
     <com.xxx.willing.view.SearchEditText
-        android:id="@+id/gvi_search_shop"
+        android:id="@+id/gvi_search_shop1"
         style="@style/StyleEditText" />
 
     <include layout="@layout/include_recycler" />

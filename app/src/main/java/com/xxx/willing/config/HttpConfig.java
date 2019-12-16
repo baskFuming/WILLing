@@ -7,6 +7,7 @@ public class HttpConfig {
      */
     public static final String BASE_URL = "http://edtcchain.com/";
     public static final String BASE_URL_PATH = "/willing";
+
     /**
      * 测试服务器地址
      */
@@ -38,6 +39,6 @@ public class HttpConfig {
     /**
      * 配置
      */
-    public static final String CALL_MY_CODE = "1231231";                             //联系我们微信号
+    public static final String CALL_MY_CODE = "BVSE-GVI";                             //联系我们微信号
     public static final String INVITE_URL = WEB_URL + "/download/register.html";    //邀请好友地址
 }

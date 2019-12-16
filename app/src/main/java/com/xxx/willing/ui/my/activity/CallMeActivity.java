@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.lljjcoder.style.citylist.Toast.ToastUtils;
 import com.xxx.willing.R;
@@ -38,6 +39,8 @@ public class CallMeActivity extends BaseTitleActivity {
 
     @BindView(R.id.call_me_wechat_code)
     ImageView mCode;
+    @BindView(R.id.wechat_name)
+    TextView mName;
 
     private Bitmap bitmap;
     private String content;
@@ -56,6 +59,7 @@ public class CallMeActivity extends BaseTitleActivity {
     @Override
     protected void initData() {
         content = HttpConfig.CALL_MY_CODE;
+        mName.setText(content);
         bitmap = ZXingUtil.createQRCode(content, (int) getResources().getDimension(R.dimen.zxCode_size));
         mCode.setImageBitmap(bitmap);
     }

@@ -45,7 +45,7 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
     LinearLayout mNotData;
     @BindView(R.id.main_refresh)
     SwipeRefreshLayout mRefresh;
-    @BindView(R.id.gvi_search_shop)
+    @BindView(R.id.gvi_search_shop1)
     SearchEditText mSearch;
 
     private int page = UIConfig.PAGE_DEFAULT;

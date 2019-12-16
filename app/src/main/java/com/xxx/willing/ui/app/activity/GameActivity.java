@@ -45,6 +45,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class GameActivity extends BaseActivity {
+
     public static void actionStart(Activity activity, GameBean bean) {
         Intent intent = new Intent(activity, GameActivity.class);
         intent.putExtra("bean", bean);
@@ -57,9 +58,6 @@ public class GameActivity extends BaseActivity {
         if (bean == null) bean = new GameBean();
     }
 
-
-    @BindView(R.id.main_title)
-    TextView mtitle;
     @BindView(R.id.web_progress)
     ProgressBar mProgress;
     @BindView(R.id.game_web)
@@ -87,7 +85,6 @@ public class GameActivity extends BaseActivity {
         userId = SharedPreferencesUtil.getInstance().getInt(SharedConst.VALUE_USER_ID);
         gameid = bean.getId();
         gameName = bean.getName();
-        mtitle.setText(gameName);
 
         //加载WebView
         Url = bean.getGameUrl() + "?" + "userId=" + userId + "&gameId=" + bean.getId() + "&baseUrl=" + HttpConfig.BASE_URL;

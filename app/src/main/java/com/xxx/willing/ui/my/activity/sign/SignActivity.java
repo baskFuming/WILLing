@@ -160,15 +160,17 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                             }
                         }
                         SignActivity.this.runOnUiThread(() -> {
-                            mStepView.setStepNum(list, days);
-                            if (todaySign) {
-                                mSignBtn.setText("已连续签到" + days + "天");
-                                mSignBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
-                                mSignBtn.setEnabled(false);
-                            } else {
-                                mSignBtn.setText("马上签到领币");
-                                mSignBtn.setEnabled(true);
-                                mSignBtn.setBackgroundResource(R.drawable.selector_btn_login);
+                            if (mStepView != null) {
+                                mStepView.setStepNum(list, days);
+                                if (todaySign) {
+                                    mSignBtn.setText("已连续签到" + days + "天");
+                                    mSignBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
+                                    mSignBtn.setEnabled(false);
+                                } else {
+                                    mSignBtn.setText("马上签到领币");
+                                    mSignBtn.setEnabled(true);
+                                    mSignBtn.setBackgroundResource(R.drawable.selector_btn_login);
+                                }
                             }
                         });
                     }

@@ -90,7 +90,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:text="BVSE-JIAO"
                 android:textColor="#ff191a1b"
                 android:textSize="12dp" />
 

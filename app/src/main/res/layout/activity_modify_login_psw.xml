@@ -15,6 +15,7 @@
         android:background="#FFEBEC"
         android:paddingBottom="13dp"
         android:paddingLeft="15dp"
+        android:visibility="gone"
         android:paddingTop="13dp"
         android:text="@string/modify_login_pwd"
         android:textColor="#fffe3848"

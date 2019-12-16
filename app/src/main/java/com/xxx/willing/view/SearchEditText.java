@@ -17,8 +17,8 @@ import android.widget.EditText;
  * Author : mac
  * Des:
  */
-@SuppressLint("AppCompatCustomView")
 
+@SuppressLint("AppCompatCustomView")
 public class SearchEditText extends EditText implements View.OnFocusChangeListener, View.OnKeyListener {
     private static final String TAG = SearchEditText.class.getSimpleName();
     /**

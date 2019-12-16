@@ -6,32 +6,20 @@
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_left_margin"
     android:paddingRight="@dimen/activity_right_margin">
+    <!--不要删除-->
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:cursorVisible="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_marginTop="20dp"
+        />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/search_bg"
-        android:paddingLeft="10dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp">
-
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="16dp"
-            android:layout_gravity="center"
-            android:background="@mipmap/search_ed_bg" />
-
-        <EditText
-            android:id="@+id/ed_search"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:background="@null"
-            android:hint="@string/search_shop"
-            android:textColor="#ff666666"
-            android:textSize="14sp" />
-    </LinearLayout>
+    <com.xxx.willing.view.SearchEditText
+        android:id="@+id/gvi_search_shop"
+        style="@style/StyleEditText" />
 
     <include layout="@layout/include_recycler" />
 </LinearLayout>

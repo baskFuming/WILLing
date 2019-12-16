@@ -5,253 +5,178 @@ import java.util.List;
 
 public class SearchShopBean {
 
-        /**
-         * pageNum : 1
-         * pageSize : 10
-         * totalSize : 2
-         * totalPages : 1
-         * list : [{"id":2,"brandId":3,"name":"1","price":1,"gviPrice":1,"stock":1,"logos":"1","img":"1","describes":"1","details":"1","explains":"1","express":"1","freight":1,"status":null,"creator":null,"createTime":"2019-12-11 17:32:26","lastUpdateTime":"2019-12-11 17:32:26"},{"id":1,"brandId":2,"name":"wewrw","price":12,"gviPrice":12,"stock":123,"logos":"12321","img":"123","describes":null,"details":null,"explains":null,"express":null,"freight":null,"status":null,"creator":null,"createTime":null,"lastUpdateTime":null}]
-         * firstPage : true
-         * lastPage : true
-         */
 
-        private int pageNum;
-        private int pageSize;
-        private int totalSize;
-        private int totalPages;
-        private boolean firstPage;
-        private boolean lastPage;
-        private List<ListBean> list;
+    /**
+     * id : 2
+     * brandId : 3
+     * name : 1
+     * price : 1
+     * gviPrice : 1
+     * stock : 1
+     * logos : 1
+     * img : 1
+     * describes : 1
+     * details : 1
+     * explains : 1
+     * express : 1
+     * freight : 1
+     * status : null
+     * creator : null
+     * createTime : 2019-12-11 17:32:26
+     * lastUpdateTime : 2019-12-11 17:32:26
+     */
 
-        public int getPageNum() {
-            return pageNum;
-        }
+    private int id;
+    private int brandId;
+    private String name;
+    private int price;
+    private int gviPrice;
+    private int stock;
+    private String logos;
+    private String img;
+    private String describes;
+    private String details;
+    private String explains;
+    private String express;
+    private int freight;
+    private Object status;
+    private Object creator;
+    private String createTime;
+    private String lastUpdateTime;
 
-        public void setPageNum(int pageNum) {
-            this.pageNum = pageNum;
-        }
+    public int getId() {
+        return id;
+    }
 
-        public int getPageSize() {
-            return pageSize;
-        }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-        public void setPageSize(int pageSize) {
-            this.pageSize = pageSize;
-        }
+    public int getBrandId() {
+        return brandId;
+    }
 
-        public int getTotalSize() {
-            return totalSize;
-        }
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
+    }
 
-        public void setTotalSize(int totalSize) {
-            this.totalSize = totalSize;
-        }
+    public String getName() {
+        return name;
+    }
 
-        public int getTotalPages() {
-            return totalPages;
-        }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-        public void setTotalPages(int totalPages) {
-            this.totalPages = totalPages;
-        }
+    public int getPrice() {
+        return price;
+    }
 
-        public boolean isFirstPage() {
-            return firstPage;
-        }
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
-        public void setFirstPage(boolean firstPage) {
-            this.firstPage = firstPage;
-        }
+    public int getGviPrice() {
+        return gviPrice;
+    }
 
-        public boolean isLastPage() {
-            return lastPage;
-        }
+    public void setGviPrice(int gviPrice) {
+        this.gviPrice = gviPrice;
+    }
 
-        public void setLastPage(boolean lastPage) {
-            this.lastPage = lastPage;
-        }
+    public int getStock() {
+        return stock;
+    }
 
-        public List<ListBean> getList() {
-            return list;
-        }
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 
-        public void setList(List<ListBean> list) {
-            this.list = list;
-        }
+    public String getLogos() {
+        return logos;
+    }
 
-        public static class ListBean {
-            /**
-             * id : 2
-             * brandId : 3
-             * name : 1
-             * price : 1
-             * gviPrice : 1
-             * stock : 1
-             * logos : 1
-             * img : 1
-             * describes : 1
-             * details : 1
-             * explains : 1
-             * express : 1
-             * freight : 1
-             * status : null
-             * creator : null
-             * createTime : 2019-12-11 17:32:26
-             * lastUpdateTime : 2019-12-11 17:32:26
-             */
+    public void setLogos(String logos) {
+        this.logos = logos;
+    }
 
-            private int id;
-            private int brandId;
-            private String name;
-            private int price;
-            private int gviPrice;
-            private int stock;
-            private String logos;
-            private String img;
-            private String describes;
-            private String details;
-            private String explains;
-            private String express;
-            private int freight;
-            private Object status;
-            private Object creator;
-            private String createTime;
-            private String lastUpdateTime;
+    public String getImg() {
+        return img;
+    }
 
-            public int getId() {
-                return id;
-            }
+    public void setImg(String img) {
+        this.img = img;
+    }
 
-            public void setId(int id) {
-                this.id = id;
-            }
+    public String getDescribes() {
+        return describes;
+    }
 
-            public int getBrandId() {
-                return brandId;
-            }
+    public void setDescribes(String describes) {
+        this.describes = describes;
+    }
 
-            public void setBrandId(int brandId) {
-                this.brandId = brandId;
-            }
+    public String getDetails() {
+        return details;
+    }
 
-            public String getName() {
-                return name;
-            }
+    public void setDetails(String details) {
+        this.details = details;
+    }
 
-            public void setName(String name) {
-                this.name = name;
-            }
+    public String getExplains() {
+        return explains;
+    }
 
-            public int getPrice() {
-                return price;
-            }
+    public void setExplains(String explains) {
+        this.explains = explains;
+    }
 
-            public void setPrice(int price) {
-                this.price = price;
-            }
+    public String getExpress() {
+        return express;
+    }
 
-            public int getGviPrice() {
-                return gviPrice;
-            }
+    public void setExpress(String express) {
+        this.express = express;
+    }
 
-            public void setGviPrice(int gviPrice) {
-                this.gviPrice = gviPrice;
-            }
+    public int getFreight() {
+        return freight;
+    }
 
-            public int getStock() {
-                return stock;
-            }
+    public void setFreight(int freight) {
+        this.freight = freight;
+    }
 
-            public void setStock(int stock) {
-                this.stock = stock;
-            }
+    public Object getStatus() {
+        return status;
+    }
 
-            public String getLogos() {
-                return logos;
-            }
+    public void setStatus(Object status) {
+        this.status = status;
+    }
 
-            public void setLogos(String logos) {
-                this.logos = logos;
-            }
+    public Object getCreator() {
+        return creator;
+    }
 
-            public String getImg() {
-                return img;
-            }
+    public void setCreator(Object creator) {
+        this.creator = creator;
+    }
 
-            public void setImg(String img) {
-                this.img = img;
-            }
+    public String getCreateTime() {
+        return createTime;
+    }
 
-            public String getDescribes() {
-                return describes;
-            }
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
 
-            public void setDescribes(String describes) {
-                this.describes = describes;
-            }
+    public String getLastUpdateTime() {
+        return lastUpdateTime;
+    }
 
-            public String getDetails() {
-                return details;
-            }
-
-            public void setDetails(String details) {
-                this.details = details;
-            }
-
-            public String getExplains() {
-                return explains;
-            }
-
-            public void setExplains(String explains) {
-                this.explains = explains;
-            }
-
-            public String getExpress() {
-                return express;
-            }
-
-            public void setExpress(String express) {
-                this.express = express;
-            }
-
-            public int getFreight() {
-                return freight;
-            }
-
-            public void setFreight(int freight) {
-                this.freight = freight;
-            }
-
-            public Object getStatus() {
-                return status;
-            }
-
-            public void setStatus(Object status) {
-                this.status = status;
-            }
-
-            public Object getCreator() {
-                return creator;
-            }
-
-            public void setCreator(Object creator) {
-                this.creator = creator;
-            }
-
-            public String getCreateTime() {
-                return createTime;
-            }
-
-            public void setCreateTime(String createTime) {
-                this.createTime = createTime;
-            }
-
-            public String getLastUpdateTime() {
-                return lastUpdateTime;
-            }
-
-            public void setLastUpdateTime(String lastUpdateTime) {
-                this.lastUpdateTime = lastUpdateTime;
-            }
-        }
+    public void setLastUpdateTime(String lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
+    }
 }

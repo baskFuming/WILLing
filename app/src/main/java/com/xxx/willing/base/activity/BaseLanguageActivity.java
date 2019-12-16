@@ -5,7 +5,12 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import com.xxx.willing.config.EventBusConfig;
 import com.xxx.willing.model.utils.LocalManageUtil;
@@ -69,4 +74,5 @@ public abstract class BaseLanguageActivity extends AppCompatActivity {
         //注销多语言切换EventBus
         EventBus.getDefault().unregister(this);
     }
+
 }

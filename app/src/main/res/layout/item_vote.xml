@@ -172,6 +172,7 @@
 
     </LinearLayout>
 
+
     <TextView
         android:id="@+id/item_vote_status"
         android:layout_width="66dp"

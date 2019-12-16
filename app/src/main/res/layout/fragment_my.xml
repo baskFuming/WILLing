@@ -154,6 +154,7 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
 
+
                 <ImageView
                     android:id="@+id/image_2"
                     android:layout_width="17dp"

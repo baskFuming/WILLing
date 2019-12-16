@@ -4,16 +4,7 @@ import java.util.List;
 
 public class JoinInfoBean {
 
-    private List<String> timeList;
     private List<BrandListBean> brandList;
-
-    public List<String> getTimeList() {
-        return timeList;
-    }
-
-    public void setTimeList(List<String> timeList) {
-        this.timeList = timeList;
-    }
 
     public List<BrandListBean> getBrandList() {
         return brandList;
@@ -31,6 +22,11 @@ public class JoinInfoBean {
 
         private String name;
         private int id;
+        private Integer quota;
+
+        public Integer getQuota() {
+            return quota;
+        }
 
         public String getName() {
             return name;

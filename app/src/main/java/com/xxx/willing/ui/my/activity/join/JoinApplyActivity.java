@@ -72,7 +72,7 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
     @BindView(R.id.ed_join_address) //地址
             TextView mAddress;
     @BindView(R.id.ed_join_lines)   //额度
-            EditText mJoinLines;
+            TextView mJoinLines;
     @BindView(R.id.ed_join_introduce)  //项目简介
             EditText mJoinIntroduce;
     @BindView(R.id.ed_join_ed_number)   //简介长度
@@ -98,6 +98,7 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
     private String province;
     private String city;
     private String district;
+    private int quota;
 
     private JoinAdapter mAdapter;
     private int position;
@@ -176,6 +177,9 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
                 break;
             case R.id.ed_join_time_click:
                 if (mCheckTimeMenu != null) {
+                    if (quota == 0){
+                        ToastUtil.showToast("请先选择品牌");
+                    }
                     mCheckTimeMenu.show();
                 }
                 break;
@@ -273,8 +277,12 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
         mCheckBrandMenu.setOnMenuItemClickListener(menuItem -> {
             JoinInfoBean.BrandListBean brandListBean = mBrandList.get(menuItem.getItemId() - 1);
             checkBrandId = brandListBean.getId();
+            quota = brandListBean.getQuota();
             String time = brandListBean.getName();
             mJoinRand.setText(time);
+            if (checkTimeId != 0) {
+                mJoinLines.setText(quota * checkTimeId + "GVI");
+            }
             return false;
         });
     }
@@ -291,6 +299,9 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
             checkTimeId = menuItem.getItemId();
             String time = (String) bean;
             mJoinTime.setText(time);
+            if (quota != 0) {
+                mJoinLines.setText(quota * checkTimeId + "GVI");
+            }
             return false;
         });
     }
@@ -447,9 +458,9 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
                             if (data != null) {
                                 mBrandList.clear();
                                 mBrandList.addAll(data.getBrandList());
-                                if (mTimeList == null || mTimeList.size() != 0) {
-                                    mTimeList.clear();
-                                    mTimeList.addAll(data.getTimeList());
+                                mTimeList.clear();
+                                for (int i = 1; i <= 5; i++) {
+                                    mTimeList.add(i + "年");
                                 }
                                 initCheckBrandMenu();
                                 initCheckTimeMenu();

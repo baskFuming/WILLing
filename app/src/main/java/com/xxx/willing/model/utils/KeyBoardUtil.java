@@ -96,12 +96,15 @@ public class KeyBoardUtil {
      *
      * @param editText 输入框
      */
-    public static void setFiltersDW(EditText editText) {
+    public static void setFiltersDW(EditText editText,int max) {
         editText.setFilters(new InputFilter[]{(source, start, end, dest, dstart, dend) -> {
+            if (dest.length() >= max){
+                return "";
+            }
             if (source.toString().matches(MatchesConfig.MATCHES_DW_PASSWORD)) {
                 return source;
             } else {
-                return null;
+                return "";
             }
         }});
     }

@@ -65,7 +65,7 @@ public class ModifyNameActivity extends BaseTitleActivity {
     protected void initData() {
         initBundle();
 
-        KeyBoardUtil.setFiltersDW(mModifyName);
+        KeyBoardUtil.setFiltersDW(mModifyName, 16);
 
         if (nickName != null) {
             mModifyName.setText(nickName);

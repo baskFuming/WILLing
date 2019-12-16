@@ -34,7 +34,6 @@ public class WalletFragment extends BaseFragment {
     @BindView(R.id.main_return)
     ImageButton mImgreturn;
 
-
     private ArrayList<BaseFragment> list;
 
     @Override

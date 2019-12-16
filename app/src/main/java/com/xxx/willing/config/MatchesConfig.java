@@ -11,6 +11,6 @@ public class MatchesConfig {
     public static final String MATCHES_JY_PASSWORD = "^(?=.*\\d)(?=.*[a-zA-Z])[\\da-zA-Z]{8,20}$";//交易密码规则 必须同时包含字母和数字  而且是8-20位
 
     //输入字母数字下划线汉字
-    public static final String MATCHES_DW_PASSWORD = "^[A-Za-z0-9\\u4e00-\\u9fa5]+-_$";
+    public static final String MATCHES_DW_PASSWORD = "^[\\w\\u4e00-\\u9fa5]+$";
 
 }

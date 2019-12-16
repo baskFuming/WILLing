@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.androidkun.xtablayout.XTabLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
@@ -39,7 +41,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLayout.BaseOnTabSelectedListener, SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
+public class WalletCoinDetailActivity extends BaseTitleActivity implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, XTabLayout.OnTabSelectedListener {
 
     public static void actionStart(Context activity, WalletAccountBean.ListBean bean) {
         Intent intent = new Intent(activity, WalletCoinDetailActivity.class);
@@ -62,16 +64,16 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
     @BindView(R.id.wallet_coin_detail_address)
     TextView mAddress;
     @BindView(R.id.wallet_coin_detail_tab)
-    TabLayout mTabLayout;
+    XTabLayout mTabLayout;
 
     @BindView(R.id.main_recycler)
     RecyclerView mRecycler;
     @BindView(R.id.main_not_data)
     LinearLayout mNotData;
-    @BindView(R.id.line1)
-    LinearLayout mNotData2;
     @BindView(R.id.main_refresh)
     SwipeRefreshLayout mRefresh;
+    @BindView(R.id.main_app_bar)
+    AppBarLayout mAppBar;
 
     private WalletAccountBean.ListBean bean;
 
@@ -106,6 +108,13 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
         mRecycler.setAdapter(mAdapter);
         mRefresh.setOnRefreshListener(this);
         mAdapter.setOnLoadMoreListener(this, mRecycler);
+        mAppBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
+            if (verticalOffset >= 0) {
+                mRefresh.setEnabled(true);
+            } else {
+                mRefresh.setEnabled(false);
+            }
+        });
 
         mBalance.setText(bean.getAmount() + "");
         mUsa.setText("≈$" + bean.getUsaAmount());
@@ -131,7 +140,7 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
     }
 
     @Override
-    public void onTabSelected(TabLayout.Tab tab) {
+    public void onTabSelected(XTabLayout.Tab tab) {
         switch (tab.getPosition()) {
             case 0:
                 type = ApiType.ASSET_RECORD_ALL_TYPE;
@@ -147,12 +156,12 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
     }
 
     @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
+    public void onTabUnselected(XTabLayout.Tab tab) {
 
     }
 
     @Override
-    public void onTabReselected(TabLayout.Tab tab) {
+    public void onTabReselected(XTabLayout.Tab tab) {
 
     }
 
@@ -186,31 +195,27 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
                     public void onSuccess(BaseBean<PageBean<WalletTransactionBean>> bean) {
                         if (bean == null) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mNotData2.setVisibility(View.GONE);
-//                            mRecycler.setVisibility(View.GONE);
+                            mRecycler.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
                             return;
                         }
                         PageBean<WalletTransactionBean> data = bean.getData();
                         if (data == null) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mNotData2.setVisibility(View.GONE);
-//                            mRecycler.setVisibility(View.GONE);
+                            mRecycler.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
                             return;
                         }
                         List<WalletTransactionBean> list = data.getList();
                         if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mNotData2.setVisibility(View.GONE);
-//                            mRecycler.setVisibility(View.GONE);
+                            mRecycler.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
                             return;
                         }
 
                         mNotData.setVisibility(View.GONE);
-                        mNotData2.setVisibility(View.VISIBLE);
-//                        mRecycler.setVisibility(View.VISIBLE);
+                        mRecycler.setVisibility(View.VISIBLE);
                         if (page == UIConfig.PAGE_DEFAULT) {
                             mList.clear();
                         }
@@ -228,8 +233,7 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
                     public void onError(int errorCode, String errorMessage) {
                         if (mList.size() == 0) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mNotData2.setVisibility(View.GONE);
-//                            mRecycler.setVisibility(View.GONE);
+                            mRecycler.setVisibility(View.GONE);
                         }
                         ToastUtil.showToast(errorMessage);
                     }
@@ -251,4 +255,5 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
                     }
                 });
     }
+
 }

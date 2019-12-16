@@ -244,12 +244,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="*"
-                    android:textColor="#fffe3848"
-                    android:textSize="14dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -259,12 +254,12 @@
                     android:textColor="#ff333333"
                     android:textSize="14dp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/ed_join_lines"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
+                    android:gravity="right|center_vertical"
                     android:layout_marginLeft="37dp"
-                    android:background="@mipmap/ed_bg"
                     android:hint="@string/ed_hint_5"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"

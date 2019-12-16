@@ -186,6 +186,7 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                     public void onSuccess(BaseBean<List<TaskInfoBean>> bean) {
                         if (bean != null) {
                             List<TaskInfoBean> list = bean.getData();
+                            int progress = days;
                             if (list != null && list.size() >= 3) {
                                 boolean b1 = checkTask(list.get(0));//签到
                                 boolean b2 = checkTask(list.get(1));//投票
@@ -206,16 +207,18 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                                     set2Default();
                                     set3Default();
                                 }
-                                int progress = days;
                                 if (b2) {
                                     progress += 7;
                                 }
                                 if (b3) {
                                     progress += 7;
                                 }
-                                mProgress.setMax(21);
-                                mProgress.setProgress(progress);
+                            } else {
+                                set2Default();
+                                set3Default();
                             }
+                            mProgress.setMax(21);
+                            mProgress.setProgress(progress);
                         }
                     }
 

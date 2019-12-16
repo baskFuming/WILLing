@@ -301,7 +301,7 @@
     <string name="ed_hint_2">请选择品牌</string>
     <string name="ed_hint_3">请选择加盟周期</string>
     <string name="ed_hint_4" tools:ignore="ExtraTranslation">点击选择</string>
-    <string name="ed_hint_5">请输入投票额度</string>
+    <string name="ed_hint_5">投票额度</string>
     <string name="ed_hint_6">项目介绍/发展计划/合作资源等</string>
     <string name="ed_hint_7">请输入您的角色</string>
     <string name="ed_hint_8">请输入您的姓名</string>

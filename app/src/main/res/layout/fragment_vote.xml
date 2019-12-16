@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <android.support.design.widget.CoordinatorLayout
@@ -44,18 +44,18 @@
                             app:indicator_drawable_unselected="@drawable/banner_unselected_shape" />
 
                         <!--<com.youth.banner.Banner-->
-                            <!--android:id="@+id/vote_banner"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="184dp"-->
-                            <!--android:visibility="gone" />-->
+                        <!--android:id="@+id/vote_banner"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="184dp"-->
+                        <!--android:visibility="gone" />-->
 
                         <RelativeLayout
                             android:id="@+id/vote_relative"
                             android:layout_width="match_parent"
                             android:layout_height="49dp"
                             android:layout_marginLeft="16dp"
-                            android:layout_marginTop="12dp"
                             android:layout_marginRight="16dp"
+                            android:layout_marginTop="12dp"
                             android:background="@drawable/shape_back_vote_notice">
 
                             <ImageView
@@ -99,14 +99,14 @@
                         app:xTabIndicatorColor="@color/main_tab_select_color"
                         app:xTabIndicatorHeight="3dp"
                         app:xTabIndicatorWidth="40dp"
+                        app:xTabMode="scrollable"
                         app:xTabSelectedTextColor="@color/main_tab_select_color"
                         app:xTabSelectedTextSize="19dp"
                         app:xTabTextBold="false"
-                        app:xTabMode="scrollable"
                         app:xTabTextColor="@color/main_tab_default_color"
                         app:xTabTextSelectedBold="true"
-                        app:xTabTextSize="16dp"
-                        />
+                        app:xTabTextSize="16dp" />
+
                     <View style="@style/dividingLine" />
 
                 </LinearLayout>
@@ -119,5 +119,7 @@
                 android:layout_height="wrap_content"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
         </android.support.design.widget.CoordinatorLayout>
+
     </LinearLayout>
+
 </android.support.v4.widget.SwipeRefreshLayout>

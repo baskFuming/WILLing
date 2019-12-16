@@ -1,5 +1,6 @@
 package com.xxx.willing.ui.my.activity.sign;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -66,7 +67,7 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
     TextView mSignBtn;
     private SignPopWindow signPopWindow;
     private boolean todaySign;
-    private Integer signProgress;
+    private Integer days;
 
     @Override
     protected String initTitle() {
@@ -99,14 +100,8 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                 if (todaySign) {
                     ToastUtil.showToast("今天已经签到过");
                 } else {
-                    //执行签到动画
-                    mStepView.startSignAnimation(() -> {
-                        if (signPopWindow == null || !signPopWindow.isShowing()) {
-                            signPopWindow = SignPopWindow.getInstance(this);
-                            signPopWindow.setCallback(this);
-                            signPopWindow.show();
-                        }
-                    });
+                    //执行签到
+                    mStepView.startSignAnimation(this::sign);
                 }
                 break;
             case R.id.te_invite_friend:
@@ -124,7 +119,6 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
             signPopWindow.dismiss();
             signPopWindow = null;
         }
-        sign();
     }
 
     /**
@@ -135,24 +129,44 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                 .flatMap((Function<BaseBean<SignInfoBean>, Observable<BaseBean<List<TaskInfoBean>>>>) bean -> {
                     if (bean != null) {
                         SignInfoBean data = bean.getData();
-                        if (data != null) {
-                            List<SignInfoBean.ListBean> list = data.getList();
-                            if (list != null) {
-                                List<StepBean> list1 = new ArrayList<>();
-                                for (SignInfoBean.ListBean listBean : list) {
-                                    if (listBean.getDay() == 5) {
-                                        list1.add(new StepBean(listBean.getStatus(), listBean.getDay(), R.mipmap.sign_5_icon));
-                                    } else if (listBean.getDay() == 7) {
-                                        list1.add(new StepBean(listBean.getStatus(), listBean.getDay(), R.mipmap.sign_7_icon));
-                                    } else {
-                                        list1.add(new StepBean(listBean.getStatus(), listBean.getDay()));
-                                    }
-                                }
-                                mStepView.setStepNum(list1);
+                        days = data.getDays();
+                        todaySign = data.isTodaySign();
+                        List<StepBean> list = new ArrayList<>();
+                        int end = days > 7 ? days : 7;
+                        for (int i = 1; i <= end; i++) {
+                            int status;
+                            if (i >= days) {
+                                status = 0;
+                            } else {
+                                status = 1;
                             }
-                            todaySign = data.isTodaySign();
+
+                            if (todaySign && i == days) {
+                                status = 1;
+                            } else if (!todaySign && i == days - 1) {
+                                status = 1;
+                            }
+
+                            int icon = 0;
+                            if (i == 5) {
+                                icon = R.mipmap.sign_5_icon;
+                            } else if (i == 7) {
+                                icon = R.mipmap.sign_7_icon;
+                            }
+
+                            if (icon == 0) {
+                                list.add(new StepBean(status, i));
+                            } else {
+                                list.add(new StepBean(status, i, icon));
+                            }
+                            if (i > 7) {
+                                list.remove(0);
+                            }
+                        }
+                        SignActivity.this.runOnUiThread(() -> {
+                            mStepView.setStepNum(list);
                             if (todaySign) {
-                                mSignBtn.setText("已连续签到" + signProgress + "天");
+                                mSignBtn.setText("已连续签到" + days + "天");
                                 mSignBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
                                 mSignBtn.setEnabled(false);
                             } else {
@@ -160,8 +174,7 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                                 mSignBtn.setEnabled(true);
                                 mSignBtn.setBackgroundResource(R.drawable.selector_btn_login);
                             }
-                            signProgress = data.getSignProgress();
-                        }
+                        });
                     }
                     return Api.getInstance().getTaskInfo();
                 })
@@ -173,24 +186,77 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                     public void onSuccess(BaseBean<List<TaskInfoBean>> bean) {
                         if (bean != null) {
                             List<TaskInfoBean> list = bean.getData();
-                            if (list != null) {
-                                TaskInfoBean taskInfoBean = list.get(1);//投票
-                                TaskInfoBean taskInfoBean1 = list.get(2);  //邀请
-
-                                if (taskInfoBean.getStatus() == 1) {
-                                    mInviteBtn.setText("已完成");
-                                    if (taskInfoBean1.getStatus() == 1) {
-                                        mVoteBtn.setText("已完成");
+                            if (list != null && list.size() >= 3) {
+                                boolean b1 = checkTask(list.get(0));//签到
+                                boolean b2 = checkTask(list.get(1));//投票
+                                boolean b3 = checkTask(list.get(2));//邀请
+                                if (b1) {
+                                    if (b2) {
+                                        set2True();
+                                        if (b3) {
+                                            set3True();
+                                        } else {
+                                            set3False();
+                                        }
                                     } else {
-                                        mVoteBtn.setText("去投票");
+                                        set2False();
+                                        set3Default();
                                     }
                                 } else {
-                                    mVoteBtn.setText("去投票");
-                                    mVoteBtn.setEnabled(false);
-                                    mInviteBtn.setText("邀请好友");
+                                    set2Default();
+                                    set3Default();
                                 }
+                                int progress = days;
+                                if (b2) {
+                                    progress += 7;
+                                }
+                                if (b3) {
+                                    progress += 7;
+                                }
+                                mProgress.setMax(21);
+                                mProgress.setProgress(progress);
                             }
                         }
+                    }
+
+                    private void set2False() {
+                        mVoteBtn.setText("去投票");
+                        mVoteBtn.setEnabled(true);
+                        mVoteBtn.setBackgroundResource(R.drawable.selector_btn_login);
+                    }
+
+                    private void set2Default() {
+                        mVoteBtn.setText("去投票");
+                        mVoteBtn.setEnabled(false);
+                        mVoteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
+                    }
+
+                    private void set2True() {
+                        mVoteBtn.setText("已完成");
+                        mVoteBtn.setEnabled(false);
+                        mVoteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
+                    }
+
+                    private void set3False() {
+                        mInviteBtn.setText("邀请好友");
+                        mInviteBtn.setEnabled(true);
+                        mInviteBtn.setBackgroundResource(R.drawable.selector_btn_login);
+                    }
+
+                    private void set3Default() {
+                        mInviteBtn.setText("邀请好友");
+                        mInviteBtn.setEnabled(false);
+                        mInviteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
+                    }
+
+                    private void set3True() {
+                        mInviteBtn.setText("已完成");
+                        mInviteBtn.setEnabled(false);
+                        mInviteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
+                    }
+
+                    private boolean checkTask(TaskInfoBean taskInfoBean) {
+                        return taskInfoBean.getStatus() == 1;
                     }
 
                     @Override
@@ -226,7 +292,11 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                         if (bean != null) {
                             BooleanBean data = bean.getData();
                             if (data != null && data.isResult()) {
-                                ToastUtil.showToast("签到成功");
+                                if (signPopWindow == null || !signPopWindow.isShowing()) {
+                                    signPopWindow = SignPopWindow.getInstance(SignActivity.this);
+                                    signPopWindow.setCallback(SignActivity.this);
+                                    signPopWindow.show();
+                                }
                                 getInfo();
                             }
                         }
@@ -251,37 +321,4 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                 });
     }
 
-    /**
-     * @Model 任务
-     */
-    private void task(int taskId) {
-        Api.getInstance().task(taskId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiCallback<BooleanBean>(this) {
-
-                    @Override
-                    public void onSuccess(BaseBean<BooleanBean> bean) {
-                        if (bean != null) {
-                        }
-                    }
-
-                    @Override
-                    public void onError(int errorCode, String errorMessage) {
-                        ToastUtil.showToast(errorMessage);
-                    }
-
-                    @Override
-                    public void onStart(Disposable d) {
-                        super.onStart(d);
-                        showLoading();
-                    }
-
-                    @Override
-                    public void onEnd() {
-                        super.onEnd();
-                        hideLoading();
-                    }
-                });
-    }
 }

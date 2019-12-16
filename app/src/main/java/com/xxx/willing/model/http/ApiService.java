@@ -181,13 +181,6 @@ public interface ApiService {
     @POST(HttpConfig.BASE_URL_PATH + "/sign")
     Observable<BaseBean<BooleanBean>> sign();
 
-    //完成任务
-    @POST(HttpConfig.BASE_URL_PATH + "/addTask")
-    @FormUrlEncoded
-    Observable<BaseBean<BooleanBean>> task(
-            @Field("taskId") int taskId
-    );
-
     //申请加盟
     @POST(HttpConfig.BASE_URL_PATH + "/inFranchisees")
     @FormUrlEncoded

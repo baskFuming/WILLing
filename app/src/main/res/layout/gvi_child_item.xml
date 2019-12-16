@@ -1,46 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginRight="16dp"
     android:orientation="vertical">
+
     <LinearLayout
-        android:paddingTop="18dp"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_item"
+        android:gravity="center"
+        android:orientation="vertical"
         android:paddingBottom="18dp"
         android:paddingLeft="18dp"
         android:paddingRight="18dp"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:background="@drawable/shape_item">
-       <ImageView
-           android:id="@+id/item_img"
-           android:layout_width="51dp"
-           android:layout_height="51dp"
-           android:background="@mipmap/item_default"
-           />
+        android:paddingTop="18dp">
+
+        <ImageView
+            android:id="@+id/item_img"
+            android:layout_width="51dp"
+            android:layout_height="51dp"
+            android:background="@mipmap/item_default" />
+
         <TextView
             android:id="@+id/item_title"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:layout_gravity="center"
-            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
             android:text="@string/item_phone_securities"
             android:textColor="#ff666666"
-            android:textSize="12sp"
-            />
+            android:textSize="12sp" />
+
         <TextView
             android:id="@+id/item_price"
-            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="49.00GVI"
             android:textColor="#fffe3848"
-            android:textSize="14sp"
-            />
+            android:textSize="14sp" />
     </LinearLayout>
 </LinearLayout>

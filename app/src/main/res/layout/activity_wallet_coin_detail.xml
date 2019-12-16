@@ -15,128 +15,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <android.support.design.widget.CoordinatorLayout
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/main_app_bar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                app:layout_behavior=".view.FlingBehavior">
 
-                <android.support.design.widget.AppBarLayout
-                    android:id="@+id/main_app_bar"
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:id="@+id/ll_ring_top_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#FFFFFF"
-                    app:layout_behavior=".view.FlingBehavior">
-
-                    <android.support.design.widget.CollapsingToolbarLayout
-                        android:id="@+id/ll_ring_top_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
-                            android:layout_marginTop="12dp"
-                            android:background="@drawable/shape_back_item"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:id="@+id/wallet_coin_detail_icon"
-                                android:layout_width="98dp"
-                                android:layout_height="98dp"
-                                android:layout_marginTop="40dp"
-                                android:src="@mipmap/ic_launcher" />
-
-                            <TextView
-                                android:id="@+id/wallet_coin_detail_balance"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:text="0.0"
-                                android:textColor="#333333"
-                                android:textSize="21dp" />
-
-                            <TextView
-                                android:id="@+id/wallet_coin_detail_usa"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:text="≈$0.0"
-                                android:textColor="#999999"
-                                android:textSize="14dp" />
-
-                            <RelativeLayout
-                                android:id="@+id/wallet_coin_detail_copy"
-                                android:layout_width="278dp"
-                                android:layout_height="34dp"
-                                android:layout_marginTop="20dp"
-                                android:background="@drawable/shape_back_wallet_coin_detail"
-                                android:paddingEnd="15dp"
-                                android:paddingStart="15dp">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_centerVertical="true"
-                                    android:background="#00000000"
-                                    android:src="@mipmap/copy" />
-
-                                <TextView
-                                    android:id="@+id/wallet_coin_detail_address"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginRight="15dp"
-                                    android:text="********"
-                                    android:textColor="#666666"
-                                    android:textSize="12dp" />
-
-                            </RelativeLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="30dp"
-                                android:layout_marginTop="30dp"
-                                android:orientation="horizontal">
-
-                                <Button
-                                    android:id="@+id/wallet_coin_detail_transfer"
-                                    android:layout_width="132dp"
-                                    android:layout_height="34dp"
-                                    android:background="@drawable/selector_btn_transfer"
-                                    android:text="@string/wallet_coin_detail_transfer"
-                                    android:textAllCaps="false"
-                                    android:textColor="#3C7FFF"
-                                    android:textSize="17dp" />
-
-                                <Space
-                                    android:layout_width="15dp"
-                                    android:layout_height="wrap_content" />
-
-                                <Button
-                                    android:id="@+id/wallet_coin_detail_recharge"
-                                    android:layout_width="132dp"
-                                    android:layout_height="34dp"
-                                    android:background="@drawable/selector_btn_recharge"
-                                    android:text="@string/wallet_coin_detail_recharge"
-                                    android:textAllCaps="false"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="17dp" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                    </android.support.design.widget.CollapsingToolbarLayout>
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -144,60 +38,158 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
                         android:layout_marginTop="12dp"
+                        android:background="@drawable/shape_back_item"
+                        android:gravity="center_horizontal"
                         android:orientation="vertical">
 
-                        <com.androidkun.xtablayout.XTabLayout
-                            android:id="@+id/wallet_coin_detail_tab"
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:id="@+id/wallet_coin_detail_icon"
+                            android:layout_width="98dp"
+                            android:layout_height="98dp"
+                            android:layout_marginTop="40dp"
+                            android:src="@mipmap/ic_launcher" />
+
+                        <TextView
+                            android:id="@+id/wallet_coin_detail_balance"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:xTabIndicatorColor="@color/main_tab_select_color"
-                            app:xTabIndicatorHeight="3dp"
-                            app:xTabIndicatorWidth="40dp"
-                            app:xTabSelectedTextColor="#ff333333"
-                            app:xTabSelectedTextSize="19dp"
-                            app:xTabTextBold="false"
-                            app:xTabTextColor="#ff666666"
-                            app:xTabTextSelectedBold="true"
-                            app:xTabTextSize="16dp" />
+                            android:layout_marginTop="20dp"
+                            android:text="0.0"
+                            android:textColor="#333333"
+                            android:textSize="21dp" />
 
-                        <View style="@style/dividingLine" />
-
-                    </LinearLayout>
-
-                </android.support.design.widget.AppBarLayout>
-
-                <android.support.v4.widget.NestedScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/wallet_coin_detail_usa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="≈$0.0"
+                            android:textColor="#999999"
+                            android:textSize="14dp" />
 
                         <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:descendantFocusability="blocksDescendants">
+                            android:id="@+id/wallet_coin_detail_copy"
+                            android:layout_width="278dp"
+                            android:layout_height="34dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/shape_back_wallet_coin_detail"
+                            android:paddingEnd="15dp"
+                            android:paddingStart="15dp">
 
-                            <android.support.v7.widget.RecyclerView
-                                android:id="@+id/main_recycler"
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:background="#00000000"
+                                android:src="@mipmap/copy" />
+
+                            <TextView
+                                android:id="@+id/wallet_coin_detail_address"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:nestedScrollingEnabled="false" />
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="15dp"
+                                android:text="********"
+                                android:textColor="#666666"
+                                android:textSize="12dp" />
 
                         </RelativeLayout>
 
-                        <include layout="@layout/include_not_data" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="30dp"
+                            android:layout_marginTop="30dp"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/wallet_coin_detail_transfer"
+                                android:layout_width="132dp"
+                                android:layout_height="34dp"
+                                android:background="@drawable/selector_btn_transfer"
+                                android:text="@string/wallet_coin_detail_transfer"
+                                android:textAllCaps="false"
+                                android:textColor="#3C7FFF"
+                                android:textSize="17dp" />
+
+                            <Space
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content" />
+
+                            <Button
+                                android:id="@+id/wallet_coin_detail_recharge"
+                                android:layout_width="132dp"
+                                android:layout_height="34dp"
+                                android:background="@drawable/selector_btn_recharge"
+                                android:text="@string/wallet_coin_detail_recharge"
+                                android:textAllCaps="false"
+                                android:textColor="#FFFFFF"
+                                android:textSize="17dp" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                </android.support.v4.widget.NestedScrollView>
+                </android.support.design.widget.CollapsingToolbarLayout>
 
-            </android.support.design.widget.CoordinatorLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
 
-        </LinearLayout>
+                    <com.androidkun.xtablayout.XTabLayout
+                        android:id="@+id/wallet_coin_detail_tab"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:xTabIndicatorColor="@color/main_tab_select_color"
+                        app:xTabIndicatorHeight="3dp"
+                        app:xTabIndicatorWidth="40dp"
+                        app:xTabSelectedTextColor="#ff333333"
+                        app:xTabSelectedTextSize="19dp"
+                        app:xTabTextBold="false"
+                        app:xTabTextColor="#ff666666"
+                        app:xTabTextSelectedBold="true"
+                        app:xTabTextSize="16dp" />
+
+                    <View style="@style/dividingLine" />
+
+                </LinearLayout>
+
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:descendantFocusability="blocksDescendants">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/main_recycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false" />
+
+                    </RelativeLayout>
+
+                    <include layout="@layout/include_not_data" />
+
+                </FrameLayout>
+
+            </android.support.v4.widget.NestedScrollView>
+
+        </android.support.design.widget.CoordinatorLayout>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 

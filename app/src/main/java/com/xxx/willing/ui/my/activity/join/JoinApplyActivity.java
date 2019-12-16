@@ -400,6 +400,7 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
                         jsonObject.put("userRole", joinEntry.getRole());
                         jsonObject.put("name", joinEntry.getName());
                         jsonObject.put("phone", joinEntry.getPhone());
+                        jsonObject.put("detail", joinEntry.getPerIntroduce());
                         list1.put(jsonObject);
                     }
 

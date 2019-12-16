@@ -11,6 +11,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseWebShopActivity;
 import com.xxx.willing.base.fragment.BaseFragment;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
@@ -36,7 +37,7 @@ import io.reactivex.schedulers.Schedulers;
  * @date 2019-12-04
  */
 
-public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, BaseQuickAdapter.OnItemChildClickListener {
+public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener,GviAdapter.OnClickListener {
 
     @BindView(R.id.main_recycler)
     RecyclerView mRecycler;
@@ -50,7 +51,6 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
     private int page = UIConfig.PAGE_DEFAULT;
     private GviAdapter adapter;
     private List<GviBean> mList = new ArrayList<>();
-    private List<SearchShopBean> mSearchList = new ArrayList<>();
     private String edSearchName;
 
     @Override
@@ -60,13 +60,12 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
 
     @Override
     protected void initData() {
-
         adapter = new GviAdapter(mList);
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycler.setAdapter(adapter);
         mRefresh.setOnRefreshListener(this);
+        adapter.setOnClickListener(this);
         adapter.setOnLoadMoreListener(this, mRecycler);
-        adapter.setOnItemChildClickListener(this);
 
         loadData();
     }
@@ -83,6 +82,10 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
         loadData();
     }
 
+    @Override
+    public void onOnClickListener(String name, int id) {
+        BaseWebShopActivity.actionStart(getActivity(), HttpConfig.SHOP_DETAIL_URL, name, id);
+    }
 
     @OnClick({R.id.ed_search})
     public void OnClick(View view) {
@@ -189,12 +192,4 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
                 });
     }
 
-    @Override
-    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-        //跳转到商城web
-        BaseWebShopActivity.actionStart(getActivity(),
-                String.valueOf(mList.get(position).getList().get(0).getDetails()),
-                mList.get(position).getName(),
-                mList.get(position).getList().get(0).getBrandId());
-    }
 }

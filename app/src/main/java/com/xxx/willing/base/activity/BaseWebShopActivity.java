@@ -35,7 +35,6 @@ import butterknife.BindView;
 
 public class BaseWebShopActivity extends BaseTitleActivity {
 
-
     public static void actionStart(Activity activity, String webUrl, String title, int id) {
         Intent intent = new Intent(activity, BaseWebActivity.class);
         intent.putExtra("webUrl", webUrl);
@@ -49,7 +48,6 @@ public class BaseWebShopActivity extends BaseTitleActivity {
         webUrl = intent.getStringExtra("webUrl");
         title = intent.getStringExtra("title");
         id = intent.getIntExtra("id", 0);
-
     }
 
     @BindView(R.id.use_help_web)

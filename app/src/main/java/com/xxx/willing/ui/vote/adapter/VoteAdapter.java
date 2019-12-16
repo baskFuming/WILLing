@@ -21,7 +21,10 @@ public class VoteAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return list.get(position);
+        if (list != null) {
+            return list.get(position);
+        }
+        return null;
     }
 
     @Override

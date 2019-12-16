@@ -22,9 +22,9 @@ public class JoinInfoBean {
 
         private String name;
         private int id;
-        private Integer quota;
+        private int quota;
 
-        public Integer getQuota() {
+        public int getQuota() {
             return quota;
         }
 

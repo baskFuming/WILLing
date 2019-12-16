@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.base.activity.BaseWebActivity;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.AppVersionBean;
@@ -65,7 +67,7 @@ public class AccountSettingActivity extends BaseTitleActivity {
                 PasswordSettingActivity.actionStart(this);
                 break;
             case R.id.account_setting_address_manager:   //使用帮助
-                UseHelpActivity.actionStart(this);
+                BaseWebActivity.actionStart(this, HttpConfig.USE_HELP_URL, getString(R.string.usd_help_title));
                 break;
             case R.id.call_my:
                 CallMeActivity.actionStart(this);//联系我们

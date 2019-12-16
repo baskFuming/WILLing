@@ -46,6 +46,7 @@ public class BaseWebActivity extends BaseTitleActivity {
     WebView mWebView;
     @BindView(R.id.web_progress)
     ProgressBar mProgress;
+
     private String webUrl;
     private String title;
 
@@ -56,7 +57,7 @@ public class BaseWebActivity extends BaseTitleActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_use_help;
+        return R.layout.activity_base_web;
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -86,7 +87,7 @@ public class BaseWebActivity extends BaseTitleActivity {
         } catch (Exception e) {
             launcher = "zh";
         }
-        mWebView.loadUrl(webUrl + launcher);
+        mWebView.loadUrl(webUrl + "?launcher=" + launcher);
 
         mWebView.setWebViewClient(new WebViewClient() {
             @Override

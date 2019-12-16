@@ -10,26 +10,27 @@
         android:layout_marginLeft="12dp"
         android:background="@drawable/shape_back_item"
         android:orientation="horizontal">
+
         <LinearLayout
-            android:layout_width="130dp"
-            android:padding="5dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <LinearLayout
             android:layout_width="130dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/shape_vote_item_bg"
-            >
+            android:padding="5dp">
 
-            <ImageView
-                android:id="@+id/item_vote_img"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                />
+            <LinearLayout
+                android:layout_width="130dp"
+                android:layout_height="145dp"
+                android:background="@drawable/shape_vote_item_bg"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/item_vote_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -98,8 +99,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="15dp">
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -171,7 +172,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
 
     <TextView
         android:id="@+id/item_vote_status"

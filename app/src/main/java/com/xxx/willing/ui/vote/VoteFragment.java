@@ -114,8 +114,10 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     @Override
     public void onRefresh() {
-        VoteItemFragment item = (VoteItemFragment) mAdapter.getItem(position);
-        item.onRefresh();
+        if (mFragment.size() != 0) {
+            VoteItemFragment item = (VoteItemFragment) mAdapter.getItem(position);
+            item.onRefresh();
+        }
         mRefresh.setRefreshing(false);
     }
 

@@ -36,6 +36,8 @@ public class VoteItemAdapter extends BaseQuickAdapter<FranchiseeBean, BaseViewHo
         helper.setText(R.id.item_vote_name, item.getFranName())
                 .setText(R.id.item_vote_id, "ID："+item.getFranId())
                 .setText(R.id.item_vote_number, item.getVoteNum() + mContext.getString(R.string.item_vote_number))
+                .addOnClickListener(R.id.item_vote_1)
+                .addOnClickListener(R.id.item_vote_name)
                 .addOnClickListener(R.id.item_vote_btn);
 
         DownTimeUtil mDownTimeUtil;

@@ -87,7 +87,7 @@ public class BaseWebActivity extends BaseTitleActivity {
         } catch (Exception e) {
             launcher = "zh";
         }
-        mWebView.loadUrl(webUrl + "?launcher=" + launcher);
+        mWebView.loadUrl(webUrl + "?language=" + launcher);
 
         mWebView.setWebViewClient(new WebViewClient() {
             @Override

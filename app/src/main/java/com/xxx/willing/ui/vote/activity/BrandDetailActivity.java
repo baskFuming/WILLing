@@ -13,9 +13,10 @@ import butterknife.BindView;
 
 public class BrandDetailActivity extends BaseTitleActivity {
 
-    public static void actionStart(Activity activity, String name, String content, String url) {
+    public static void actionStart(Activity activity, String title, String name, String content, String url) {
         Intent intent = new Intent(activity, BrandDetailActivity.class);
         intent.putExtra("name", name);
+        intent.putExtra("title", title);
         intent.putExtra("content", content);
         intent.putExtra("url", url);
         activity.startActivity(intent);
@@ -24,6 +25,7 @@ public class BrandDetailActivity extends BaseTitleActivity {
     private void initBundle() {
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
+        title = intent.getStringExtra("title");
         content = intent.getStringExtra("content");
         url = intent.getStringExtra("url");
     }
@@ -36,12 +38,13 @@ public class BrandDetailActivity extends BaseTitleActivity {
     TextView mContent;
 
     private String name;
+    private String title;
     private String content;
     private String url;
 
     @Override
     protected String initTitle() {
-        return getString(R.string.brand_detail_title);
+        return title;
     }
 
     @Override

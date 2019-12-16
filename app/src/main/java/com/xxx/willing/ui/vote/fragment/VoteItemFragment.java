@@ -67,6 +67,7 @@ public class VoteItemFragment extends BaseFragment implements BaseQuickAdapter.R
     private int page = UIConfig.PAGE_DEFAULT;
     private VoteItemAdapter mAdapter;
     private List<FranchiseeBean> mList = new ArrayList<>();
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_vote_item;
@@ -91,7 +92,7 @@ public class VoteItemFragment extends BaseFragment implements BaseQuickAdapter.R
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.vote_item_linear:
-                BrandDetailActivity.actionStart(getActivity(), bean.getName(), bean.getDetails(), bean.getImg());
+                BrandDetailActivity.actionStart(getActivity(), bean.getGVIName(), bean.getName(), bean.getDetails(), bean.getImg());
                 break;
         }
     }

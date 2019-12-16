@@ -2,7 +2,7 @@ package com.xxx.willing.model.http.bean;
 
 import java.io.Serializable;
 
-public class BrandBean implements Serializable{
+public class BrandBean implements Serializable {
 
     private Integer id;
 
@@ -13,6 +13,8 @@ public class BrandBean implements Serializable{
     private String phone;
 
     private String details;
+
+    private String gviName;
 
     public Integer getId() {
         return id;
@@ -52,5 +54,9 @@ public class BrandBean implements Serializable{
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    public String getGVIName() {
+        return gviName;
     }
 }

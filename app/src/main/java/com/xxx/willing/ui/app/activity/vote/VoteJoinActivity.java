@@ -124,7 +124,7 @@ public class VoteJoinActivity extends BaseTitleActivity implements SwipeRefreshL
 
                     @SuppressLint("SetTextI18n")
                     @Override
-                    public void onSuccess(BaseBean<TotalFranchiseeBean> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<TotalFranchiseeBean> bean) {
                         if (bean == null) {
                             mNotData.setVisibility(View.VISIBLE);
                             mLinear.setVisibility(View.GONE);

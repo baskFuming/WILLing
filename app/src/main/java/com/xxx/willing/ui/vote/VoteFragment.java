@@ -129,7 +129,7 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 .subscribe(new ApiCallback<PageBean<BrandBean>>(getActivity()) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<BrandBean>> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<PageBean<BrandBean>> bean) {
                         if (bean != null) {
                             PageBean<BrandBean> data = bean.getData();
                             if (data != null) {
@@ -179,7 +179,7 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 .subscribe(new ApiCallback<PageBean<MessageBean>>(getActivity()) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<MessageBean>> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<PageBean<MessageBean>> bean) {
                         if (bean != null) {
                             PageBean<MessageBean> data = bean.getData();
                             if (data != null) {
@@ -232,7 +232,7 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 .subscribe(new ApiCallback<PageBean<BannerBean>>(getActivity()) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<BannerBean>> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<PageBean<BannerBean>> bean) {
                         if (bean != null) {
                             PageBean<BannerBean> data = bean.getData();
                             if (data != null) {

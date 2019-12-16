@@ -233,7 +233,7 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
 
                     @SuppressLint("SetTextI18n")
                     @Override
-                    public void onSuccess(BaseBean<VoteDetailBean> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<VoteDetailBean> bean) {
                         VoteDetailBean data = bean.getData();
                         int total = data.getQuota();
                         int progress = (int) data.getVoteNum();
@@ -294,7 +294,7 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<BooleanBean>(this) {
                     @Override
-                    public void onSuccess(BaseBean<BooleanBean> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<BooleanBean> bean) {
                         if (bean != null) {
                             BooleanBean data = bean.getData();
                             if (data != null && data.isResult()) {

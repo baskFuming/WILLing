@@ -103,7 +103,7 @@ public class MyTeamActivity extends BaseTitleActivity implements SwipeRefreshLay
                 .subscribe(new ApiCallback<MyTeamBean>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<MyTeamBean> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<MyTeamBean> bean) {
                         MyTeamBean data = bean.getData();
                         if (data == null) {
                             mNotData.setVisibility(View.VISIBLE);

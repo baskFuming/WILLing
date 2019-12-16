@@ -257,7 +257,7 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
                 .subscribe(new ApiCallback<BooleanBean>(getActivity()) {
 
                     @Override
-                    public void onSuccess(BaseBean<BooleanBean> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<BooleanBean> bean) {
                         if (bean != null) {
                             BooleanBean data = bean.getData();
                             if (data != null && data.isResult()) {
@@ -299,7 +299,7 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
                 .subscribe(new ApiCallback<WalletCoinBean>(getActivity()) {
 
                     @Override
-                    public void onSuccess(BaseBean<WalletCoinBean> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<WalletCoinBean> bean) {
                         if (bean != null) {
                             WalletCoinBean data = bean.getData();
                             if (data != null) {

@@ -202,7 +202,7 @@ public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshL
                 .subscribe(new ApiCallback<PageBean<AssetRecordBean>>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<AssetRecordBean>> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<PageBean<AssetRecordBean>> bean) {
                         PageBean<AssetRecordBean> data = bean.getData();
                         List<AssetRecordBean> list = data.getList();
                         if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {

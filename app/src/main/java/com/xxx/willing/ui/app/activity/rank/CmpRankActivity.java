@@ -125,7 +125,7 @@ public class CmpRankActivity extends BaseTitleActivity implements SwipeRefreshLa
 
                     @SuppressLint("SetTextI18n")
                     @Override
-                    public void onSuccess(BaseBean<TotalRankBean> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<TotalRankBean> bean) {
                         if (bean == null) {
                             mNoteDate.setVisibility(View.VISIBLE);
                             mRecycler.setVisibility(View.GONE);

@@ -123,7 +123,7 @@ public class VoteItemFragment extends BaseFragment implements BaseQuickAdapter.R
                 .subscribe(new ApiCallback<PageBean<FranchiseeBean>>(getActivity()) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<FranchiseeBean>> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<PageBean<FranchiseeBean>> bean) {
                         if (bean == null) {
                             mNotData.setVisibility(View.VISIBLE);
                             mNotData2.setVisibility(View.GONE);

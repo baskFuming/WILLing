@@ -92,7 +92,7 @@ public class NoticeCenterActivity extends BaseTitleActivity implements SwipeRefr
                 .subscribe(new ApiCallback<PageBean<MessageBean>>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<MessageBean>> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<PageBean<MessageBean>> bean) {
                         if (bean == null) {
                             mNotData.setVisibility(View.VISIBLE);
                             mAdapter.loadMoreEnd(true);

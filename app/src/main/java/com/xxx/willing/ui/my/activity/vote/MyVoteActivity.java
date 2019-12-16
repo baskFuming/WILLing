@@ -106,7 +106,7 @@ public class MyVoteActivity extends BaseTitleActivity implements SwipeRefreshLay
                 .subscribe(new ApiCallback<List<MyVoteBean>>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<List<MyVoteBean>> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<List<MyVoteBean>> bean) {
                         List<MyVoteBean> list = bean.getData();
                         if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
                             mNotData.setVisibility(View.VISIBLE);

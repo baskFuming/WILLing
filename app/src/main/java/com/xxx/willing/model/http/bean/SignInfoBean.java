@@ -8,6 +8,12 @@ public class SignInfoBean {
 
     private boolean isTodaySign;
 
+    private Integer signProgress;
+
+    public Integer getSignProgress() {
+        return signProgress;
+    }
+
     public List<ListBean> getList() {
         return list;
     }
@@ -16,7 +22,7 @@ public class SignInfoBean {
         return isTodaySign;
     }
 
-    public static class ListBean{
+    public static class ListBean {
 
         private int day;
 

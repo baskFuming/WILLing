@@ -2,6 +2,7 @@ package com.xxx.willing.ui.my.activity.sign;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -28,8 +29,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -39,8 +42,6 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class SignActivity extends BaseTitleActivity implements SignPopWindow.Callback {
-
-    private boolean todaySign;
 
     public static void actionStart(Activity activity) {
         Intent intent = new Intent(activity, SignActivity.class);
@@ -55,14 +56,17 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
     TextView mTrip;
     @BindView(R.id.task_progress)
     ProgressBar mProgress;
-    //    @BindView(R.id.recycler_progress)
-//    RecyclerView mRecycler;
     @BindView(R.id.step_view)
     StepsView mStepView;
-
-
-    private List<StepBean> mList = new ArrayList<>();
+    @BindView(R.id.te_invite_friend)
+    TextView mInviteBtn;
+    @BindView(R.id.te_go_vote)
+    TextView mVoteBtn;
+    @BindView(R.id.te_sign_btn)
+    TextView mSignBtn;
     private SignPopWindow signPopWindow;
+    private boolean todaySign;
+    private Integer signProgress;
 
     @Override
     protected String initTitle() {
@@ -80,8 +84,8 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
         mContent.setVisibility(View.VISIBLE);
         mContent.setText(getString(R.string.sign_task_rules));
 
-        //获取签到信息
-        getSignInfo();
+        //获取信息
+        getInfo();
     }
 
     @OnClick({R.id.main_content, R.id.te_sign_btn, R.id.te_invite_friend, R.id.te_go_vote})
@@ -120,64 +124,47 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
             signPopWindow.dismiss();
             signPopWindow = null;
         }
+        sign();
     }
 
     /**
-     * @Model 获取签到信息
+     * @Model 获取信息
      */
-    private void getSignInfo() {
+    private void getInfo() {
         Api.getInstance().getSignInfo()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiCallback<SignInfoBean>(this) {
-
-                    @Override
-                    public void onSuccess(BaseBean<SignInfoBean> bean) {
-                        if (bean != null) {
-                            SignInfoBean data = bean.getData();
-                            if (data != null) {
-                                List<SignInfoBean.ListBean> list = data.getList();
-                                if (list != null) {
-                                    for (SignInfoBean.ListBean listBean : list) {
-                                        if (listBean.getDay() == 6) {
-                                            mList.add(new StepBean(listBean.getStatus(), listBean.getDay(), R.mipmap.sign_6_icon));
-                                        } else if (listBean.getDay() == 8) {
-                                            mList.add(new StepBean(listBean.getStatus(), listBean.getDay(), R.mipmap.sign_8_icon));
-                                        } else {
-                                            mList.add(new StepBean(listBean.getStatus(), listBean.getDay()));
-                                        }
+                .flatMap((Function<BaseBean<SignInfoBean>, Observable<BaseBean<List<TaskInfoBean>>>>) bean -> {
+                    if (bean != null) {
+                        SignInfoBean data = bean.getData();
+                        if (data != null) {
+                            List<SignInfoBean.ListBean> list = data.getList();
+                            if (list != null) {
+                                List<StepBean> list1 = new ArrayList<>();
+                                for (SignInfoBean.ListBean listBean : list) {
+                                    if (listBean.getDay() == 5) {
+                                        list1.add(new StepBean(listBean.getStatus(), listBean.getDay(), R.mipmap.sign_5_icon));
+                                    } else if (listBean.getDay() == 7) {
+                                        list1.add(new StepBean(listBean.getStatus(), listBean.getDay(), R.mipmap.sign_7_icon));
+                                    } else {
+                                        list1.add(new StepBean(listBean.getStatus(), listBean.getDay()));
                                     }
-                                    mStepView.setStepNum(mList);
                                 }
-                                todaySign = data.isTodaySign();
+                                mStepView.setStepNum(list1);
                             }
+                            todaySign = data.isTodaySign();
+                            if (todaySign) {
+                                mSignBtn.setText("已连续签到" + signProgress + "天");
+                                mSignBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
+                                mSignBtn.setEnabled(false);
+                            } else {
+                                mSignBtn.setText("马上签到领币");
+                                mSignBtn.setEnabled(true);
+                                mSignBtn.setBackgroundResource(R.drawable.selector_btn_login);
+                            }
+                            signProgress = data.getSignProgress();
                         }
                     }
-
-                    @Override
-                    public void onError(int errorCode, String errorMessage) {
-                        ToastUtil.showToast(errorMessage);
-                    }
-
-                    @Override
-                    public void onStart(Disposable d) {
-                        super.onStart(d);
-                        showLoading();
-                    }
-
-                    @Override
-                    public void onEnd() {
-                        super.onEnd();
-                        hideLoading();
-                    }
-                });
-    }
-
-    /**
-     * @Model 获取任务信息
-     */
-    private void getTaskInfo() {
-        Api.getInstance().getTaskInfo()
+                    return Api.getInstance().getTaskInfo();
+                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<List<TaskInfoBean>>(this) {
@@ -185,7 +172,24 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                     @Override
                     public void onSuccess(BaseBean<List<TaskInfoBean>> bean) {
                         if (bean != null) {
+                            List<TaskInfoBean> list = bean.getData();
+                            if (list != null) {
+                                TaskInfoBean taskInfoBean = list.get(1);//投票
+                                TaskInfoBean taskInfoBean1 = list.get(2);  //邀请
 
+                                if (taskInfoBean.getStatus() == 1) {
+                                    mInviteBtn.setText("已完成");
+                                    if (taskInfoBean1.getStatus() == 1) {
+                                        mVoteBtn.setText("已完成");
+                                    } else {
+                                        mVoteBtn.setText("去投票");
+                                    }
+                                } else {
+                                    mVoteBtn.setText("去投票");
+                                    mVoteBtn.setEnabled(false);
+                                    mInviteBtn.setText("邀请好友");
+                                }
+                            }
                         }
                     }
 
@@ -220,6 +224,11 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                     @Override
                     public void onSuccess(BaseBean<BooleanBean> bean) {
                         if (bean != null) {
+                            BooleanBean data = bean.getData();
+                            if (data != null && data.isResult()) {
+                                ToastUtil.showToast("签到成功");
+                                getInfo();
+                            }
                         }
                     }
 

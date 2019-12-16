@@ -119,7 +119,7 @@ public class PartnerActivity extends BaseTitleActivity {
                 .subscribe(new ApiCallback<PageBean<PartnerListBean>>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<PartnerListBean>> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<PageBean<PartnerListBean>> bean) {
                         if (bean != null) {
                             PageBean<PartnerListBean> data = bean.getData();
                             if (data != null) {

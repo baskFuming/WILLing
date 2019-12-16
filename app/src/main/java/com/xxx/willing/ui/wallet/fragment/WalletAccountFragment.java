@@ -94,7 +94,7 @@ public class WalletAccountFragment extends BaseFragment implements SwipeRefreshL
 
                     @SuppressLint("SetTextI18n")
                     @Override
-                    public void onSuccess(BaseBean<WalletAccountBean> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<WalletAccountBean> bean) {
                         if (bean == null) {
                             mNotData.setVisibility(View.VISIBLE);
                             mRecycler.setVisibility(View.GONE);

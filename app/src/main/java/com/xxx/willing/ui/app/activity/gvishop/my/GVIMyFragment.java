@@ -64,7 +64,7 @@ public class GVIMyFragment extends BaseFragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<ShopUser>(getActivity()) {
                     @Override
-                    public void onSuccess(BaseBean<ShopUser> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<ShopUser> bean) {
                         if (bean != null) {
                             mName.setText(bean.getData().getUserName());
                             mAccount.setText(bean.getData().getGviAmount()+"");

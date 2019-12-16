@@ -102,7 +102,7 @@ public class MyChildActivity extends BaseTitleActivity implements SwipeRefreshLa
                 .subscribe(new ApiCallback<MyTeamBean>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<MyTeamBean> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<MyTeamBean> bean) {
                         MyTeamBean data = bean.getData();
                         if (data == null) {
                             mNotData.setVisibility(View.VISIBLE);

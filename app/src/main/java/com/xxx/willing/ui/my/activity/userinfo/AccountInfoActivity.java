@@ -177,7 +177,7 @@ public class AccountInfoActivity extends BaseTitleActivity implements SetIconPop
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<BooleanBean>(this) {
                     @Override
-                    public void onSuccess(BaseBean<BooleanBean> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<BooleanBean> bean) {
                         if (bean != null) {
                             BooleanBean data = bean.getData();
                             if (data != null && data.isResult()) {

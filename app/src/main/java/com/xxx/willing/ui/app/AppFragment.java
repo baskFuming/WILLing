@@ -119,7 +119,7 @@ public class AppFragment extends BaseFragment implements SwipeRefreshLayout.OnRe
                 .subscribe(new ApiCallback<List<GameBean>>(getActivity()) {
 
                     @Override
-                    public void onSuccess(BaseBean<List<GameBean>> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<List<GameBean>> bean) {
                         if (bean == null) {
                             mNotGame.setVisibility(View.VISIBLE);
                             mRecycler.setVisibility(View.GONE);

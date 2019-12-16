@@ -168,7 +168,7 @@ public class RegisterActivity extends BaseTitleActivity {
                 .subscribe(new ApiCallback<Object>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<Object> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<Object> bean) {
                         ToastUtil.showToast(bean.getMessage());
                         mDownTimeUtil.openDownTime(UIConfig.SMS_CODE_DOWN_TIME, new DownTimeUtil.Callback() {
                             @SuppressLint("SetTextI18n")
@@ -257,7 +257,7 @@ public class RegisterActivity extends BaseTitleActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<Object>(this) {
                     @Override
-                    public void onSuccess(BaseBean<Object> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<Object> bean) {
                         ToastUtil.showToast(R.string.register_success);
                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                         intent.putExtra("account", account);

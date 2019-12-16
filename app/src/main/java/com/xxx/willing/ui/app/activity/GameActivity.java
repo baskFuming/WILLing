@@ -186,7 +186,7 @@ public class GameActivity extends BaseActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<MemberAssetBean>(this) {
                     @Override
-                    public void onSuccess(BaseBean<MemberAssetBean> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<MemberAssetBean> bean) {
                         amount = String.valueOf(bean.getData().getAmount());
                         String funCount = "javascript:ctNumber('" + amount + "')";
                         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
@@ -215,7 +215,7 @@ public class GameActivity extends BaseActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<BooleanBean>(this) {
                     @Override
-                    public void onSuccess(BaseBean<BooleanBean> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<BooleanBean> bean) {
                         if (bean.getData().isResult()) {
                             String funName;
                             if (restart.equals("1")) {
@@ -274,7 +274,7 @@ public class GameActivity extends BaseActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<BooleanBean>(this) {
                     @Override
-                    public void onSuccess(BaseBean<BooleanBean> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<BooleanBean> bean) {
                     }
 
                     @Override

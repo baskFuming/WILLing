@@ -407,7 +407,7 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
                 .subscribe(new ApiCallback<BooleanBean>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<BooleanBean> data, boolean todaySign) {
+                    public void onSuccess(BaseBean<BooleanBean> data) {
                         ToastUtil.showToast(getString(R.string.join_success));
                         finish();
                     }
@@ -441,7 +441,7 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
                 .subscribe(new ApiCallback<JoinInfoBean>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<JoinInfoBean> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<JoinInfoBean> bean) {
                         if (bean != null) {
                             JoinInfoBean data = bean.getData();
                             if (data != null) {

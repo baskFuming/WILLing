@@ -174,7 +174,7 @@ public class LoginActivity extends BaseTitleActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<LoginBean>(this) {
                     @Override
-                    public void onSuccess(BaseBean<LoginBean> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<LoginBean> bean) {
                         if (bean != null) {
                             LoginBean data = bean.getData();
                             if (data != null) {

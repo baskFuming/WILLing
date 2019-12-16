@@ -225,7 +225,7 @@ public class MainActivity extends BaseActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<AppVersionBean>(this) {
                     @Override
-                    public void onSuccess(BaseBean<AppVersionBean> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<AppVersionBean> bean) {
                         if (bean != null) {
                             AppVersionBean data = bean.getData();
                             if (data != null) {
@@ -265,7 +265,7 @@ public class MainActivity extends BaseActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<IsSettingPayPswBean>(this) {
                     @Override
-                    public void onSuccess(BaseBean<IsSettingPayPswBean> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<IsSettingPayPswBean> bean) {
                         if (bean != null) {
                             IsSettingPayPswBean data = bean.getData();
                             if (data != null) {
@@ -303,7 +303,7 @@ public class MainActivity extends BaseActivity {
                 .subscribe(new ApiCallback<UserInfo>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<UserInfo> bean, boolean todaySign) {
+                    public void onSuccess(BaseBean<UserInfo> bean) {
                         if (bean != null) {
                             UserInfo data = bean.getData();
                             if (data != null) {

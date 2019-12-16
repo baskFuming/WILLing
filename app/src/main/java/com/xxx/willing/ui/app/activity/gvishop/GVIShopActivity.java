@@ -79,7 +79,6 @@ public class GVIShopActivity extends BaseTitleActivity {
             selectorItem();
             lastType = nowType;
         }
-
         switch (view.getId()) {
             case R.id.main_content:
                 BaseWebActivity.actionStart(this, HttpConfig.EXCHANGE_URL, title);

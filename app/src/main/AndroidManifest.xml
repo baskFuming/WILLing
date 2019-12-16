@@ -50,6 +50,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
         <activity android:name=".base.activity.BaseWebShopActivity" />
         <activity android:name=".base.activity.BaseWebActivity" />
         <activity android:name=".ui.main.wheels.GuidePageActivity" />

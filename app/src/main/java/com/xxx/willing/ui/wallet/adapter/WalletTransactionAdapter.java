@@ -31,7 +31,7 @@ public class WalletTransactionAdapter extends BaseQuickAdapter<WalletTransaction
             amount = "-" + item.getAmount();
             switch (item.getStatus()) {
                 case ApiType.TRANSFER_WAIT_STATUS:
-                    status = "打包中";
+                    status = "待放币";
                     break;
                 case ApiType.RECHARGE_SUCCESS_STATUS:
                     status = "成功";
@@ -43,7 +43,7 @@ public class WalletTransactionAdapter extends BaseQuickAdapter<WalletTransaction
                     status = "审核中";
                     break;
                 default:
-                    status = "打包中";
+                    status = "待放币";
                     break;
             }
         }

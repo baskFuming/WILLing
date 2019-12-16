@@ -11,7 +11,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseWebShopActivity;
 import com.xxx.willing.base.fragment.BaseFragment;
-import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
@@ -21,6 +20,7 @@ import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.activity.gvishop.home.adapter.GviAdapter;
+import com.xxx.willing.view.SearchEditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ import io.reactivex.schedulers.Schedulers;
  * @date 2019-12-04
  */
 
-public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener,GviAdapter.OnClickListener {
+public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, BaseQuickAdapter.OnItemChildClickListener {
 
     @BindView(R.id.main_recycler)
     RecyclerView mRecycler;
@@ -45,12 +45,13 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
     LinearLayout mNotData;
     @BindView(R.id.main_refresh)
     SwipeRefreshLayout mRefresh;
-    @BindView(R.id.ed_search)
-    EditText mEditSearch;
+    @BindView(R.id.gvi_search_shop)
+    SearchEditText mSearch;
 
     private int page = UIConfig.PAGE_DEFAULT;
     private GviAdapter adapter;
     private List<GviBean> mList = new ArrayList<>();
+    private List<SearchShopBean> mSearchList = new ArrayList<>();
     private String edSearchName;
 
     @Override
@@ -60,14 +61,26 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
 
     @Override
     protected void initData() {
+
         adapter = new GviAdapter(mList);
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycler.setAdapter(adapter);
         mRefresh.setOnRefreshListener(this);
-        adapter.setOnClickListener(this);
         adapter.setOnLoadMoreListener(this, mRecycler);
+        adapter.setOnItemChildClickListener(this);
+
 
         loadData();
+        //搜索商品
+        mSearch.setOnSearchClickListener(view -> {
+            edSearchName = mSearch.getText().toString();
+            if (edSearchName.isEmpty()) {
+                ToastUtil.showToast(getString(R.string.search_default_null));
+            } else {
+                loadSearch();
+            }
+        });
+
     }
 
     @Override
@@ -82,24 +95,6 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
         loadData();
     }
 
-    @Override
-    public void onOnClickListener(String name, int id) {
-        BaseWebShopActivity.actionStart(getActivity(), HttpConfig.SHOP_DETAIL_URL, name, id);
-    }
-
-    @OnClick({R.id.ed_search})
-    public void OnClick(View view) {
-        switch (view.getId()) {
-            case R.id.ed_search:
-                edSearchName = mEditSearch.getText().toString();
-                if (edSearchName.isEmpty()) {
-                    ToastUtil.showToast(getString(R.string.search_default_null));
-                } else {
-                    loadSearch();
-                }
-                break;
-        }
-    }
 
     //获取商城
     private void loadData() {
@@ -169,7 +164,7 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
                     @Override
                     public void onSuccess(BaseBean<PageBean<SearchShopBean>> bean) {
                         if (bean != null) {
-                            loadData();
+                            mSearch.setText("");
                         }
                     }
 
@@ -192,4 +187,12 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
                 });
     }
 
+    @Override
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+        //跳转到商城web
+        BaseWebShopActivity.actionStart(getActivity(),
+                String.valueOf(mList.get(position).getList().get(0).getDetails()),
+                mList.get(position).getName(),
+                mList.get(position).getList().get(0).getBrandId());
+    }
 }

@@ -15,13 +15,11 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseActivity;
-import com.xxx.willing.config.AppConfig;
 import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
@@ -35,8 +33,6 @@ import com.xxx.willing.model.utils.ToastUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.List;
 
 import butterknife.BindView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -190,7 +186,7 @@ public class GameActivity extends BaseActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<MemberAssetBean>(this) {
                     @Override
-                    public void onSuccess(BaseBean<MemberAssetBean> bean) {
+                    public void onSuccess(BaseBean<MemberAssetBean> bean, boolean todaySign) {
                         amount = String.valueOf(bean.getData().getAmount());
                         String funCount = "javascript:ctNumber('" + amount + "')";
                         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
@@ -219,7 +215,7 @@ public class GameActivity extends BaseActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<BooleanBean>(this) {
                     @Override
-                    public void onSuccess(BaseBean<BooleanBean> bean) {
+                    public void onSuccess(BaseBean<BooleanBean> bean, boolean todaySign) {
                         if (bean.getData().isResult()) {
                             String funName;
                             if (restart.equals("1")) {
@@ -278,7 +274,7 @@ public class GameActivity extends BaseActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<BooleanBean>(this) {
                     @Override
-                    public void onSuccess(BaseBean<BooleanBean> bean) {
+                    public void onSuccess(BaseBean<BooleanBean> bean, boolean todaySign) {
                     }
 
                     @Override

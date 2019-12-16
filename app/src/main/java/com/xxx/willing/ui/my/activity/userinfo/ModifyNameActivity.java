@@ -102,7 +102,7 @@ public class ModifyNameActivity extends BaseTitleActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<BooleanBean>(this) {
                     @Override
-                    public void onSuccess(BaseBean<BooleanBean> bean) {
+                    public void onSuccess(BaseBean<BooleanBean> bean, boolean todaySign) {
                         if (bean != null) {
                             BooleanBean data = bean.getData();
                             if (data != null && data.isResult()) {

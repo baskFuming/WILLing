@@ -202,7 +202,7 @@ public class WithdrawalActivity extends BaseTitleActivity implements PasswordWin
                 .subscribe(new ApiCallback<BooleanBean>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<BooleanBean> bean) {
+                    public void onSuccess(BaseBean<BooleanBean> bean, boolean todaySign) {
                         balance -= amount;
 
                         if (mPasswordWindow != null) {

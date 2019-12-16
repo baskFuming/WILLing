@@ -87,7 +87,7 @@ public class WalletExchangeRecordActivity extends BaseTitleActivity implements S
                 .subscribe(new ApiCallback<PageBean<WalletExchangeBean>>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<WalletExchangeBean>> bean) {
+                    public void onSuccess(BaseBean<PageBean<WalletExchangeBean>> bean, boolean todaySign) {
                         if (bean == null) {
                             mNotData.setVisibility(View.VISIBLE);
                             mRecycler.setVisibility(View.GONE);

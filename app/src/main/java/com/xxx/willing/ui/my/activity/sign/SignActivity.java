@@ -2,7 +2,6 @@ package com.xxx.willing.ui.my.activity.sign;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.text.Html;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -40,6 +39,8 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class SignActivity extends BaseTitleActivity implements SignPopWindow.Callback {
+
+    private boolean todaySign;
 
     public static void actionStart(Activity activity) {
         Intent intent = new Intent(activity, SignActivity.class);
@@ -79,15 +80,8 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
         mContent.setVisibility(View.VISIBLE);
         mContent.setText(getString(R.string.sign_task_rules));
 
-        //TODO 假数据测试
-        mList.add(new StepBean(StepBean.STEP_COMPLETED, 1));
-        mList.add(new StepBean(StepBean.STEP_COMPLETED, 2));
-        mList.add(new StepBean(StepBean.STEP_UNDO, 3));
-        mList.add(new StepBean(StepBean.STEP_UNDO, 4));
-        mList.add(new StepBean(StepBean.STEP_UNDO, 5,R.mipmap.ic_launcher));
-        mList.add(new StepBean(StepBean.STEP_UNDO, 6));
-        mList.add(new StepBean(StepBean.STEP_UNDO, 7,R.mipmap.ic_launcher));
-        mStepView.setStepNum(mList);
+        //获取签到信息
+        getSignInfo();
     }
 
     @OnClick({R.id.main_content, R.id.te_sign_btn, R.id.te_invite_friend, R.id.te_go_vote})
@@ -97,14 +91,19 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                 BaseWebActivity.actionStart(this, HttpConfig.TASK_URL, getString(R.string.sign_task_rules));
                 break;
             case R.id.te_sign_btn://签到弹框
-                //执行签到动画
-                mStepView.startSignAnimation(() -> {
-                    if (signPopWindow == null || !signPopWindow.isShowing()) {
-                        signPopWindow = SignPopWindow.getInstance(this);
-                        signPopWindow.setCallback(this);
-                        signPopWindow.show();
-                    }
-                });
+                //判断今天是否签到过
+                if (todaySign) {
+                    ToastUtil.showToast("今天已经签到过");
+                } else {
+                    //执行签到动画
+                    mStepView.startSignAnimation(() -> {
+                        if (signPopWindow == null || !signPopWindow.isShowing()) {
+                            signPopWindow = SignPopWindow.getInstance(this);
+                            signPopWindow.setCallback(this);
+                            signPopWindow.show();
+                        }
+                    });
+                }
                 break;
             case R.id.te_invite_friend:
                 InviteFriendActivity.actionStart(this);
@@ -130,12 +129,28 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
         Api.getInstance().getSignInfo()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiCallback<List<SignInfoBean>>(this) {
+                .subscribe(new ApiCallback<SignInfoBean>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<List<SignInfoBean>> bean) {
+                    public void onSuccess(BaseBean<SignInfoBean> bean) {
                         if (bean != null) {
-
+                            SignInfoBean data = bean.getData();
+                            if (data != null) {
+                                List<SignInfoBean.ListBean> list = data.getList();
+                                if (list != null) {
+                                    for (SignInfoBean.ListBean listBean : list) {
+                                        if (listBean.getDay() == 6) {
+                                            mList.add(new StepBean(listBean.getStatus(), listBean.getDay(), R.mipmap.sign_6_icon));
+                                        } else if (listBean.getDay() == 8) {
+                                            mList.add(new StepBean(listBean.getStatus(), listBean.getDay(), R.mipmap.sign_8_icon));
+                                        } else {
+                                            mList.add(new StepBean(listBean.getStatus(), listBean.getDay()));
+                                        }
+                                    }
+                                    mStepView.setStepNum(mList);
+                                }
+                                todaySign = data.isTodaySign();
+                            }
                         }
                     }
 

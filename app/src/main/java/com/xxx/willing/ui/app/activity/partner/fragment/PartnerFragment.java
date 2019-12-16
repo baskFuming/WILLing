@@ -103,7 +103,7 @@ public class PartnerFragment extends BaseFragment implements SwipeRefreshLayout.
                 .subscribe(new ApiCallback<PageBean<PartnerBean>>(getActivity()) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<PartnerBean>> bean) {
+                    public void onSuccess(BaseBean<PageBean<PartnerBean>> bean, boolean todaySign) {
                         List<PartnerBean> list = bean.getData().getList();
                         if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
                             mNotData.setVisibility(View.VISIBLE);

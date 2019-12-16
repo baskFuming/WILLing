@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.gyf.barlibrary.ImmersionBar;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseWebActivity;
 import com.xxx.willing.base.fragment.BaseFragment;
@@ -17,7 +16,6 @@ import com.xxx.willing.config.AppConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.GameBean;
-import com.xxx.willing.model.http.bean.GviBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.activity.GameActivity;
@@ -121,7 +119,7 @@ public class AppFragment extends BaseFragment implements SwipeRefreshLayout.OnRe
                 .subscribe(new ApiCallback<List<GameBean>>(getActivity()) {
 
                     @Override
-                    public void onSuccess(BaseBean<List<GameBean>> bean) {
+                    public void onSuccess(BaseBean<List<GameBean>> bean, boolean todaySign) {
                         if (bean == null) {
                             mNotGame.setVisibility(View.VISIBLE);
                             mRecycler.setVisibility(View.GONE);

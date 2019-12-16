@@ -28,7 +28,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -120,7 +119,7 @@ public class PartnerActivity extends BaseTitleActivity {
                 .subscribe(new ApiCallback<PageBean<PartnerListBean>>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<PartnerListBean>> bean) {
+                    public void onSuccess(BaseBean<PageBean<PartnerListBean>> bean, boolean todaySign) {
                         if (bean != null) {
                             PageBean<PartnerListBean> data = bean.getData();
                             if (data != null) {

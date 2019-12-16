@@ -91,7 +91,7 @@ public abstract class ApiCallback<T> implements Observer<BaseBean<T>> {
                     int code = bean.getCode();
                     //使用code值做判断
                     if (code == ApiCode.RESPONSE_CODE) {
-                        onSuccess(bean);
+                        onSuccess(bean, data.isTodaySign());
                     } else {
                         //根据后台返回的code值做特殊异常处理
                         ApiError.ServiceCodeErrorFun(code);

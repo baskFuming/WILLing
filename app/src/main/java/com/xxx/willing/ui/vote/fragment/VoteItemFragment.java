@@ -15,14 +15,12 @@ import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.BrandBean;
 import com.xxx.willing.model.http.bean.FranchiseeBean;
-import com.xxx.willing.model.http.bean.WalletMarketBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.activity.vote.JoinDetailsActivity;
 import com.xxx.willing.ui.vote.activity.BrandDetailActivity;
 import com.xxx.willing.ui.vote.adapter.VoteItemAdapter;
-import com.xxx.willing.ui.vote.window.VoteDetailsPop;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +28,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -126,7 +123,7 @@ public class VoteItemFragment extends BaseFragment implements BaseQuickAdapter.R
                 .subscribe(new ApiCallback<PageBean<FranchiseeBean>>(getActivity()) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<FranchiseeBean>> bean) {
+                    public void onSuccess(BaseBean<PageBean<FranchiseeBean>> bean, boolean todaySign) {
                         if (bean == null) {
                             mNotData.setVisibility(View.VISIBLE);
                             mNotData2.setVisibility(View.GONE);

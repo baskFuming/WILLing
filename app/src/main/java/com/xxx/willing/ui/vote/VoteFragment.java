@@ -24,7 +24,6 @@ import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.vote.activity.NoticeCenterActivity;
 import com.xxx.willing.ui.vote.adapter.VoteAdapter;
 import com.xxx.willing.ui.vote.fragment.VoteItemFragment;
-import com.xxx.willing.view.MyTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -130,7 +129,7 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 .subscribe(new ApiCallback<PageBean<BrandBean>>(getActivity()) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<BrandBean>> bean) {
+                    public void onSuccess(BaseBean<PageBean<BrandBean>> bean, boolean todaySign) {
                         if (bean != null) {
                             PageBean<BrandBean> data = bean.getData();
                             if (data != null) {
@@ -180,7 +179,7 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 .subscribe(new ApiCallback<PageBean<MessageBean>>(getActivity()) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<MessageBean>> bean) {
+                    public void onSuccess(BaseBean<PageBean<MessageBean>> bean, boolean todaySign) {
                         if (bean != null) {
                             PageBean<MessageBean> data = bean.getData();
                             if (data != null) {
@@ -233,7 +232,7 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 .subscribe(new ApiCallback<PageBean<BannerBean>>(getActivity()) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<BannerBean>> bean) {
+                    public void onSuccess(BaseBean<PageBean<BannerBean>> bean, boolean todaySign) {
                         if (bean != null) {
                             PageBean<BannerBean> data = bean.getData();
                             if (data != null) {

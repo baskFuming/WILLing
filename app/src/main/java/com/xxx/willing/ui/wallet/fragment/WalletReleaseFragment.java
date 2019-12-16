@@ -80,7 +80,7 @@ public class WalletReleaseFragment extends BaseFragment implements SwipeRefreshL
                 .subscribe(new ApiCallback<PageBean<WalletReleaseBean>>(getActivity()) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<WalletReleaseBean>> bean) {
+                    public void onSuccess(BaseBean<PageBean<WalletReleaseBean>> bean, boolean todaySign) {
                         if (bean == null) {
                             mNotData.setVisibility(View.VISIBLE);
                             mLinear.setVisibility(View.GONE);

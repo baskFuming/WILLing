@@ -105,7 +105,7 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<List<GviBean>>(getActivity()) {
                     @Override
-                    public void onSuccess(BaseBean<List<GviBean>> bean) {
+                    public void onSuccess(BaseBean<List<GviBean>> bean, boolean todaySign) {
                         if (bean == null) {
                             mNotData.setVisibility(View.VISIBLE);
                             mRecycler.setVisibility(View.GONE);
@@ -164,7 +164,7 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<PageBean<SearchShopBean>>(getActivity()) {
                     @Override
-                    public void onSuccess(BaseBean<PageBean<SearchShopBean>> bean) {
+                    public void onSuccess(BaseBean<PageBean<SearchShopBean>> bean, boolean todaySign) {
                         if (bean != null) {
                             loadData();
                         }

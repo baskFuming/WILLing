@@ -183,7 +183,7 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements TabLa
                 .subscribe(new ApiCallback<PageBean<WalletTransactionBean>>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<WalletTransactionBean>> bean) {
+                    public void onSuccess(BaseBean<PageBean<WalletTransactionBean>> bean, boolean todaySign) {
                         if (bean == null) {
                             mNotData.setVisibility(View.VISIBLE);
                             mNotData2.setVisibility(View.GONE);

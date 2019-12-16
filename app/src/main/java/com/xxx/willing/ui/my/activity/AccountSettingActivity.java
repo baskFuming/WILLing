@@ -88,7 +88,7 @@ public class AccountSettingActivity extends BaseTitleActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<Object>(this) {
                     @Override
-                    public void onSuccess(BaseBean<Object> bean) {
+                    public void onSuccess(BaseBean<Object> bean, boolean todaySign) {
                         if (bean != null) {
                             SharedPreferencesUtil.getInstance().cleanAll();
                             startActivity(new Intent(AccountSettingActivity.this, LoginActivity.class));
@@ -124,7 +124,7 @@ public class AccountSettingActivity extends BaseTitleActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<AppVersionBean>(this) {
                     @Override
-                    public void onSuccess(BaseBean<AppVersionBean> bean) {
+                    public void onSuccess(BaseBean<AppVersionBean> bean, boolean todaySign) {
                         if (bean != null) {
                             AppVersionBean data = bean.getData();
                             if (data != null) {

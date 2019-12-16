@@ -142,7 +142,7 @@ public class ForgetLoginPswActivity extends BaseTitleActivity {
                 .subscribe(new ApiCallback<Object>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<Object> bean) {
+                    public void onSuccess(BaseBean<Object> bean, boolean todaySign) {
                         ToastUtil.showToast(bean.getMessage());
                         mDownTimeUtil.openDownTime(UIConfig.SMS_CODE_DOWN_TIME, new DownTimeUtil.Callback() {
                             @SuppressLint("SetTextI18n")
@@ -231,7 +231,7 @@ public class ForgetLoginPswActivity extends BaseTitleActivity {
                 .subscribe(new ApiCallback<Object>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<Object> bean) {
+                    public void onSuccess(BaseBean<Object> bean, boolean todaySign) {
                         if (bean != null) {
                             ToastUtil.showToast(getString(R.string.forget_success));
                             Intent intent = new Intent(ForgetLoginPswActivity.this, LoginActivity.class);

@@ -84,9 +84,9 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
         mList.add(new StepBean(StepBean.STEP_COMPLETED, 2));
         mList.add(new StepBean(StepBean.STEP_UNDO, 3));
         mList.add(new StepBean(StepBean.STEP_UNDO, 4));
-        mList.add(new StepBean(StepBean.STEP_UNDO, 5,R.mipmap.ic_launcher));
+        mList.add(new StepBean(StepBean.STEP_UNDO, 5, R.mipmap.give_five));
         mList.add(new StepBean(StepBean.STEP_UNDO, 6));
-        mList.add(new StepBean(StepBean.STEP_UNDO, 7,R.mipmap.ic_launcher));
+        mList.add(new StepBean(StepBean.STEP_UNDO, 7, R.mipmap.gift_seven));
         mStepView.setStepNum(mList);
     }
 

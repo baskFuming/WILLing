@@ -2,9 +2,7 @@ package com.xxx.willing.ui.app.activity.vote;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,8 +24,6 @@ import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.VoteDetailBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.BooleanBean;
-import com.xxx.willing.model.sp.SharedConst;
-import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.BannerUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.adapter.TeamMesAdapter;
@@ -39,7 +35,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;

@@ -18,13 +18,10 @@ import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
-import com.xxx.willing.model.http.bean.FranchiseeBean;
 import com.xxx.willing.model.http.bean.RankBean;
-import com.xxx.willing.model.http.bean.TotalFranchiseeBean;
 import com.xxx.willing.model.http.bean.TotalRankBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
-import com.xxx.willing.model.utils.DateUtils;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.adapter.RankAdapter;
 

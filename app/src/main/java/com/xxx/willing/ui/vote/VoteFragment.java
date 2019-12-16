@@ -24,7 +24,6 @@ import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.vote.activity.NoticeCenterActivity;
 import com.xxx.willing.ui.vote.adapter.VoteAdapter;
 import com.xxx.willing.ui.vote.fragment.VoteItemFragment;
-import com.xxx.willing.view.MyTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;

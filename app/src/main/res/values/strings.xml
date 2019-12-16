@@ -263,7 +263,7 @@
     <string name="sign_gift">签到有礼，免费送BVSE～</string>
 
     <string name="sign_rules"><font color="red">连续</font>签到<font color="red">七天</font>即可点亮下方推荐任务！记得是<font color="red">连续</font>签到，中断就不算了哦～</string>
-    <string name="sign_btn">签到领BVSE～</string>
+    <string name="sign_btn">马上签到领币～</string>
     <string name="tuijain_task">推荐任务</string>
     <string name="toupiao_task">投票任务</string>
     <string name="join_task">参与任务获取更多BVSE</string>

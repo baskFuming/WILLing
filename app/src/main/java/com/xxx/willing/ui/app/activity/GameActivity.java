@@ -15,13 +15,11 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseActivity;
-import com.xxx.willing.config.AppConfig;
 import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
@@ -35,8 +33,6 @@ import com.xxx.willing.model.utils.ToastUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.List;
 
 import butterknife.BindView;
 import io.reactivex.android.schedulers.AndroidSchedulers;

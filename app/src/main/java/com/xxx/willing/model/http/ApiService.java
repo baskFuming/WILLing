@@ -165,9 +165,11 @@ public interface ApiService {
             @Field("id") Integer id
     );
 
+    //获取签到信息
     @POST(HttpConfig.BASE_URL_PATH + "/getSignInfo")
-    Observable<BaseBean<List<SignInfoBean>>> getSignInfo();
+    Observable<BaseBean<SignInfoBean>> getSignInfo();
 
+    //获取任务信息
     @POST(HttpConfig.BASE_URL_PATH + "/getTaskInfo")
     Observable<BaseBean<List<TaskInfoBean>>> getTaskInfo();
 
@@ -175,7 +177,7 @@ public interface ApiService {
     //----------------------------------------------------------执行操作----------------------------------------------------------------------------------------------------------------------------//
 
 
-    //投票
+    //签到
     @POST(HttpConfig.BASE_URL_PATH + "/sign")
     Observable<BaseBean<BooleanBean>> sign();
 

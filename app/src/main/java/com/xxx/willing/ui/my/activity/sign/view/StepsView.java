@@ -277,7 +277,7 @@ public class StepsView extends View {
 
             //图标大小
             float iconSize;
-            //首先判断是否是正在进行中
+            //首先判断是否是当天
             if (i == mPosition) {
                 iconSize = mBigIconSize;
             } else {
@@ -467,13 +467,13 @@ public class StepsView extends View {
      *
      * @param stepsBeanList 流程步数
      */
-    public void setStepNum(List<StepBean> stepsBeanList) {
+    public void setStepNum(List<StepBean> stepsBeanList, int today) {
         if (stepsBeanList == null) {
             return;
         }
         mStepBeanList = stepsBeanList;
         for (int i = 0; i < mStepBeanList.size(); i++) {
-            if (mStepBeanList.get(i).getState() == StepBean.STEP_UNDO) {
+            if (mStepBeanList.get(i).getNumber() == today) {
                 mPosition = i;
                 break;
             }

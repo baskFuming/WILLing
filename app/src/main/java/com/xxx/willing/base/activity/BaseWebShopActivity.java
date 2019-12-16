@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -18,9 +19,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.google.gson.Gson;
 import com.xxx.willing.R;
 import com.xxx.willing.model.http.bean.GviBean;
 import com.xxx.willing.model.http.bean.WalletAccountBean;
+import com.xxx.willing.model.http.js.ShopJsVo;
 import com.xxx.willing.model.sp.SharedConst;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.ui.wallet.activity.WalletCoinDetailActivity;
@@ -36,7 +39,7 @@ import butterknife.BindView;
 public class BaseWebShopActivity extends BaseTitleActivity {
 
     public static void actionStart(Activity activity, String webUrl, String title, int id) {
-        Intent intent = new Intent(activity, BaseWebActivity.class);
+        Intent intent = new Intent(activity, BaseWebShopActivity.class);
         intent.putExtra("webUrl", webUrl);
         intent.putExtra("title", title);
         intent.putExtra("id", id);
@@ -95,7 +98,7 @@ public class BaseWebShopActivity extends BaseTitleActivity {
         } catch (Exception e) {
             launcher = "zh";
         }
-        mWebView.loadUrl(webUrl + "?goods" + "language=" + launcher + "&id=" + id + "&token=" + token);
+        mWebView.loadUrl(webUrl + "?language=" + launcher + "&id=" + id + "&token=" + token);
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -109,6 +112,18 @@ public class BaseWebShopActivity extends BaseTitleActivity {
             }
         });
         mWebView.setWebChromeClient(new WebChromeClient() {
+
+            @Override
+            public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+                try {
+                    ShopJsVo shopJsVo = new Gson().fromJson(message, ShopJsVo.class);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return super.onJsAlert(view, url, message, result);
+            }
+
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 if (newProgress == 100) {

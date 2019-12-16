@@ -131,22 +131,22 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
         mPhone.setText(phone);
         GlideUtil.loadCircle(getContext(), icon, mIcon);
         switch (star) {
-            case 0:
+            case 1:
                 mLevel.setImageResource(R.mipmap.level_0);
                 break;
-            case 1:
+            case 2:
                 mLevel.setImageResource(R.mipmap.level_1);
                 break;
-            case 2:
+            case 3:
                 mLevel.setImageResource(R.mipmap.level_2);
                 break;
-            case 3:
+            case 4:
                 mLevel.setImageResource(R.mipmap.level_3);
                 break;
-            case 4:
+            case 5:
                 mLevel.setImageResource(R.mipmap.level_4);
                 break;
-            case 5:
+            case 6:
                 mLevel.setImageResource(R.mipmap.level_5);
                 break;
         }

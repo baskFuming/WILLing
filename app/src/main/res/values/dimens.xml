@@ -9,7 +9,7 @@
 
     <!-- 自定义View -->
     <dimen name="step_small_circle">13.5dp</dimen>
-    <dimen name="step_big_circle">20dp</dimen>
+    <dimen name="step_big_circle">22dp</dimen>
     <dimen name="step_line_width">34.5dp</dimen>
     <dimen name="step_line_height">2dp</dimen>
     <dimen name="step_up_width">21.5dp</dimen>

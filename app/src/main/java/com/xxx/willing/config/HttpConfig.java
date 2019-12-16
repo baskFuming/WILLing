@@ -1,13 +1,11 @@
 package com.xxx.willing.config;
 
-import com.xxx.willing.model.utils.StringUtil;
-
 public class HttpConfig {
 
     /**
      * 正式服务器地址
      */
-    public static final String BASE_URL = "http://192.168.31.12/";
+    public static final String BASE_URL = "http://edtcchain.com/";
     public static final String BASE_URL_PATH = "/willing";
     /**
      * 测试服务器地址
@@ -26,8 +24,8 @@ public class HttpConfig {
     /**
      * 网页地址
      */
-    private static final String WEB_URL = "http://192.168.31.120:8081/";    //网页地址
-    public static final String SHOP_DETAIL_URL = WEB_URL + "/goods.html";    //商品详情页面
+    private static final String WEB_URL = "http://edtcchain.com/phone/#";    //网页地址
+    public static final String SHOP_DETAIL_URL = WEB_URL + "/goods";    //商品详情页面
     public static final String USE_HELP_URL = WEB_URL + "/help";                      //使用帮助地址
     public static final String JOIN_HELP_URL = WEB_URL + "/joinin";                   //加盟协议地址
     public static final String USER_AGREEMENT_URL = WEB_URL + "/useragreement";       //用户协议

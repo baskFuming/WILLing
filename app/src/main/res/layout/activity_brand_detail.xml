@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/main_bg"
+    android:orientation="vertical"
     tools:context=".ui.vote.activity.BrandDetailActivity">
 
     <include layout="@layout/include_title_bar" />
@@ -34,18 +34,19 @@
             android:paddingRight="16dp"
             android:paddingTop="6dp"
             android:textColor="#FFFFFF"
-            android:textSize="19dp" />
+            android:textSize="19dp"
+            android:visibility="gone" />
 
     </RelativeLayout>
 
     <TextView
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
         android:id="@+id/brand_detail_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:lineSpacingExtra="4dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:textColor="#FF666666"
         android:textSize="14dp" />
 

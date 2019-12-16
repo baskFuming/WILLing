@@ -72,8 +72,10 @@
                             android:id="@+id/img_level"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:layout_alignParentRight="true"
                             android:layout_gravity="center"
                             android:layout_marginLeft="11dp"
+                            android:layout_weight="1"
                             android:scaleType="fitXY"
                             android:src="@mipmap/level_0" />
 

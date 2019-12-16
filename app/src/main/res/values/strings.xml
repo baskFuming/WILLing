@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Willing</string>
-    <string name="app_name_test">Willing(内测)</string>
+    <string name="app_name">WILLing</string>
+    <string name="app_name_test">WILLing(内测)</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -287,7 +287,7 @@
     <string name="apply_time">加盟周期</string>
     <string name="apply_adderss">地点</string>
     <string name="apply_lines">投票额度</string>
-    <string name="apply_node">节点介绍</string>
+    <string name="apply_node">加盟商介绍</string>
     <string name="apply_mess">创始团队信息（*为必填项）</string>
     <string name="apply_role">人员角色</string>
     <string name="apply_user_name">姓名</string>
@@ -309,7 +309,7 @@
     <string name="ed_hint_10">点击上传</string>
     <string name="ed_hint_11">请输入人员简介</string>
     <string name="ed_agree">我已阅读并同意</string>
-    <string name="ed_agree_web">品值链合伙人申请协议</string>
+    <string name="ed_agree_web">WILLing加盟申请协议</string>
     <string name="join_agree_web">加盟申请协议</string>
     <string name="update_card">证件照上传</string>
     <string name="card_positive">二代身份证正面</string>
@@ -326,7 +326,7 @@
     <string name="total_vote">总投票额：</string>
     <string name="total_release">总释放额：</string>
     <string name="join_campaign">加盟竞选</string>
-    <string name="votes">已经获票数：</string>
+    <string name="votes">已获票数：</string>
     <string name="vote_btn">投票</string>
     <string name="vote_end">距离投票结束时间：</string>
     <string name="vote_status">进行中</string>
@@ -448,7 +448,7 @@
     <string name="brand_detail_title">品牌介绍</string>
     <string name="vote_success" tools:ignore="ExtraTranslation">投票成功</string>
     <string name="join_brand_name">所属品牌</string>
-    <string name="node_introduce">节点介绍</string>
+    <string name="node_introduce">加盟商介绍</string>
 
     <string-array name="asset_record_left">
         <item>全部</item>
@@ -485,7 +485,7 @@
     <string name="please_chose_date">请选择加盟周期</string>
     <string name="join_busincc">加盟商</string>
     <string name="address_dafault_null">地址不能为空</string>
-    <string name="node_dafault_null">节点介绍不能为空</string>
+    <string name="node_dafault_null">加盟商介绍不能为空</string>
     <string name="please_read_agree">请先阅读协议</string>
     <string name="please_update_photo">请先上传宣传照片</string>
     <string name="regist_user_help">用户协议</string>

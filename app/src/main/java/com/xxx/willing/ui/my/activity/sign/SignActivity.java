@@ -135,16 +135,12 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                         int end = days > 7 ? days : 7;
                         for (int i = 1; i <= end; i++) {
                             int status;
-                            if (i >= days) {
-                                status = 0;
+                            if (i < days) {
+                                status = 1;
+                            } else if (i == days && todaySign) {
+                                status = 1;
                             } else {
-                                status = 1;
-                            }
-
-                            if (todaySign && i == days) {
-                                status = 1;
-                            } else if (!todaySign && i == days - 1) {
-                                status = 1;
+                                status = 0;
                             }
 
                             int icon = 0;
@@ -164,7 +160,7 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                             }
                         }
                         SignActivity.this.runOnUiThread(() -> {
-                            mStepView.setStepNum(list);
+                            mStepView.setStepNum(list, days);
                             if (todaySign) {
                                 mSignBtn.setText("已连续签到" + days + "天");
                                 mSignBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
@@ -178,107 +174,113 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                     }
                     return Api.getInstance().getTaskInfo();
                 })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiCallback<List<TaskInfoBean>>(this) {
+                .
 
-                    @Override
-                    public void onSuccess(BaseBean<List<TaskInfoBean>> bean) {
-                        if (bean != null) {
-                            List<TaskInfoBean> list = bean.getData();
-                            int progress = days;
-                            if (list != null && list.size() >= 3) {
-                                boolean b1 = checkTask(list.get(0));//签到
-                                boolean b2 = checkTask(list.get(1));//投票
-                                boolean b3 = checkTask(list.get(2));//邀请
-                                if (b1) {
-                                    if (b2) {
-                                        set2True();
-                                        if (b3) {
-                                            set3True();
+                        subscribeOn(Schedulers.io())
+                .
+
+                        observeOn(AndroidSchedulers.mainThread())
+                .
+
+                        subscribe(new ApiCallback<List<TaskInfoBean>>(this) {
+
+                            @Override
+                            public void onSuccess(BaseBean<List<TaskInfoBean>> bean) {
+                                if (bean != null) {
+                                    List<TaskInfoBean> list = bean.getData();
+                                    int progress = days;
+                                    if (list != null && list.size() >= 3) {
+                                        boolean b1 = checkTask(list.get(0));//签到
+                                        boolean b2 = checkTask(list.get(1));//投票
+                                        boolean b3 = checkTask(list.get(2));//邀请
+                                        if (b1) {
+                                            if (b2) {
+                                                set2True();
+                                                if (b3) {
+                                                    set3True();
+                                                } else {
+                                                    set3False();
+                                                }
+                                            } else {
+                                                set2False();
+                                                set3Default();
+                                            }
                                         } else {
-                                            set3False();
+                                            set2Default();
+                                            set3Default();
+                                        }
+                                        if (b2) {
+                                            progress += 7;
+                                        }
+                                        if (b3) {
+                                            progress += 7;
                                         }
                                     } else {
-                                        set2False();
+                                        set2Default();
                                         set3Default();
                                     }
-                                } else {
-                                    set2Default();
-                                    set3Default();
+                                    mProgress.setMax(21);
+                                    mProgress.setProgress(progress);
                                 }
-                                if (b2) {
-                                    progress += 7;
-                                }
-                                if (b3) {
-                                    progress += 7;
-                                }
-                            } else {
-                                set2Default();
-                                set3Default();
                             }
-                            mProgress.setMax(21);
-                            mProgress.setProgress(progress);
-                        }
-                    }
 
-                    private void set2False() {
-                        mVoteBtn.setText("去投票");
-                        mVoteBtn.setEnabled(true);
-                        mVoteBtn.setBackgroundResource(R.drawable.selector_btn_login);
-                    }
+                            private void set2False() {
+                                mVoteBtn.setText("去投票");
+                                mVoteBtn.setEnabled(true);
+                                mVoteBtn.setBackgroundResource(R.drawable.selector_btn_login);
+                            }
 
-                    private void set2Default() {
-                        mVoteBtn.setText("去投票");
-                        mVoteBtn.setEnabled(false);
-                        mVoteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
-                    }
+                            private void set2Default() {
+                                mVoteBtn.setText("去投票");
+                                mVoteBtn.setEnabled(false);
+                                mVoteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
+                            }
 
-                    private void set2True() {
-                        mVoteBtn.setText("已完成");
-                        mVoteBtn.setEnabled(false);
-                        mVoteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
-                    }
+                            private void set2True() {
+                                mVoteBtn.setText("已完成");
+                                mVoteBtn.setEnabled(false);
+                                mVoteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
+                            }
 
-                    private void set3False() {
-                        mInviteBtn.setText("邀请好友");
-                        mInviteBtn.setEnabled(true);
-                        mInviteBtn.setBackgroundResource(R.drawable.selector_btn_login);
-                    }
+                            private void set3False() {
+                                mInviteBtn.setText("邀请好友");
+                                mInviteBtn.setEnabled(true);
+                                mInviteBtn.setBackgroundResource(R.drawable.selector_btn_login);
+                            }
 
-                    private void set3Default() {
-                        mInviteBtn.setText("邀请好友");
-                        mInviteBtn.setEnabled(false);
-                        mInviteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
-                    }
+                            private void set3Default() {
+                                mInviteBtn.setText("邀请好友");
+                                mInviteBtn.setEnabled(false);
+                                mInviteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
+                            }
 
-                    private void set3True() {
-                        mInviteBtn.setText("已完成");
-                        mInviteBtn.setEnabled(false);
-                        mInviteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
-                    }
+                            private void set3True() {
+                                mInviteBtn.setText("已完成");
+                                mInviteBtn.setEnabled(false);
+                                mInviteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
+                            }
 
-                    private boolean checkTask(TaskInfoBean taskInfoBean) {
-                        return taskInfoBean.getStatus() == 1;
-                    }
+                            private boolean checkTask(TaskInfoBean taskInfoBean) {
+                                return taskInfoBean.getStatus() == 1;
+                            }
 
-                    @Override
-                    public void onError(int errorCode, String errorMessage) {
-                        ToastUtil.showToast(errorMessage);
-                    }
+                            @Override
+                            public void onError(int errorCode, String errorMessage) {
+                                ToastUtil.showToast(errorMessage);
+                            }
 
-                    @Override
-                    public void onStart(Disposable d) {
-                        super.onStart(d);
-                        showLoading();
-                    }
+                            @Override
+                            public void onStart(Disposable d) {
+                                super.onStart(d);
+                                showLoading();
+                            }
 
-                    @Override
-                    public void onEnd() {
-                        super.onEnd();
-                        hideLoading();
-                    }
-                });
+                            @Override
+                            public void onEnd() {
+                                super.onEnd();
+                                hideLoading();
+                            }
+                        });
     }
 
     /**

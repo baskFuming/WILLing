@@ -36,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="注：第一张图片会作为节点的封面"
+                    android:text="注：第一张图片会作为加盟商的封面"
                     android:textColor="#666666"
                     android:textSize="14dp" />
 

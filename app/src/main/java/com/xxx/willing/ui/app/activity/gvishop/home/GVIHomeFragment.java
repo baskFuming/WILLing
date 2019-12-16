@@ -47,6 +47,8 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
     SwipeRefreshLayout mRefresh;
     @BindView(R.id.ed_search)
     EditText mEditSearch;
+//    @BindView(R.id.gvi_search)
+//    IconCenterEditText mSearch;
 
     private int page = UIConfig.PAGE_DEFAULT;
     private GviAdapter adapter;
@@ -66,6 +68,7 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
         mRefresh.setOnRefreshListener(this);
         adapter.setOnClickListener(this);
         adapter.setOnLoadMoreListener(this, mRecycler);
+
 
         loadData();
     }

@@ -19,9 +19,9 @@
         android:paddingRight="@dimen/activity_right_margin">
 
         <LinearLayout
-            android:layout_marginBottom="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
             android:background="@mipmap/team_bg"
             android:orientation="vertical"
             android:paddingLeft="@dimen/activity_left_margin"
@@ -64,11 +64,10 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_marginBottom="14dp"
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                >
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="14dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -100,16 +99,17 @@
                     android:textColor="#ffffffff"
                     android:textSize="17dp" />
             </RelativeLayout>
+
             <TextView
                 android:id="@+id/date_end_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
                 android:text="@string/date_end_time"
                 android:textColor="#ffffffff"
-                android:textSize="11dp"
-                android:layout_marginBottom="15dp"
-                />
+                android:textSize="11dp" />
         </LinearLayout>
+
         <include layout="@layout/include_recycler" />
     </LinearLayout>
 </LinearLayout>

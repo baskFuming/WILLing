@@ -19,6 +19,7 @@ import com.xxx.willing.model.http.bean.PartnerBean;
 import com.xxx.willing.model.http.bean.PartnerListBean;
 import com.xxx.willing.model.http.bean.SearchShopBean;
 import com.xxx.willing.model.http.bean.ShopUser;
+import com.xxx.willing.model.http.bean.SignBean;
 import com.xxx.willing.model.http.bean.SignInfoBean;
 import com.xxx.willing.model.http.bean.TaskInfoBean;
 import com.xxx.willing.model.http.bean.TotalFranchiseeBean;
@@ -179,7 +180,7 @@ public interface ApiService {
 
     //签到
     @POST(HttpConfig.BASE_URL_PATH + "/sign")
-    Observable<BaseBean<BooleanBean>> sign();
+    Observable<BaseBean<SignBean>> sign();
 
     //申请加盟
     @POST(HttpConfig.BASE_URL_PATH + "/inFranchisees")

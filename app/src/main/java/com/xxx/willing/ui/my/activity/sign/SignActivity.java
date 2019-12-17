@@ -14,6 +14,7 @@ import com.xxx.willing.base.activity.BaseWebActivity;
 import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
+import com.xxx.willing.model.http.bean.SignBean;
 import com.xxx.willing.model.http.bean.SignInfoBean;
 import com.xxx.willing.model.http.bean.TaskInfoBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
@@ -85,6 +86,10 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
         mContent.setVisibility(View.VISIBLE);
         mContent.setText(getString(R.string.sign_task_rules));
 
+        //初始化
+        signPopWindow = SignPopWindow.getInstance(this);
+        signPopWindow.setCallback(this);
+
         //获取信息
         getInfo();
     }
@@ -129,7 +134,7 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                 .flatMap((Function<BaseBean<SignInfoBean>, Observable<BaseBean<List<TaskInfoBean>>>>) bean -> {
                     if (bean != null) {
                         SignInfoBean data = bean.getData();
-                        days = data.getDays();
+                        days = data.getDays() + 1;
                         todaySign = data.isTodaySign();
                         List<StepBean> list = new ArrayList<>();
                         int end = days > 7 ? days : 7;
@@ -176,113 +181,103 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                     }
                     return Api.getInstance().getTaskInfo();
                 })
-                .
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiCallback<List<TaskInfoBean>>(this) {
 
-                        subscribeOn(Schedulers.io())
-                .
-
-                        observeOn(AndroidSchedulers.mainThread())
-                .
-
-                        subscribe(new ApiCallback<List<TaskInfoBean>>(this) {
-
-                            @Override
-                            public void onSuccess(BaseBean<List<TaskInfoBean>> bean) {
-                                if (bean != null) {
-                                    List<TaskInfoBean> list = bean.getData();
-                                    int progress = days;
-                                    if (list != null && list.size() >= 3) {
-                                        boolean b1 = checkTask(list.get(0));//签到
-                                        boolean b2 = checkTask(list.get(1));//投票
-                                        boolean b3 = checkTask(list.get(2));//邀请
-                                        if (b1) {
-                                            if (b2) {
-                                                set2True();
-                                                if (b3) {
-                                                    set3True();
-                                                } else {
-                                                    set3False();
-                                                }
-                                            } else {
-                                                set2False();
-                                                set3Default();
-                                            }
-                                        } else {
-                                            set2Default();
-                                            set3Default();
-                                        }
-                                        if (b2) {
-                                            progress += 7;
-                                        }
+                    @Override
+                    public void onSuccess(BaseBean<List<TaskInfoBean>> bean) {
+                        if (bean != null) {
+                            List<TaskInfoBean> list = bean.getData();
+                            int progress = days > 7 ? 7 : days;
+                            if (list != null && list.size() >= 3) {
+                                boolean b1 = checkTask(list.get(2));//签到
+                                boolean b2 = checkTask(list.get(0));//投票
+                                boolean b3 = checkTask(list.get(1));//邀请
+                                if (b1) {
+                                    if (b2) {
+                                        progress += 7;
+                                        set2True();
                                         if (b3) {
                                             progress += 7;
+                                            set3True();
+                                        } else {
+                                            set3False();
                                         }
                                     } else {
-                                        set2Default();
+                                        set2False();
                                         set3Default();
                                     }
-                                    mProgress.setMax(21);
-                                    mProgress.setProgress(progress);
+                                } else {
+                                    set2Default();
+                                    set3Default();
                                 }
+                            } else {
+                                set2Default();
+                                set3Default();
                             }
+                            mProgress.setMax(21);
+                            mProgress.setProgress(progress);
+                        }
+                    }
 
-                            private void set2False() {
-                                mVoteBtn.setText("去投票");
-                                mVoteBtn.setEnabled(true);
-                                mVoteBtn.setBackgroundResource(R.drawable.selector_btn_login);
-                            }
+                    private void set2False() {
+                        mVoteBtn.setText("去投票");
+                        mVoteBtn.setEnabled(true);
+                        mVoteBtn.setBackgroundResource(R.drawable.selector_btn_login);
+                    }
 
-                            private void set2Default() {
-                                mVoteBtn.setText("去投票");
-                                mVoteBtn.setEnabled(false);
-                                mVoteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
-                            }
+                    private void set2Default() {
+                        mVoteBtn.setText("去投票");
+                        mVoteBtn.setEnabled(false);
+                        mVoteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
+                    }
 
-                            private void set2True() {
-                                mVoteBtn.setText("已完成");
-                                mVoteBtn.setEnabled(false);
-                                mVoteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
-                            }
+                    private void set2True() {
+                        mVoteBtn.setText("已完成");
+                        mVoteBtn.setEnabled(false);
+                        mVoteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
+                    }
 
-                            private void set3False() {
-                                mInviteBtn.setText("邀请好友");
-                                mInviteBtn.setEnabled(true);
-                                mInviteBtn.setBackgroundResource(R.drawable.selector_btn_login);
-                            }
+                    private void set3False() {
+                        mInviteBtn.setText("邀请好友");
+                        mInviteBtn.setEnabled(true);
+                        mInviteBtn.setBackgroundResource(R.drawable.selector_btn_login);
+                    }
 
-                            private void set3Default() {
-                                mInviteBtn.setText("邀请好友");
-                                mInviteBtn.setEnabled(false);
-                                mInviteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
-                            }
+                    private void set3Default() {
+                        mInviteBtn.setText("邀请好友");
+                        mInviteBtn.setEnabled(false);
+                        mInviteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
+                    }
 
-                            private void set3True() {
-                                mInviteBtn.setText("已完成");
-                                mInviteBtn.setEnabled(false);
-                                mInviteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
-                            }
+                    private void set3True() {
+                        mInviteBtn.setText("已完成");
+                        mInviteBtn.setEnabled(false);
+                        mInviteBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));
+                    }
 
-                            private boolean checkTask(TaskInfoBean taskInfoBean) {
-                                return taskInfoBean.getStatus() == 1;
-                            }
+                    private boolean checkTask(TaskInfoBean taskInfoBean) {
+                        return taskInfoBean.getStatus() == 1;
+                    }
 
-                            @Override
-                            public void onError(int errorCode, String errorMessage) {
-                                ToastUtil.showToast(errorMessage);
-                            }
+                    @Override
+                    public void onError(int errorCode, String errorMessage) {
+                        ToastUtil.showToast(errorMessage);
+                    }
 
-                            @Override
-                            public void onStart(Disposable d) {
-                                super.onStart(d);
-                                showLoading();
-                            }
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        showLoading();
+                    }
 
-                            @Override
-                            public void onEnd() {
-                                super.onEnd();
-                                hideLoading();
-                            }
-                        });
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        hideLoading();
+                    }
+                });
     }
 
     /**
@@ -292,16 +287,16 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
         Api.getInstance().sign()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiCallback<BooleanBean>(this) {
+                .subscribe(new ApiCallback<SignBean>(this) {
 
                     @Override
-                    public void onSuccess(BaseBean<BooleanBean> bean) {
+                    public void onSuccess(BaseBean<SignBean> bean) {
                         if (bean != null) {
-                            BooleanBean data = bean.getData();
-                            if (data != null && data.isResult()) {
-                                if (signPopWindow == null || !signPopWindow.isShowing()) {
-                                    signPopWindow = SignPopWindow.getInstance(SignActivity.this);
-                                    signPopWindow.setCallback(SignActivity.this);
+                            SignBean data = bean.getData();
+                            if (data != null) {
+                                double signIncome = data.getSignIncome();
+                                if (signPopWindow != null) {
+                                    signPopWindow.setAmount(signIncome);
                                     signPopWindow.show();
                                 }
                                 getInfo();

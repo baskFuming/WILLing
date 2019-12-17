@@ -18,6 +18,7 @@ import com.androidkun.xtablayout.XTabLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
@@ -119,7 +120,7 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements Swipe
         mBalance.setText(bean.getAmount() + "");
         mUsa.setText("≈$" + bean.getUsaAmount());
         mAddress.setText(StringUtil.getAddress(bean.getAddress()));
-        GlideUtil.loadCircle(this, bean.getCoinIcon(), mIcon);
+        GlideUtil.loadCircle(this, HttpConfig.BASE_URL + bean.getCoinIcon(), mIcon);
 
         loadData();
     }

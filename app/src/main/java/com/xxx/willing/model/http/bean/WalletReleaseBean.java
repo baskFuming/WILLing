@@ -31,12 +31,6 @@ public class WalletReleaseBean {
                 return context.getString(R.string.item_wallet_release_type_1);
             case ApiType.WALLET_RELEASE_TYPE_2:
                 return context.getString(R.string.item_wallet_release_type_2);
-            case ApiType.WALLET_RELEASE_TYPE_3:
-                return context.getString(R.string.item_wallet_release_type_3);
-            case ApiType.WALLET_RELEASE_TYPE_4:
-                return context.getString(R.string.item_wallet_release_type_4);
-            case ApiType.WALLET_RELEASE_TYPE_5:
-                return context.getString(R.string.item_wallet_release_type_5);
             default:
                 return context.getString(R.string.item_wallet_release_type_0);
         }

@@ -36,11 +36,8 @@ public class ApiType {
     public static final int ORDER_COMMUNITY_COMPLAINING = 4; //已收货
 
     //订单交易状态
-    public static final int WALLET_RELEASE_TYPE_1 = 1;  //投票释放
-    public static final int WALLET_RELEASE_TYPE_2 = 2;    //团队投票收益
-    public static final int WALLET_RELEASE_TYPE_3 = 3;   //合伙人收益
-    public static final int WALLET_RELEASE_TYPE_4 = 4;   //加盟店收益
-    public static final int WALLET_RELEASE_TYPE_5 = 5;  //品牌收益
+    public static final int WALLET_RELEASE_TYPE_1 = 4;  //投票释放
+    public static final int WALLET_RELEASE_TYPE_2 = 5;    //团队投票收益
 
     //投票状态
     public static final int VOTE_PROGRESS_STATUE = 1;  //进行中

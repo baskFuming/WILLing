@@ -1,11 +1,15 @@
 package com.xxx.willing.ui.my.activity.window;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.View;
+import android.widget.TextView;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseActivity;
 import com.xxx.willing.base.dialog.BaseDialog;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -16,33 +20,39 @@ import butterknife.OnClick;
 public class SignPopWindow extends BaseDialog {
 
     private Callback callback;
-    private BaseActivity activity;
+    private double amount;
 
-    protected SignPopWindow(BaseActivity context) {
+    @BindView(R.id.sign_success)
+    TextView mSuccess;
+
+    private SignPopWindow(Context context) {
         super(context);
-        this.activity = context;
-
     }
 
-    public static SignPopWindow getInstance(BaseActivity context) {
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public static SignPopWindow getInstance(Context context) {
         return new SignPopWindow(context);
     }
-
 
     @Override
     protected int getLayoutId() {
         return R.layout.sign_pop_window;
     }
 
-
+    @SuppressLint("StringFormatInvalid")
     @Override
     protected void initData() {
         setCancelable(true); // 是否可以按“返回键”消失
+
+        mSuccess.setText(String.format(getContext().getString(R.string.sign_success), amount));
     }
 
-    @OnClick({R.id.window_dis,R.id.window_close})
-    public void OnClick(View view){
-        switch (view.getId()){
+    @OnClick({R.id.window_dis, R.id.window_close})
+    public void OnClick(View view) {
+        switch (view.getId()) {
             case R.id.window_dis:
                 dismiss();
                 break;

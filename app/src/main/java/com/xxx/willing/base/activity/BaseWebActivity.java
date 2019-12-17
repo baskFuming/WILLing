@@ -75,7 +75,7 @@ public class BaseWebActivity extends BaseTitleActivity {
         webSetting.setJavaScriptEnabled(true);  //支持js
         webSetting.setJavaScriptCanOpenWindowsAutomatically(true);  //支持弹窗
         webSetting.setBlockNetworkImage(false);
-        mWebView.post(() -> webSetting.setTextZoom(getWindow().getDecorView().getWidth() / 375 * 100));
+//        mWebView.post(() -> webSetting.setTextZoom(getWindow().getDecorView().getWidth() / 375 * 100));
         webSetting.setCacheMode(WebSettings.LOAD_NO_CACHE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             webSetting.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);

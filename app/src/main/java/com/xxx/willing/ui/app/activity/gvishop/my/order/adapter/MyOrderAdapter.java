@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
+import com.xxx.willing.model.http.bean.MyOrderBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.utils.ApiType;
 import com.xxx.willing.model.utils.GlideUtil;
@@ -22,17 +23,16 @@ import java.util.List;
  * @date 2019-12-04
  */
 
-public class MyOrderAdapter extends BaseQuickAdapter<BaseBean, BaseViewHolder> {
+public class MyOrderAdapter extends BaseQuickAdapter<MyOrderBean, BaseViewHolder> {
 
-    private int status;
 
-    public MyOrderAdapter(@Nullable List<BaseBean> data) {
+    public MyOrderAdapter(@Nullable List<MyOrderBean> data) {
         super(R.layout.my_order_item, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, BaseBean item) {
-        helper.setText(R.id.order_number, mContext.getString(R.string.order_number) + "")//订单编号
+    protected void convert(BaseViewHolder helper, MyOrderBean item) {
+        helper.setText(R.id.order_number, mContext.getString(R.string.order_number) + item.getOrderNum())//订单编号
                 .setText(R.id.order_goods_name, "")                                      //品牌名
                 .setText(R.id.order_pay_price_account, "" + "GVI")                       //支付GVI数量
                 .setText(R.id.order_pay_price, "")                                       //CNY数量
@@ -55,38 +55,38 @@ public class MyOrderAdapter extends BaseQuickAdapter<BaseBean, BaseViewHolder> {
         mpay.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         GlideUtil.load(mContext, "", helper.getView(R.id.order_goods_icon));//品牌图片
         //订单状态
-        if (status == ApiType.ORDER_COMMUNITY_ALL) {                            //全部状态
+        if (item.getStatus() == ApiType.ORDER_COMMUNITY_ALL) {                            //全部状态
             mStatus.setVisibility(View.GONE);
             //全部订单状态判断
-            if (status == ApiType.ORDER_COMMUNITY_UNPAID) { //待付款
+            if (item.getStatus() == ApiType.ORDER_COMMUNITY_UNPAID) { //待付款
                 mStatus.setText(mContext.getString(R.string.order_un_pay));
-            } else if (status == ApiType.ORDER_COMMUNITY_DELIVERY) { //待发货
+            } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_DELIVERY) { //待发货
                 mStatus.setText(mContext.getString(R.string.order_un_delivery));
                 mCancleOrder.setVisibility(View.GONE);
                 mPayOrder.setVisibility(View.GONE);
                 mDelivery.setVisibility(View.VISIBLE);
-            } else if (status == ApiType.ORDER_COMMUNITY_GOODS) { //待收货
+            } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_GOODS) { //待收货
                 mStatus.setText(mContext.getString(R.string.order_merchants));
                 mCancleOrder.setVisibility(View.GONE);
                 mPayOrder.setVisibility(View.GONE);
                 mConfirm.setVisibility(View.VISIBLE);
-            } else if (status == ApiType.ORDER_COMMUNITY_COMPLAINING) { //已收货
+            } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_COMPLAINING) { //已收货
                 mStatus.setText(mContext.getString(R.string.order_complete));
                 helper.getView(R.id.order_bottom_click).setVisibility(View.GONE);
             }
-        } else if (status == ApiType.ORDER_COMMUNITY_UNPAID) {                  //待付款
+        } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_UNPAID) {                  //待付款
             mStatus.setText(mContext.getString(R.string.order_un_pay));
-        } else if (status == ApiType.ORDER_COMMUNITY_DELIVERY) {                //待发货
+        } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_DELIVERY) {                //待发货
             mStatus.setText(mContext.getString(R.string.order_un_delivery));
             mCancleOrder.setVisibility(View.GONE);
             mPayOrder.setVisibility(View.GONE);
             mDelivery.setVisibility(View.VISIBLE);
-        } else if (status == ApiType.ORDER_COMMUNITY_GOODS) {                   //待收货
+        } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_GOODS) {                   //待收货
             mStatus.setText(mContext.getString(R.string.order_merchants));
             mCancleOrder.setVisibility(View.GONE);
             mPayOrder.setVisibility(View.GONE);
             mConfirm.setVisibility(View.VISIBLE);
-        } else if (status == ApiType.ORDER_COMMUNITY_COMPLAINING) {              //已收货
+        } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_COMPLAINING) {              //已收货
             mStatus.setText(mContext.getString(R.string.order_complete));
             helper.getView(R.id.order_bottom_click).setVisibility(View.GONE);   //底部按钮隐藏
         }

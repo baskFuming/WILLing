@@ -11,7 +11,13 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.UIConfig;
+import com.xxx.willing.model.http.Api;
+import com.xxx.willing.model.http.ApiCallback;
+import com.xxx.willing.model.http.bean.MyOrderBean;
+import com.xxx.willing.model.http.bean.WalletMarketBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
+import com.xxx.willing.model.http.bean.base.PageBean;
+import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.activity.gvishop.my.order.adapter.MyOrderAdapter;
 import com.xxx.willing.ui.app.activity.gvishop.my.order.window.MyOrderPop;
 import com.xxx.willing.ui.wallet.adapter.WalletMarketAdapter;
@@ -20,6 +26,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author FM
@@ -56,7 +65,7 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
     private int status;
     private String statusStr;
     private int page = UIConfig.PAGE_DEFAULT;
-    private List<BaseBean> mlist = new ArrayList<>();
+    private List<MyOrderBean> mlist = new ArrayList<>();
     private MyOrderAdapter mAdapter;
     private MyOrderPop myOrderPop;
 
@@ -95,7 +104,6 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
 
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-        BaseBean bean = mlist.get(position);
         switch (view.getId()) {
             case R.id.order_cancel_btn: //待付款取消订单
                 if (myOrderPop != null) {
@@ -118,6 +126,73 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
      * @Model 全部订单
      */
     private void loadDate() {
+        Api.getInstance().myOrder(status, page, UIConfig.PAGE_SIZE)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiCallback<PageBean<MyOrderBean>>(getActivity()) {
+                    @Override
+                    public void onSuccess(BaseBean<PageBean<MyOrderBean>> bean) {
+                        if (bean == null) {
+                            mNotData.setVisibility(View.VISIBLE);
+                            mRecycler.setVisibility(View.GONE);
+                            mAdapter.loadMoreEnd(true);
+                            return;
+                        }
+                        PageBean<MyOrderBean> data = bean.getData();
+                        if (data == null) {
+                            mNotData.setVisibility(View.VISIBLE);
+                            mRecycler.setVisibility(View.GONE);
+                            mAdapter.loadMoreEnd(true);
+                            return;
+                        }
+                        List<MyOrderBean> list = data.getList();
+                        if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
+                            mNotData.setVisibility(View.VISIBLE);
+                            mRecycler.setVisibility(View.GONE);
+                            mAdapter.loadMoreEnd(true);
+                            return;
+                        }
+
+                        mNotData.setVisibility(View.GONE);
+                        mRecycler.setVisibility(View.VISIBLE);
+                        if (page == UIConfig.PAGE_DEFAULT) {
+                            mlist.clear();
+                        }
+
+                        mlist.addAll(list);
+                        if (list.size() < UIConfig.PAGE_SIZE) {
+                            mAdapter.loadMoreEnd(true);
+                        } else {
+                            mAdapter.loadMoreComplete();
+                        }
+                        mAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onError(int errorCode, String errorMessage) {
+                        if (mlist.size() == 0) {
+                            mNotData.setVisibility(View.VISIBLE);
+                            mRecycler.setVisibility(View.GONE);
+                        }
+                        ToastUtil.showToast(errorMessage);
+                    }
+
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        if (mRefresh != null && page == UIConfig.PAGE_DEFAULT) {
+                            mRefresh.setRefreshing(true);
+                        }
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        if (mRefresh != null) {
+                            mRefresh.setRefreshing(false);
+                        }
+                    }
+                });
     }
 
     /**

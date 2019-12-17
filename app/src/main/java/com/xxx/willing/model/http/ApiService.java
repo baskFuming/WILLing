@@ -13,6 +13,7 @@ import com.xxx.willing.model.http.bean.JoinInfoBean;
 import com.xxx.willing.model.http.bean.LoginBean;
 import com.xxx.willing.model.http.bean.MemberAssetBean;
 import com.xxx.willing.model.http.bean.MessageBean;
+import com.xxx.willing.model.http.bean.MyOrderBean;
 import com.xxx.willing.model.http.bean.MyTeamBean;
 import com.xxx.willing.model.http.bean.MyVoteBean;
 import com.xxx.willing.model.http.bean.PartnerBean;
@@ -420,4 +421,12 @@ public interface ApiService {
             @Field("score") String score
     );
 
+    //我的订单
+    @FormUrlEncoded
+    @POST(HttpConfig.BASE_URL_PATH + "/myOrder")
+    Observable<BaseBean<PageBean<MyOrderBean>>> myOrder(
+            @Field("status") int status,
+            @Field("pageNum") int pageNum,
+            @Field("pageSize") int pageSize
+    );
 }

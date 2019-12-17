@@ -1,5 +1,6 @@
 package com.xxx.willing.ui.app.activity.gvishop.my.order.window;
 
+import android.content.Context;
 import android.view.View;
 
 import com.xxx.willing.R;
@@ -17,16 +18,14 @@ import butterknife.OnClick;
 public class MyOrderPop extends BaseDialog {
 
     private Callback callback;
-    private BaseActivity activity;
     private String orderStr;
 
-    public static MyOrderPop getInstance(BaseActivity context) {
+    public static MyOrderPop getInstance(Context context) {
         return new MyOrderPop(context);
     }
 
-    private MyOrderPop(BaseActivity context) {
+    private MyOrderPop(Context context) {
         super(context);
-        this.activity = context;
     }
 
     @Override

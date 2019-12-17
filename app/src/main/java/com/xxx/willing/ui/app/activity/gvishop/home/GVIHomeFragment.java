@@ -155,6 +155,7 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
                 });
     }
 
+
     //查询商品
     private void loadSearch() {
         Api.getInstance().getCommodities(edSearchName, page, UIConfig.PAGE_SIZE)
@@ -164,8 +165,11 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
                     @Override
                     public void onSuccess(BaseBean<PageBean<SearchShopBean>> bean) {
                         if (bean != null) {
-                            mSearch.setText("");
+                            for (int i = 0; i < mList.size(); i++) {
+                                
+                            }
                         }
+                        mSearch.setText("");
                     }
 
                     @Override

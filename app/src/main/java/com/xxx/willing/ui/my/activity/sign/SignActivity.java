@@ -20,6 +20,7 @@ import com.xxx.willing.model.http.bean.TaskInfoBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.BooleanBean;
 import com.xxx.willing.model.utils.ToastUtil;
+import com.xxx.willing.ui.app.activity.vote.VoteJoinActivity;
 import com.xxx.willing.ui.my.activity.InviteFriendActivity;
 import com.xxx.willing.ui.my.activity.sign.view.StepBean;
 import com.xxx.willing.ui.my.activity.sign.view.StepsView;
@@ -112,8 +113,8 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
             case R.id.te_invite_friend:
                 InviteFriendActivity.actionStart(this);
                 break;
-            case R.id.te_go_vote:
-                MyVoteActivity.actionStart(this);
+            case R.id.te_go_vote:  //跳转到投票加盟
+                VoteJoinActivity.actionStart(this);
                 break;
         }
     }

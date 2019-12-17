@@ -75,6 +75,16 @@ public class LoginActivity extends BaseTitleActivity {
     protected void initData() {
         mReturn.setVisibility(View.GONE);
 
+        SharedPreferencesUtil instance = SharedPreferencesUtil.getInstance();
+        String account = instance.getString(SharedConst.CONSTANT_PASSWORD);
+        String password = instance.getString(SharedConst.CONSTANT_PASSWORD);
+        if (account != null && !account.isEmpty()) {
+            mAccountEdit.setText(account);
+        }
+        if (password != null && !password.isEmpty()) {
+            mPasswordEdit.setText(password);
+        }
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
 
@@ -180,6 +190,9 @@ public class LoginActivity extends BaseTitleActivity {
                             if (data != null) {
                                 ToastUtil.showToast(R.string.login_success);
                                 SharedPreferencesUtil util = SharedPreferencesUtil.getInstance();
+                                util.saveString(SharedConst.CONSTANT_PHONE, account);
+                                util.saveString(SharedConst.CONSTANT_PASSWORD, password);
+
                                 util.saveBoolean(SharedConst.IS_LOGIN, true);
                                 //x-token
                                 util.saveString(SharedConst.ENCRYPT_VALUE_TOKEN, data.getToken());

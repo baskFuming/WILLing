@@ -92,9 +92,9 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 MyTeamActivity.actionStart(getActivity());
                 break;
             case R.id.re_my_join://  加盟申请
-                Integer statusFran = instance.getInt(SharedConst.STATUS_FRAN);
+                Integer statusFran = instance.getInt(SharedConst.IS_VOTE_FRAN);
                 if (statusFran == ApiType.VOTE_SUCCESS_STATUS) {
-                    JoinDetailsActivity.actionStarts(getActivity(), instance.getInt(SharedConst.VALUE_FRAN_ID));
+                    JoinDetailsActivity.actionStarts(getActivity(), instance.getInt(SharedConst.VALUE_USER_FRAN_ID));
                 } else if (statusFran == ApiType.VOTE_PROGRESS_STATUS) {
                     ToastUtil.showToast("加盟申请审核中");
                 } else {
@@ -125,7 +125,7 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
         phone = instance.getString(SharedConst.VALUE_USER_PHONE);
         icon = instance.getString(SharedConst.VALUE_USER_ICON);
         int star = instance.getInt(SharedConst.VALUE_USER_STAR);
-        Integer statusFran = instance.getInt(SharedConst.STATUS_FRAN);
+        Integer statusFran = instance.getInt(SharedConst.IS_VOTE_FRAN);
 
         mName.setText(name);
         mPhone.setText(phone);

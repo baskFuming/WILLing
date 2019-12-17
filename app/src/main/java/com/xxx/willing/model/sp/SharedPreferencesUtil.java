@@ -97,15 +97,18 @@ public class SharedPreferencesUtil {
     public void cleanAll() {
         sharedPreferences.edit()
                 .remove(SharedConst.ENCRYPT_VALUE_TOKEN)
+
                 .remove(SharedConst.IS_LOGIN)
+                .remove(SharedConst.IS_VOTE_FRAN)
                 .remove(SharedConst.IS_SETTING_PAY_PSW)
-                .remove(SharedConst.VALUE_COUNTY_CODE)
-                .remove(SharedConst.VALUE_INVITE_CODE)
+
                 .remove(SharedConst.VALUE_USER_NAME)
                 .remove(SharedConst.VALUE_USER_PHONE)
                 .remove(SharedConst.VALUE_USER_ICON)
                 .remove(SharedConst.VALUE_USER_STAR)
                 .remove(SharedConst.VALUE_USER_ID)
+                .remove(SharedConst.VALUE_USER_INVITE_CODE)
+                .remove(SharedConst.VALUE_USER_FRAN_ID)
                 .apply();
     }
 }

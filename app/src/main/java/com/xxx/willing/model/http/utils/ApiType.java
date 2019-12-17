@@ -29,11 +29,11 @@ public class ApiType {
 
 
     //订单交易状态
-    public static final int ORDER_COMMUNITY_ALL = 0;  //全部
-    public static final int ORDER_COMMUNITY_UNPAID = 1;    //待付款
-    public static final int ORDER_COMMUNITY_DELIVERY = 2;   //待发货
-    public static final int ORDER_COMMUNITY_GOODS = 3;   //待收货
-    public static final int ORDER_COMMUNITY_COMPLAINING = 4; //已收货
+    public static final int ORDER_COMMUNITY_ALL = 4;         //全部
+    public static final int ORDER_COMMUNITY_UNPAID = 0;      //待付款
+    public static final int ORDER_COMMUNITY_DELIVERY = 1;     //待发货
+    public static final int ORDER_COMMUNITY_GOODS = 2;        //待收货
+    public static final int ORDER_COMMUNITY_COMPLAINING = 3;   //已收货
 
     //订单交易状态
     public static final int WALLET_RELEASE_TYPE_1 = 4;  //投票释放

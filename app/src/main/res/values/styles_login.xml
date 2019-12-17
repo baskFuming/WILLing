@@ -165,5 +165,4 @@
         <item name="android:hint">@string/search_shop</item>
     </style>
 
-
 </resources>

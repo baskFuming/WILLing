@@ -115,7 +115,9 @@ public class SearchEditText extends EditText implements View.OnFocusChangeListen
             if (imm.isActive()) {
                 imm.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
             }
-            listener.onSearchClick(v);
+            if (event.getAction() == KeyEvent.ACTION_UP) {
+                listener.onSearchClick(v);
+            }
         }
         return false;
     }

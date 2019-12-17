@@ -17,7 +17,6 @@ import com.xxx.willing.model.http.bean.MyTeamBean;
 import com.xxx.willing.model.http.bean.MyVoteBean;
 import com.xxx.willing.model.http.bean.PartnerBean;
 import com.xxx.willing.model.http.bean.PartnerListBean;
-import com.xxx.willing.model.http.bean.SearchShopBean;
 import com.xxx.willing.model.http.bean.ShopUser;
 import com.xxx.willing.model.http.bean.SignBean;
 import com.xxx.willing.model.http.bean.SignInfoBean;
@@ -352,8 +351,8 @@ public interface ApiService {
     Observable<BaseBean<List<GviBean>>> getShop();
 
     //查询商品
-    @GET(HttpConfig.BASE_URL_PATH + "//commodities")
-    Observable<BaseBean<PageBean<SearchShopBean>>> getCommodities(
+    @GET(HttpConfig.BASE_URL_PATH + "/commodities")
+    Observable<BaseBean<PageBean<GviBean.ListBean>>> getCommodities(
             @Query("name") String name,
             @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize

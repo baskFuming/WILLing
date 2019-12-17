@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_left_margin"
     android:paddingRight="@dimen/activity_right_margin">
+
     <!--不要删除只是展位图-->
     <EditText
         android:layout_width="0dp"
@@ -21,4 +22,10 @@
         style="@style/StyleEditText" />
 
     <include layout="@layout/include_recycler" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/search_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>

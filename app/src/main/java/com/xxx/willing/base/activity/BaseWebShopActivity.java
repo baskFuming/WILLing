@@ -21,6 +21,7 @@ import android.widget.ProgressBar;
 
 import com.google.gson.Gson;
 import com.xxx.willing.R;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.http.bean.GviBean;
 import com.xxx.willing.model.http.bean.WalletAccountBean;
 import com.xxx.willing.model.http.js.ShopJsVo;
@@ -38,17 +39,15 @@ import butterknife.BindView;
 
 public class BaseWebShopActivity extends BaseTitleActivity {
 
-    public static void actionStart(Activity activity, String webUrl, String title, int id) {
+    public static void actionStart(Activity activity, String title, int id) {
         Intent intent = new Intent(activity, BaseWebShopActivity.class);
-        intent.putExtra("webUrl", webUrl);
         intent.putExtra("title", title);
         intent.putExtra("id", id);
         activity.startActivity(intent);
     }
 
-    private void initBund() {
+    private void initBundle() {
         Intent intent = getIntent();
-        webUrl = intent.getStringExtra("webUrl");
         title = intent.getStringExtra("title");
         id = intent.getIntExtra("id", 0);
     }
@@ -57,10 +56,8 @@ public class BaseWebShopActivity extends BaseTitleActivity {
     WebView mWebView;
     @BindView(R.id.web_progress)
     ProgressBar mProgress;
-    private String webUrl;
     private String title;
     private int id;
-    private String token;
 
     @Override
     protected String initTitle() {
@@ -74,13 +71,13 @@ public class BaseWebShopActivity extends BaseTitleActivity {
 
     @Override
     protected void initData() {
-        initBund();
+        initBundle();
         initDate();
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     private void initDate() {
-        token = SharedPreferencesUtil.getInstance().getString(SharedConst.ENCRYPT_VALUE_TOKEN);
+        String token = SharedPreferencesUtil.getInstance().getString(SharedConst.ENCRYPT_VALUE_TOKEN);
         final WebSettings webSetting;
         webSetting = mWebView.getSettings();
         webSetting.setJavaScriptEnabled(true);  //支持js
@@ -98,7 +95,7 @@ public class BaseWebShopActivity extends BaseTitleActivity {
         } catch (Exception e) {
             launcher = "zh";
         }
-        mWebView.loadUrl(webUrl + "?language=" + launcher + "&id=" + id + "&token=" + token);
+        mWebView.loadUrl(HttpConfig.SHOP_DETAIL_URL + "?language=" + launcher + "&id=" + id + "&token=" + token);
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {

@@ -108,7 +108,7 @@ public class SearchEditText extends EditText implements View.OnFocusChangeListen
 
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
-        pressSearch = (keyCode ==KeyEvent.KEYCODE_ENTER);
+        pressSearch = (keyCode == KeyEvent.KEYCODE_ENTER);
         if (pressSearch && listener != null) {
             /*隐藏软键盘*/
             InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);

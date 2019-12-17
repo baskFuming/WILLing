@@ -152,13 +152,13 @@
 
     <style name="StyleEditText">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">37dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/bg_search_bar</item>
         <item name="android:drawablePadding">5dp</item>
         <item name="android:drawableStart">@mipmap/search_ed_bg</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:imeOptions">actionSearch</item>
-        <item name="android:padding">5dp</item>
+        <item name="android:padding">10dp</item>
         <item name="android:singleLine">true</item>
         <item name="android:textColorHint">@color/wallet_tab_default_color</item>
         <item name="android:textSize">14sp</item>

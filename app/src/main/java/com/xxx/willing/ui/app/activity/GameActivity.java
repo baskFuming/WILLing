@@ -231,11 +231,8 @@ public class GameActivity extends BaseActivity {
                             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
                                 mWebView.loadUrl("javascript:" + funName + "(" + false + ")");
                             } else {
-                                mWebView.evaluateJavascript("javascript:" + funName + "(" + false + ")", new ValueCallback<String>() {
-                                    @Override
-                                    public void onReceiveValue(String value) {
-                                        //此处为 js 返回的结果
-                                    }
+                                mWebView.evaluateJavascript("javascript:" + funName + "(" + false + ")", value -> {
+                                    //此处为 js 返回的结果
                                 });
                             }
                         }
@@ -248,11 +245,8 @@ public class GameActivity extends BaseActivity {
                             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
                                 mWebView.loadUrl("javascript:" + funName + "(" + false + ")");
                             } else {
-                                mWebView.evaluateJavascript("javascript:" + funName + "(" + false + ")", new ValueCallback<String>() {
-                                    @Override
-                                    public void onReceiveValue(String value) {
-                                        //此处为 js 返回的结果
-                                    }
+                                mWebView.evaluateJavascript("javascript:" + funName + "(" + false + ")", value -> {
+                                    //此处为 js 返回的结果
                                 });
                             }
                         }

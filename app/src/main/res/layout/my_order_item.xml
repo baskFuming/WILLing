@@ -23,6 +23,7 @@
             android:layout_marginBottom="10dp">
 
             <TextView
+                android:id="@+id/order_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -150,6 +151,7 @@
                 android:textSize="14dp" />
 
             <TextView
+                android:id="@+id/order_all_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -210,14 +212,18 @@
                 android:textColor="#ff666666"
                 android:textSize="12dp" />
         </RelativeLayout>
+
         <LinearLayout
+            android:id="@+id/order_bottom_click"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:background="#EFEFEF" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -248,7 +254,6 @@
                     android:textSize="17dp" />
 
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/order_un_delivery"
                     android:layout_width="99dp"
                     android:layout_height="30dp"
@@ -256,12 +261,13 @@
                     android:layout_marginRight="15dp"
                     android:background="@drawable/shap_delivery_order"
                     android:gravity="center"
-                    android:text="@string/order_un_delivery"
+                    android:text="@string/order_cancel_btn"
                     android:textColor="#fffe3848"
-                    android:textSize="17dp" />
+                    android:textSize="17dp"
+                    android:visibility="gone"
+                    />
 
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/order_confirm_btn"
                     android:layout_width="99dp"
                     android:layout_height="30dp"
@@ -269,7 +275,9 @@
                     android:gravity="center"
                     android:text="@string/order_confirm_btn"
                     android:textColor="#ffffffff"
-                    android:textSize="17dp" />
+                    android:textSize="17dp"
+                    android:visibility="gone"
+                    />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

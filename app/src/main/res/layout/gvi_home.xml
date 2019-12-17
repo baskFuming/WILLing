@@ -6,16 +6,15 @@
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_left_margin"
     android:paddingRight="@dimen/activity_right_margin">
-    <!--不要删除-->
+    <!--不要删除只是展位图-->
     <EditText
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         android:background="@null"
         android:cursorVisible="true"
         android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:layout_marginTop="20dp"
-        />
+        android:focusableInTouchMode="true" />
 
     <com.xxx.willing.view.SearchEditText
         android:id="@+id/gvi_search_shop1"

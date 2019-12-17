@@ -76,13 +76,15 @@ public class LoginActivity extends BaseTitleActivity {
         mReturn.setVisibility(View.GONE);
 
         SharedPreferencesUtil instance = SharedPreferencesUtil.getInstance();
-        String account = instance.getString(SharedConst.CONSTANT_PASSWORD);
+        String account = instance.getString(SharedConst.CONSTANT_PHONE);
         String password = instance.getString(SharedConst.CONSTANT_PASSWORD);
         if (account != null && !account.isEmpty()) {
             mAccountEdit.setText(account);
+            mAccountEdit.setSelection(account.length());
         }
         if (password != null && !password.isEmpty()) {
             mPasswordEdit.setText(password);
+            mPasswordEdit.setSelection(password.length());
         }
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);

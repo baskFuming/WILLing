@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnTextChanged;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -81,8 +82,6 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
             edSearchName = mSearch.getText().toString();
             if (edSearchName.isEmpty()) {
                 ToastUtil.showToast(getString(R.string.search_default_null));
-                mRefresh.setVisibility(View.VISIBLE);
-                mSearchRecycler.setVisibility(View.GONE);
             } else {
                 mRefresh.setVisibility(View.GONE);
                 mSearchRecycler.setVisibility(View.VISIBLE);
@@ -90,6 +89,14 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
                 loadSearch();
             }
         });
+    }
+
+    @OnTextChanged(R.id.gvi_search_shop1)
+    public void OnTextChanged(CharSequence charSequence) {
+        if (charSequence.length() == 0) {
+            mRefresh.setVisibility(View.VISIBLE);
+            mSearchRecycler.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -174,11 +181,11 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
                         }
                         mSearchList.addAll(list);
                         if (list.size() < UIConfig.PAGE_SIZE) {
-                            mAdapter.loadMoreEnd(true);
+                            mSearchAdapter.loadMoreEnd(true);
                         } else {
-                            mAdapter.loadMoreComplete();
+                            mSearchAdapter.loadMoreComplete();
                         }
-                        mAdapter.notifyDataSetChanged();
+                        mSearchAdapter.notifyDataSetChanged();
                     }
 
                     @Override

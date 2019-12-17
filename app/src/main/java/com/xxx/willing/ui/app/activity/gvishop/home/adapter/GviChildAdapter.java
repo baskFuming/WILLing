@@ -25,7 +25,7 @@ public class GviChildAdapter extends BaseQuickAdapter<GviBean.ListBean, BaseView
 
     @Override
     protected void convert(BaseViewHolder helper, GviBean.ListBean item) {
-        helper.setText(R.id.item_title, mContext.getString(R.string.item_phone_securities) + item.getPrice())
+        helper.setText(R.id.item_title, item.getName() + "￥" + item.getPrice())
                 .setText(R.id.item_price, item.getGviPrice() + "GVI");
         GlideUtil.load(mContext, item.getLogos(), helper.getView(R.id.item_img));
     }

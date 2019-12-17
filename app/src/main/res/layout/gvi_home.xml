@@ -18,6 +18,7 @@
         <com.xxx.willing.view.SearchEditText
             android:id="@+id/gvi_search_shop1"
             style="@style/StyleEditText" />
+
     </LinearLayout>
 
     <include layout="@layout/include_recycler" />
@@ -25,6 +26,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/search_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
 
 </LinearLayout>

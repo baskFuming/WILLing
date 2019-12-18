@@ -33,10 +33,10 @@ public class RankAdapter extends BaseQuickAdapter<RankBean, BaseViewHolder> {
         if (position == 0) {
             helper.getView(R.id.partner_level).setBackgroundResource(R.drawable.rank_1);
             mLevel.setText("1");
-        } else if (position == 2) {
+        } else if (position == 1) {
             helper.getView(R.id.partner_level).setBackgroundResource(R.drawable.rank_2);
             mLevel.setText("2");
-        } else if (position == 3) {
+        } else if (position == 2) {
             helper.getView(R.id.partner_level).setBackgroundResource(R.drawable.rank_3);
             mLevel.setText("3");
         }

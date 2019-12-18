@@ -23,6 +23,6 @@ public class WalletAccountAdapter extends BaseQuickAdapter<WalletAccountBean.Lis
                 .setText(R.id.item_wallet_account_number, item.getAmount() + "")
                 .setText(R.id.item_wallet_account_rmb, "≈$" + item.getUsaAmount());
 
-        GlideUtil.loadCircle(mContext, HttpConfig.BASE_URL + item.getCoinIcon(), helper.getView(R.id.item_wallet_account_icon));
+        GlideUtil.loadCoinCircle(mContext, HttpConfig.BASE_URL + item.getCoinIcon(),GlideUtil.WALLET_COIN_DEFAULT, helper.getView(R.id.item_wallet_account_icon));
     }
 }

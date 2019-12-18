@@ -21,7 +21,7 @@
 
     </LinearLayout>
 
-    <include layout="@layout/include_recycler" />
+    <include layout="@layout/include_shop_recycler" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/search_recycler"

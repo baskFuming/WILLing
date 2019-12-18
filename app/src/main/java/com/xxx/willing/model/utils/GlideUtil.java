@@ -22,6 +22,7 @@ import java.io.File;
  * Glide工具类
  */
 public class GlideUtil {
+    public static final int WALLET_COIN_DEFAULT = R.mipmap.coin_default;
 
     /**
      * 加载圆角图片
@@ -41,6 +42,12 @@ public class GlideUtil {
     public static void loadCircle(Context context, String url, final ImageView imageView) {
         if (context != null) {
             Util.loadCircleImage(Glide.with(context).load(url), context, imageView);
+        }
+    }
+
+    public static void loadCoinCircle(Context context, String url, int defaultImageId, final ImageView imageView) {
+        if (context != null) {
+            Util.loadCoinCircleImage(Glide.with(context).load(url), defaultImageId, context, imageView);
         }
     }
 
@@ -87,6 +94,25 @@ public class GlideUtil {
                         }
                     });
         }
+
+
+        //加载圆形
+        private static void loadCoinCircleImage(DrawableTypeRequest<?> drawableTypeRequest, int errorIcon, final Context context, final ImageView imageView) {
+            drawableTypeRequest.asBitmap()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .skipMemoryCache(true)
+                    .error(errorIcon)//设置缓存
+                    .into(new BitmapImageViewTarget(imageView) {
+                        @Override
+                        protected void setResource(Bitmap resource) {
+                            RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(context.getResources(), resource);
+                            circularBitmapDrawable.setCircular(true);
+                            imageView.setImageDrawable(circularBitmapDrawable);
+                        }
+                    });
+        }
+
+        //加载圆角
 
         //加载圆角
         private static void loadFilletImage(DrawableTypeRequest<?> drawableTypeRequest, final Context context, final ImageView imageView) {

@@ -36,8 +36,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
                         android:layout_marginTop="12dp"
+                        android:layout_marginRight="16dp"
                         android:background="@drawable/shape_back_item"
                         android:gravity="center_horizontal"
                         android:orientation="vertical">
@@ -73,8 +73,8 @@
                             android:layout_height="34dp"
                             android:layout_marginTop="20dp"
                             android:background="@drawable/shape_back_wallet_coin_detail"
-                            android:paddingEnd="15dp"
-                            android:paddingStart="15dp">
+                            android:paddingStart="15dp"
+                            android:paddingEnd="15dp">
 
                             <ImageView
                                 android:layout_width="wrap_content"
@@ -99,8 +99,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="30dp"
                             android:layout_marginTop="30dp"
+                            android:layout_marginBottom="30dp"
                             android:orientation="horizontal">
 
                             <Button
@@ -137,8 +137,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
                     android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"
                     android:orientation="vertical">
 
                     <com.androidkun.xtablayout.XTabLayout
@@ -172,7 +172,7 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:descendantFocusability="blocksDescendants">
 
                         <android.support.v7.widget.RecyclerView
@@ -184,7 +184,6 @@
                     </RelativeLayout>
 
                     <include layout="@layout/include_not_data" />
-
                 </FrameLayout>
 
             </android.support.v4.widget.NestedScrollView>

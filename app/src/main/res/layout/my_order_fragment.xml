@@ -7,6 +7,6 @@
     android:paddingLeft="@dimen/activity_left_margin"
     android:paddingRight="@dimen/activity_right_margin"
     >
-    <include layout="@layout/include_recycler"/>
+    <include layout="@layout/include_shop_recycler"/>
 
 </LinearLayout>

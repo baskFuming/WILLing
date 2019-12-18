@@ -34,10 +34,10 @@ public class PartnerApapter extends BaseQuickAdapter<PartnerBean, BaseViewHolder
         if (position == 0) {
             helper.getView(R.id.partner_level).setBackgroundResource(R.drawable.rank_1);
             mLevel.setText("Top1");
-        } else if (position == 2) {
+        } else if (position == 1) {
             helper.getView(R.id.partner_level).setBackgroundResource(R.drawable.rank_2);
             mLevel.setText("Top2");
-        } else if (position == 3) {
+        } else if (position == 2) {
             helper.getView(R.id.partner_level).setBackgroundResource(R.drawable.rank_3);
             mLevel.setText("Top3");
         }

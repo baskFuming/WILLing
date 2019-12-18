@@ -185,4 +185,11 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
                 });
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        mRefresh.post(() -> {
+            loadData();
+        });
+    }
 }

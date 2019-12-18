@@ -67,8 +67,8 @@ public class GVIMyFragment extends BaseFragment {
                     public void onSuccess(BaseBean<ShopUser> bean) {
                         if (bean != null) {
                             mName.setText(bean.getData().getUserName());
-                            mAccount.setText(bean.getData().getGviAmount()+"");
-                            GlideUtil.loadCircle(getActivity(), bean.getData().getImg(), mIcon);
+                            mAccount.setText(bean.getData().getGviAmount() + "");
+                            GlideUtil.loadCircle(getActivity(), String.valueOf(bean.getData().getImg()), mIcon);
                         }
                     }
 
@@ -91,9 +91,9 @@ public class GVIMyFragment extends BaseFragment {
                 });
     }
 
-
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        loadData();
     }
 }

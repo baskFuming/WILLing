@@ -1,5 +1,7 @@
 package com.xxx.willing.model.http.bean;
 
+import java.util.List;
+
 /**
  * Time: ${Date}
  * Author : mac
@@ -8,22 +10,22 @@ package com.xxx.willing.model.http.bean;
 public class RankBean {
 
     /**
-     * amount : 12
-     * nickname : 15100000010
+     * amount : 101000.0
+     * nickname : 18800000000
      * ranking : null
      * avatar : null
      */
 
-    private int amount;
+    private double amount;
     private String nickname;
     private Object ranking;
     private Object avatar;
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 

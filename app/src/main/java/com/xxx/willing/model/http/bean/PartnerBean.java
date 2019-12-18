@@ -1,20 +1,25 @@
 package com.xxx.willing.model.http.bean;
 
+import java.util.List;
+
 /**
  * Time: ${Date}
  * Author : mac
  * Des:
  */
 public class PartnerBean {
+
     /**
-     * level : 1
-     * price : 0
+     * level : 2
+     * nickName : 18800000000
+     * price : 101000.0
      * avatar : null
      * userId : 1
      */
 
     private int level;
-    private int price;
+    private String nickName;
+    private double price;
     private Object avatar;
     private int userId;
 
@@ -26,11 +31,19 @@ public class PartnerBean {
         this.level = level;
     }
 
-    public int getPrice() {
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -49,4 +62,5 @@ public class PartnerBean {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
 }

@@ -429,4 +429,26 @@ public interface ApiService {
             @Field("pageNum") int pageNum,
             @Field("pageSize") int pageSize
     );
+
+    //付款
+    @FormUrlEncoded
+    @POST(HttpConfig.BASE_URL_PATH + "/paymentOrder")
+    Observable<BaseBean<Object>> paymentOrder(
+            @Field("orderId") int orderId
+    );
+
+    //取消订单
+    @FormUrlEncoded
+    @POST(HttpConfig.BASE_URL_PATH + "/cancelOrder")
+    Observable<BaseBean<Object>> cancelOrder(
+            @Field("orderId") int orderId
+    );
+
+    //确认收货
+    @FormUrlEncoded
+    @POST(HttpConfig.BASE_URL_PATH + "/confirmOrder")
+    Observable<BaseBean<Object>> confirmOrder(
+            @Field("orderId") int orderId,
+            @Field("status") int status
+    );
 }

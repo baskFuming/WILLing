@@ -80,8 +80,7 @@ public class MyTeamActivity extends BaseTitleActivity implements SwipeRefreshLay
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        int userId = 0;
-        MyChildActivity.actionStart(this, userId);
+        MyChildActivity.actionStart(this, mList.get(position).getId());
     }
 
     @Override

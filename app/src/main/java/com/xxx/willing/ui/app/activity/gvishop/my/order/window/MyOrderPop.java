@@ -46,14 +46,14 @@ public class MyOrderPop extends BaseDialog {
                 break;
             case R.id.window_pay_order:
                 if (callback != null) {
-                    callback.callback(orderStr);
+                    callback.callback();
                 }
                 break;
         }
     }
 
     public interface Callback {
-        void callback(String orderStr);
+        void callback();
     }
 
     public void setCallback(Callback callback) {

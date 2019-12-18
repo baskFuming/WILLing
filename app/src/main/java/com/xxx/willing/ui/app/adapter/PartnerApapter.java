@@ -25,8 +25,8 @@ public class PartnerApapter extends BaseQuickAdapter<PartnerBean, BaseViewHolder
 
     @Override
     protected void convert(BaseViewHolder helper, PartnerBean item) {
-        helper.setText(R.id.partner_des, item.getUserId() + "")
-                .setText(R.id.partner_id, "ID：" + item.getLevel())
+        helper.setText(R.id.partner_des, item.getNickName() + "")
+                .setText(R.id.partner_id, "ID：" + item.getUserId())
                 .setText(R.id.partner_count, item.getPrice() + "");
         GlideUtil.loadCircle(mContext, String.valueOf(item.getAvatar()), helper.getView(R.id.partner_icon));
         TextView mLevel = helper.getView(R.id.partner_level);

@@ -2,6 +2,8 @@ package com.xxx.willing.model.http.bean;
 
 import com.xxx.willing.model.http.bean.base.PageBean;
 
+import java.util.List;
+
 /**
  * Time: ${Date}
  * Author : mac
@@ -10,15 +12,17 @@ import com.xxx.willing.model.http.bean.base.PageBean;
 public class TotalRankBean {
 
     /**
-     * reward : 15.600000000000001
-     * amount : 312
-     * list : {"pageNum":1,"pageSize":10,"totalSize":4,"totalPages":1,"list":[{"amount":12,"nickname":"15100000010","ranking":null,"avatar":null},{"amount":0,"nickname":"15100000000","ranking":null,"avatar":null},{"amount":0,"nickname":"15100000010","ranking":null,"avatar":null},{"amount":0,"nickname":"15100000020","ranking":null,"avatar":null}],"firstPage":true,"lastPage":true}
+     * reward : 5075.0
+     * date : 2019-12-22 23:59:59
+     * amount : 101500.0
+     * list : {"pageNum":1,"pageSize":20,"totalSize":4,"totalPages":1,"list":[{"amount":101000,"nickname":"18800000000","ranking":null,"avatar":null},{"amount":500,"nickname":"18800000001","ranking":null,"avatar":null}],"firstPage":true,"lastPage":true}
      */
 
     private double reward;
-    private int amount;
     private String date;
-    private PageBean<RankBean> bean;
+    private double amount;
+    private PageBean<RankBean> list;
+
 
     public double getReward() {
         return reward;
@@ -28,12 +32,11 @@ public class TotalRankBean {
         return date;
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public PageBean<RankBean> getBean() {
-        return bean;
+    public PageBean<RankBean> getList() {
+        return list;
     }
-
 }

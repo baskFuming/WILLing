@@ -88,7 +88,6 @@ public class CmpRankActivity extends BaseTitleActivity implements SwipeRefreshLa
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
         mRecycler.setAdapter(mAdapter);
         mRefresh.setOnRefreshListener(this);
-        mRefresh.setRefreshing(true);
         mAdapter.setOnLoadMoreListener(this, mRecycler);
         loadDate();
     }
@@ -139,13 +138,13 @@ public class CmpRankActivity extends BaseTitleActivity implements SwipeRefreshLa
                             mAdapter.loadMoreEnd(true);
                             return;
                         }
-                        int totalVoteAmount = data1.getAmount();
+                        double totalVoteAmount = data1.getAmount();
                         double totalVoteRelease = data1.getReward();
                         mTotalVote.setText(totalVoteAmount + "");
                         mTotalRelease.setText(totalVoteRelease + "");
                         mdate.setText(getString(R.string.date_end_time) + data1.getDate());
 
-                        PageBean<RankBean> data = data1.getBean();
+                        PageBean<RankBean> data = data1.getList();
                         if (data == null) {
                             mNoteDate.setVisibility(View.VISIBLE);
                             mRecycler.setVisibility(View.GONE);

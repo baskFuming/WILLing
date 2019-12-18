@@ -26,14 +26,14 @@ public class RankAdapter extends BaseQuickAdapter<RankBean, BaseViewHolder> {
     @Override
     protected void convert(BaseViewHolder helper, RankBean item) {
         helper.setText(R.id.user_account_id, item.getNickname())
-                .setText(R.id.account, item.getAmount());
+                .setText(R.id.account, item.getAmount() + "");
         GlideUtil.loadCircle(mContext, String.valueOf(item.getAvatar()), helper.getView(R.id.user_img));
         TextView mLevel = helper.getView(R.id.partner_level);
         int position = helper.getLayoutPosition();
         if (position == 0) {
             helper.getView(R.id.partner_level).setBackgroundResource(R.drawable.rank_1);
             mLevel.setText("1");
-        }else if (position == 2) {
+        } else if (position == 2) {
             helper.getView(R.id.partner_level).setBackgroundResource(R.drawable.rank_2);
             mLevel.setText("2");
         } else if (position == 3) {

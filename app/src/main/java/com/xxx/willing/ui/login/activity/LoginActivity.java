@@ -194,7 +194,7 @@ public class LoginActivity extends BaseTitleActivity {
                                 SharedPreferencesUtil util = SharedPreferencesUtil.getInstance();
                                 util.saveString(SharedConst.CONSTANT_PHONE, account);
                                 util.saveString(SharedConst.CONSTANT_PASSWORD, password);
-
+                                //是否登录
                                 util.saveBoolean(SharedConst.IS_LOGIN, true);
                                 //x-token
                                 util.saveString(SharedConst.ENCRYPT_VALUE_TOKEN, data.getToken());
@@ -207,7 +207,8 @@ public class LoginActivity extends BaseTitleActivity {
                                     EventBus.getDefault().post(EventBusConfig.EVENT_LOGIN);
                                     finish();
                                 } else {
-                                    MainActivity.actionStart(LoginActivity.this);
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//                                    MainActivity.actionStart(LoginActivity.this);
                                     finish();
                                 }
                             }

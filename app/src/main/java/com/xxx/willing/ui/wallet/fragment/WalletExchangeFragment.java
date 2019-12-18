@@ -86,26 +86,26 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
 
     @Override
     protected void initData() {
-        mBaseCheckWindow = WalletExchangeCheckWindow.getInstance(getContext(), mBaseList, (adapter, view, position) -> {
-            WalletCoinBean.ListBean listBean = mBaseList.get(position);
-            if (listBean.getCoinId() == mTargetList.get(targetPosition).getCoinId()) {
-                ToastUtil.showToast(getString(R.string.exchange_error_2));
-                return;
-            }
-            WalletExchangeFragment.this.basePosition = position;
-            updateParam();
-            mBaseCheckWindow.dismiss();
-        });
-        mTargetCheckWindow = WalletExchangeCheckWindow.getInstance(getContext(), mTargetList, (adapter, view, position) -> {
-            WalletCoinBean.ListBean listBean = mTargetList.get(position);
-            if (listBean.getCoinId() == mBaseList.get(basePosition).getCoinId()) {
-                ToastUtil.showToast(getString(R.string.exchange_error_2));
-                return;
-            }
-            WalletExchangeFragment.this.targetPosition = position;
-            updateParam();
-            mTargetCheckWindow.dismiss();
-        });
+//        mBaseCheckWindow = WalletExchangeCheckWindow.getInstance(getContext(), mBaseList, (adapter, view, position) -> {
+//            WalletCoinBean.ListBean listBean = mBaseList.get(position);
+//            if (listBean.getCoinId() == mTargetList.get(targetPosition).getCoinId()) {
+//                ToastUtil.showToast(getString(R.string.exchange_error_2));
+//                return;
+//            }
+//            WalletExchangeFragment.this.basePosition = position;
+//            updateParam();
+//            mBaseCheckWindow.dismiss();
+//        });
+//        mTargetCheckWindow = WalletExchangeCheckWindow.getInstance(getContext(), mTargetList, (adapter, view, position) -> {
+//            WalletCoinBean.ListBean listBean = mTargetList.get(position);
+//            if (listBean.getCoinId() == mBaseList.get(basePosition).getCoinId()) {
+//                ToastUtil.showToast(getString(R.string.exchange_error_2));
+//                return;
+//            }
+//            WalletExchangeFragment.this.targetPosition = position;
+//            updateParam();
+//            mTargetCheckWindow.dismiss();
+//        });
 
         mBaseAmount.setHint(getString(R.string.wallet_exchange_base_amount) + 0);
 
@@ -323,8 +323,10 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
                                     }
 
                                     Collections.reverse(mTargetList);
-                                    mBaseCheckWindow.notifyData(mBaseList);
-                                    mTargetCheckWindow.notifyData(mTargetList);
+                                    if (mBaseCheckWindow != null)
+                                        mBaseCheckWindow.notifyData(mBaseList);
+                                    if (mTargetCheckWindow != null)
+                                        mTargetCheckWindow.notifyData(mTargetList);
                                     updateParam();
                                 }
                             }

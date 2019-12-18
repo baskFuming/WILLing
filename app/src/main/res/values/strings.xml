@@ -506,4 +506,7 @@
     <string name="order_cancle_successful">取消订单成功</string>
     <string name="pay_seccess">付款成功</string>
     <string name="comfirm_successful">收货成功</string>
+    <string name="send_success">发送成功</string>
+    <string name="setting_pay_psw_success">设置成功</string>
+    <string name="update_success">修改成功</string>
 </resources>

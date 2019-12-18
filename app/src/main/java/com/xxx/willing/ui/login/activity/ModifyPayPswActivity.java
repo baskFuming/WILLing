@@ -109,7 +109,7 @@ public class ModifyPayPswActivity extends BaseTitleActivity {
 
                     @Override
                     public void onSuccess(BaseBean<Object> bean) {
-                        ToastUtil.showToast(bean.getMessage());
+                        ToastUtil.showToast(getString(R.string.send_success));
                         mDownTimeUtil.openDownTime(UIConfig.SMS_CODE_DOWN_TIME, new DownTimeUtil.Callback() {
                             @SuppressLint("SetTextI18n")
                             @Override
@@ -187,7 +187,7 @@ public class ModifyPayPswActivity extends BaseTitleActivity {
 
                     @Override
                     public void onSuccess(BaseBean<Object> bean) {
-                        ToastUtil.showToast(bean.getMessage());
+                        ToastUtil.showToast(getString(R.string.update_success));
                         finish();
                     }
 

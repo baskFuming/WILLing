@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#FFFFFFFF"
+    android:orientation="vertical"
     tools:context="com.xxx.willing.ui.login.activity.RegisterActivity">
 
     <RelativeLayout
@@ -160,17 +160,19 @@
             style="@style/CheckPasswordStyle" />
 
     </RelativeLayout>
+
     <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="33dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <CheckBox
             android:id="@+id/ed_check"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
             android:layout_gravity="center"
             android:button="@drawable/selector_vote_check"
             android:gravity="center" />
@@ -179,7 +181,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
             android:gravity="center"
             android:text="@string/ed_agree"
             android:textColor="#ff999999"

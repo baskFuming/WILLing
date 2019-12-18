@@ -1,6 +1,7 @@
 package com.xxx.willing.model.http.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class BrandBean implements Serializable {
 
@@ -8,7 +9,7 @@ public class BrandBean implements Serializable {
 
     private String name;
 
-    private String img;
+    private List<String> img;
 
     private String phone;
 
@@ -32,11 +33,11 @@ public class BrandBean implements Serializable {
         this.name = name;
     }
 
-    public String getImg() {
+    public  List<String> getImg() {
         return img;
     }
 
-    public void setImg(String img) {
+    public void setImg( List<String> img) {
         this.img = img;
     }
 

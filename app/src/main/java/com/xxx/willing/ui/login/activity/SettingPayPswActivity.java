@@ -180,7 +180,7 @@ public class SettingPayPswActivity extends BaseTitleActivity {
                     public void onSuccess(BaseBean<Object> bean) {
                         if (bean != null) {
                             SharedPreferencesUtil.getInstance().saveBoolean(SharedConst.IS_SETTING_PAY_PSW, true);
-                            ToastUtil.showToast(bean.getMessage());
+                            ToastUtil.showToast(getString(R.string.setting_pay_psw_success));
                             finish();
                         }
                     }

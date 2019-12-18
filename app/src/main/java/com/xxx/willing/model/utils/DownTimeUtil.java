@@ -46,28 +46,27 @@ public class DownTimeUtil {
         nowTime = time + 1;
         if (this.callback == null) {
             this.callback = callback;
-        }
-
-        new Thread(() -> {
-            for (int i = time; i > 0; i--) {
-                try {
-                    if (isClose) {
-                        handler.removeMessages(TIME_MSG);
-                        return;
+            new Thread(() -> {
+                for (int i = nowTime; i > 0; i--) {
+                    try {
+                        if (isClose) {
+                            handler.removeMessages(TIME_MSG);
+                            return;
+                        }
+                        nowTime--;
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                    nowTime--;
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    handler.sendEmptyMessage(TIME_MSG);
                 }
-                handler.sendEmptyMessage(TIME_MSG);
-            }
-            if (isClose) {
-                handler.removeMessages(END_MSG);
-                return;
-            }
-            handler.sendEmptyMessage(END_MSG);
-        }).start();
+                if (isClose) {
+                    handler.removeMessages(END_MSG);
+                    return;
+                }
+                handler.sendEmptyMessage(END_MSG);
+            }).start();
+        }
     }
 
 

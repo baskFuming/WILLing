@@ -75,13 +75,6 @@ public class PartnerActivity extends BaseTitleActivity {
         mContent.setText(mTitle);
 
         loadDate();
-
-//        mTabLayout.setTabGravity(XTabLayout.GRAVITY_CENTER);
-        mViewPager.setOffscreenPageLimit(fragments.size() - 1);
-        voteAdapter = new VoteAdapter(getSupportFragmentManager(), fragments, mTabTitle);
-        mViewPager.setAdapter(voteAdapter);
-        mTabLayout.setupWithViewPager(mViewPager);
-        mViewPager.setOffscreenPageLimit(1);
     }
 
 
@@ -117,7 +110,10 @@ public class PartnerActivity extends BaseTitleActivity {
                                     mTabTitle.add(brandBean.getName());
                                     fragments.add(partnerFragment);
                                 }
-                                voteAdapter.notifyDataSetChanged();
+                                voteAdapter = new VoteAdapter(getSupportFragmentManager(), fragments, mTabTitle);
+                                mViewPager.setAdapter(voteAdapter);
+                                mTabLayout.setupWithViewPager(mViewPager);
+                                mViewPager.setOffscreenPageLimit(fragments.size() - 1);
                             }
                         }
                     }

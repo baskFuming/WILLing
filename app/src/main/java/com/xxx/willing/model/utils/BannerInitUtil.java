@@ -9,7 +9,6 @@ import com.xw.banner.BannerConfig;
 import com.xw.banner.Transformer;
 import com.xw.banner.listener.OnBannerListener;
 import com.xw.banner.loader.ImageLoader;
-import com.xw.banner.loader.ImageLoaderInterface;
 import com.xw.banner.view.RoundAngleImageView;
 
 import java.util.ArrayList;

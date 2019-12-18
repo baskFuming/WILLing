@@ -13,7 +13,6 @@ import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.utils.ApiType;
 import com.xxx.willing.ui.app.activity.gvishop.my.order.fragment.MyOrderFragment;
 import com.xxx.willing.ui.app.adapter.ViewPagerAdapter;
-import com.xxx.willing.view.MyTabLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;

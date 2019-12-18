@@ -5,12 +5,10 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
 import com.xxx.willing.model.http.bean.FranchiseeBean;
-import com.xxx.willing.model.http.bean.GameBean;
 import com.xxx.willing.model.http.utils.ApiType;
 import com.xxx.willing.model.utils.DownTimeUtil;
 import com.xxx.willing.model.utils.GlideUtil;

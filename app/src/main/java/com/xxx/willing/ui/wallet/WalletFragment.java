@@ -14,7 +14,6 @@ import com.xxx.willing.ui.wallet.fragment.WalletAccountFragment;
 import com.xxx.willing.ui.wallet.fragment.WalletExchangeFragment;
 import com.xxx.willing.ui.wallet.fragment.WalletMarketFragment;
 import com.xxx.willing.ui.wallet.fragment.WalletReleaseFragment;
-import com.xxx.willing.view.MyTabLayout;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;

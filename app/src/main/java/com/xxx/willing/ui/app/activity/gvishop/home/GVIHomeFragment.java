@@ -15,10 +15,8 @@ import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.GviBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
-import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.activity.gvishop.home.adapter.GviAdapter;
-import com.xxx.willing.ui.app.activity.gvishop.home.adapter.GviChildAdapter;
 import com.xxx.willing.view.SearchEditText;
 
 import java.util.ArrayList;
@@ -36,7 +34,7 @@ import io.reactivex.schedulers.Schedulers;
  * @date 2019-12-04
  */
 
-public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, BaseQuickAdapter.OnItemClickListener, GviAdapter.OnClickListener {
+public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener{
 
     @BindView(R.id.main_recycler)
     RecyclerView mRecycler;
@@ -52,9 +50,9 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
     private int page = UIConfig.PAGE_DEFAULT;
     private GviAdapter mAdapter;
     private List<GviBean> mList = new ArrayList<>();
-    private List<GviBean.ListBean> mSearchList = new ArrayList<>();
+    private List<GviBean> mSearchList = new ArrayList<>();
     private String edSearchName;
-    private GviChildAdapter mSearchAdapter;
+    private GviAdapter mSearchAdapter;
 
     @Override
     protected int getLayoutId() {
@@ -67,13 +65,19 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycler.setAdapter(mAdapter);
         mRefresh.setOnRefreshListener(this);
-        mAdapter.setOnClickListener(this);
+        mAdapter.setOnClickListener((name, id) -> {
+            //跳转到商城web
+            BaseWebShopActivity.actionStart(getActivity(), name, id);
+        });
 
-        mSearchAdapter = new GviChildAdapter(mSearchList);
+        mSearchAdapter = new GviAdapter(mSearchList);
         mSearchRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mSearchRecycler.setAdapter(mSearchAdapter);
         mSearchAdapter.setOnLoadMoreListener(this, mSearchRecycler);
-        mSearchAdapter.setOnItemClickListener(this);
+        mSearchAdapter.setOnClickListener((name, id) -> {
+            //跳转到商城web
+            BaseWebShopActivity.actionStart(getActivity(), name, id);
+        });
 
         loadData();
 
@@ -97,20 +101,6 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
             mRefresh.setVisibility(View.VISIBLE);
             mSearchRecycler.setVisibility(View.GONE);
         }
-    }
-
-    @Override
-    public void onOnClickListener(String name, int id) {
-        //跳转到商城web
-        BaseWebShopActivity.actionStart(getActivity(), name, id);
-    }
-
-    @Override
-    public void onItemClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
-        //跳转到商城web
-        BaseWebShopActivity.actionStart(getActivity(),
-                mSearchList.get(position).getName(),
-                mSearchList.get(position).getId());
     }
 
     @Override
@@ -172,10 +162,10 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
         Api.getInstance().getCommodities(edSearchName, page, UIConfig.PAGE_SIZE)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiCallback<PageBean<GviBean.ListBean>>(getActivity()) {
+                .subscribe(new ApiCallback<List<GviBean>>(getActivity()) {
                     @Override
-                    public void onSuccess(BaseBean<PageBean<GviBean.ListBean>> bean) {
-                        List<GviBean.ListBean> list = bean.getData().getList();
+                    public void onSuccess(BaseBean<List<GviBean>> bean) {
+                        List<GviBean> list = bean.getData();
                         if (page == UIConfig.PAGE_DEFAULT) {
                             mSearchList.clear();
                         }

@@ -1,7 +1,5 @@
 package com.xxx.willing.model.http.bean;
 
-import java.util.List;
-
 /**
  * Time: ${Date}
  * Author : mac

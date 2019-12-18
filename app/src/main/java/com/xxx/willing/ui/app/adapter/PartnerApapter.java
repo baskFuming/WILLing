@@ -9,8 +9,6 @@ import com.xxx.willing.R;
 import com.xxx.willing.model.http.bean.PartnerBean;
 import com.xxx.willing.model.utils.GlideUtil;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**

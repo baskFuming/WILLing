@@ -353,7 +353,7 @@ public interface ApiService {
 
     //查询商品
     @GET(HttpConfig.BASE_URL_PATH + "/searchCommodity")
-    Observable<BaseBean<PageBean<GviBean.ListBean>>> getCommodities(
+    Observable<BaseBean<List<GviBean>>> getCommodities(
             @Query("name") String name,
             @Query("pageNum") int pageNum,
             @Query("pageSize") int pageSize

@@ -2,12 +2,9 @@ package com.xxx.willing.ui.main.wheels;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseActivity;
-import com.xxx.willing.ui.main.MainActivity;
 
 import butterknife.BindView;
 

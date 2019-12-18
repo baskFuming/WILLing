@@ -1,6 +1,5 @@
 package com.xxx.willing.ui.my.activity.sign;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,13 +17,11 @@ import com.xxx.willing.model.http.bean.SignBean;
 import com.xxx.willing.model.http.bean.SignInfoBean;
 import com.xxx.willing.model.http.bean.TaskInfoBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
-import com.xxx.willing.model.http.bean.base.BooleanBean;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.activity.vote.VoteJoinActivity;
 import com.xxx.willing.ui.my.activity.InviteFriendActivity;
 import com.xxx.willing.ui.my.activity.sign.view.StepBean;
 import com.xxx.willing.ui.my.activity.sign.view.StepsView;
-import com.xxx.willing.ui.my.activity.vote.MyVoteActivity;
 import com.xxx.willing.ui.my.activity.window.SignPopWindow;
 
 import java.util.ArrayList;

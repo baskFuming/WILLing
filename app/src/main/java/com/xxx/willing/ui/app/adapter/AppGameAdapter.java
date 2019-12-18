@@ -1,7 +1,6 @@
 package com.xxx.willing.ui.app.adapter;
 
 import android.support.annotation.Nullable;
-import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;

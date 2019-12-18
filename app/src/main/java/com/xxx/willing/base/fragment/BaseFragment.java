@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.gyf.barlibrary.ImmersionBar;
 import com.xxx.willing.base.activity.BaseActivity;
 import com.xxx.willing.config.EventBusConfig;
 

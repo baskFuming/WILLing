@@ -14,13 +14,11 @@ import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.MyOrderBean;
-import com.xxx.willing.model.http.bean.WalletMarketBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.activity.gvishop.my.order.adapter.MyOrderAdapter;
 import com.xxx.willing.ui.app.activity.gvishop.my.order.window.MyOrderPop;
-import com.xxx.willing.ui.wallet.adapter.WalletMarketAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

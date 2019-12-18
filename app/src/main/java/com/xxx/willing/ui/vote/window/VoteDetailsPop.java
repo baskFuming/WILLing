@@ -6,10 +6,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xxx.willing.R;
-import com.xxx.willing.base.activity.BaseActivity;
 import com.xxx.willing.base.dialog.BaseDialog;
 import com.xxx.willing.model.utils.GlideUtil;
-import com.xxx.willing.ui.app.activity.gvishop.my.address.pop.SubmitPop;
 
 import butterknife.BindView;
 import butterknife.OnClick;

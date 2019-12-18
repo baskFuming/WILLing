@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.xxx.willing.R;
-import com.xxx.willing.ui.main.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;

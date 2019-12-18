@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 import com.xxx.willing.R;
 import com.xxx.willing.ui.login.activity.LoginActivity;
-import com.xxx.willing.ui.main.MainActivity;
 
 /**
  * @author FM

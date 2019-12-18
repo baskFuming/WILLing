@@ -1,11 +1,8 @@
 package com.xxx.willing.ui.vote.adapter;
 
 import android.support.annotation.Nullable;
-import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;

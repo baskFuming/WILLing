@@ -2,12 +2,9 @@ package com.xxx.willing.base.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.http.SslError;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
@@ -22,12 +19,9 @@ import android.widget.ProgressBar;
 import com.google.gson.Gson;
 import com.xxx.willing.R;
 import com.xxx.willing.config.HttpConfig;
-import com.xxx.willing.model.http.bean.GviBean;
-import com.xxx.willing.model.http.bean.WalletAccountBean;
 import com.xxx.willing.model.http.js.ShopJsVo;
 import com.xxx.willing.model.sp.SharedConst;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
-import com.xxx.willing.ui.wallet.activity.WalletCoinDetailActivity;
 
 import butterknife.BindView;
 

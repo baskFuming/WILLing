@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.View;
 
 import com.xxx.willing.R;
-import com.xxx.willing.base.activity.BaseActivity;
 import com.xxx.willing.base.dialog.BaseDialog;
 
 import butterknife.OnClick;

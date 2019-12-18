@@ -9,11 +9,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
 import com.xxx.willing.model.http.bean.MyOrderBean;
-import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.utils.ApiType;
 import com.xxx.willing.model.utils.GlideUtil;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 

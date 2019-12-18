@@ -2,8 +2,6 @@ package com.xxx.willing.model.http.bean;
 
 import com.xxx.willing.model.http.bean.base.PageBean;
 
-import java.util.List;
-
 /**
  * Time: ${Date}
  * Author : mac

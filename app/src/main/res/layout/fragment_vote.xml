@@ -39,6 +39,7 @@
                             android:id="@+id/vote_banner_init"
                             android:layout_width="match_parent"
                             android:layout_height="184dp"
+                            android:background="@mipmap/vote_banner_default"
                             app:banner_layout="@layout/banner_layout"
                             app:indicator_drawable_selected="@drawable/banner_selected_shape"
                             app:indicator_drawable_unselected="@drawable/banner_unselected_shape" />

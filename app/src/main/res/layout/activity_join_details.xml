@@ -30,7 +30,7 @@
                     android:id="@+id/join_banner"
                     android:layout_width="match_parent"
                     android:layout_height="140dp"
-                    android:background="@mipmap/banner_default" />
+                    android:background="@mipmap/vote_banner_default" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -330,43 +330,44 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="13dp"
                     android:ellipsize="end"
-                    android:singleLine="false"
                     android:maxLines="4"
+                    android:singleLine="false"
                     android:text="---"
                     android:textColor="#ff666666"
                     android:textSize="14dp" />
 
                 <LinearLayout
-                    android:paddingTop="10dp"
-                    android:paddingBottom="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingLeft="10dp"
                     android:id="@+id/text_click"
-                    android:layout_gravity="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_gravity="end"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="5dp">
+
                     <CheckBox
                         android:id="@+id/item_notice_center_btn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:button="@null"
-                        android:text="@string/all_text"
                         android:focusable="false"
+                        android:text="@string/all_text"
                         android:textColor="#333333"
                         android:textSize="12dp" />
 
                     <ImageView
-                        android:focusable="false"
-                        android:layout_marginLeft="5dp"
                         android:id="@+id/notice_img"
                         android:layout_width="12dp"
                         android:layout_height="8dp"
                         android:layout_gravity="center"
-                        android:background="@mipmap/vote_down" />
+                        android:layout_marginLeft="5dp"
+                        android:background="@mipmap/vote_down"
+                        android:focusable="false" />
                 </LinearLayout>
+
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/content_open"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -375,7 +376,8 @@
                     android:drawableRight="@mipmap/down_black_bg"
                     android:text="@string/all_text"
                     android:textColor="#ff333333"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:visibility="gone" />
 
                 <View
                     android:layout_width="match_parent"

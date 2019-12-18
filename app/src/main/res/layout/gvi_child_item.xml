@@ -22,7 +22,6 @@
             android:id="@+id/item_img"
             android:layout_width="51dp"
             android:layout_height="51dp"
-            android:background="@mipmap/item_default"
             />
 
         <TextView
@@ -33,7 +32,7 @@
             android:layout_marginBottom="15dp"
             android:layout_marginTop="15dp"
             android:gravity="center"
-            android:text="@string/item_phone_securities"
+            android:text="-----"
             android:textColor="#ff666666"
             android:textSize="12sp" />
 
@@ -42,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="49.00GVI"
+            android:text="-----"
             android:textColor="#fffe3848"
             android:textSize="14sp" />
     </LinearLayout>

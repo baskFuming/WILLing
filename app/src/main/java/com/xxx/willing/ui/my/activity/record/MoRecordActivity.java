@@ -128,7 +128,6 @@ public class MoRecordActivity extends BaseTitleActivity implements SwipeRefreshL
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
         mRecycler.setAdapter(dropDownAdapter);
         dropDownAdapter.setOnLoadMoreListener(this, mRecycler);
-
         mNotData = LayoutInflater.from(this).inflate(R.layout.include_not_data, null);
         mNotData.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         dropDownAdapter.addFooterView(mNotData);

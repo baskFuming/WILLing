@@ -9,18 +9,19 @@ import java.util.List;
  */
 public class PartnerBean {
 
+
     /**
      * level : 2
-     * nickName : 18800000000
-     * price : 101000.0
-     * avatar : null
+     * nickName : 1
+     * price : 101500.0
+     * avatar : <null>
      * userId : 1
      */
 
     private int level;
     private String nickName;
     private double price;
-    private Object avatar;
+    private String avatar;
     private int userId;
 
     public int getLevel() {
@@ -47,11 +48,11 @@ public class PartnerBean {
         this.price = price;
     }
 
-    public Object getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(Object avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 
@@ -61,6 +62,6 @@ public class PartnerBean {
 
     public void setUserId(int userId) {
         this.userId = userId;
-    }
 
+    }
 }

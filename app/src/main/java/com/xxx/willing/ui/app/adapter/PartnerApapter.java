@@ -30,6 +30,7 @@ public class PartnerApapter extends BaseQuickAdapter<PartnerBean, BaseViewHolder
                 .setText(R.id.partner_count, item.getPrice() + "");
         GlideUtil.loadCircle(mContext, String.valueOf(item.getAvatar()), helper.getView(R.id.partner_icon));
         TextView mLevel = helper.getView(R.id.partner_level);
+
         int position = helper.getLayoutPosition();
         if (position == 0) {
             helper.getView(R.id.partner_level).setBackgroundResource(R.drawable.rank_1);

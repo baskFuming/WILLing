@@ -15,6 +15,7 @@ import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.PartnerBean;
 import com.xxx.willing.model.http.bean.PartnerListBean;
+import com.xxx.willing.model.http.bean.WalletMarketBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.utils.ToastUtil;
@@ -95,15 +96,27 @@ public class PartnerFragment extends BaseFragment implements SwipeRefreshLayout.
         loadDate();
     }
 
-    //获取和活人列表
+    //获取合伙人列表
     private void loadDate() {
         Api.getInstance().getPartnerList(partnerListBean.getId(), page, UIConfig.PAGE_SIZE)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<PageBean<PartnerBean>>(getActivity()) {
-
                     @Override
                     public void onSuccess(BaseBean<PageBean<PartnerBean>> bean) {
+                        if (bean == null) {
+                            mNotData.setVisibility(View.VISIBLE);
+                            mRecycler.setVisibility(View.GONE);
+                            mAdapter.loadMoreEnd(true);
+                            return;
+                        }
+                        PageBean<PartnerBean> data = bean.getData();
+                        if (data == null) {
+                            mNotData.setVisibility(View.VISIBLE);
+                            mRecycler.setVisibility(View.GONE);
+                            mAdapter.loadMoreEnd(true);
+                            return;
+                        }
                         List<PartnerBean> list = bean.getData().getList();
                         if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
                             mNotData.setVisibility(View.VISIBLE);
@@ -151,4 +164,5 @@ public class PartnerFragment extends BaseFragment implements SwipeRefreshLayout.
                     }
                 });
     }
+
 }

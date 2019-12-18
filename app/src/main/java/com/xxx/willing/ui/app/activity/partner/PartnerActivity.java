@@ -55,6 +55,7 @@ public class PartnerActivity extends BaseTitleActivity {
     private int page = UIConfig.PAGE_DEFAULT;
     private int position;
     private VoteAdapter voteAdapter;
+    private PartnerFragment partnerFragment;
 
     @Override
     protected String initTitle() {
@@ -68,6 +69,7 @@ public class PartnerActivity extends BaseTitleActivity {
 
     @Override
     protected void initData() {
+
         mTitle = getString(R.string.partner_rules);
         mContent.setVisibility(View.VISIBLE);
         mContent.setText(mTitle);
@@ -80,23 +82,6 @@ public class PartnerActivity extends BaseTitleActivity {
         mViewPager.setAdapter(voteAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
         mViewPager.setOffscreenPageLimit(1);
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-
-            }
-
-            @Override
-            public void onPageSelected(int i) {
-                position = i;
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-
-            }
-        });
-
     }
 
 
@@ -128,8 +113,9 @@ public class PartnerActivity extends BaseTitleActivity {
                                 List<PartnerListBean> list = data.getList();
                                 for (int i = 0; i < list.size(); i++) {
                                     PartnerListBean brandBean = list.get(i);
+                                    partnerFragment = PartnerFragment.getInstance(brandBean);
                                     mTabTitle.add(brandBean.getName());
-                                    fragments.add(PartnerFragment.getInstance(brandBean));
+                                    fragments.add(partnerFragment);
                                 }
                                 voteAdapter.notifyDataSetChanged();
                             }
@@ -140,18 +126,6 @@ public class PartnerActivity extends BaseTitleActivity {
                     public void onError(int errorCode, String errorMessage) {
                         ToastUtil.showToast(errorMessage);
                     }
-
-//                    @Override
-//                    public void onStart(Disposable d) {
-//                        super.onStart(d);
-//                        showLoading();
-//                    }
-//
-//                    @Override
-//                    public void onEnd() {
-//                        super.onEnd();
-//                        hideLoading();
-//                    }
                 });
     }
 }

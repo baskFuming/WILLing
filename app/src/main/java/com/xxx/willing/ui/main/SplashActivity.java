@@ -37,6 +37,9 @@ public class SplashActivity extends AppCompatActivity {
 
     private SharedPreferences pref;
 
+    //是否执行了跳转页面
+    private boolean isStartActivity;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +80,7 @@ public class SplashActivity extends AppCompatActivity {
         } else {
             LoginActivity.actionStart(this);
         }
+        isStartActivity = true;
         finish();
     }
 
@@ -93,7 +97,7 @@ public class SplashActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             if (msg.what == 0) {
                 SplashActivity activity = mActivity.get();
-                if (activity != null) {
+                if (activity != null && !activity.isStartActivity) {
                     activity.checkIsFirst();
                 }
             }

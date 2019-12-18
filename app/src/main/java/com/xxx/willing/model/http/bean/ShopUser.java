@@ -6,37 +6,39 @@ package com.xxx.willing.model.http.bean;
  * Des:
  */
 public class ShopUser {
-        /**
-         * img : http://192.168.31.95/img/dcc700f4-fc91-4d61-b5a0-6cdd721cd99d.jpg
-         * gviAmount : 0
-         * userName : 18310005980
-         */
 
-        private String img;
-        private int gviAmount;
-        private String userName;
 
-        public String getImg() {
-            return img;
-        }
+    /**
+     * img : null
+     * gviAmount : 9899.8
+     * userName : 15100000000
+     */
 
-        public void setImg(String img) {
-            this.img = img;
-        }
+    private Object img;
+    private double gviAmount;
+    private String userName;
 
-        public int getGviAmount() {
-            return gviAmount;
-        }
+    public Object getImg() {
+        return img;
+    }
 
-        public void setGviAmount(int gviAmount) {
-            this.gviAmount = gviAmount;
-        }
+    public void setImg(Object img) {
+        this.img = img;
+    }
 
-        public String getUserName() {
-            return userName;
-        }
+    public double getGviAmount() {
+        return gviAmount;
+    }
 
-        public void setUserName(String userName) {
-            this.userName = userName;
-        }
+    public void setGviAmount(double gviAmount) {
+        this.gviAmount = gviAmount;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 }

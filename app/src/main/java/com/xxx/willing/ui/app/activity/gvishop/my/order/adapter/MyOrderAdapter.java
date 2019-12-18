@@ -1,5 +1,6 @@
 package com.xxx.willing.ui.app.activity.gvishop.my.order.adapter;
 
+import android.annotation.SuppressLint;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -27,21 +28,23 @@ public class MyOrderAdapter extends BaseQuickAdapter<MyOrderBean, BaseViewHolder
         super(R.layout.my_order_item, data);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void convert(BaseViewHolder helper, MyOrderBean item) {
         helper.setText(R.id.order_number, mContext.getString(R.string.order_number) + item.getOrderNum())//订单编号
-                .setText(R.id.order_goods_name, "")                                      //品牌名
-                .setText(R.id.order_pay_price_account, "" + "GVI")                       //支付GVI数量
-                .setText(R.id.order_pay_price, "")                                       //CNY数量
-                .setText(R.id.order_goods_color, "")                                     //品牌颜色
-                .setText(R.id.order_buy_number, "x" + "")                                //购买个数
-                .setText(R.id.order_all_price, "")                                       //商品总价
-                .setText(R.id.order_freight_money, "")                                   //运费
-                .setText(R.id.order_total, "" + "GVI")                                   //合计
+                .setText(R.id.order_goods_name, item.getCommodity().getName())                                      //品牌名
+                .setText(R.id.order_pay_price_account, item.getCommodity().getGviPrice() + "")             //支付GVI数量
+                .setText(R.id.order_goods_color, item.getDetails())                                            //品牌颜色
+                .setText(R.id.order_buy_number, "x" + item.getCommNum())                                      //购买个数
+                .setText(R.id.order_all_price, item.getPrice() + "GVI")                                       //商品总价
+                .setText(R.id.order_freight_money, item.getCommodity().getFreight() + "")                      //运费
+                .setText(R.id.order_total, item.getPrice() + "GVI")                                            //合计
                 .addOnClickListener(R.id.order_cancel_btn)
                 .addOnClickListener(R.id.order_cancel_pay_btn)
                 .addOnClickListener(R.id.order_un_delivery)
                 .addOnClickListener(R.id.order_confirm_btn);
+
+        GlideUtil.loadBack(mContext, item.getCommodity().getLogos(), helper.getView(R.id.order_goods_icon));//品牌图片
 
         TextView mpay = helper.getView(R.id.order_pay_price);
         TextView mStatus = helper.getView(R.id.order_status);
@@ -49,8 +52,8 @@ public class MyOrderAdapter extends BaseQuickAdapter<MyOrderBean, BaseViewHolder
         TextView mPayOrder = helper.getView(R.id.order_cancel_pay_btn);         //付款
         TextView mDelivery = helper.getView(R.id.order_un_delivery);            //待发货取消订单
         TextView mConfirm = helper.getView(R.id.order_confirm_btn);             //确认收货
+        mpay.setText("￥" + item.getCommodity().getPrice());                    //CNY
         mpay.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-        GlideUtil.load(mContext, "", helper.getView(R.id.order_goods_icon));//品牌图片
         //订单状态
         if (item.getStatus() == ApiType.ORDER_COMMUNITY_ALL) {                            //全部状态
             mStatus.setVisibility(View.GONE);
@@ -85,7 +88,7 @@ public class MyOrderAdapter extends BaseQuickAdapter<MyOrderBean, BaseViewHolder
             mConfirm.setVisibility(View.VISIBLE);
         } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_COMPLAINING) {              //已收货
             mStatus.setText(mContext.getString(R.string.order_complete));
-            helper.getView(R.id.order_bottom_click).setVisibility(View.GONE);   //底部按钮隐藏
+            helper.getView(R.id.order_bottom_click).setVisibility(View.GONE);            //底部按钮隐藏
         }
     }
 }

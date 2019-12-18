@@ -503,4 +503,7 @@
     <string name="vote_earnings">预期收益</string>
     <string name="join_details_date">加盟周期</string>
     <string name="my_submitted_success">审核通过</string>
+    <string name="order_cancle_successful">取消订单成功</string>
+    <string name="pay_seccess">付款成功</string>
+    <string name="comfirm_successful">收货成功</string>
 </resources>

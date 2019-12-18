@@ -1,5 +1,6 @@
 package com.xxx.willing.ui.app.activity.gvishop.my.order.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -62,6 +63,7 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
 
     private int status;
     private String statusStr;
+    private String orderId;
     private int page = UIConfig.PAGE_DEFAULT;
     private List<MyOrderBean> mlist = new ArrayList<>();
     private MyOrderAdapter mAdapter;
@@ -112,7 +114,7 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
                 loadPayOrder();
                 break;
             case R.id.order_un_delivery: //待发货取消订单
-                loadCanleOrder(statusStr);
+                loadCancelOrder();
                 break;
             case R.id.order_confirm_btn: //确认收货
                 loadConfirm();
@@ -197,25 +199,113 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
      * @Model 确认收货
      */
     private void loadConfirm() {
+        Api.getInstance().confirmOrder(Integer.parseInt(orderId), status)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiCallback<Object>(getActivity()) {
+                    @Override
+                    public void onSuccess(BaseBean<Object> bean) {
+                        ToastUtil.showToast(getString(R.string.comfirm_successful));
+                        Intent intent = new Intent();
+                        intent.putExtra("type", 2);
+                        getActivity().setResult(UIConfig.RESULT_CODE, intent);
+                        getActivity().finish();
+                    }
+
+                    @Override
+                    public void onError(int errorCode, String errorMessage) {
+                        ToastUtil.showToast(errorMessage);
+                    }
+
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        showLoading();
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        hideLoading();
+                    }
+                });
     }
 
     /**
-     * @param statusStr
      * @mlde 取消订单
      */
-    private void loadCanleOrder(String statusStr) {
+    private void loadCancelOrder() {
+        Api.getInstance().cancelOrder(Integer.parseInt(orderId))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiCallback<Object>(getActivity()) {
+                    @Override
+                    public void onSuccess(BaseBean<Object> bean) {
+                        ToastUtil.showToast(getString(R.string.order_cancle_successful));
+                        Intent intent = new Intent();
+                        intent.putExtra("type", 0);
+                        getActivity().setResult(UIConfig.RESULT_CODE, intent);
+                        getActivity().finish();
+                    }
+
+                    @Override
+                    public void onError(int errorCode, String errorMessage) {
+                        ToastUtil.showToast(errorMessage);
+                    }
+
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        showLoading();
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        hideLoading();
+                    }
+                });
     }
 
     /**
      * @Model 支付订单
      */
     private void loadPayOrder() {
+        Api.getInstance().paymentOrder(Integer.parseInt(orderId))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiCallback<Object>(getActivity()) {
+                    @Override
+                    public void onSuccess(BaseBean<Object> bean) {
+                        ToastUtil.showToast(getString(R.string.pay_seccess));
+                        Intent intent = new Intent();
+                        intent.putExtra("type", 1);
+                        getActivity().setResult(UIConfig.RESULT_CODE, intent);
+                        getActivity().finish();
+                    }
 
+                    @Override
+                    public void onError(int errorCode, String errorMessage) {
+                        ToastUtil.showToast(errorMessage);
+                    }
+
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        showLoading();
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        hideLoading();
+                    }
+                });
     }
 
     @Override
-    public void callback(String orderStr) {
-        loadCanleOrder(orderStr);
+    public void callback() {
+        loadCancelOrder();
     }
 
     @Override
@@ -223,6 +313,9 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
         super.onHiddenChanged(hidden);
         mRefresh.post(() -> {
             loadDate();
+            loadCancelOrder();
+            loadConfirm();
+            loadPayOrder();
         });
     }
 

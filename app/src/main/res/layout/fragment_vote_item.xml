@@ -90,10 +90,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:nestedScrollingEnabled="false" />
+
+                    <include layout="@layout/include_not_data" />
+
                 </RelativeLayout>
             </LinearLayout>
-
-            <include layout="@layout/include_not_data" />
         </LinearLayout>
     </LinearLayout>
 

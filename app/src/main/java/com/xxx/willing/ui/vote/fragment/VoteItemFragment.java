@@ -127,8 +127,8 @@ public class VoteItemFragment extends BaseFragment implements BaseQuickAdapter.R
                     public void onSuccess(BaseBean<PageBean<FranchiseeBean>> bean) {
                         if (bean == null) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mNotData2.setVisibility(View.GONE);
-//                            mRecycler.setVisibility(View.GONE);
+//                            mNotData2.setVisibility(View.GONE);
+                            mRecycler.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
                             return;
                         }
@@ -136,8 +136,8 @@ public class VoteItemFragment extends BaseFragment implements BaseQuickAdapter.R
                         PageBean<FranchiseeBean> data = bean.getData();
                         if (data == null) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mNotData2.setVisibility(View.GONE);
-//                            mRecycler.setVisibility(View.GONE);
+//                            mNotData2.setVisibility(View.GONE);
+                            mRecycler.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
                             return;
                         }
@@ -145,14 +145,14 @@ public class VoteItemFragment extends BaseFragment implements BaseQuickAdapter.R
                         List<FranchiseeBean> list = data.getList();
                         if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mNotData2.setVisibility(View.GONE);
-//                            mRecycler.setVisibility(View.GONE);
+//                            mNotData2.setVisibility(View.GONE);
+                            mRecycler.setVisibility(View.GONE);
                             mAdapter.loadMoreEnd(true);
                             return;
                         }
                         mNotData.setVisibility(View.GONE);
-                        mNotData2.setVisibility(View.VISIBLE);
-//                        mRecycler.setVisibility(View.VISIBLE);
+//                        mNotData2.setVisibility(View.VISIBLE);
+                        mRecycler.setVisibility(View.VISIBLE);
                         if (page == UIConfig.PAGE_DEFAULT) {
                             mList.clear();
                         }
@@ -169,8 +169,8 @@ public class VoteItemFragment extends BaseFragment implements BaseQuickAdapter.R
                     public void onError(int errorCode, String errorMessage) {
                         if (mList.size() == 0) {
                             mNotData.setVisibility(View.VISIBLE);
-                            mNotData2.setVisibility(View.GONE);
-//                            mRecycler.setVisibility(View.GONE);
+//                            mNotData2.setVisibility(View.GONE);
+                            mRecycler.setVisibility(View.GONE);
                         }
                         ToastUtil.showToast(errorMessage);
                     }

@@ -44,7 +44,9 @@ public class DownTimeUtil {
     public void openDownTime(final int time, Callback callback) {
         isClose = false;
         nowTime = time + 1;
-        this.callback = callback;
+        if (this.callback == null) {
+            this.callback = callback;
+        }
 
         new Thread(() -> {
             for (int i = time; i > 0; i--) {

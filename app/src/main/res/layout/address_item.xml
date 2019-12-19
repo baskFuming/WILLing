@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_line_bg"
+        android:background="@drawable/shape_back_item"
         android:paddingLeft="@dimen/activity_left_margin"
         android:paddingTop="@dimen/activity_left_margin"
         android:paddingRight="@dimen/activity_right_margin"

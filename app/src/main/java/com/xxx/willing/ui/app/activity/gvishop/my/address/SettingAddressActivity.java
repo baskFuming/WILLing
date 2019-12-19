@@ -15,6 +15,8 @@ import com.xxx.willing.config.MatchesConfig;
 import com.xxx.willing.config.UIConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
+import com.xxx.willing.model.http.bean.MyAddressBean;
+import com.xxx.willing.model.http.bean.WalletAccountBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.login.activity.LoginActivity;
@@ -38,9 +40,10 @@ import io.reactivex.disposables.Disposable;
 public class SettingAddressActivity extends BaseTitleActivity {
 
 
-    public static void actionStartForResult(Activity activity, int tag) {
+    public static void actionStartForResult(Activity activity, int tag, MyAddressBean bean) {
         Intent intent = new Intent(activity, SettingAddressActivity.class);
         intent.putExtra("tag", tag);
+        intent.putExtra("bean", bean);
         activity.startActivityForResult(intent, UIConfig.REQUEST_CODE);
     }
 
@@ -52,6 +55,9 @@ public class SettingAddressActivity extends BaseTitleActivity {
 
     public void initBundle() {
         Intent intent = getIntent();
+        bean = (MyAddressBean) intent.getSerializableExtra("bean");
+        if (bean == null) bean = new MyAddressBean();
+        UiTag = intent.getIntExtra("tag", 0);
     }
 
     @BindView(R.id.ed_enter_name)
@@ -64,12 +70,13 @@ public class SettingAddressActivity extends BaseTitleActivity {
     EditText mDetailAddress;
     @BindView(R.id.switch_button)
     Switch mSwitchButton;
+    private MyAddressBean bean;
 
 
     public static final int ADD_TAG = 1;
     public static final int UPDATE_TAG = 2;
-
-    private String address_id;
+    private int address_status = 1;  //默认地址1
+    private int UiTag;
     private String city = "";
     private String province = "";
     private String district = "";
@@ -85,11 +92,16 @@ public class SettingAddressActivity extends BaseTitleActivity {
         return R.layout.activity_setting_address;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void initData() {
         initBundle();
-//        Intent intent = getIntent();
-//        UiTag = intent.getIntExtra("tag", 0);
+        if (UiTag == UPDATE_TAG) {
+            mName.setText(bean.getConsignee());
+            mPhone.setText(bean.getPhone());
+            mChoseAddress.setText(bean.getProvinces() + bean.getCities() + bean.getCounties());
+            mDetailAddress.setText(bean.getAddress());
+        }
     }
 
     @OnClick({R.id.add_save, R.id.clean_ed_content, R.id.chose_city_onclick})
@@ -124,6 +136,15 @@ public class SettingAddressActivity extends BaseTitleActivity {
                         saveAddress();
                     }
                 });
+
+                switch (UiTag) {
+                    case ADD_TAG:
+                        saveAddress();
+                        break;
+                    case UPDATE_TAG:
+                        updateAddress();
+                        break;
+                }
                 break;
         }
     }
@@ -194,14 +215,13 @@ public class SettingAddressActivity extends BaseTitleActivity {
 
     //设置默认地址
     private void setDefaultAddress() {
-        Api.getInstance().setDefaultAddress(address_id)
+        Api.getInstance().setDefaultAddress(address_status)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<Object>(this) {
                     @Override
                     public void onSuccess(BaseBean<Object> bean) {
                         ToastUtil.showToast(getString(R.string.setting_success));
-
 //                        Intent intent = new Intent(SettingAddressActivity.this, "");
 //                        setResult(UIConfig.RESULT_CODE, intent);
 //                        finish();
@@ -224,5 +244,69 @@ public class SettingAddressActivity extends BaseTitleActivity {
                         hideLoading();
                     }
                 });
+    }
+
+    //保存地址
+    public void updateAddress() {
+        String name = mName.getText().toString();
+        String phone = mPhone.getText().toString();
+        String city = mChoseAddress.getText().toString();
+        String cityDetails = mDetailAddress.getText().toString();
+        if (name.isEmpty()) {
+            showEditError(mName);
+            ToastUtil.showToast(getString(R.string.add_error_1));
+            return;
+        }
+
+        if (phone.isEmpty()) {
+            showEditError(mPhone);
+            ToastUtil.showToast(getString(R.string.add_error_2));
+            return;
+        }
+        if (!phone.matches(MatchesConfig.MATCHES_PHONE)) {
+            ToastUtil.showToast(getString(R.string.login_error_phone_2));
+            showEditError(mPhone);
+            return;
+        }
+        if (city.isEmpty()) {
+            ToastUtil.showToast(getString(R.string.add_error_4));
+            showEditError(mChoseAddress);
+            return;
+        }
+        if (cityDetails.isEmpty()) {
+            ToastUtil.showToast(getString(R.string.add_error_5));
+            showEditError(mDetailAddress);
+            return;
+        }
+        Api.getInstance().updateAddress(bean.getId())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiCallback<Object>(this) {
+                    @Override
+                    public void onSuccess(BaseBean<Object> bean) {
+                        ToastUtil.showToast(getString(R.string.update_success));
+//                        Intent intent = new Intent(SettingAddressActivity.this, "");
+//                        setResult(UIConfig.RESULT_CODE, intent);
+//                        finish();
+                    }
+
+                    @Override
+                    public void onError(int errorCode, String errorMessage) {
+                        ToastUtil.showToast(errorMessage);
+                    }
+
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        showLoading();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        hideLoading();
+                    }
+                });
+
     }
 }

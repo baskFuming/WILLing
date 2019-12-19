@@ -13,6 +13,7 @@ import com.xxx.willing.model.http.bean.JoinInfoBean;
 import com.xxx.willing.model.http.bean.LoginBean;
 import com.xxx.willing.model.http.bean.MemberAssetBean;
 import com.xxx.willing.model.http.bean.MessageBean;
+import com.xxx.willing.model.http.bean.MyAddressBean;
 import com.xxx.willing.model.http.bean.MyOrderBean;
 import com.xxx.willing.model.http.bean.MyTeamBean;
 import com.xxx.willing.model.http.bean.MyVoteBean;
@@ -465,9 +466,23 @@ public interface ApiService {
     );
 
     //设置默认地址
-    @POST(HttpConfig.BASE_URL_PATH + "/setAddressDefault")
+    @POST(HttpConfig.BASE_URL_PATH + "/addAddress")
     @FormUrlEncoded
     Observable<BaseBean<Object>> setDefaultAddress(
-            @Field("addressId") String addressId
+            @Field("status") Integer status
+    );
+
+    //我的收货地址
+    @POST(HttpConfig.BASE_URL_PATH + "/userAddresses")
+    @FormUrlEncoded
+    Observable<BaseBean<PageBean<MyAddressBean>>> myAddresses(
+            @Field("pageNum") int pageNum,
+            @Field("pageSize") int pageSize
+    );
+    //修改地址
+    @POST(HttpConfig.BASE_URL_PATH + "/userAddress/edit")
+    @FormUrlEncoded
+    Observable<BaseBean<Object>> updateAddress(
+            @Field("id") int id
     );
 }

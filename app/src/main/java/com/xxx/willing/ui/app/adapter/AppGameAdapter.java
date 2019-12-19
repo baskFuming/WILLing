@@ -26,6 +26,6 @@ public class AppGameAdapter extends BaseQuickAdapter<GameBean, BaseViewHolder> {
     @Override
     protected void convert(BaseViewHolder helper, GameBean item) {
         helper.setText(R.id.item_app_game_name, item.getName());
-        GlideUtil.loadCircle(mContext, HttpConfig.BASE_URL+item.getPicUrl(), helper.getView(R.id.item_app_game_icon));
+        GlideUtil.loadCircle(mContext, HttpConfig.HTTP_IMG_URL + item.getPicUrl(), helper.getView(R.id.item_app_game_icon));
     }
 }

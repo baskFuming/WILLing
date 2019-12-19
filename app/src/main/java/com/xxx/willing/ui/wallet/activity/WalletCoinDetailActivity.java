@@ -119,7 +119,7 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements Swipe
         mBalance.setText(bean.getAmount() + "");
         mUsa.setText("≈$" + bean.getUsaAmount());
         mAddress.setText(StringUtil.getAddress(bean.getAddress()));
-        GlideUtil.loadCircle(this, HttpConfig.BASE_URL + bean.getCoinIcon(), mIcon);
+        GlideUtil.loadCircle(this, HttpConfig.HTTP_IMG_URL + bean.getCoinIcon(), mIcon);
 
         loadData();
     }

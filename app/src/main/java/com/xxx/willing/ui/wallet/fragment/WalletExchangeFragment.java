@@ -186,8 +186,8 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
         double fee;
         mBaseSymbol.setText(baseCoinBean.getCoinSymbol());
         mTargetSymbol.setText(targetCoinBean.getCoinSymbol());
-        GlideUtil.loadCircle(getContext(), HttpConfig.BASE_URL + baseCoinBean.getCoinUrl(), mBaseIcon);
-        GlideUtil.loadCircle(getContext(), HttpConfig.BASE_URL + targetCoinBean.getCoinUrl(), mTargetIcon);
+        GlideUtil.loadCircle(getContext(), HttpConfig.HTTP_IMG_URL + baseCoinBean.getCoinUrl(), mBaseIcon);
+        GlideUtil.loadCircle(getContext(), HttpConfig.HTTP_IMG_URL + targetCoinBean.getCoinUrl(), mTargetIcon);
         if (baseCoinBean.getCoinId() == 10000004) {    //GVI 左边
             fee = gviBaseFee;
         } else if (baseCoinBean.getCoinId() == 10000005) {  //BVSE 左边

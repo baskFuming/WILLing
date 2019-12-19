@@ -21,6 +21,6 @@ public class WalletExchangeCheckAdapter extends BaseQuickAdapter<WalletCoinBean.
     protected void convert(BaseViewHolder helper, WalletCoinBean.ListBean item) {
         helper.setText(R.id.item_window_exchange_check_symbol, item.getCoinSymbol());
 
-        GlideUtil.loadCircle(mContext, HttpConfig.BASE_URL + item.getCoinUrl(), helper.getView(R.id.item_window_exchange_check_icon));
+        GlideUtil.loadCircle(mContext, HttpConfig.HTTP_IMG_URL + item.getCoinUrl(), helper.getView(R.id.item_window_exchange_check_icon));
     }
 }

@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.utils.GlideUtil;
 
 import java.util.List;
@@ -17,7 +18,6 @@ public class BrandDetailAdapter extends BaseQuickAdapter<String, BaseViewHolder>
 
     @Override
     protected void convert(BaseViewHolder holder, String url) {
-        GlideUtil.loadFillet(mContext, url, holder.getView(R.id.brand_detail_image));
-
+        GlideUtil.loadFillet(mContext, HttpConfig.HTTP_IMG_URL + url, holder.getView(R.id.brand_detail_image));
     }
 }

@@ -40,6 +40,6 @@ public class WalletMarketAdapter extends BaseQuickAdapter<WalletMarketBean, Base
             tvRate.setText("0.00%");
         }
 
-        GlideUtil.loadCoinCircle(mContext, HttpConfig.BASE_URL + item.getCoinUrl(), GlideUtil.WALLET_COIN_DEFAULT, helper.getView(R.id.item_wallet_market_icon));
+        GlideUtil.loadCoinCircle(mContext, HttpConfig.HTTP_IMG_URL + item.getCoinUrl(), GlideUtil.WALLET_COIN_DEFAULT, helper.getView(R.id.item_wallet_market_icon));
     }
 }

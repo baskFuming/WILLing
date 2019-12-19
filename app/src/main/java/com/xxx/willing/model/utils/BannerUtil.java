@@ -53,7 +53,7 @@ public class BannerUtil {
         @Override
         public void displayImage(Context context, Object path, ImageView imageView) {
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            GlideUrlUtil.loadFillet(context, HttpConfig.HTTP_IMG_URL + path, R.drawable.shape_back_not_data, imageView);
+            GlideUrlUtil.loadFillet(context, HttpConfig.HTTP_IMG_URL + path, R.mipmap.vote_banner_default, imageView);
         }
     }
 

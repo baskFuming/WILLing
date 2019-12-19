@@ -95,17 +95,17 @@ public class UpdateCardActivity extends BaseTitleActivity {
         if (fileFront != null) {
             mImgFront.setVisibility(View.GONE);
             mTvFront.setVisibility(View.GONE);
-            GlideFileUtil.loadBack(this, fileFront, R.drawable.shape_back_not_data, mLiFront);
+            GlideFileUtil.loadBack(this, fileFront, R.mipmap.vote_banner_default, mLiFront);
         }
         if (fileBack != null) {
             mImgBack.setVisibility(View.GONE);
             mTvBack.setVisibility(View.GONE);
-            GlideFileUtil.loadBack(this, fileBack, R.drawable.shape_back_not_data, mLiBack);
+            GlideFileUtil.loadBack(this, fileBack, R.mipmap.vote_banner_default, mLiBack);
         }
         if (fileHand != null) {
             mImgHand.setVisibility(View.GONE);
             mTvHand.setVisibility(View.GONE);
-            GlideFileUtil.loadBack(this, fileHand, R.drawable.shape_back_not_data, mLiHand);
+            GlideFileUtil.loadBack(this, fileHand, R.mipmap.vote_banner_default, mLiHand);
         }
     }
 
@@ -142,19 +142,19 @@ public class UpdateCardActivity extends BaseTitleActivity {
         CameraUtil.onActivityResult(this, requestCode, resultCode, data, (bitmap, file) -> {
             switch (type) {
                 case TYPE_CARD_FRONT:
-                    GlideFileUtil.loadBack(this, file, R.drawable.shape_back_not_data, mLiFront);
+                    GlideFileUtil.loadBack(this, file, R.mipmap.vote_banner_default, mLiFront);
                     mImgFront.setVisibility(View.GONE);
                     mTvFront.setVisibility(View.GONE);
                     fileFront = file;
                     break;
                 case TYPE_CARD_BACK:
-                    GlideFileUtil.loadBack(this, file, R.drawable.shape_back_not_data, mLiBack);
+                    GlideFileUtil.loadBack(this, file, R.mipmap.vote_banner_default, mLiBack);
                     mImgBack.setVisibility(View.GONE);
                     mTvBack.setVisibility(View.GONE);
                     fileBack = file;
                     break;
                 case TYPE_HAND_CARD:
-                    GlideFileUtil.loadBack(this, file, R.drawable.shape_back_not_data, mLiHand);
+                    GlideFileUtil.loadBack(this, file, R.mipmap.vote_banner_default, mLiHand);
                     mImgHand.setVisibility(View.GONE);
                     mTvHand.setVisibility(View.GONE);
                     fileHand = file;

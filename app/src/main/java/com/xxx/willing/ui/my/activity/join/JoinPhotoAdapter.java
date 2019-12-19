@@ -32,7 +32,7 @@ public class JoinPhotoAdapter extends BaseQuickAdapter<File, BaseViewHolder> {
 
         if (file != null) {
             imageView.setVisibility(View.GONE);
-            GlideFileUtil.loadBack(mContext, file, R.drawable.shape_back_not_data, relativeLayout);
+            GlideFileUtil.loadBack(mContext, file, R.mipmap.vote_banner_default, relativeLayout);
             view.setVisibility(View.VISIBLE);
         } else {
             imageView.setVisibility(View.VISIBLE);

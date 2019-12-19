@@ -32,12 +32,12 @@ public class BrandDetailActivity extends BaseTitleActivity {
         if (bean == null) bean = new BrandBean();
     }
 
+    private BrandBean bean;
+
     @BindView(R.id.brand_detail_recycler)
     RecyclerView mRecycler;
     @BindView(R.id.brand_detail_content)
     TextView mContent;
-
-    private BrandBean bean;
 
     @Override
     protected String initTitle() {

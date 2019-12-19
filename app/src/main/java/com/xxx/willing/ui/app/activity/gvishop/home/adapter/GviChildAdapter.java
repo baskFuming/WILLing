@@ -28,6 +28,6 @@ public class GviChildAdapter extends BaseQuickAdapter<GviBean.ListBean, BaseView
     protected void convert(BaseViewHolder helper, GviBean.ListBean item) {
         helper.setText(R.id.item_title, item.getName() + "￥" + item.getPrice())
                 .setText(R.id.item_price, item.getGviPrice() + "GVI");
-        GlideUrlUtil.loadBack(mContext, HttpConfig.HTTP_IMG_URL + item.getLogos(), R.drawable.shape_back_not_data, helper.getView(R.id.item_img));
+        GlideUrlUtil.loadBack(mContext, HttpConfig.HTTP_IMG_URL + item.getLogos(), R.mipmap.vote_banner_default, helper.getView(R.id.item_img));
     }
 }

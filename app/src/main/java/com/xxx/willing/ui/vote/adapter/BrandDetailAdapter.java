@@ -18,6 +18,6 @@ public class BrandDetailAdapter extends BaseQuickAdapter<String, BaseViewHolder>
 
     @Override
     protected void convert(BaseViewHolder holder, String url) {
-        GlideUrlUtil.loadFillet(mContext, HttpConfig.HTTP_IMG_URL + url, R.drawable.shape_back_not_data, holder.getView(R.id.brand_detail_image));
+        GlideUrlUtil.loadFillet(mContext, HttpConfig.HTTP_IMG_URL + url, R.mipmap.vote_banner_default, holder.getView(R.id.brand_detail_image));
     }
 }

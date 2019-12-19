@@ -46,7 +46,7 @@ public class MyOrderAdapter extends BaseQuickAdapter<MyOrderBean, BaseViewHolder
                 .addOnClickListener(R.id.order_un_delivery)
                 .addOnClickListener(R.id.order_confirm_btn);
 
-        GlideUrlUtil.loadBack(mContext, HttpConfig.HTTP_IMG_URL + item.getCommodity().getLogos(), R.drawable.shape_back_not_data, helper.getView(R.id.order_goods_icon));//品牌图片
+        GlideUrlUtil.loadBack(mContext, HttpConfig.HTTP_IMG_URL + item.getCommodity().getLogos(), R.mipmap.vote_banner_default, helper.getView(R.id.order_goods_icon));//品牌图片
 
         TextView mpay = helper.getView(R.id.order_pay_price);
         TextView mStatus = helper.getView(R.id.order_status);

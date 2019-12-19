@@ -46,7 +46,7 @@ public class JoinAdapter extends BaseQuickAdapter<JoinEntry, BaseViewHolder> {
                 .addOnClickListener(R.id.join_photo_add);
 
         if (item.getFilePhoto() != null) {
-            GlideFileUtil.loadFillet(mContext, item.getFilePhoto(), R.drawable.shape_back_not_data, imageView);
+            GlideFileUtil.loadFillet(mContext, item.getFilePhoto(), R.mipmap.vote_banner_default, imageView);
         } else {
             imageView.setImageResource(R.mipmap.join_add);
         }

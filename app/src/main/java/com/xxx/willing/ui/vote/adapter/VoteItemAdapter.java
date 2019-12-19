@@ -74,7 +74,7 @@ public class VoteItemAdapter extends BaseQuickAdapter<FranchiseeBean, BaseViewHo
 
             }
         });
-        GlideUrlUtil.load(mContext, HttpConfig.HTTP_IMG_URL + item.getImgUrl(), R.drawable.shape_back_not_data, helper.getView(R.id.item_vote_img));
+        GlideUrlUtil.load(mContext, HttpConfig.HTTP_IMG_URL + item.getImgUrl(), R.mipmap.vote_banner_default, helper.getView(R.id.item_vote_img));
         TextView status = helper.getView(R.id.item_vote_status);
         switch (item.getStatus()) {
             case ApiType.VOTE_PROGRESS_STATUE:

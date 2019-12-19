@@ -13,7 +13,13 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.config.UIConfig;
+import com.xxx.willing.model.http.Api;
+import com.xxx.willing.model.http.ApiCallback;
+import com.xxx.willing.model.http.bean.MyAddressBean;
+import com.xxx.willing.model.http.bean.MyOrderBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
+import com.xxx.willing.model.http.bean.base.PageBean;
+import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.activity.gvishop.my.address.adapter.AddressAdapter;
 
 import java.util.ArrayList;
@@ -21,6 +27,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author FM
@@ -44,7 +53,7 @@ public class MyAddressManagerActivity extends BaseTitleActivity implements Swipe
     LinearLayout mNotData;
     @BindView(R.id.main_refresh)
     SwipeRefreshLayout mRefresh;
-    private List<BaseBean> mList = new ArrayList<>();
+    private List<MyAddressBean> mList = new ArrayList<>();
     private AddressAdapter mAdapter;
 
     @Override
@@ -65,6 +74,7 @@ public class MyAddressManagerActivity extends BaseTitleActivity implements Swipe
         mRecycler.setAdapter(mAdapter);
         mRefresh.setOnRefreshListener(this);
         mAdapter.setOnLoadMoreListener(this, mRecycler);
+        mAdapter.setOnItemChildClickListener(this::onItemChildClick);
         loadDate();
     }
 
@@ -94,7 +104,7 @@ public class MyAddressManagerActivity extends BaseTitleActivity implements Swipe
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
         switch (view.getId()) {
             case R.id.update_address_item:
-                SettingAddressActivity.actionStartForResult(this, SettingAddressActivity.UPDATE_TAG);
+                SettingAddressActivity.actionStartForResult(this, SettingAddressActivity.UPDATE_TAG,mList.get(position));
                 break;
         }
     }
@@ -110,10 +120,76 @@ public class MyAddressManagerActivity extends BaseTitleActivity implements Swipe
     }
 
     /**
-     * @model 添加收货地址
+     * @model 我的收货地址
      */
     private void loadDate() {
+        Api.getInstance().myAddresses(page, UIConfig.PAGE_SIZE)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiCallback<PageBean<MyAddressBean>>(this) {
+                    @Override
+                    public void onSuccess(BaseBean<PageBean<MyAddressBean>> bean) {
+                        if (bean == null) {
+                            mNotData.setVisibility(View.VISIBLE);
+                            mRecycler.setVisibility(View.GONE);
+                            mAdapter.loadMoreEnd(true);
+                            return;
+                        }
+                        PageBean<MyAddressBean> data = bean.getData();
+                        if (data == null) {
+                            mNotData.setVisibility(View.VISIBLE);
+                            mRecycler.setVisibility(View.GONE);
+                            mAdapter.loadMoreEnd(true);
+                            return;
+                        }
+                        List<MyAddressBean> list = data.getList();
+                        if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
+                            mNotData.setVisibility(View.VISIBLE);
+                            mRecycler.setVisibility(View.GONE);
+                            mAdapter.loadMoreEnd(true);
+                            return;
+                        }
+
+                        mNotData.setVisibility(View.GONE);
+                        mRecycler.setVisibility(View.VISIBLE);
+                        if (page == UIConfig.PAGE_DEFAULT) {
+                            mList.clear();
+                        }
+
+                        mList.addAll(list);
+                        if (list.size() < UIConfig.PAGE_SIZE) {
+                            mAdapter.loadMoreEnd(true);
+                        } else {
+                            mAdapter.loadMoreComplete();
+                        }
+                        mAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onError(int errorCode, String errorMessage) {
+                        if (mList.size() == 0) {
+                            mNotData.setVisibility(View.VISIBLE);
+                            mRecycler.setVisibility(View.GONE);
+                        }
+                        ToastUtil.showToast(errorMessage);
+                    }
+
+                    @Override
+                    public void onStart(Disposable d) {
+                        super.onStart(d);
+                        if (mRefresh != null && page == UIConfig.PAGE_DEFAULT) {
+                            mRefresh.setRefreshing(true);
+                        }
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        if (mRefresh != null) {
+                            mRefresh.setRefreshing(false);
+                        }
+                    }
+                });
 
     }
-
 }

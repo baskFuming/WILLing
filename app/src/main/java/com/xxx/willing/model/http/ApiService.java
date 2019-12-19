@@ -1,6 +1,7 @@
 package com.xxx.willing.model.http;
 
 import com.xxx.willing.config.HttpConfig;
+import com.xxx.willing.model.http.bean.AddOrderBean;
 import com.xxx.willing.model.http.bean.AppVersionBean;
 import com.xxx.willing.model.http.bean.AssetRecordBean;
 import com.xxx.willing.model.http.bean.BannerBean;
@@ -434,7 +435,7 @@ public interface ApiService {
     //付款
     @FormUrlEncoded
     @POST(HttpConfig.BASE_URL_PATH + "/paymentOrder")
-    Observable<BaseBean<Object>> paymentOrder(
+    Observable<BaseBean<BooleanBean>> paymentOrder(
             @Field("orderId") int orderId
     );
 
@@ -490,7 +491,7 @@ public interface ApiService {
     //下单
     @POST(HttpConfig.BASE_URL_PATH + "/addOrder")
     @FormUrlEncoded
-    Observable<BaseBean<BooleanBean>> addOrder(
+    Observable<BaseBean<AddOrderBean>> addOrder(
             @Field("commId") int commId,
             @Field("commNum") int commNum,
             @Field("colorId") int colorId,
@@ -498,4 +499,5 @@ public interface ApiService {
             @Field("details") String details,
             @Field("addressId") int addressId
     );
+
 }

@@ -1,6 +1,8 @@
 package com.xxx.willing.model.http.js;
 
-public class ShopJsVo {
+import java.io.Serializable;
+
+public class ShopJsVo implements Serializable{
 
     private int id;
 
@@ -9,6 +11,16 @@ public class ShopJsVo {
     private int color;
 
     private int sizeId;
+
+    private double zgviPrice;
+
+    public double getPrice() {
+        return zgviPrice;
+    }
+
+    public void setPrice(double price) {
+        this.zgviPrice = price;
+    }
 
     public void setColor(int color) {
         this.color = color;

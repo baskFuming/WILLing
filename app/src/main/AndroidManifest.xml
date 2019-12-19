@@ -54,7 +54,10 @@
         <activity android:name=".base.activity.BaseWebShopActivity" />
         <activity android:name=".base.activity.BaseWebActivity" />
         <activity android:name=".ui.main.wheels.GuidePageActivity" />
-        <activity android:name=".ui.main.MainActivity" />
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:launchMode="singleTask" />
+
         <activity android:name=".ui.main.SweepActivity" />
         <activity android:name=".ui.login.activity.LoginActivity" />
         <activity android:name=".ui.login.activity.RegisterActivity" />

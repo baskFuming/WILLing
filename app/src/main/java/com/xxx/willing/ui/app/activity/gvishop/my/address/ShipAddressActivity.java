@@ -9,7 +9,13 @@ import android.widget.TextView;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.base.activity.BaseWebShopActivity;
+import com.xxx.willing.model.http.js.ShopJsVo;
+import com.xxx.willing.model.sp.SharedConst;
+import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.ui.app.activity.gvishop.my.address.pop.SubmitPop;
+
+import java.io.Serializable;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -22,14 +28,24 @@ import butterknife.OnClick;
 
 public class ShipAddressActivity extends BaseTitleActivity {
 
-    public static void actionStart(Activity activity) {
+    public static void actionStart(Activity activity, ShopJsVo shopJsVo) {
         Intent intent = new Intent(activity, ShipAddressActivity.class);
+        intent.putExtra("bean", shopJsVo);
         activity.startActivity(intent);
     }
 
     public void initBundle() {
         Intent intent = getIntent();
+        bean = (ShopJsVo) intent.getSerializableExtra("bean");
+        if (bean == null) bean = new ShopJsVo();
+
+        //是否设置过地址
+        if (!SharedPreferencesUtil.getInstance().getBoolean(SharedConst.IS_SETTING_ADDRESS)) {
+            SettingAddressActivity.actionStart(this, SettingAddressActivity.ADD_TAG);
+        }
     }
+
+    private ShopJsVo bean;
 
     @BindView(R.id.user_name)   //姓名
             TextView mName;
@@ -65,12 +81,10 @@ public class ShipAddressActivity extends BaseTitleActivity {
     private int number = 1;
     private SubmitPop submitPop;
 
-
     @Override
     protected String initTitle() {
         return getString(R.string.address_title);
     }
-
 
     @Override
     protected int getLayoutId() {
@@ -99,7 +113,7 @@ public class ShipAddressActivity extends BaseTitleActivity {
                 mNumber.setText(String.valueOf(number));
                 break;
             case R.id.submit_order:
-                submitPop = SubmitPop.getInstance(this, this::submitOrder, "");
+                submitPop = SubmitPop.getInstance(this, this::submitOrder);
                 submitPop.show();
                 break;
         }

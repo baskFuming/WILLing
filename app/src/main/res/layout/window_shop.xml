@@ -10,18 +10,19 @@
 
     <!-- 手机号 -->
     <LinearLayout
-        android:id="@+id/window_shop_phone_linear"
+        android:id="@+id/window_shop_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/window_shop_phone_title"
             android:layout_width="wrap_content"
-            android:layout_height="66dp"
-            android:gravity="center"
-            android:text="---"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/window_shop_phone_title"
             android:textColor="#333333"
             android:textSize="17dp" />
 
@@ -48,6 +49,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="35dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
@@ -80,7 +82,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
     <!-- 手机号充值成功 -->
     <LinearLayout
         android:id="@+id/window_shop_phone_success"
@@ -89,20 +90,212 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/window_shop_phone_success_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="您的话费已充值成功。"
+            android:text="@string/window_shop_phone_success"
             android:textColor="#333333"
             android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/window_shop_phone_success_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/window_shop_phone_success_time"
+            android:textColor="#666666"
+            android:textSize="14dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/window_shop_phone_success_toast"
+            android:textColor="#999999"
+            android:textSize="11dp" />
+
+        <Button
+            android:id="@+id/window_shop_phone_success_btn"
+            android:layout_width="112dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_btn_shop"
+            android:text="@string/btn_confirm"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="17dp" />
+
+    </LinearLayout>
+    <!-- 手机号充值失败 -->
+    <LinearLayout
+        android:id="@+id/window_shop_phone_fail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="@string/window_shop_phone_fail_title"
+            android:textColor="#333333"
+            android:textSize="17dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/window_shop_phone_fail_cancel_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/shape_btn_shop_true"
+                android:text="@string/btn_cancel"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:textSize="17dp" />
+
+            <Space
+                android:layout_width="15dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/window_shop_phone_fail_confirm_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_btn_shop"
+                android:text="@string/window_shop_phone_fail_confirm_btn"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:textSize="17dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <!-- 商品兑换成功 -->
+    <LinearLayout
+        android:id="@+id/window_shop_order_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/window_shop_order_success"
+            android:textColor="#333333"
+            android:textSize="17dp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="预计到账时间为"
+            android:text="@string/window_shop_order_toast"
+            android:textColor="#666666"
+            android:textSize="17dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/window_shop_order_cancel_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/shape_btn_shop_true"
+                android:text="@string/btn_cancel"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:textSize="17dp" />
+
+            <Space
+                android:layout_width="15dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/window_shop_order_confirm_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_btn_shop"
+                android:text="@string/btn_confirm"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:textSize="17dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <!-- 商品兑换失败 -->
+    <LinearLayout
+        android:id="@+id/window_shop_order_fail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="@string/window_shop_order_fail_title"
             android:textColor="#333333"
             android:textSize="17dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/window_shop_order_fail_cancel_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/shape_btn_shop_true"
+                android:text="@string/btn_cancel"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:textSize="17dp" />
+
+            <Space
+                android:layout_width="15dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/window_shop_order_fail_confirm_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_btn_shop"
+                android:text="@string/window_shop_phone_fail_confirm_btn"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:textSize="17dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

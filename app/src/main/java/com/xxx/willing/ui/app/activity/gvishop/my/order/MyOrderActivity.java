@@ -1,6 +1,7 @@
 package com.xxx.willing.ui.app.activity.gvishop.my.order;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.widget.TextView;
@@ -29,10 +30,23 @@ import butterknife.BindView;
 
 public class MyOrderActivity extends BaseTitleActivity {
 
-    public static void actionStart(Activity activity) {
+    public static void actionStart(Context activity) {
         Intent intent = new Intent(activity, MyOrderActivity.class);
         activity.startActivity(intent);
     }
+
+    public static void actionStart(Context activity, int type) {
+        Intent intent = new Intent(activity, MyOrderActivity.class);
+        intent.putExtra("type", type);
+        activity.startActivity(intent);
+    }
+
+    private void initBundle() {
+        Intent intent = getIntent();
+        type = intent.getIntExtra("type", -1);
+    }
+
+    private int type;
 
     @BindArray(R.array.order_gvi_tab)
     String[] status;
@@ -63,6 +77,8 @@ public class MyOrderActivity extends BaseTitleActivity {
 
     @Override
     protected void initData() {
+        initBundle();
+
         List<String> list = Arrays.asList(status);
 
         allFragment = MyOrderFragment.getInstance(ApiType.ORDER_COMMUNITY_ALL, list.get(0));
@@ -80,6 +96,9 @@ public class MyOrderActivity extends BaseTitleActivity {
         mViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), fragments, list));
         mTabLayout.setupWithViewPager(mViewPager);
         mViewPager.setOffscreenPageLimit(fragments.size() - 1);
+        if (type != -1) {
+            mViewPager.setCurrentItem(type);
+        }
     }
 
     //订单完成切换状态

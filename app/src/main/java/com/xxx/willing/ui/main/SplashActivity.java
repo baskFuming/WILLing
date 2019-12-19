@@ -1,6 +1,7 @@
 package com.xxx.willing.ui.main;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -76,7 +77,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void checkUI() {
         if (isLogin) {
-            MainActivity.actionStart(this);
+            startActivity(new Intent(this, MainActivity.class));
         } else {
             LoginActivity.actionStart(this);
         }

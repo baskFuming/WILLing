@@ -1,8 +1,8 @@
 package com.xxx.willing.ui.main;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -45,16 +45,11 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class MainActivity extends BaseActivity {
 
-    public static void actionStart(Activity activity) {
-        Intent intent = new Intent(activity, MainActivity.class);
-        activity.startActivity(intent);
-    }
-
     //页面下标
-    private static final int VOTE_TYPE = R.id.main_vote;     //投票
-    private static final int APP_TYPE = R.id.main_app;     //应用
-    private static final int WALLET_TYPE = R.id.main_wallet; //钱包
-    private static final int MY_TYPE = R.id.main_my;         //我的
+    public static final int VOTE_TYPE = R.id.main_vote;     //投票
+    public static final int APP_TYPE = R.id.main_app;     //应用
+    public static final int WALLET_TYPE = R.id.main_wallet; //钱包
+    public static final int MY_TYPE = R.id.main_my;         //我的
 
     @BindView(R.id.main_vote_image)
     ImageView mVoteImage;
@@ -111,6 +106,23 @@ public class MainActivity extends BaseActivity {
             defaultItem();
             selectorItem();
             lastType = nowType;
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        int type = intent.getIntExtra("type", 0);
+        if (type != 0) {
+            this.nowType = type;
+            defaultItem();
+            selectorItem();
+            lastType = nowType;
+            Fragment fragment = FragmentManager.getFragment(this, WalletFragment.class.getName());
+            if (fragment != null){
+                //移动到兑换
+                ((WalletFragment)fragment).exchange();
+            }
         }
     }
 

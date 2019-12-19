@@ -16,6 +16,7 @@ import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.MyOrderBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
+import com.xxx.willing.model.http.bean.base.BooleanBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.activity.gvishop.my.order.adapter.MyOrderAdapter;
@@ -274,9 +275,9 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
         Api.getInstance().paymentOrder(Integer.parseInt(orderId))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiCallback<Object>(getActivity()) {
+                .subscribe(new ApiCallback<BooleanBean>(getActivity()) {
                     @Override
-                    public void onSuccess(BaseBean<Object> bean) {
+                    public void onSuccess(BaseBean<BooleanBean> bean) {
                         ToastUtil.showToast(getString(R.string.pay_seccess));
                         Intent intent = new Intent();
                         intent.putExtra("type", 1);

@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_bg"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <include layout="@layout/include_title_bar" />
 
@@ -19,13 +16,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_left_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginRight="@dimen/activity_right_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:background="@drawable/shape_line_bg"
+            android:paddingBottom="@dimen/activity_Top_margin"
             android:paddingLeft="@dimen/activity_left_margin"
-            android:paddingTop="@dimen/activity_Top_margin"
             android:paddingRight="@dimen/activity_right_margin"
-            android:paddingBottom="@dimen/activity_Top_margin">
+            android:paddingTop="@dimen/activity_Top_margin">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -112,14 +109,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/re_onclick_setting"
             android:layout_marginLeft="@dimen/activity_left_margin"
-            android:layout_marginTop="15dp"
             android:layout_marginRight="@dimen/activity_right_margin"
+            android:layout_marginTop="15dp"
             android:background="@drawable/shape_line_bg"
             android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_Top_margin"
             android:paddingLeft="@dimen/activity_left_margin"
-            android:paddingTop="@dimen/activity_Top_margin"
             android:paddingRight="@dimen/activity_right_margin"
-            android:paddingBottom="@dimen/activity_Top_margin">
+            android:paddingTop="@dimen/activity_Top_margin">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -161,10 +158,10 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:orientation="vertical"
+                        android:paddingBottom="10dp"
                         android:paddingLeft="10dp"
-                        android:paddingTop="10dp"
                         android:paddingRight="10dp"
-                        android:paddingBottom="10dp">
+                        android:paddingTop="10dp">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -255,8 +252,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp">
+                    android:paddingBottom="20dp"
+                    android:paddingTop="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -313,8 +310,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp">
+                    android:paddingBottom="20dp"
+                    android:paddingTop="20dp">
 
                     <TextView
                         android:id="@+id/text_1"
@@ -346,15 +343,17 @@
                         android:textColor="#ff666666"
                         android:textSize="12dp" />
                 </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:background="#EFEFEF" />
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp">
+                    android:paddingBottom="20dp"
+                    android:paddingTop="20dp">
 
                     <TextView
                         android:id="@+id/text_2"
@@ -367,25 +366,26 @@
 
                     <TextView
                         android:id="@+id/yu_action"
-                        android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="GVI兑换享7折优惠"
-                        android:textColor="#fffe3848"
-                        android:textSize="12dp"
+                        android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
                         android:layout_toRightOf="@+id/text_2"
-                        />
+                        android:text="GVI兑换享7折优惠"
+                        android:textColor="#fffe3848"
+                        android:textSize="12dp" />
                 </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:background="#EFEFEF" />
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp">
+                    android:paddingBottom="20dp"
+                    android:paddingTop="20dp">
 
                     <TextView
                         android:id="@+id/text_3"
@@ -398,16 +398,15 @@
 
                     <EditText
                         android:id="@+id/ed_remark_content"
-                        android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="@string/add_hint_remark"
-                        android:textColor="#fffe3848"
-                        android:textSize="12dp"
+                        android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
                         android:layout_toRightOf="@+id/text_3"
                         android:background="@null"
-                        />
+                        android:hint="@string/add_hint_remark"
+                        android:textColor="#fffe3848"
+                        android:textSize="12dp" />
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>

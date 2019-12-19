@@ -205,8 +205,8 @@ public class SettingAddressActivity extends BaseTitleActivity {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
-                        super.onError(e);
+                    public void onEnd() {
+                        super.onEnd();
                         hideLoading();
                     }
                 });
@@ -239,10 +239,11 @@ public class SettingAddressActivity extends BaseTitleActivity {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
-                        super.onError(e);
+                    public void onEnd() {
+                        super.onEnd();
                         hideLoading();
                     }
+
                 });
     }
 
@@ -302,10 +303,11 @@ public class SettingAddressActivity extends BaseTitleActivity {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
-                        super.onError(e);
+                    public void onEnd() {
+                        super.onEnd();
                         hideLoading();
                     }
+
                 });
 
     }

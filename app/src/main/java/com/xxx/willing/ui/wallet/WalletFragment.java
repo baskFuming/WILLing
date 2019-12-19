@@ -82,4 +82,10 @@ public class WalletFragment extends BaseFragment {
         }
     }
 
+    public void exchange() {
+        if (list != null && mViewPager != null) {
+            mViewPager.setCurrentItem(2);
+        }
+    }
+
 }

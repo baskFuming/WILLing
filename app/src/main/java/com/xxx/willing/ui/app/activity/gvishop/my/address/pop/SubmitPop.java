@@ -19,21 +19,24 @@ import butterknife.OnClick;
 public class SubmitPop extends BasePopup {
 
     private Callback callback;
+    private String number;
 
-    public SubmitPop(Context context, Callback callback, String number) {
+    private SubmitPop(Context context, Callback callback) {
         super(context);
         this.callback = callback;
-        this.number = number;
     }
 
-    public static SubmitPop getInstance(Context context, Callback callback, String number) {
-        return new SubmitPop(context, callback, number);
+    public static SubmitPop getInstance(Context context, Callback callback) {
+        return new SubmitPop(context, callback);
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     @BindView(R.id.coin_number)
     TextView mNumber;
 
-    private String number;
 
     @Override
     protected int getLayoutId() {

@@ -16,7 +16,6 @@ import com.xxx.willing.model.http.bean.base.BaseBean;
 
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.activity.gvishop.my.address.MyAddressManagerActivity;
-import com.xxx.willing.ui.app.activity.gvishop.my.address.ShipAddressActivity;
 import com.xxx.willing.ui.app.activity.gvishop.my.order.MyOrderActivity;
 
 import butterknife.BindView;
@@ -32,6 +31,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class GVIMyFragment extends BaseFragment {
+
     @BindView(R.id.user_icon)
     ImageView mIcon;
     @BindView(R.id.user_name)

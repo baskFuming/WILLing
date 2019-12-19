@@ -100,6 +100,7 @@ public class ShipAddressActivity extends BaseTitleActivity {
                 break;
             case R.id.submit_order:
                 submitPop = SubmitPop.getInstance(this, this::submitOrder, "");
+                submitPop.show();
                 break;
         }
     }
@@ -109,5 +110,14 @@ public class ShipAddressActivity extends BaseTitleActivity {
      */
     private void submitOrder() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (submitPop != null) {
+            submitPop.dismiss();
+            submitPop = null;
+        }
     }
 }

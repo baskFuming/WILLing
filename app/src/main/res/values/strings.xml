@@ -508,7 +508,6 @@
     <string name="comfirm_successful">收货成功</string>
     <string name="send_success">发送成功</string>
     <string name="setting_pay_psw_success">设置成功</string>
-    <string name="update_success">修改成功</string>
     <string name="add_success">添加成功</string>
     <string name="setting_success">设置成功</string>
 </resources>

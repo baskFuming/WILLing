@@ -20,6 +20,16 @@ public class UserInfo {
     private int franStatus;
     private int franId;
     private String areacode;
+    private boolean isSettingPayPsw;
+    private boolean isSettingAddress;
+
+    public boolean isSettingAddress() {
+        return isSettingAddress;
+    }
+
+    public boolean isSettingPayPsw() {
+        return isSettingPayPsw;
+    }
 
     public int getFranStatus() {
         return franStatus;

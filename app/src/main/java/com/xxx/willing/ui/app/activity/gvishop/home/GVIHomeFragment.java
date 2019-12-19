@@ -15,6 +15,8 @@ import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.GviBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
+import com.xxx.willing.model.sp.SharedConst;
+import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.activity.gvishop.home.adapter.GviAdapter;
 import com.xxx.willing.view.SearchEditText;
@@ -34,7 +36,7 @@ import io.reactivex.schedulers.Schedulers;
  * @date 2019-12-04
  */
 
-public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener{
+public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
 
     @BindView(R.id.main_recycler)
     RecyclerView mRecycler;
@@ -51,8 +53,9 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
     private GviAdapter mAdapter;
     private List<GviBean> mList = new ArrayList<>();
     private List<GviBean> mSearchList = new ArrayList<>();
-    private String edSearchName;
     private GviAdapter mSearchAdapter;
+
+    private String edSearchName;
 
     @Override
     protected int getLayoutId() {
@@ -112,6 +115,12 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
     public void onLoadMoreRequested() {
         page++;
         loadSearch();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        mRefresh.post(this::loadData);
     }
 
     //获取商城
@@ -185,11 +194,5 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
                 });
     }
 
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        mRefresh.post(() -> {
-            loadData();
-        });
-    }
 }
+

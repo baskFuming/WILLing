@@ -19,4 +19,7 @@ public class LogConst {
 
     //图片获取日志拦截
     public static final String IMAGE_TAG = BuildConfig.APPLICATION_ID + "_image";
+
+    //网络请求的Log日志拦截
+    public static final String SHOP_JS_TAG = BuildConfig.APPLICATION_ID + "_shop_js";
 }

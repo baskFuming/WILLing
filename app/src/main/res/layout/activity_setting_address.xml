@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_bg"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <include layout="@layout/include_title_bar" />
 
@@ -21,17 +20,17 @@
         android:layout_marginTop="@dimen/activity_vertical_margin">
 
         <LinearLayout
-            android:paddingRight="@dimen/activity_right_margin"
-            android:paddingLeft="@dimen/activity_left_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/activity_left_margin"
+            android:paddingRight="@dimen/activity_right_margin">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="17dp"
-                android:paddingBottom="17dp">
+                android:paddingBottom="17dp"
+                android:paddingTop="17dp">
 
                 <TextView
                     android:id="@+id/text_2"
@@ -63,8 +62,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="17dp"
-                android:paddingBottom="17dp">
+                android:paddingBottom="17dp"
+                android:paddingTop="17dp">
 
                 <TextView
                     android:id="@+id/text_1"
@@ -96,8 +95,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="17dp"
-                android:paddingBottom="17dp">
+                android:paddingBottom="17dp"
+                android:paddingTop="17dp">
 
                 <TextView
                     android:id="@+id/text_3"
@@ -138,8 +137,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="17dp"
-                android:paddingBottom="17dp">
+                android:paddingBottom="17dp"
+                android:paddingTop="17dp">
 
                 <TextView
                     android:id="@+id/text_4"
@@ -186,10 +185,10 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="16dp"
-                android:paddingTop="20dp"
-                android:paddingRight="16dp"
                 android:paddingBottom="30dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="20dp"
                 android:thumb="@drawable/switch_white_circle_selector"
                 android:track="@drawable/switch_selector_green">
 

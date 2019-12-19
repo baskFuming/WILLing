@@ -302,9 +302,9 @@ public interface ApiService {
             @Field("payPassword") String payPassword
     );
 
-    //检查是否设置过支付密码
-    @POST(HttpConfig.BASE_URL_PATH + "/selectPayPassword")
-    Observable<BaseBean<IsSettingPayPswBean>> checkIsSettingPayPassword();
+//    //检查是否设置过支付密码
+//    @POST(HttpConfig.BASE_URL_PATH + "/selectPayPassword")
+//    Observable<BaseBean<IsSettingPayPswBean>> checkIsSettingPayPassword();
 
     //检查app版本
     @GET(HttpConfig.BASE_URL_PATH + "/checkUpdate")
@@ -479,10 +479,23 @@ public interface ApiService {
             @Field("pageNum") int pageNum,
             @Field("pageSize") int pageSize
     );
+
     //修改地址
     @POST(HttpConfig.BASE_URL_PATH + "/userAddress/edit")
     @FormUrlEncoded
     Observable<BaseBean<Object>> updateAddress(
             @Field("id") int id
+    );
+
+    //下单
+    @POST(HttpConfig.BASE_URL_PATH + "/addOrder")
+    @FormUrlEncoded
+    Observable<BaseBean<BooleanBean>> addOrder(
+            @Field("commId") int commId,
+            @Field("commNum") int commNum,
+            @Field("colorId") int colorId,
+            @Field("sizeId") int sizeId,
+            @Field("details") String details,
+            @Field("addressId") int addressId
     );
 }

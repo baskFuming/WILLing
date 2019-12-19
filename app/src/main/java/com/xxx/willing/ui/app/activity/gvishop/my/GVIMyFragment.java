@@ -15,6 +15,7 @@ import com.xxx.willing.model.http.bean.ShopUser;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 
 import com.xxx.willing.model.utils.ToastUtil;
+import com.xxx.willing.ui.app.activity.gvishop.my.address.MyAddressManagerActivity;
 import com.xxx.willing.ui.app.activity.gvishop.my.address.ShipAddressActivity;
 import com.xxx.willing.ui.app.activity.gvishop.my.order.MyOrderActivity;
 
@@ -55,7 +56,7 @@ public class GVIMyFragment extends BaseFragment {
                 MyOrderActivity.actionStart(getActivity());
                 break;
             case R.id.re_my_address: //我的地址
-                ShipAddressActivity.actionStart(getActivity());
+                MyAddressManagerActivity.actionStart(getActivity());
                 break;
         }
     }

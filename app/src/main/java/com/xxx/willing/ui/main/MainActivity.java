@@ -92,8 +92,6 @@ public class MainActivity extends BaseActivity {
         //初始化双击退出
         exitAppUtil = ExitAppUtil.getInstance();
 
-        //检测是否设置过支付密码
-        checkIsSettingPayPassword();
         //加载用户信息
         loadInfo();
 
@@ -140,7 +138,6 @@ public class MainActivity extends BaseActivity {
                     if (!BuildConfig.DEBUG) {
                         checkAppVersion();
                     }
-                    checkIsSettingPayPassword();
                     //加载用户信息
                     loadInfo();
                 });
@@ -258,43 +255,6 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * @Model 检查是否设置支付密码
-     */
-    private void checkIsSettingPayPassword() {
-        Api.getInstance().checkIsSettingPayPassword()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiCallback<IsSettingPayPswBean>(this) {
-                    @Override
-                    public void onSuccess(BaseBean<IsSettingPayPswBean> bean) {
-                        if (bean != null) {
-                            IsSettingPayPswBean data = bean.getData();
-                            if (data != null) {
-                                SharedPreferencesUtil.getInstance().saveBoolean(SharedConst.IS_SETTING_PAY_PSW, data.isResult());
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onError(int errorCode, String errorMessage) {
-                        ToastUtil.showToast(errorMessage);
-                    }
-
-                    @Override
-                    public void onStart(Disposable d) {
-                        super.onStart(d);
-                        showLoading();
-                    }
-
-                    @Override
-                    public void onEnd() {
-                        super.onEnd();
-                        hideLoading();
-                    }
-                });
-    }
-
-    /**
      * @Model 获取用户信息
      */
     private void loadInfo() {
@@ -316,6 +276,8 @@ public class MainActivity extends BaseActivity {
                                 SharedPreferencesUtil.getInstance().saveInt(SharedConst.VALUE_USER_FRAN_ID, data.getFranId());
 
                                 SharedPreferencesUtil.getInstance().saveInt(SharedConst.IS_VOTE_FRAN, data.getFranStatus());
+                                SharedPreferencesUtil.getInstance().saveBoolean(SharedConst.IS_SETTING_PAY_PSW, data.isSettingPayPsw());
+                                SharedPreferencesUtil.getInstance().saveBoolean(SharedConst.IS_SETTING_ADDRESS, data.isSettingAddress());
 
                                 EventBus.getDefault().post(EventBusConfig.EVENT_UPDATE_USER);
                             }

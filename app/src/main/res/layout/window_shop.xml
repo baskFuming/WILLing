@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_back_window"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="28dp"
+    android:paddingRight="28dp">
+
+    <!-- 手机号 -->
+    <LinearLayout
+        android:id="@+id/window_shop_phone_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/window_shop_phone_title"
+            android:layout_width="wrap_content"
+            android:layout_height="66dp"
+            android:gravity="center"
+            android:text="---"
+            android:textColor="#333333"
+            android:textSize="17dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/shape_edit_wallet_exchange">
+
+            <EditText
+                android:id="@+id/window_shop_phone_edit"
+                style="@style/EditInputPhoneStyle"
+                android:paddingLeft="10dp" />
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="#00000000"
+                android:src="@mipmap/edit_cancel" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/window_shop_phone_cancel_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/shape_btn_shop_true"
+                android:text="@string/btn_cancel"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:textSize="17dp" />
+
+            <Space
+                android:layout_width="15dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/window_shop_phone_confirm_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_btn_shop"
+                android:text="@string/btn_confirm"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:textSize="17dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- 手机号充值成功 -->
+    <LinearLayout
+        android:id="@+id/window_shop_phone_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="您的话费已充值成功。"
+            android:textColor="#333333"
+            android:textSize="17dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="预计到账时间为"
+            android:textColor="#333333"
+            android:textSize="17dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

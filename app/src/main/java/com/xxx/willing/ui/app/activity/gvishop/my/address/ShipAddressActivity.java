@@ -55,6 +55,10 @@ public class ShipAddressActivity extends BaseTitleActivity {
             TextView mPreferential;
     @BindView(R.id.ed_remark_content)//备注
             EditText mRemark;
+    @BindView(R.id.buy_number)//件数
+            TextView mBuyNumber;
+    @BindView(R.id.shop_price_all)//总价
+            TextView mTotalprice;
     @BindView(R.id.re_onclick_setting)
     RelativeLayout mAddress;
 

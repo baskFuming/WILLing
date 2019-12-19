@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_bg"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <include layout="@layout/include_title_bar" />
 
@@ -14,12 +13,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/include_recycler" />
+        <include
+            android:id="@+id/include_te"
+            layout="@layout/include_recycler" />
 
         <TextView
             android:id="@+id/add_new_address"
             android:layout_width="match_parent"
             android:layout_height="49dp"
+            android:layout_above="@+id/include_te"
             android:layout_below="@+id/line1"
             android:layout_alignParentBottom="true"
             android:layout_gravity="center"

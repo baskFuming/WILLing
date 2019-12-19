@@ -4,11 +4,10 @@ package com.xxx.willing.model.http.bean;
 import java.util.List;
 
 public class GviBean {
-
     /**
-     * name : 1
-     * details : 1
-     * list : [{"id":1,"brandId":2,"name":"wewrw","price":12,"gviPrice":12,"stock":123,"logos":"12321","img":"123","describes":null,"details":null,"explains":null,"express":null,"freight":null,"status":null,"creator":null,"createTime":null,"lastUpdateTime":null}]
+     * name : 生活缴费
+     * details : GVI当钱花，话费随心兑
+     * list : [{"id":1,"brandId":1,"name":"话费代金券","price":50,"gviPrice":49,"stock":99,"logos":"/telephoneBill.png","img":"['https://img.alicdn.com/imgextra/i4/288240373/TB2jQK0nrwTMeJjSszfXXXbtFXa_!!288240373-0-beehive-scenes.jpg_460x460xz.jpg','https://img.alicdn.com/tfscom/i1/90489528/TB24h0WelTH8KJjy0FiXXcRsXXa_!!90489528.jpg']","describes":"GVI当钱花，话费随心兑","details":"【商品详情】1: 购买前请查询充值号码话费余额，若已欠费停机请查询话费欠费金额，以免充值金额不足导致您不能正常使用造成误会。2: 购买时，请准确填写需要充值的手机号码，因您提供的充值号码导致充值损失，本店不承担责任。一旦充值成功，本店不提供退换服务。3: 每月月初3日内以及月底最后3日内为缴费高峰期，可能会出现运营商系统繁忙，敬请谅解。","explains":"'商品说明'","express":"'配送快递'","freight":123,"status":0,"creator":null,"createTime":"2019-12-11 10:56:27","lastUpdateTime":"2019-12-12 10:56:14","units":"件"}]
      */
 
     private String name;
@@ -42,41 +41,43 @@ public class GviBean {
     public static class ListBean {
         /**
          * id : 1
-         * brandId : 2
-         * name : wewrw
-         * price : 12
-         * gviPrice : 12
-         * stock : 123
-         * logos : 12321
-         * img : 123
-         * describes : null
-         * details : null
-         * explains : null
-         * express : null
-         * freight : null
-         * status : null
+         * brandId : 1
+         * name : 话费代金券
+         * price : 50.0
+         * gviPrice : 49.0
+         * stock : 99
+         * logos : /telephoneBill.png
+         * img : ['https://img.alicdn.com/imgextra/i4/288240373/TB2jQK0nrwTMeJjSszfXXXbtFXa_!!288240373-0-beehive-scenes.jpg_460x460xz.jpg','https://img.alicdn.com/tfscom/i1/90489528/TB24h0WelTH8KJjy0FiXXcRsXXa_!!90489528.jpg']
+         * describes : GVI当钱花，话费随心兑
+         * details : 【商品详情】1: 购买前请查询充值号码话费余额，若已欠费停机请查询话费欠费金额，以免充值金额不足导致您不能正常使用造成误会。2: 购买时，请准确填写需要充值的手机号码，因您提供的充值号码导致充值损失，本店不承担责任。一旦充值成功，本店不提供退换服务。3: 每月月初3日内以及月底最后3日内为缴费高峰期，可能会出现运营商系统繁忙，敬请谅解。
+         * explains : '商品说明'
+         * express : '配送快递'
+         * freight : 123.0
+         * status : 0
          * creator : null
-         * createTime : null
-         * lastUpdateTime : null
+         * createTime : 2019-12-11 10:56:27
+         * lastUpdateTime : 2019-12-12 10:56:14
+         * units : 件
          */
 
         private int id;
         private int brandId;
         private String name;
-        private int price;
-        private int gviPrice;
+        private double price;
+        private double gviPrice;
         private int stock;
         private String logos;
         private String img;
-        private Object describes;
-        private Object details;
-        private Object explains;
-        private Object express;
-        private Object freight;
-        private Object status;
+        private String describes;
+        private String details;
+        private String explains;
+        private String express;
+        private double freight;
+        private int status;
         private Object creator;
-        private Object createTime;
-        private Object lastUpdateTime;
+        private String createTime;
+        private String lastUpdateTime;
+        private String units;
 
         public int getId() {
             return id;
@@ -102,19 +103,19 @@ public class GviBean {
             this.name = name;
         }
 
-        public int getPrice() {
+        public double getPrice() {
             return price;
         }
 
-        public void setPrice(int price) {
+        public void setPrice(double price) {
             this.price = price;
         }
 
-        public int getGviPrice() {
+        public double getGviPrice() {
             return gviPrice;
         }
 
-        public void setGviPrice(int gviPrice) {
+        public void setGviPrice(double gviPrice) {
             this.gviPrice = gviPrice;
         }
 
@@ -142,51 +143,51 @@ public class GviBean {
             this.img = img;
         }
 
-        public Object getDescribes() {
+        public String getDescribes() {
             return describes;
         }
 
-        public void setDescribes(Object describes) {
+        public void setDescribes(String describes) {
             this.describes = describes;
         }
 
-        public Object getDetails() {
+        public String getDetails() {
             return details;
         }
 
-        public void setDetails(Object details) {
+        public void setDetails(String details) {
             this.details = details;
         }
 
-        public Object getExplains() {
+        public String getExplains() {
             return explains;
         }
 
-        public void setExplains(Object explains) {
+        public void setExplains(String explains) {
             this.explains = explains;
         }
 
-        public Object getExpress() {
+        public String getExpress() {
             return express;
         }
 
-        public void setExpress(Object express) {
+        public void setExpress(String express) {
             this.express = express;
         }
 
-        public Object getFreight() {
+        public double getFreight() {
             return freight;
         }
 
-        public void setFreight(Object freight) {
+        public void setFreight(double freight) {
             this.freight = freight;
         }
 
-        public Object getStatus() {
+        public int getStatus() {
             return status;
         }
 
-        public void setStatus(Object status) {
+        public void setStatus(int status) {
             this.status = status;
         }
 
@@ -198,20 +199,28 @@ public class GviBean {
             this.creator = creator;
         }
 
-        public Object getCreateTime() {
+        public String getCreateTime() {
             return createTime;
         }
 
-        public void setCreateTime(Object createTime) {
+        public void setCreateTime(String createTime) {
             this.createTime = createTime;
         }
 
-        public Object getLastUpdateTime() {
+        public String getLastUpdateTime() {
             return lastUpdateTime;
         }
 
-        public void setLastUpdateTime(Object lastUpdateTime) {
+        public void setLastUpdateTime(String lastUpdateTime) {
             this.lastUpdateTime = lastUpdateTime;
+        }
+
+        public String getUnits() {
+            return units;
+        }
+
+        public void setUnits(String units) {
+            this.units = units;
         }
     }
 }

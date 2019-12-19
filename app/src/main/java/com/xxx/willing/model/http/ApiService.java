@@ -451,4 +451,23 @@ public interface ApiService {
             @Field("orderId") int orderId,
             @Field("status") int status
     );
+
+    //添加收货地址
+    @FormUrlEncoded
+    @POST(HttpConfig.BASE_URL_PATH + "/addAddress")
+    Observable<BaseBean<Object>> addAddress(
+            @Field("consignee") String consignee,
+            @Field("phone") String phone,
+            @Field("provinces") String provinces,
+            @Field("cities") String cities,
+            @Field("counties") String counties,
+            @Field("address") String address
+    );
+
+    //设置默认地址
+    @POST(HttpConfig.BASE_URL_PATH + "/setAddressDefault")
+    @FormUrlEncoded
+    Observable<BaseBean<Object>> setDefaultAddress(
+            @Field("addressId") String addressId
+    );
 }

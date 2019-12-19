@@ -68,7 +68,7 @@
         <activity android:name=".ui.wallet.activity.WalletCoinDetailActivity" />
         <activity android:name=".ui.wallet.activity.RechargeActivity" />
         <activity android:name=".ui.wallet.activity.WithdrawalActivity" />
-        <activity android:name=".ui.app.activity.gvishop.my.address.AddressManagerActivity" />
+        <activity android:name=".ui.app.activity.gvishop.my.address.MyAddressManagerActivity" />
         <activity android:name=".ui.app.activity.gvishop.my.address.SettingAddressActivity" />
         <activity android:name=".ui.app.activity.gvishop.my.address.ShipAddressActivity" />
         <activity android:name=".ui.app.activity.gvishop.my.order.MyOrderActivity" />

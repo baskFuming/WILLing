@@ -82,25 +82,6 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
             }
         });
         mRefresh.setOnRefreshListener(this);
-        mAdapter = new VoteAdapter(getChildFragmentManager(), mFragment, mTitle);
-        mViewPager.setAdapter(mAdapter);
-        myTabLayout.setupWithViewPager(mViewPager);
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-
-            }
-
-            @Override
-            public void onPageSelected(int i) {
-                position = i;
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-
-            }
-        });
     }
 
     @OnClick({R.id.vote_relative})
@@ -143,7 +124,10 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                                     mTitle.add(brandBean.getName());
                                     mFragment.add(VoteItemFragment.getInstance(brandBean));
                                 }
-                                mAdapter.notifyDataSetChanged();
+                                mAdapter = new VoteAdapter(getChildFragmentManager(), mFragment, mTitle);
+                                mViewPager.setAdapter(mAdapter);
+                                myTabLayout.setupWithViewPager(mViewPager);
+                                mViewPager.setOffscreenPageLimit(mFragment.size() - 1);
                             }
                         }
                     }
@@ -165,9 +149,6 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                         hideLoading();
                     }
 
-                    private void addOnClick(final List<BrandBean> list) {
-
-                    }
                 });
     }
 

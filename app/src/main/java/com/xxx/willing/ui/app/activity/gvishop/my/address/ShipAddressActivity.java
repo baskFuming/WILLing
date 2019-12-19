@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
+import com.xxx.willing.ui.app.activity.gvishop.my.address.pop.SubmitPop;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -25,11 +26,16 @@ public class ShipAddressActivity extends BaseTitleActivity {
         activity.startActivity(intent);
     }
 
+    public void initBundle() {
+        Intent intent = getIntent();
+    }
+
     private int number = 1;
     @BindView(R.id.te_count)
     TextView mNumber;
     @BindView(R.id.re_onclick_setting)
     RelativeLayout mAddress;
+    private SubmitPop submitPop;
 
     @Override
     protected String initTitle() {
@@ -44,7 +50,7 @@ public class ShipAddressActivity extends BaseTitleActivity {
 
     @Override
     protected void initData() {
-
+        initBundle();
     }
 
     @OnClick({R.id.count_reduce, R.id.count_add, R.id.submit_order, R.id.re_onclick_setting})
@@ -64,9 +70,17 @@ public class ShipAddressActivity extends BaseTitleActivity {
                 mNumber.setText(String.valueOf(number));
                 break;
             case R.id.submit_order:
+                submitPop = SubmitPop.getInstance(this, () -> {
+                    submitOrder();
+                }, "");
 
                 break;
-
         }
+    }
+
+    /**
+     * @Model 提交订单
+     */
+    private void submitOrder() {
     }
 }

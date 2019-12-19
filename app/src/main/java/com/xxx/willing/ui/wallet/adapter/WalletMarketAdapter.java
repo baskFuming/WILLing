@@ -7,8 +7,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
 import com.xxx.willing.config.HttpConfig;
+import com.xxx.willing.model.glide.GlideUrlUtil;
 import com.xxx.willing.model.http.bean.WalletMarketBean;
-import com.xxx.willing.model.utils.GlideUtil;
+
 
 import java.util.List;
 
@@ -40,6 +41,6 @@ public class WalletMarketAdapter extends BaseQuickAdapter<WalletMarketBean, Base
             tvRate.setText("0.00%");
         }
 
-        GlideUtil.loadCoinCircle(mContext, HttpConfig.HTTP_IMG_URL + item.getCoinUrl(), GlideUtil.WALLET_COIN_DEFAULT, helper.getView(R.id.item_wallet_market_icon));
+        GlideUrlUtil.loadCircle(mContext, HttpConfig.HTTP_IMG_URL + item.getCoinUrl(), R.mipmap.coin_default, helper.getView(R.id.item_wallet_market_icon));
     }
 }

@@ -6,7 +6,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
 import com.xxx.willing.config.HttpConfig;
-import com.xxx.willing.model.utils.GlideUtil;
+import com.xxx.willing.model.glide.GlideUrlUtil;
 
 import java.util.List;
 
@@ -18,6 +18,6 @@ public class BrandDetailAdapter extends BaseQuickAdapter<String, BaseViewHolder>
 
     @Override
     protected void convert(BaseViewHolder holder, String url) {
-        GlideUtil.loadFillet(mContext, HttpConfig.HTTP_IMG_URL + url, holder.getView(R.id.brand_detail_image));
+        GlideUrlUtil.loadFillet(mContext, HttpConfig.HTTP_IMG_URL + url, R.drawable.shape_back_not_data, holder.getView(R.id.brand_detail_image));
     }
 }

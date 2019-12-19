@@ -11,13 +11,15 @@ import android.widget.TextView;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.config.EventBusConfig;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.config.UIConfig;
+import com.xxx.willing.model.glide.GlideUrlUtil;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.BooleanBean;
 import com.xxx.willing.model.utils.CameraUtil;
-import com.xxx.willing.model.utils.GlideUtil;
+
 import com.xxx.willing.model.utils.PermissionUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.my.activity.window.SetIconPopup;
@@ -86,7 +88,7 @@ public class AccountInfoActivity extends BaseTitleActivity implements SetIconPop
     @Override
     protected void initData() {
         initBundle();
-        GlideUtil.loadCircle(this, icon, mImg);
+        GlideUrlUtil.loadCircle(this, HttpConfig.HTTP_IMG_URL + icon, R.mipmap.my_icon, mImg);
         mNickName.setText(nickName);
         mPhone.setText(phone);
 

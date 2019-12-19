@@ -9,7 +9,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseActivity;
-import com.xxx.willing.model.utils.GlideUtil;
+import com.xxx.willing.model.glide.GlideFileUtil;
+
 import com.xxx.willing.model.utils.ToastUtil;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class JoinAdapter extends BaseQuickAdapter<JoinEntry, BaseViewHolder> {
                 .addOnClickListener(R.id.join_photo_add);
 
         if (item.getFilePhoto() != null) {
-            GlideUtil.load(mContext, item.getFilePhoto(), imageView);
+            GlideFileUtil.loadFillet(mContext, item.getFilePhoto(), R.drawable.shape_back_not_data, imageView);
         } else {
             imageView.setImageResource(R.mipmap.join_add);
         }

@@ -6,8 +6,10 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
+import com.xxx.willing.config.HttpConfig;
+import com.xxx.willing.model.glide.GlideUrlUtil;
 import com.xxx.willing.model.http.bean.RankBean;
-import com.xxx.willing.model.utils.GlideUtil;
+
 
 import java.util.List;
 
@@ -27,7 +29,7 @@ public class RankAdapter extends BaseQuickAdapter<RankBean, BaseViewHolder> {
     protected void convert(BaseViewHolder helper, RankBean item) {
         helper.setText(R.id.user_account_id, item.getNickname())
                 .setText(R.id.account, item.getAmount() + "");
-        GlideUtil.loadCircle(mContext, String.valueOf(item.getAvatar()), helper.getView(R.id.user_img));
+        GlideUrlUtil.loadCircle(mContext, HttpConfig.HTTP_IMG_URL + item.getAvatar(), R.mipmap.my_icon, helper.getView(R.id.user_img));
         TextView mLevel = helper.getView(R.id.partner_level);
         int position = helper.getLayoutPosition();
         if (position == 0) {

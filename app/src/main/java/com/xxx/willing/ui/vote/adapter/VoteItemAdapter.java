@@ -8,10 +8,12 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
+import com.xxx.willing.config.HttpConfig;
+import com.xxx.willing.model.glide.GlideUrlUtil;
 import com.xxx.willing.model.http.bean.FranchiseeBean;
 import com.xxx.willing.model.http.utils.ApiType;
 import com.xxx.willing.model.utils.DownTimeUtil;
-import com.xxx.willing.model.utils.GlideUtil;
+
 import com.xxx.willing.model.utils.StringUtil;
 
 import java.util.List;
@@ -32,7 +34,7 @@ public class VoteItemAdapter extends BaseQuickAdapter<FranchiseeBean, BaseViewHo
     @Override
     protected void convert(BaseViewHolder helper, FranchiseeBean item) {
         helper.setText(R.id.item_vote_name, item.getFranName())
-                .setText(R.id.item_vote_id, "ID："+item.getFranId())
+                .setText(R.id.item_vote_id, "ID：" + item.getFranId())
                 .setText(R.id.item_vote_number, item.getVoteNum() + mContext.getString(R.string.item_vote_number))
                 .addOnClickListener(R.id.item_vote_1)
                 .addOnClickListener(R.id.item_vote_name)
@@ -72,7 +74,7 @@ public class VoteItemAdapter extends BaseQuickAdapter<FranchiseeBean, BaseViewHo
 
             }
         });
-        GlideUtil.load(mContext, item.getImgUrl(), helper.getView(R.id.item_vote_img));
+        GlideUrlUtil.load(mContext, HttpConfig.HTTP_IMG_URL + item.getImgUrl(), R.drawable.shape_back_not_data, helper.getView(R.id.item_vote_img));
         TextView status = helper.getView(R.id.item_vote_status);
         switch (item.getStatus()) {
             case ApiType.VOTE_PROGRESS_STATUE:

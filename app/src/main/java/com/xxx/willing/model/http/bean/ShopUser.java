@@ -14,15 +14,15 @@ public class ShopUser {
      * userName : 15100000000
      */
 
-    private Object img;
+    private String img;
     private double gviAmount;
     private String userName;
 
-    public Object getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(Object img) {
+    public void setImg(String img) {
         this.img = img;
     }
 

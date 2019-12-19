@@ -1,16 +1,19 @@
 package com.xxx.willing.ui.app.activity.gvishop.my;
 
+import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
+import com.xxx.willing.config.HttpConfig;
+import com.xxx.willing.model.glide.GlideUrlUtil;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.ShopUser;
 import com.xxx.willing.model.http.bean.base.BaseBean;
-import com.xxx.willing.model.utils.GlideUtil;
+
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.activity.gvishop.my.address.ShipAddressActivity;
 import com.xxx.willing.ui.app.activity.gvishop.my.order.MyOrderActivity;
@@ -63,12 +66,13 @@ public class GVIMyFragment extends BaseFragment {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<ShopUser>(getActivity()) {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onSuccess(BaseBean<ShopUser> bean) {
                         if (bean != null) {
                             mName.setText(bean.getData().getUserName());
                             mAccount.setText(bean.getData().getGviAmount() + "");
-                            GlideUtil.loadCircle(getActivity(), String.valueOf(bean.getData().getImg()), mIcon);
+                            GlideUrlUtil.loadCircle(getActivity(), HttpConfig.HTTP_IMG_URL + bean.getData().getImg(), R.mipmap.my_icon, mIcon);
                         }
                     }
 

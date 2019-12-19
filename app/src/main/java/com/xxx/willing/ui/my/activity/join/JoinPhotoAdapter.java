@@ -9,7 +9,8 @@ import android.widget.RelativeLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
-import com.xxx.willing.model.utils.GlideUtil;
+import com.xxx.willing.model.glide.GlideFileUtil;
+
 
 import java.io.File;
 import java.util.List;
@@ -31,7 +32,7 @@ public class JoinPhotoAdapter extends BaseQuickAdapter<File, BaseViewHolder> {
 
         if (file != null) {
             imageView.setVisibility(View.GONE);
-            GlideUtil.loadBack(mContext, file, relativeLayout);
+            GlideFileUtil.loadBack(mContext, file, R.drawable.shape_back_not_data, relativeLayout);
             view.setVisibility(View.VISIBLE);
         } else {
             imageView.setVisibility(View.VISIBLE);

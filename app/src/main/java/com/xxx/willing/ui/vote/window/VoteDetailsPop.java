@@ -7,7 +7,9 @@ import android.widget.TextView;
 
 import com.xxx.willing.R;
 import com.xxx.willing.base.dialog.BaseDialog;
-import com.xxx.willing.model.utils.GlideUtil;
+import com.xxx.willing.config.HttpConfig;
+import com.xxx.willing.model.glide.GlideUrlUtil;
+
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -30,7 +32,7 @@ public class VoteDetailsPop extends BaseDialog {
     @BindView(R.id.window_vote_user_details)
     TextView mDetails;
 
-    public VoteDetailsPop(Context context, String img, String name, String details) {
+    private VoteDetailsPop(Context context, String img, String name, String details) {
         super(context);
         this.img = img;
         this.name = name;
@@ -48,7 +50,7 @@ public class VoteDetailsPop extends BaseDialog {
 
     @Override
     protected void initData() {
-        GlideUtil.loadCircle(this.getContext(), img, mImg);
+        GlideUrlUtil.loadCircle(this.getContext(), HttpConfig.HTTP_IMG_URL + img,R.mipmap.my_icon, mImg);
         mName.setText(name);
         mDetails.setText(details);
 

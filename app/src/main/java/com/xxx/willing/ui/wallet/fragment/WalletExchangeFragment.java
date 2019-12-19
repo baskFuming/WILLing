@@ -11,12 +11,13 @@ import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.EventBusConfig;
 import com.xxx.willing.config.HttpConfig;
+import com.xxx.willing.model.glide.GlideUrlUtil;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.WalletCoinBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.BooleanBean;
-import com.xxx.willing.model.utils.GlideUtil;
+
 import com.xxx.willing.model.utils.KeyBoardUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.wallet.activity.WalletExchangeRecordActivity;
@@ -186,8 +187,8 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
         double fee;
         mBaseSymbol.setText(baseCoinBean.getCoinSymbol());
         mTargetSymbol.setText(targetCoinBean.getCoinSymbol());
-        GlideUtil.loadCircle(getContext(), HttpConfig.HTTP_IMG_URL + baseCoinBean.getCoinUrl(), mBaseIcon);
-        GlideUtil.loadCircle(getContext(), HttpConfig.HTTP_IMG_URL + targetCoinBean.getCoinUrl(), mTargetIcon);
+        GlideUrlUtil.loadCircle(getContext(), HttpConfig.HTTP_IMG_URL + baseCoinBean.getCoinUrl(),R.mipmap.my_icon, mBaseIcon);
+        GlideUrlUtil.loadCircle(getContext(), HttpConfig.HTTP_IMG_URL + targetCoinBean.getCoinUrl(),R.mipmap.my_icon, mTargetIcon);
         if (baseCoinBean.getCoinId() == 10000004) {    //GVI 左边
             fee = gviBaseFee;
         } else if (baseCoinBean.getCoinId() == 10000005) {  //BVSE 左边

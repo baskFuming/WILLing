@@ -6,8 +6,10 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
+import com.xxx.willing.config.HttpConfig;
+import com.xxx.willing.model.glide.GlideUrlUtil;
 import com.xxx.willing.model.http.bean.PartnerBean;
-import com.xxx.willing.model.utils.GlideUtil;
+
 
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class PartnerApapter extends BaseQuickAdapter<PartnerBean, BaseViewHolder
         helper.setText(R.id.partner_des, item.getNickName() + "")
                 .setText(R.id.partner_id, "ID：" + item.getUserId())
                 .setText(R.id.partner_count, item.getPrice() + "");
-        GlideUtil.loadCircle(mContext, String.valueOf(item.getAvatar()), helper.getView(R.id.partner_icon));
+        GlideUrlUtil.loadCircle(mContext, HttpConfig.HTTP_IMG_URL + item.getAvatar(), R.mipmap.my_icon, helper.getView(R.id.partner_icon));
         TextView mLevel = helper.getView(R.id.partner_level);
 
         int position = helper.getLayoutPosition();

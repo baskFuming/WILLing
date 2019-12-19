@@ -5,8 +5,10 @@ import android.support.annotation.Nullable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
+import com.xxx.willing.config.HttpConfig;
+import com.xxx.willing.model.glide.GlideUrlUtil;
 import com.xxx.willing.model.http.bean.GviBean;
-import com.xxx.willing.model.utils.GlideUtil;
+
 
 import java.util.List;
 
@@ -18,8 +20,7 @@ import java.util.List;
 
 public class GviChildAdapter extends BaseQuickAdapter<GviBean.ListBean, BaseViewHolder> {
 
-
-    public GviChildAdapter(@Nullable List<GviBean.ListBean> data) {
+    GviChildAdapter(@Nullable List<GviBean.ListBean> data) {
         super(R.layout.gvi_child_item, data);
     }
 
@@ -27,6 +28,6 @@ public class GviChildAdapter extends BaseQuickAdapter<GviBean.ListBean, BaseView
     protected void convert(BaseViewHolder helper, GviBean.ListBean item) {
         helper.setText(R.id.item_title, item.getName() + "￥" + item.getPrice())
                 .setText(R.id.item_price, item.getGviPrice() + "GVI");
-        GlideUtil.loadBack(mContext, item.getLogos(), helper.getView(R.id.item_img));
+        GlideUrlUtil.loadBack(mContext, HttpConfig.HTTP_IMG_URL + item.getLogos(), R.drawable.shape_back_not_data, helper.getView(R.id.item_img));
     }
 }

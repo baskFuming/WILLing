@@ -9,10 +9,12 @@ import android.widget.TextView;
 import com.xxx.willing.R;
 import com.xxx.willing.base.fragment.BaseFragment;
 import com.xxx.willing.config.EventBusConfig;
+import com.xxx.willing.config.HttpConfig;
+import com.xxx.willing.model.glide.GlideUrlUtil;
 import com.xxx.willing.model.http.utils.ApiType;
 import com.xxx.willing.model.sp.SharedConst;
 import com.xxx.willing.model.sp.SharedPreferencesUtil;
-import com.xxx.willing.model.utils.GlideUtil;
+
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.activity.vote.JoinDetailsActivity;
 import com.xxx.willing.ui.my.activity.AccountSettingActivity;
@@ -129,7 +131,7 @@ public class MyFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
 
         mName.setText(name);
         mPhone.setText(phone);
-        GlideUtil.loadCircle(getContext(), icon, mIcon);
+        GlideUrlUtil.loadCircle(getContext(), HttpConfig.HTTP_IMG_URL + icon,  R.mipmap.my_icon,mIcon);
         switch (star) {
             case 1:
                 mLevel.setImageResource(R.mipmap.level_0);

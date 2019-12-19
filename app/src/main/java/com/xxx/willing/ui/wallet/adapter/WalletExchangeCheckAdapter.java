@@ -6,8 +6,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
 import com.xxx.willing.config.HttpConfig;
+import com.xxx.willing.model.glide.GlideUrlUtil;
 import com.xxx.willing.model.http.bean.WalletCoinBean;
-import com.xxx.willing.model.utils.GlideUtil;
+
 
 import java.util.List;
 
@@ -21,6 +22,6 @@ public class WalletExchangeCheckAdapter extends BaseQuickAdapter<WalletCoinBean.
     protected void convert(BaseViewHolder helper, WalletCoinBean.ListBean item) {
         helper.setText(R.id.item_window_exchange_check_symbol, item.getCoinSymbol());
 
-        GlideUtil.loadCircle(mContext, HttpConfig.HTTP_IMG_URL + item.getCoinUrl(), helper.getView(R.id.item_window_exchange_check_icon));
+        GlideUrlUtil.loadCircle(mContext, HttpConfig.HTTP_IMG_URL + item.getCoinUrl(), R.mipmap.my_icon, helper.getView(R.id.item_window_exchange_check_icon));
     }
 }

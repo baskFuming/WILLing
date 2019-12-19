@@ -6,8 +6,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
 import com.xxx.willing.config.HttpConfig;
+import com.xxx.willing.model.glide.GlideUrlUtil;
 import com.xxx.willing.model.http.bean.WalletAccountBean;
-import com.xxx.willing.model.utils.GlideUtil;
+
 
 import java.util.List;
 
@@ -23,6 +24,6 @@ public class WalletAccountAdapter extends BaseQuickAdapter<WalletAccountBean.Lis
                 .setText(R.id.item_wallet_account_number, item.getAmount() + "")
                 .setText(R.id.item_wallet_account_rmb, "≈$" + item.getUsaAmount());
 
-        GlideUtil.loadCoinCircle(mContext, HttpConfig.HTTP_IMG_URL + item.getCoinIcon(),GlideUtil.WALLET_COIN_DEFAULT, helper.getView(R.id.item_wallet_account_icon));
+        GlideUrlUtil.loadCircle(mContext, HttpConfig.HTTP_IMG_URL + item.getCoinIcon(),R.mipmap.coin_default, helper.getView(R.id.item_wallet_account_icon));
     }
 }

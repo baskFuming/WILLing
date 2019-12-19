@@ -12,8 +12,9 @@ import android.widget.TextView;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.config.UIConfig;
+import com.xxx.willing.model.glide.GlideFileUtil;
 import com.xxx.willing.model.utils.CameraUtil;
-import com.xxx.willing.model.utils.GlideUtil;
+
 import com.xxx.willing.model.utils.ToastUtil;
 
 import java.io.File;
@@ -94,17 +95,17 @@ public class UpdateCardActivity extends BaseTitleActivity {
         if (fileFront != null) {
             mImgFront.setVisibility(View.GONE);
             mTvFront.setVisibility(View.GONE);
-            GlideUtil.loadBack(this, fileFront, mLiFront);
+            GlideFileUtil.loadBack(this, fileFront, R.drawable.shape_back_not_data, mLiFront);
         }
         if (fileBack != null) {
             mImgBack.setVisibility(View.GONE);
             mTvBack.setVisibility(View.GONE);
-            GlideUtil.loadBack(this, fileBack, mLiBack);
+            GlideFileUtil.loadBack(this, fileBack, R.drawable.shape_back_not_data, mLiBack);
         }
         if (fileHand != null) {
             mImgHand.setVisibility(View.GONE);
             mTvHand.setVisibility(View.GONE);
-            GlideUtil.loadBack(this, fileHand, mLiHand);
+            GlideFileUtil.loadBack(this, fileHand, R.drawable.shape_back_not_data, mLiHand);
         }
     }
 
@@ -141,19 +142,19 @@ public class UpdateCardActivity extends BaseTitleActivity {
         CameraUtil.onActivityResult(this, requestCode, resultCode, data, (bitmap, file) -> {
             switch (type) {
                 case TYPE_CARD_FRONT:
-                    GlideUtil.loadBack(this, file, mLiFront);
+                    GlideFileUtil.loadBack(this, file, R.drawable.shape_back_not_data, mLiFront);
                     mImgFront.setVisibility(View.GONE);
                     mTvFront.setVisibility(View.GONE);
                     fileFront = file;
                     break;
                 case TYPE_CARD_BACK:
-                    GlideUtil.loadBack(this, file, mLiBack);
+                    GlideFileUtil.loadBack(this, file, R.drawable.shape_back_not_data, mLiBack);
                     mImgBack.setVisibility(View.GONE);
                     mTvBack.setVisibility(View.GONE);
                     fileBack = file;
                     break;
                 case TYPE_HAND_CARD:
-                    GlideUtil.loadBack(this, file, mLiHand);
+                    GlideFileUtil.loadBack(this, file, R.drawable.shape_back_not_data, mLiHand);
                     mImgHand.setVisibility(View.GONE);
                     mTvHand.setVisibility(View.GONE);
                     fileHand = file;

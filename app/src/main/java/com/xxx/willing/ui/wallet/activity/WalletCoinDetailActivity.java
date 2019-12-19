@@ -19,6 +19,7 @@ import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.config.UIConfig;
+import com.xxx.willing.model.glide.GlideUrlUtil;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.WalletAccountBean;
@@ -26,7 +27,7 @@ import com.xxx.willing.model.http.bean.WalletTransactionBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.http.utils.ApiType;
-import com.xxx.willing.model.utils.GlideUtil;
+
 import com.xxx.willing.model.utils.KeyBoardUtil;
 import com.xxx.willing.model.utils.StringUtil;
 import com.xxx.willing.model.utils.ToastUtil;
@@ -119,7 +120,7 @@ public class WalletCoinDetailActivity extends BaseTitleActivity implements Swipe
         mBalance.setText(bean.getAmount() + "");
         mUsa.setText("≈$" + bean.getUsaAmount());
         mAddress.setText(StringUtil.getAddress(bean.getAddress()));
-        GlideUtil.loadCircle(this, HttpConfig.HTTP_IMG_URL + bean.getCoinIcon(), mIcon);
+        GlideUrlUtil.loadCircle(this, HttpConfig.HTTP_IMG_URL + bean.getCoinIcon(), R.mipmap.my_icon, mIcon);
 
         loadData();
     }

@@ -29,7 +29,7 @@ public class SignAdapter extends BaseQuickAdapter<Object, BaseViewHolder> {
             imageView.setVisibility(View.INVISIBLE);
         } else {
             imageView.setVisibility(View.VISIBLE);
-//            GlideUtil.load(mContext, "", imageView);
+//            GlideUrlUtil.load(mContext, "", imageView);
         }
 
         //TODO 用于第一根和最后一根隐藏

@@ -186,8 +186,8 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
         switch (view.getId()) {
             case R.id.job_all:
-                voteDetailsPop = VoteDetailsPop.getInstance(this, mList.get(position).getUserImg(),
-                        mList.get(position).getName(), mList.get(position).getDatils());
+                VoteDetailBean.ListBean bean = mList.get(position);
+                voteDetailsPop = VoteDetailsPop.getInstance(this, bean.getUserImg(), bean.getName(), bean.getDatils());
                 voteDetailsPop.show();
                 break;
         }

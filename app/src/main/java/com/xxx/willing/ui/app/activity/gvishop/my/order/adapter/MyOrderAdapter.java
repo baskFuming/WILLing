@@ -9,9 +9,11 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
+import com.xxx.willing.config.HttpConfig;
+import com.xxx.willing.model.glide.GlideUrlUtil;
 import com.xxx.willing.model.http.bean.MyOrderBean;
 import com.xxx.willing.model.http.utils.ApiType;
-import com.xxx.willing.model.utils.GlideUtil;
+
 
 import java.util.List;
 
@@ -44,7 +46,7 @@ public class MyOrderAdapter extends BaseQuickAdapter<MyOrderBean, BaseViewHolder
                 .addOnClickListener(R.id.order_un_delivery)
                 .addOnClickListener(R.id.order_confirm_btn);
 
-        GlideUtil.loadBack(mContext, item.getCommodity().getLogos(), helper.getView(R.id.order_goods_icon));//品牌图片
+        GlideUrlUtil.loadBack(mContext, HttpConfig.HTTP_IMG_URL + item.getCommodity().getLogos(), R.drawable.shape_back_not_data, helper.getView(R.id.order_goods_icon));//品牌图片
 
         TextView mpay = helper.getView(R.id.order_pay_price);
         TextView mStatus = helper.getView(R.id.order_status);

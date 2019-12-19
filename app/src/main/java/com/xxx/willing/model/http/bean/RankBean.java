@@ -18,8 +18,8 @@ public class RankBean {
 
     private double amount;
     private String nickname;
-    private Object ranking;
-    private Object avatar;
+    private String ranking;
+    private String avatar;
 
     public double getAmount() {
         return amount;
@@ -37,19 +37,19 @@ public class RankBean {
         this.nickname = nickname;
     }
 
-    public Object getRanking() {
+    public String getRanking() {
         return ranking;
     }
 
-    public void setRanking(Object ranking) {
+    public void setRanking(String ranking) {
         this.ranking = ranking;
     }
 
-    public Object getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(Object avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 }

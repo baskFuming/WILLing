@@ -6,19 +6,17 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+import java.io.File;
+
 /**
  * Glide工具类
  */
-public class GlideUtil {
+public class GlideFileUtil {
 
-
-    /**
-     * 加载Url图片
-     */
-    public static void loadUrl(Context context, String url, int defaultImageId, ImageView imageView) {
+    public static void loadUrl(Context context, File file, int defaultImageId, ImageView imageView) {
         if (context != null) {
             Glide.with(context)
-                    .load(url)
+                    .load(file)
                     .asBitmap()
                     .placeholder(defaultImageId)//设置加载中图片
                     .fallback(defaultImageId)
@@ -27,13 +25,10 @@ public class GlideUtil {
         }
     }
 
-    /**
-     * 加载动图Url图片
-     */
-    public static void loadUrlGif(Context context, String url, int defaultImageId, ImageView imageView) {
+    public static void loadGif(Context context, File file, int defaultImageId, ImageView imageView) {
         if (context != null) {
             Glide.with(context)
-                    .load(url)
+                    .load(file)
                     .asGif()
                     .placeholder(defaultImageId)//设置加载中图片
                     .fallback(defaultImageId)
@@ -42,13 +37,10 @@ public class GlideUtil {
         }
     }
 
-    /**
-     * 加载圆形Url图片
-     */
-    public static void loadUrlCircle(Context context, String url, int defaultImageId, ImageView imageView) {
+    public static void loadCircle(Context context, File file, int defaultImageId, ImageView imageView) {
         if (context != null) {
             Glide.with(context)
-                    .load(url)
+                    .load(file)
                     .asBitmap()
                     .placeholder(defaultImageId)//设置加载中图片
                     .fallback(defaultImageId)
@@ -57,13 +49,10 @@ public class GlideUtil {
         }
     }
 
-    /**
-     * 加载圆角Url图片
-     */
-    public static void loadUrlFillet(Context context, String url, int defaultImageId, ImageView imageView) {
+    public static void loadFillet(Context context, File file, int defaultImageId, ImageView imageView) {
         if (context != null) {
             Glide.with(context)
-                    .load(url)
+                    .load(file)
                     .asBitmap()
                     .placeholder(defaultImageId)//设置加载中图片
                     .fallback(defaultImageId)
@@ -72,13 +61,10 @@ public class GlideUtil {
         }
     }
 
-    /**
-     * 加载背景Url图片
-     */
-    public static void loadUrlBack(Context context, String url, int defaultImageId, View view) {
+    public static void loadBack(Context context, File file, int defaultImageId, View view) {
         if (context != null) {
             Glide.with(context)
-                    .load(url)
+                    .load(file)
                     .asBitmap()
                     .placeholder(defaultImageId)//设置加载中图片
                     .fallback(defaultImageId)

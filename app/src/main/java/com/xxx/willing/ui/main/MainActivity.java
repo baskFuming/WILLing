@@ -13,6 +13,7 @@ import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseActivity;
 import com.xxx.willing.base.fragment.FragmentManager;
 import com.xxx.willing.config.EventBusConfig;
+import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.AppVersionBean;

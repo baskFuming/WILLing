@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.xxx.willing.R;
 import com.xxx.willing.base.activity.BaseTitleActivity;
 import com.xxx.willing.model.http.bean.BrandBean;
-import com.xxx.willing.model.utils.GlideUtil;
+
 import com.xxx.willing.ui.vote.adapter.BrandDetailAdapter;
 
 import java.util.ArrayList;

@@ -5,8 +5,10 @@ import android.support.annotation.Nullable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xxx.willing.R;
+import com.xxx.willing.config.HttpConfig;
+import com.xxx.willing.model.glide.GlideUrlUtil;
 import com.xxx.willing.model.http.bean.VoteDetailBean;
-import com.xxx.willing.model.utils.GlideUtil;
+
 
 import java.util.List;
 
@@ -29,6 +31,6 @@ public class TeamMesAdapter extends BaseQuickAdapter<VoteDetailBean.ListBean, Ba
                 .setText(R.id.job_content, item.getDatils())
                 .addOnClickListener(R.id.job_all);
 
-        GlideUtil.loadCircle(mContext, item.getUserImg(), helper.getView(R.id.user_img));
+        GlideUrlUtil.loadCircle(mContext, HttpConfig.HTTP_IMG_URL + item.getUserImg(), R.mipmap.my_icon, helper.getView(R.id.user_img));
     }
 }

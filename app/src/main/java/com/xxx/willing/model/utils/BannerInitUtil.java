@@ -10,6 +10,9 @@ import com.xw.banner.Transformer;
 import com.xw.banner.listener.OnBannerListener;
 import com.xw.banner.loader.ImageLoader;
 import com.xw.banner.view.RoundAngleImageView;
+import com.xxx.willing.R;
+import com.xxx.willing.config.HttpConfig;
+import com.xxx.willing.model.glide.GlideUrlUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +61,7 @@ public class BannerInitUtil {
         @Override
         public void displayImage(Context context, Object path, ImageView imageView) {
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            GlideUtil.loadFillet(context, (String) path, imageView);
+            GlideUrlUtil.loadFillet(context, HttpConfig.HTTP_IMG_URL + path, R.drawable.shape_back_not_data, imageView);
         }
 
         @Override
@@ -71,7 +74,7 @@ public class BannerInitUtil {
     private static class OrdinaryImageLoder extends ImageLoader {
         @Override
         public void displayImage(Context context, Object path, ImageView imageView) {
-            Glide.with(context).load(path).into(imageView);
+            GlideUrlUtil.loadFillet(context, HttpConfig.HTTP_IMG_URL + path, R.drawable.shape_back_not_data, imageView);
         }
     }
 

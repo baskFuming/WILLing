@@ -177,14 +177,18 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
                 break;
             case R.id.ed_join_time_click:
                 if (mCheckTimeMenu != null) {
-                    if (quota == 0){
+                    if (quota == 0) {
                         ToastUtil.showToast("请先选择品牌");
                     }
                     mCheckTimeMenu.show();
                 }
                 break;
             case R.id.ed_submit:
-                submitJoin();
+                if (!mCheck.isChecked()) {
+                    ToastUtil.showToast(getString(R.string.please_read_agree));
+                } else {
+                    submitJoin();
+                }
                 break;
         }
     }
@@ -362,12 +366,12 @@ public class JoinApplyActivity extends BaseTitleActivity implements BaseQuickAda
             ToastUtil.showToast(getString(R.string.please_update_photo));
             return;
         }
-        boolean checked = mCheck.isChecked();
-        if (checked) {
-            showEditError(mCheck);
-            ToastUtil.showToast(getString(R.string.please_read_agree));
-            return;
-        }
+//        boolean checked = mCheck.isChecked();
+//        if (checked) {
+//            showEditError(mCheck);
+//            ToastUtil.showToast(getString(R.string.please_read_agree));
+//            return;
+//        }
 
         List<File> list = new ArrayList<>();
         for (JoinEntry joinEntry : data) {

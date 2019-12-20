@@ -53,7 +53,6 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     private List<BaseFragment> mFragment = new ArrayList<>();
     private List<String> mTitle = new ArrayList<>();
     private VoteAdapter mAdapter;
-    private int position;
 
     @Override
     protected int getLayoutId() {
@@ -68,12 +67,15 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         //滑动卡顿
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) mAppBar.getLayoutParams();
         AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
-        behavior.setDragCallback(new AppBarLayout.Behavior.DragCallback() {
-            @Override
-            public boolean canDrag(@NonNull AppBarLayout appBarLayout) {
-                return true;
-            }
-        });
+        if (behavior != null) {
+            behavior.setDragCallback(new AppBarLayout.Behavior.DragCallback() {
+                @Override
+                public boolean canDrag(@NonNull AppBarLayout appBarLayout) {
+                    return true;
+                }
+            });
+        }
+        //下拉刷新
         mAppBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if (verticalOffset >= 0) {
                 mRefresh.setEnabled(true);
@@ -96,8 +98,11 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     @Override
     public void onRefresh() {
         if (mFragment.size() != 0) {
-            VoteItemFragment item = (VoteItemFragment) mAdapter.getItem(position);
+            VoteItemFragment item = (VoteItemFragment) mAdapter.getItem(mViewPager.getCurrentItem());
             item.onRefresh();
+        } else {
+            getBannerList();
+            getBrandList();
         }
         mRefresh.setRefreshing(false);
     }

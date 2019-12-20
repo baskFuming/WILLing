@@ -11,7 +11,7 @@ public class HttpConfig {
 //    public static final String BASE_URL = "http://192.168.31.95:8080";
 //    public static final String BASE_URL_PATH = "";
 
-    private static final String HTTP_WEB_URL = BASE_URL + "/phone/#";    //网页地址
+    private static final String HTTP_WEB_URL = BASE_URL + "phone/#";    //网页地址
     public static final String HTTP_IMG_URL = BASE_URL + "img/";    //图片地址
 
     /**

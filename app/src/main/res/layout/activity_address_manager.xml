@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_bg"
@@ -14,14 +12,12 @@
         android:layout_height="match_parent">
 
         <include
-            android:id="@+id/include_te"
             layout="@layout/include_recycler" />
 
         <TextView
             android:id="@+id/add_new_address"
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:layout_above="@+id/include_te"
             android:layout_below="@+id/line1"
             android:layout_alignParentBottom="true"
             android:layout_gravity="center"
@@ -30,5 +26,7 @@
             android:text="@string/add_new_address"
             android:textColor="#ffffffff"
             android:textSize="17dp" />
+
     </RelativeLayout>
+
 </LinearLayout>

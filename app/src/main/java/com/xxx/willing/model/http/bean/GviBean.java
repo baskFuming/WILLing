@@ -78,6 +78,16 @@ public class GviBean {
         private String createTime;
         private String lastUpdateTime;
         private String units;
+        private String timeValidity;
+        private String discount;
+
+        public String getDiscount() {
+            return discount;
+        }
+
+        public String getTimeValidity() {
+            return timeValidity;
+        }
 
         public int getId() {
             return id;

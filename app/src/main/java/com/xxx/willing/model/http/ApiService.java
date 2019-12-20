@@ -6,6 +6,7 @@ import com.xxx.willing.model.http.bean.AppVersionBean;
 import com.xxx.willing.model.http.bean.AssetRecordBean;
 import com.xxx.willing.model.http.bean.BannerBean;
 import com.xxx.willing.model.http.bean.BrandBean;
+import com.xxx.willing.model.http.bean.CommodityDetailBean;
 import com.xxx.willing.model.http.bean.FranchiseeBean;
 import com.xxx.willing.model.http.bean.GameBean;
 import com.xxx.willing.model.http.bean.GviBean;
@@ -361,6 +362,13 @@ public interface ApiService {
             @Query("pageSize") int pageSize
     );
 
+    //查询商品
+    @FormUrlEncoded
+    @POST(HttpConfig.BASE_URL_PATH + "/getCommodities")
+    Observable<BaseBean<CommodityDetailBean>> getCommodityDetail(
+            @Field("id") int id
+    );
+
     //商城用户
     @POST(HttpConfig.BASE_URL_PATH + "/shopUser")
     Observable<BaseBean<ShopUser>> getshopUser();
@@ -463,7 +471,8 @@ public interface ApiService {
             @Field("provinces") String provinces,
             @Field("cities") String cities,
             @Field("counties") String counties,
-            @Field("address") String address
+            @Field("address") String address,
+            @Field("status") Integer status
     );
 
     //设置默认地址
@@ -477,6 +486,15 @@ public interface ApiService {
     @POST(HttpConfig.BASE_URL_PATH + "/userAddresses")
     @FormUrlEncoded
     Observable<BaseBean<PageBean<MyAddressBean>>> myAddresses(
+            @Field("pageNum") int pageNum,
+            @Field("pageSize") int pageSize
+    );
+
+    //获取默认地址
+    @POST(HttpConfig.BASE_URL_PATH + "/userAddresses")
+    @FormUrlEncoded
+    Observable<BaseBean<PageBean<MyAddressBean>>> getDefaultAddress(
+            @Field("status") int status,
             @Field("pageNum") int pageNum,
             @Field("pageSize") int pageSize
     );
@@ -497,7 +515,8 @@ public interface ApiService {
             @Field("colorId") int colorId,
             @Field("sizeId") int sizeId,
             @Field("details") String details,
-            @Field("addressId") int addressId
+            @Field("addressId") int addressId,
+            @Field("remarks") String remarks
     );
 
 }

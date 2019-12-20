@@ -18,11 +18,11 @@
             android:layout_marginLeft="@dimen/activity_left_margin"
             android:layout_marginRight="@dimen/activity_right_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:background="@drawable/shape_line_bg"
-            android:paddingBottom="@dimen/activity_Top_margin"
-            android:paddingLeft="@dimen/activity_left_margin"
-            android:paddingRight="@dimen/activity_right_margin"
-            android:paddingTop="@dimen/activity_Top_margin">
+            android:background="@drawable/shape_back_item"
+            android:paddingBottom="24dp"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:paddingTop="24dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -110,8 +110,8 @@
             android:layout_below="@+id/re_onclick_setting"
             android:layout_marginLeft="@dimen/activity_left_margin"
             android:layout_marginRight="@dimen/activity_right_margin"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/shape_line_bg"
+            android:layout_marginTop="9dp"
+            android:background="@drawable/shape_back_item"
             android:orientation="vertical"
             android:paddingBottom="@dimen/activity_Top_margin"
             android:paddingLeft="@dimen/activity_left_margin"
@@ -164,9 +164,11 @@
                         android:paddingTop="10dp">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@mipmap/address_default_bg" />
+                            android:id="@+id/brand_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -219,6 +221,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/useful_time_li"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="42dp"
@@ -465,5 +468,7 @@
                     android:textSize="17dp" />
             </LinearLayout>
         </RelativeLayout>
+
     </RelativeLayout>
+
 </LinearLayout>

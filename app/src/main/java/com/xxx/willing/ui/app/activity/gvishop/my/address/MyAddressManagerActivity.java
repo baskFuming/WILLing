@@ -38,14 +38,26 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class MyAddressManagerActivity extends BaseTitleActivity implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener
-        , BaseQuickAdapter.OnItemChildClickListener {
+        , BaseQuickAdapter.OnItemChildClickListener, BaseQuickAdapter.OnItemClickListener {
 
     public static void actionStart(Activity activity) {
         Intent intent = new Intent(activity, MyAddressManagerActivity.class);
         activity.startActivity(intent);
     }
 
-    private int page = UIConfig.PAGE_DEFAULT;
+    public static void actionStartResult(Activity activity) {
+        Intent intent = new Intent(activity, MyAddressManagerActivity.class);
+        intent.putExtra("tag", "tag");
+        activity.startActivityForResult(intent, UIConfig.REQUEST_CODE);
+    }
+
+    private void initBundle() {
+        Intent intent = getIntent();
+        String tag = intent.getStringExtra("tag");
+        isCheckAddress = tag != null && !tag.isEmpty();
+    }
+
+    private boolean isCheckAddress;
 
     @BindView(R.id.main_recycler)
     RecyclerView mRecycler;
@@ -53,6 +65,8 @@ public class MyAddressManagerActivity extends BaseTitleActivity implements Swipe
     LinearLayout mNotData;
     @BindView(R.id.main_refresh)
     SwipeRefreshLayout mRefresh;
+
+    private int page = UIConfig.PAGE_DEFAULT;
     private List<MyAddressBean> mList = new ArrayList<>();
     private AddressAdapter mAdapter;
 
@@ -68,13 +82,16 @@ public class MyAddressManagerActivity extends BaseTitleActivity implements Swipe
 
     @Override
     protected void initData() {
+        initBundle();
 
         mAdapter = new AddressAdapter(mList);
         mRecycler.setLayoutManager(new LinearLayoutManager((this)));
         mRecycler.setAdapter(mAdapter);
         mRefresh.setOnRefreshListener(this);
         mAdapter.setOnLoadMoreListener(this, mRecycler);
-        mAdapter.setOnItemChildClickListener(this::onItemChildClick);
+        mAdapter.setOnItemChildClickListener(this);
+        mAdapter.setOnItemClickListener(this);
+
         loadDate();
     }
 
@@ -101,10 +118,20 @@ public class MyAddressManagerActivity extends BaseTitleActivity implements Swipe
     }
 
     @Override
+    public void onItemClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
+        if (isCheckAddress) {
+            Intent intent = new Intent();
+            intent.putExtra("bean", mList.get(position));
+            setResult(UIConfig.RESULT_CODE, intent);
+            finish();
+        }
+    }
+
+    @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
         switch (view.getId()) {
             case R.id.update_address_item:
-                SettingAddressActivity.actionStartForResult(this, SettingAddressActivity.UPDATE_TAG,mList.get(position));
+                SettingAddressActivity.actionStartForResult(this, SettingAddressActivity.UPDATE_TAG, mList.get(position));
                 break;
         }
     }
@@ -113,9 +140,7 @@ public class MyAddressManagerActivity extends BaseTitleActivity implements Swipe
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == UIConfig.RESULT_CODE) {
-            if (data != null) {
-
-            }
+            onRefresh();
         }
     }
 
@@ -192,4 +217,5 @@ public class MyAddressManagerActivity extends BaseTitleActivity implements Swipe
                 });
 
     }
+
 }

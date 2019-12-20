@@ -32,7 +32,7 @@ public class MyAddressBean implements Serializable {
     private String cities;
     private String counties;
     private String address;
-    private Object status;
+    private int status;
     private String createTime;
     private String lastUpdateTime;
 
@@ -100,11 +100,11 @@ public class MyAddressBean implements Serializable {
         this.address = address;
     }
 
-    public Object getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Object status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_bg"
@@ -28,9 +26,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="17dp"
-                android:paddingTop="17dp">
+                android:layout_height="50dp">
 
                 <TextView
                     android:id="@+id/text_2"
@@ -43,11 +39,13 @@
 
                 <EditText
                     android:id="@+id/ed_enter_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="34dp"
+                    android:gravity="center_vertical"
                     android:layout_toRightOf="@+id/text_2"
                     android:background="@null"
+                    android:maxLength="16"
                     android:hint="@string/add_hint_name"
                     android:textColor="#ff999999"
                     android:textColorHint="#ff999999"
@@ -61,9 +59,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="17dp"
-                android:paddingTop="17dp">
+                android:layout_height="50dp">
 
                 <TextView
                     android:id="@+id/text_1"
@@ -76,9 +72,11 @@
 
                 <EditText
                     android:id="@+id/ed_enter_phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="22dp"
+                    android:inputType="phone"
+                    android:maxLength="11"
                     android:layout_toRightOf="@+id/text_1"
                     android:background="@null"
                     android:hint="@string/add_hint_phone"
@@ -93,10 +91,9 @@
                 android:background="#EFEFEF" />
 
             <RelativeLayout
+                android:id="@+id/re_enter_chose_address"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="17dp"
-                android:paddingTop="17dp">
+                android:layout_height="50dp">
 
                 <TextView
                     android:id="@+id/text_3"
@@ -107,13 +104,14 @@
                     android:textColor="#ff111111"
                     android:textSize="14dp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/ed_enter_chose_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="22dp"
                     android:layout_toRightOf="@+id/text_3"
                     android:background="@null"
+                    android:gravity="center_vertical"
                     android:hint="@string/add_hint_chose_address"
                     android:textColor="#ff999999"
                     android:textColorHint="#ff999999"
@@ -136,9 +134,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="17dp"
-                android:paddingTop="17dp">
+                android:layout_height="50dp">
 
                 <TextView
                     android:id="@+id/text_4"
@@ -151,8 +147,8 @@
 
                 <EditText
                     android:id="@+id/ed_enter_detail_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="22dp"
                     android:layout_toRightOf="@+id/text_4"
                     android:background="@null"
@@ -174,6 +170,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:background="#EFEFEF" />
+
         </LinearLayout>
 
         <LinearLayout

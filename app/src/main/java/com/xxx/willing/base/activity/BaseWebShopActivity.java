@@ -140,7 +140,7 @@ public class BaseWebShopActivity extends BaseActivity implements SubmitPop.Callb
                         return true;
                     } else {
                         //跳转下单页面
-                        ShipAddressActivity.actionStart(BaseWebShopActivity.this, shopJsVo);
+                        ShipAddressActivity.actionStart(BaseWebShopActivity.this, id, shopJsVo);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -159,6 +159,7 @@ public class BaseWebShopActivity extends BaseActivity implements SubmitPop.Callb
                     if (mProgress != null) {
                         mProgress.setVisibility(View.VISIBLE);
                         mProgress.setProgress(newProgress);
+                        showLoading();
                     }
                 }
             }
@@ -171,7 +172,7 @@ public class BaseWebShopActivity extends BaseActivity implements SubmitPop.Callb
      */
     private void addOrder(ShopJsVo shopJsVo, String detail) {
         Api.getInstance()
-                .addOrder(shopJsVo.getId(), shopJsVo.getNum(), shopJsVo.getColor(), shopJsVo.getSizeId(), detail, 0)
+                .addOrder(shopJsVo.getId(), shopJsVo.getNum(), shopJsVo.getColor(), shopJsVo.getSizeId(), detail, 0, "")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<AddOrderBean>(this) {

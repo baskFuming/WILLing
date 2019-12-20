@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.lljjcoder.Interface.OnCustomCityPickerItemClickListener;
 import com.lljjcoder.bean.CustomCityData;
@@ -39,7 +40,6 @@ import io.reactivex.disposables.Disposable;
 
 public class SettingAddressActivity extends BaseTitleActivity {
 
-
     public static void actionStartForResult(Activity activity, int tag, MyAddressBean bean) {
         Intent intent = new Intent(activity, SettingAddressActivity.class);
         intent.putExtra("tag", tag);
@@ -50,7 +50,7 @@ public class SettingAddressActivity extends BaseTitleActivity {
     public static void actionStart(Activity activity, int tag) {
         Intent intent = new Intent(activity, SettingAddressActivity.class);
         intent.putExtra("tag", tag);
-        activity.startActivity(intent);
+        activity.startActivityForResult(intent, UIConfig.REQUEST_CODE);
     }
 
     public void initBundle() {
@@ -65,11 +65,12 @@ public class SettingAddressActivity extends BaseTitleActivity {
     @BindView(R.id.ed_enter_phone)
     EditText mPhone;
     @BindView(R.id.ed_enter_chose_address)
-    EditText mChoseAddress;
+    TextView mChoseAddress;
     @BindView(R.id.ed_enter_detail_address)
     EditText mDetailAddress;
     @BindView(R.id.switch_button)
     Switch mSwitchButton;
+
     private MyAddressBean bean;
 
 
@@ -96,6 +97,24 @@ public class SettingAddressActivity extends BaseTitleActivity {
     @Override
     protected void initData() {
         initBundle();
+
+        //初始化地址选择
+        mCustomCityPicker = CityPickerUtil.getInstance(this, mName, new OnCustomCityPickerItemClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onSelected(CustomCityData province, CustomCityData city, CustomCityData district) {
+                super.onSelected(province, city, district);
+                //省份
+                SettingAddressActivity.this.province = province.getName();
+                //城市
+                SettingAddressActivity.this.city = city.getName();
+                //区县（如果设定了两级联动，那么该项返回空）
+                SettingAddressActivity.this.district = district.getName();
+                //获取当前地址
+                mChoseAddress.setText(province.getName() + city.getName() + district.getName());
+            }
+        });
+
         if (UiTag == UPDATE_TAG) {
             mName.setText(bean.getConsignee());
             mPhone.setText(bean.getPhone());
@@ -104,39 +123,23 @@ public class SettingAddressActivity extends BaseTitleActivity {
         }
     }
 
-    @OnClick({R.id.add_save, R.id.clean_ed_content, R.id.chose_city_onclick})
+    @OnClick({R.id.add_save, R.id.clean_ed_content, R.id.re_enter_chose_address})
     public void OnClick(View view) {
         switch (view.getId()) {
-            case R.id.chose_city_onclick:
-                //初始化地址选择
-                mCustomCityPicker = CityPickerUtil.getInstance(this, mName, new OnCustomCityPickerItemClickListener() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onSelected(CustomCityData province, CustomCityData city, CustomCityData district) {
-                        super.onSelected(province, city, district);
-                        //省份
-                        SettingAddressActivity.this.province = province.getName();
-                        //城市
-                        SettingAddressActivity.this.city = city.getName();
-                        //区县（如果设定了两级联动，那么该项返回空）
-                        SettingAddressActivity.this.district = district.getName();
-                        //获取当前地址
-                        mChoseAddress.setText(province.getName() + city.getName() + district.getName());
-                    }
-                });
+            case R.id.re_enter_chose_address:
+                if (mCustomCityPicker != null)
+                    mCustomCityPicker.showCityPicker();
                 break;
             case R.id.clean_ed_content:
                 mDetailAddress.setText("");
                 break;
             case R.id.add_save://地址保存
-                mSwitchButton.setOnCheckedChangeListener((compoundButton, isChecked) -> {
-                    if (isChecked) {
-                        setDefaultAddress();
-                    } else {
-                        saveAddress();
-                    }
-                });
-
+                boolean checked = mSwitchButton.isChecked();
+                if (checked) {
+                    setDefaultAddress();
+                } else {
+                    saveAddress();
+                }
                 switch (UiTag) {
                     case ADD_TAG:
                         saveAddress();
@@ -149,11 +152,19 @@ public class SettingAddressActivity extends BaseTitleActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mCustomCityPicker != null) {
+            mCustomCityPicker.hide();
+            mCustomCityPicker = null;
+        }
+    }
+
     //保存地址
     public void saveAddress() {
         String name = mName.getText().toString();
         String phone = mPhone.getText().toString();
-        String city = mChoseAddress.getText().toString();
         String cityDetails = mDetailAddress.getText().toString();
         if (name.isEmpty()) {
             showEditError(mName);
@@ -171,7 +182,7 @@ public class SettingAddressActivity extends BaseTitleActivity {
             showEditError(mPhone);
             return;
         }
-        if (city.isEmpty()) {
+        if (province == null || city == null || province.isEmpty() || city.isEmpty()) {
             ToastUtil.showToast(getString(R.string.add_error_4));
             showEditError(mChoseAddress);
             return;
@@ -181,16 +192,26 @@ public class SettingAddressActivity extends BaseTitleActivity {
             showEditError(mDetailAddress);
             return;
         }
-        Api.getInstance().addAddress(name, phone, province, this.city, district, cityDetails)
+        int status = mSwitchButton.isChecked() ? 1 : 0;
+        Api.getInstance().addAddress(name, phone, province, city, district, cityDetails, status)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<Object>(this) {
                     @Override
                     public void onSuccess(BaseBean<Object> bean) {
                         ToastUtil.showToast(getString(R.string.add_success));
-//                        Intent intent = new Intent(SettingAddressActivity.this, "");
-//                        setResult(UIConfig.RESULT_CODE, intent);
-//                        finish();
+                        Intent intent = new Intent();
+                        MyAddressBean myAddressBean = new MyAddressBean();
+                        myAddressBean.setProvinces(province);
+                        myAddressBean.setCities(city);
+                        myAddressBean.setCounties(district);
+                        myAddressBean.setAddress(cityDetails);
+                        myAddressBean.setPhone(phone);
+                        myAddressBean.setConsignee(name);
+                        myAddressBean.setStatus(1);
+                        intent.putExtra("bean", myAddressBean);
+                        setResult(UIConfig.RESULT_CODE);
+                        finish();
                     }
 
                     @Override
@@ -210,7 +231,6 @@ public class SettingAddressActivity extends BaseTitleActivity {
                         hideLoading();
                     }
                 });
-
     }
 
     //设置默认地址
@@ -222,9 +242,8 @@ public class SettingAddressActivity extends BaseTitleActivity {
                     @Override
                     public void onSuccess(BaseBean<Object> bean) {
                         ToastUtil.showToast(getString(R.string.setting_success));
-//                        Intent intent = new Intent(SettingAddressActivity.this, "");
-//                        setResult(UIConfig.RESULT_CODE, intent);
-//                        finish();
+                        setResult(UIConfig.RESULT_CODE);
+                        finish();
                     }
 
                     @Override
@@ -247,7 +266,7 @@ public class SettingAddressActivity extends BaseTitleActivity {
                 });
     }
 
-    //保存地址
+    //修改地址
     public void updateAddress() {
         String name = mName.getText().toString();
         String phone = mPhone.getText().toString();
@@ -286,9 +305,8 @@ public class SettingAddressActivity extends BaseTitleActivity {
                     @Override
                     public void onSuccess(BaseBean<Object> bean) {
                         ToastUtil.showToast(getString(R.string.update_success));
-//                        Intent intent = new Intent(SettingAddressActivity.this, "");
-//                        setResult(UIConfig.RESULT_CODE, intent);
-//                        finish();
+                        setResult(UIConfig.RESULT_CODE);
+                        finish();
                     }
 
                     @Override

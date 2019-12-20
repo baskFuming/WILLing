@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/include_title_bar" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,9 +21,9 @@
             android:id="@+id/web_progress"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:progressDrawable="@drawable/progress_web"
             android:layout_height="2dp"
             android:max="100"
+            android:progressDrawable="@drawable/progress_web"
             tools:ignore="PxUsage" />
 
     </RelativeLayout>

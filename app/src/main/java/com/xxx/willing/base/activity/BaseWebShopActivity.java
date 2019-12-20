@@ -49,13 +49,14 @@ import io.reactivex.schedulers.Schedulers;
  * @date 2019-12-13
  */
 
-public class BaseWebShopActivity extends BaseActivity implements SubmitPop.Callback {
+public class BaseWebShopActivity extends BaseTitleActivity implements SubmitPop.Callback {
 
     private ShopWindow mShopWindow;
     private SubmitPop mSubmitPop;
     private int orderId;
     private int commodityId;
     private int brandId;
+    private String title;
 
     public static void actionStart(Activity activity, String title, int commodityId, int brandId) {
         Intent intent = new Intent(activity, BaseWebShopActivity.class);
@@ -67,7 +68,7 @@ public class BaseWebShopActivity extends BaseActivity implements SubmitPop.Callb
 
     private void initBundle() {
         Intent intent = getIntent();
-//        String title = intent.getStringExtra("title");
+        title = intent.getStringExtra("title");
         commodityId = intent.getIntExtra("commodityId", 0);
         brandId = intent.getIntExtra("brandId", 0);
     }
@@ -76,6 +77,11 @@ public class BaseWebShopActivity extends BaseActivity implements SubmitPop.Callb
     WebView mWebView;
     @BindView(R.id.web_progress)
     ProgressBar mProgress;
+
+    @Override
+    protected String initTitle() {
+        return title;
+    }
 
     @Override
     protected int getLayoutId() {
@@ -156,13 +162,11 @@ public class BaseWebShopActivity extends BaseActivity implements SubmitPop.Callb
                 if (newProgress == 100) {
                     if (mProgress != null) {
                         mProgress.setVisibility(View.GONE);
-                        hideLoading();
                     }
                 } else {
                     if (mProgress != null) {
                         mProgress.setVisibility(View.VISIBLE);
                         mProgress.setProgress(newProgress);
-                        showLoading();
                     }
                 }
             }
@@ -205,17 +209,6 @@ public class BaseWebShopActivity extends BaseActivity implements SubmitPop.Callb
                         ToastUtil.showToast(errorMessage);
                     }
 
-                    @Override
-                    public void onStart(Disposable d) {
-                        super.onStart(d);
-                        showLoading();
-                    }
-
-                    @Override
-                    public void onEnd() {
-                        super.onEnd();
-                        hideLoading();
-                    }
                 });
     }
 
@@ -251,17 +244,6 @@ public class BaseWebShopActivity extends BaseActivity implements SubmitPop.Callb
                         ToastUtil.showToast(errorMessage);
                     }
 
-                    @Override
-                    public void onStart(Disposable d) {
-                        super.onStart(d);
-                        showLoading();
-                    }
-
-                    @Override
-                    public void onEnd() {
-                        super.onEnd();
-                        hideLoading();
-                    }
                 });
     }
 
@@ -304,4 +286,6 @@ public class BaseWebShopActivity extends BaseActivity implements SubmitPop.Callb
         mWebView.onPause();
         super.onPause();
     }
+
+
 }

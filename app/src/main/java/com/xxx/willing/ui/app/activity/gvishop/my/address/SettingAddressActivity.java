@@ -19,6 +19,8 @@ import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.MyAddressBean;
 import com.xxx.willing.model.http.bean.WalletAccountBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
+import com.xxx.willing.model.sp.SharedConst;
+import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.login.activity.LoginActivity;
 import com.xxx.willing.ui.login.activity.RegisterActivity;
@@ -200,6 +202,8 @@ public class SettingAddressActivity extends BaseTitleActivity {
                     @Override
                     public void onSuccess(BaseBean<Object> bean) {
                         ToastUtil.showToast(getString(R.string.add_success));
+                        SharedPreferencesUtil.getInstance().saveBoolean(SharedConst.IS_SETTING_ADDRESS, true);
+
                         Intent intent = new Intent();
                         MyAddressBean myAddressBean = new MyAddressBean();
                         myAddressBean.setProvinces(province);

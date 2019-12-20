@@ -354,7 +354,7 @@ public class ShipAddressActivity extends BaseTitleActivity implements SubmitPop.
                                     if (submitPop != null) {
                                         ToastUtil.showToast(getString(R.string.add_order_success_1));
                                         submitPop.dismiss();
-                                        submitPop.setNumber(shopJsVo.getPrice() + "");
+                                        submitPop.setNumber((number * gviPrice + freight) + "");
                                         submitPop.show();
                                     }
                                 } else {

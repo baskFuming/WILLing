@@ -96,7 +96,6 @@ public class SettingAddressActivity extends BaseTitleActivity {
         return R.layout.activity_setting_address;
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void initData() {
         initBundle();
@@ -128,6 +127,7 @@ public class SettingAddressActivity extends BaseTitleActivity {
             mBtn.setText("+添加新地址");
         }
 
+        mSwitchButton.setChecked(bean.getStatus() == 1);
         mSwitchButton.setOnCheckedChangeListener((buttonView, isChecked) -> bean.setStatus(isChecked ? 1 : 0));
     }
 

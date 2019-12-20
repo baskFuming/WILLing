@@ -1,6 +1,8 @@
 package com.xxx.willing.ui.app.activity.gvishop.my.address.adapter;
 
 import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -29,5 +31,11 @@ public class AddressAdapter extends BaseQuickAdapter<MyAddressBean, BaseViewHold
                 .setText(R.id.detail_address, item.getAddress())
                 .addOnClickListener(R.id.update_address_item)
                 .addOnClickListener(R.id.default_address);
+        TextView mDefault = helper.getView(R.id.default_address);
+        if (item.getStatus() == 1) {
+            mDefault.setVisibility(View.VISIBLE);
+        } else {
+            mDefault.setVisibility(View.GONE);
+        }
     }
 }

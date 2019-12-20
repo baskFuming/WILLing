@@ -96,10 +96,41 @@ public class MyOrderActivity extends BaseTitleActivity {
         mViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), fragments, list));
         mTabLayout.setupWithViewPager(mViewPager);
         mViewPager.setOffscreenPageLimit(fragments.size() - 1);
-        if (type != -1) {
-            mViewPager.setCurrentItem(type);
-        }
+//        if (type != -1) {
+//            mViewPager.setCurrentItem(type);
+//        }
+
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                switch (i) {
+                    case 0:
+                        if (unpaidFragment != null) unpaidFragment.onRefresh();
+                        break;
+                    case 1:
+                        if (deliveryFragment != null) deliveryFragment.onRefresh();
+                        break;
+                    case 2:
+                        if (goodsFragment != null) goodsFragment.onRefresh();
+                        break;
+                    case 3:
+                        if (complainigFragment != null) complainigFragment.onRefresh();
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
     }
+
 
     //订单完成切换状态
     @Override

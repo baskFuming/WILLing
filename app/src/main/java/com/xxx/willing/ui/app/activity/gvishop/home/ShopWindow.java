@@ -13,6 +13,7 @@ import com.xxx.willing.R;
 import com.xxx.willing.base.dialog.BaseDialog;
 import com.xxx.willing.config.MatchesConfig;
 import com.xxx.willing.model.utils.ToastUtil;
+import com.xxx.willing.ui.app.activity.gvishop.my.order.MyOrderActivity;
 import com.xxx.willing.ui.main.MainActivity;
 
 import java.text.SimpleDateFormat;
@@ -132,6 +133,7 @@ public class ShopWindow extends BaseDialog {
                 dismiss();
                 break;
             case R.id.window_shop_order_confirm_btn:
+                MyOrderActivity.actionStart(getContext());
                 dismiss();
                 break;
             case R.id.window_shop_order_fail_cancel_btn:

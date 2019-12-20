@@ -19,6 +19,7 @@ import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.BooleanBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
 import com.xxx.willing.model.utils.ToastUtil;
+import com.xxx.willing.ui.app.activity.gvishop.my.address.adapter.AddressAdapter;
 import com.xxx.willing.ui.app.activity.gvishop.my.order.adapter.MyOrderAdapter;
 import com.xxx.willing.ui.app.activity.gvishop.my.order.window.MyOrderPop;
 
@@ -125,6 +126,7 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
         }
     }
 
+
     /**
      * @Model 全部订单
      */
@@ -209,10 +211,11 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
                     @Override
                     public void onSuccess(BaseBean<Object> bean) {
                         ToastUtil.showToast(getString(R.string.comfirm_successful));
-                        Intent intent = new Intent();
-                        intent.putExtra("type", 2);
-                        getActivity().setResult(UIConfig.RESULT_CODE, intent);
-                        getActivity().finish();
+                        mAdapter.notifyDataSetChanged();
+//                        Intent intent = new Intent();
+//                        intent.putExtra("type", 0);
+//                        getActivity().setResult(UIConfig.RESULT_CODE, intent);
+//                        getActivity().finish();
                     }
 
                     @Override
@@ -245,10 +248,11 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
                     @Override
                     public void onSuccess(BaseBean<Object> bean) {
                         ToastUtil.showToast(getString(R.string.order_cancle_successful));
-                        Intent intent = new Intent();
-                        intent.putExtra("type", 0);
-                        getActivity().setResult(UIConfig.RESULT_CODE, intent);
-                        getActivity().finish();
+                        mAdapter.notifyDataSetChanged();
+//                        Intent intent = new Intent();
+//                        intent.putExtra("type", 1);
+//                        getActivity().setResult(UIConfig.RESULT_CODE, intent);
+//                        getActivity().finish();
                     }
 
                     @Override
@@ -281,10 +285,11 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
                     @Override
                     public void onSuccess(BaseBean<BooleanBean> bean) {
                         ToastUtil.showToast(getString(R.string.pay_seccess));
-                        Intent intent = new Intent();
-                        intent.putExtra("type", 1);
-                        getActivity().setResult(UIConfig.RESULT_CODE, intent);
-                        getActivity().finish();
+                        mAdapter.notifyDataSetChanged();
+//                        Intent intent = new Intent();
+//                        intent.putExtra("type", 2);
+//                        getActivity().setResult(UIConfig.RESULT_CODE, intent);
+//                        getActivity().finish();
                     }
 
                     @Override

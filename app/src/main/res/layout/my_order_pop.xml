@@ -46,7 +46,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/shap_order_read"
                 android:gravity="center"
-                android:text="@string/order_cancel_pay_btn"
+                android:text="@string/window_confirm_btn"
                 android:textColor="#ffffffff"
                 android:textSize="17dp" />
 

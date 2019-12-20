@@ -48,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_marginLeft="15dp"
-                    android:background="@mipmap/ed_bg"
+                    android:background="@drawable/shape_edit_wallet_exchange"
                     android:hint="@string/ed_hint_1"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
@@ -91,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:background="@mipmap/ed_bg">
+                    android:background="@drawable/shape_edit_wallet_exchange">
 
                     <TextView
                         android:id="@+id/ed_join_rand"
@@ -151,7 +151,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:background="@mipmap/ed_bg">
+                    android:background="@drawable/shape_edit_wallet_exchange">
 
                     <TextView
                         android:id="@+id/ed_join_time"
@@ -308,7 +308,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="89dp"
-                    android:background="@mipmap/ed_bg"
+                    android:background="@drawable/shape_edit_wallet_exchange"
                     android:orientation="vertical">
 
                     <EditText

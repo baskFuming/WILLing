@@ -53,8 +53,8 @@ public class VoteItemAdapter extends BaseQuickAdapter<FranchiseeBean, BaseViewHo
         }
 
 
-        LinearLayout linearLayout = helper.getView(R.id.item_vote_time_view);
-
+//        LinearLayout linearLayout = helper.getView(R.id.item_vote_time_view);
+//        TextView btn = helper.getView(R.id.item_vote_status);
 
         long startTime = StringUtil.getTime(item.getReleaseTime());
         long nowTime = StringUtil.getTime(item.getNowTime());
@@ -64,16 +64,20 @@ public class VoteItemAdapter extends BaseQuickAdapter<FranchiseeBean, BaseViewHo
             //已开始
             downTime = (int) (endTime - nowTime) / 1000;
             helper.setText(R.id.item_vote_time_type, R.string.vote_end_time);
-            linearLayout.setVisibility(View.VISIBLE);
+//            linearLayout.setVisibility(View.VISIBLE);
         } else if (nowTime >= endTime) {
             //已结束
-            helper.setText(R.id.item_vote_time_type, R.string.vote_end);
-            linearLayout.setVisibility(View.GONE);
+            helper.setText(R.id.item_vote_time_type, R.string.vote_end_time);
+//            helper.setText(R.id.item_vote_time_type, R.string.vote_end);
+//            linearLayout.setVisibility(View.GONE);
+            helper.setText(R.id.item_vote_time_h, "00")
+                    .setText(R.id.item_vote_time_m, "00")
+                    .setText(R.id.item_vote_time_s, "00");
         } else {
             //等待开始
             downTime = (int) (startTime - nowTime) / 1000;
             helper.setText(R.id.item_vote_time_type, R.string.vote_start_time);
-            linearLayout.setVisibility(View.VISIBLE);
+//            linearLayout.setVisibility(View.VISIBLE);
         }
 
         if (downTime > 0) {

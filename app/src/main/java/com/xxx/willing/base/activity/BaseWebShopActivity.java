@@ -90,7 +90,6 @@ public class BaseWebShopActivity extends BaseTitleActivity implements SubmitPop.
 
     @Override
     protected void initData() {
-        showLoading();
         //初始化
         mShopWindow = ShopWindow.getInstance(this);
         mSubmitPop = SubmitPop.getInstance(BaseWebShopActivity.this, this);

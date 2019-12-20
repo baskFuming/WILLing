@@ -472,10 +472,17 @@ public interface ApiService {
             @Field("status") Integer status
     );
 
-    //设置默认地址
-    @POST(HttpConfig.BASE_URL_PATH + "/addAddress")
+    //修改地址
+    @POST(HttpConfig.BASE_URL_PATH + "/userAddress/edit")
     @FormUrlEncoded
-    Observable<BaseBean<Object>> setDefaultAddress(
+    Observable<BaseBean<Object>> updateAddress(
+            @Field("id") int id,
+            @Field("consignee") String consignee,
+            @Field("phone") String phone,
+            @Field("provinces") String provinces,
+            @Field("cities") String cities,
+            @Field("counties") String counties,
+            @Field("address") String address,
             @Field("status") Integer status
     );
 
@@ -494,13 +501,6 @@ public interface ApiService {
             @Field("status") int status,
             @Field("pageNum") int pageNum,
             @Field("pageSize") int pageSize
-    );
-
-    //修改地址
-    @POST(HttpConfig.BASE_URL_PATH + "/userAddress/edit")
-    @FormUrlEncoded
-    Observable<BaseBean<Object>> updateAddress(
-            @Field("id") int id
     );
 
     //下单

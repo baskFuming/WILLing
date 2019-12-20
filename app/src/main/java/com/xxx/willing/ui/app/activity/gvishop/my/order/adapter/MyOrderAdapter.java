@@ -52,8 +52,8 @@ public class MyOrderAdapter extends BaseQuickAdapter<MyOrderBean, BaseViewHolder
             JSONArray jsonArray = new JSONArray(item.getCommodity().getImg());
             GlideUrlUtil.loadBack(mContext, HttpConfig.HTTP_IMG_URL + jsonArray.getString(0), R.mipmap.vote_banner_default, helper.getView(R.id.order_goods_icon));//品牌图片
         } catch (Exception ignored) {
-        }
 
+        }
 
         TextView mpay = helper.getView(R.id.order_pay_price);
         TextView mStatus = helper.getView(R.id.order_status);
@@ -72,7 +72,7 @@ public class MyOrderAdapter extends BaseQuickAdapter<MyOrderBean, BaseViewHolder
                 mStatus.setText(mContext.getString(R.string.order_un_delivery));
                 mCancleOrder.setVisibility(View.GONE);
                 mPayOrder.setVisibility(View.GONE);
-                mDelivery.setVisibility(View.VISIBLE);
+                mDelivery.setVisibility(View.GONE);
             } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_GOODS) { //待收货
                 mStatus.setText(mContext.getString(R.string.order_merchants));
                 mCancleOrder.setVisibility(View.GONE);
@@ -88,7 +88,7 @@ public class MyOrderAdapter extends BaseQuickAdapter<MyOrderBean, BaseViewHolder
             mStatus.setText(mContext.getString(R.string.order_un_delivery));
             mCancleOrder.setVisibility(View.GONE);
             mPayOrder.setVisibility(View.GONE);
-            mDelivery.setVisibility(View.VISIBLE);
+            mDelivery.setVisibility(View.GONE);
         } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_GOODS) {                   //待收货
             mStatus.setText(mContext.getString(R.string.order_merchants));
             mCancleOrder.setVisibility(View.GONE);

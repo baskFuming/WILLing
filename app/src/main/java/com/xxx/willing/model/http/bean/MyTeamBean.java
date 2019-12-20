@@ -23,12 +23,11 @@ public class MyTeamBean {
         private String nickname;
         private double achievement;
         private String createTime;
+        private double gviAmount;
 
         public String getGviAmount() {
-            return gviAmount;
+            return gviAmount + "";
         }
-
-        private String gviAmount;
 
         public int getId() {
             return id;

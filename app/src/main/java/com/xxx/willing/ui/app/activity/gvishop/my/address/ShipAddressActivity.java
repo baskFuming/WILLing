@@ -332,6 +332,10 @@ public class ShipAddressActivity extends BaseTitleActivity implements SubmitPop.
      * @Model 下单
      */
     private void addOrder() {
+        if (addressId == 0){
+            ToastUtil.showToast(getString(R.string.ship_address_error_1));
+            return;
+        }
         String remark = mRemark.getText().toString();
         Api.getInstance()
                 .addOrder(shopJsVo.getId(), shopJsVo.getNum(), shopJsVo.getColor(), shopJsVo.getSizeId(), "", addressId, remark)

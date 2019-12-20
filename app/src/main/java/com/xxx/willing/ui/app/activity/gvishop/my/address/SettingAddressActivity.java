@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -42,6 +43,16 @@ import io.reactivex.disposables.Disposable;
 
 public class SettingAddressActivity extends BaseTitleActivity {
 
+    public static final int ADD_TAG = 1;
+    public static final int UPDATE_TAG = 2;
+
+    private MyAddressBean bean;
+    private int UiTag;
+    private String city = "";
+    private String province = "";
+    private String district = "";
+    private CityPickerView mCustomCityPicker;
+
     public static void actionStartForResult(Activity activity, int tag, MyAddressBean bean) {
         Intent intent = new Intent(activity, SettingAddressActivity.class);
         intent.putExtra("tag", tag);
@@ -74,18 +85,6 @@ public class SettingAddressActivity extends BaseTitleActivity {
     Switch mSwitchButton;
     @BindView(R.id.add_save)
     TextView mBtn;
-
-    private MyAddressBean bean;
-
-
-    public static final int ADD_TAG = 1;
-    public static final int UPDATE_TAG = 2;
-    private int address_status = 1;  //默认地址1
-    private int UiTag;
-    private String city = "";
-    private String province = "";
-    private String district = "";
-    private CityPickerView mCustomCityPicker;
 
     @Override
     protected String initTitle() {
@@ -128,6 +127,8 @@ public class SettingAddressActivity extends BaseTitleActivity {
         } else {
             mBtn.setText("+添加新地址");
         }
+
+        mSwitchButton.setOnCheckedChangeListener((buttonView, isChecked) -> bean.setStatus(isChecked ? 1 : 0));
     }
 
     @OnClick({R.id.add_save, R.id.clean_ed_content, R.id.re_enter_chose_address})
@@ -193,8 +194,7 @@ public class SettingAddressActivity extends BaseTitleActivity {
             showEditError(mDetailAddress);
             return;
         }
-        int status = mSwitchButton.isChecked() ? 1 : 0;
-        Api.getInstance().addAddress(name, phone, province, city, district, cityDetails, status)
+        Api.getInstance().addAddress(name, phone, province, city, district, cityDetails, bean.getStatus())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<Object>(this) {
@@ -236,39 +236,6 @@ public class SettingAddressActivity extends BaseTitleActivity {
                 });
     }
 
-    //设置默认地址
-    private void setDefaultAddress() {
-        Api.getInstance().setDefaultAddress(address_status)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiCallback<Object>(this) {
-                    @Override
-                    public void onSuccess(BaseBean<Object> bean) {
-                        ToastUtil.showToast(getString(R.string.setting_success));
-                        setResult(UIConfig.RESULT_CODE);
-                        finish();
-                    }
-
-                    @Override
-                    public void onError(int errorCode, String errorMessage) {
-                        ToastUtil.showToast(errorMessage);
-                    }
-
-                    @Override
-                    public void onStart(Disposable d) {
-                        super.onStart(d);
-                        showLoading();
-                    }
-
-                    @Override
-                    public void onEnd() {
-                        super.onEnd();
-                        hideLoading();
-                    }
-
-                });
-    }
-
     //修改地址
     public void updateAddress() {
         String name = mName.getText().toString();
@@ -300,7 +267,7 @@ public class SettingAddressActivity extends BaseTitleActivity {
             showEditError(mDetailAddress);
             return;
         }
-        Api.getInstance().updateAddress(bean.getId())
+        Api.getInstance().updateAddress(bean.getId(), name, phone, province, city, district, cityDetails, bean.getStatus())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<Object>(this) {

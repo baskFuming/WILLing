@@ -57,8 +57,8 @@ public class ShopWindow extends BaseDialog {
 
     @BindView(R.id.window_shop_phone_edit)
     EditText mPhoneEdit;
-    @BindView(R.id.window_shop_phone_success_title)
-    TextView mPhoneSuccessTitle;
+    @BindView(R.id.window_shop_phone_success_time)
+    TextView mPhoneSuccessTime;
 
     private ShopWindow(Context context) {
         super(context);
@@ -86,7 +86,7 @@ public class ShopWindow extends BaseDialog {
                 mPhoneSuccess.setVisibility(View.VISIBLE);
                 @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                 String format = simpleDateFormat.format(new Date(System.currentTimeMillis() + 1800 * 1000));
-                mPhoneSuccessTitle.setText(getContext().getString(R.string.window_shop_phone_success) + format);
+                mPhoneSuccessTime.setText(getContext().getString(R.string.window_shop_phone_success_time) + format);
                 break;
             case TYPE_PHONE_FAIL:
                 mPhoneFail.setVisibility(View.VISIBLE);

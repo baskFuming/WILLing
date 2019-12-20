@@ -95,6 +95,8 @@ public class BaseWebShopActivity extends BaseTitleActivity implements SubmitPop.
         mSubmitPop = SubmitPop.getInstance(BaseWebShopActivity.this, this);
 
         initBundle();
+
+        initDate();
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -152,7 +154,7 @@ public class BaseWebShopActivity extends BaseTitleActivity implements SubmitPop.
                         ShipAddressActivity.actionStart(BaseWebShopActivity.this, commodityId, shopJsVo);
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    return true;
                 }
                 return true;
             }
@@ -245,12 +247,6 @@ public class BaseWebShopActivity extends BaseTitleActivity implements SubmitPop.
                     }
 
                 });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        initDate();
     }
 
     @Override

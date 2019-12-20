@@ -228,13 +228,6 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/useful_time"
-                                android:textColor="#ff999999"
-                                android:textSize="11dp" />
-
-                            <TextView
                                 android:id="@+id/useful_time"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

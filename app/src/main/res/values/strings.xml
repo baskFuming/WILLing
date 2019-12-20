@@ -515,7 +515,7 @@
     <string name="setting_success">设置成功</string>
     <string name="window_shop_phone_success_time">预计到账时间为</string>
     <string name="window_shop_phone_success">您的话费已充值成功。</string>
-    <string name="window_shop_phone_success_toast">充值记录可查看“应用-CVI商城-我的”</string>
+    <string name="window_shop_phone_success_toast">充值记录可查看“应用-GVI商城-我的”</string>
     <string name="window_shop_phone_fail_title">您的账户GVI余额不足，无法充值。</string>
     <string name="window_shop_phone_fail_confirm_btn">去兑换GVI</string>
     <string name="window_shop_order_success">恭喜您，兑换成功！</string>
@@ -525,4 +525,5 @@
     <string name="add_order_fail">下单失败</string>
     <string name="window_shop_phone_title">请输入您要充值的11位手机号码</string>
     <string name="add_order_success_1">下单成功，是否立即兑换</string>
+    <string name="ship_address_error_1">请先选择收货地址</string>
 </resources>

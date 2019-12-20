@@ -20,7 +20,7 @@ public class MyTeamAdapter extends BaseQuickAdapter<MyTeamBean.ListBean, BaseVie
     protected void convert(BaseViewHolder helper, MyTeamBean.ListBean item) {
         helper.setText(R.id.item_my_team_account, StringUtil.getPhone(item.getTelphone()))
                 .setText(R.id.item_my_team_number, item.getAchievement() + "")
-                .setText(R.id.item_my_team_number, item.getGviAmount() + "")
+                .setText(R.id.item_my_team_gvinumber, item.getGviAmount() + "")
                 .setText(R.id.item_my_team_time, item.getCreateTime());
     }
 }

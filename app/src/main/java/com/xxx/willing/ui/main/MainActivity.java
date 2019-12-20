@@ -1,5 +1,6 @@
 package com.xxx.willing.ui.main;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ import com.xxx.willing.config.HttpConfig;
 import com.xxx.willing.model.http.Api;
 import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.AppVersionBean;
+import com.xxx.willing.model.http.bean.GameBean;
 import com.xxx.willing.model.http.bean.IsSettingPayPswBean;
 import com.xxx.willing.model.http.bean.UserInfo;
 import com.xxx.willing.model.http.bean.base.BaseBean;
@@ -27,6 +29,7 @@ import com.xxx.willing.model.utils.PermissionUtil;
 import com.xxx.willing.model.utils.SystemUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.AppFragment;
+import com.xxx.willing.ui.app.activity.GameActivity;
 import com.xxx.willing.ui.my.MyFragment;
 import com.xxx.willing.ui.vote.VoteFragment;
 import com.xxx.willing.ui.wallet.WalletFragment;
@@ -45,6 +48,10 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class MainActivity extends BaseActivity {
 
+    public static void actionStart(Activity activity) {
+        Intent intent = new Intent(activity, MainActivity.class);
+        activity.startActivity(intent);
+    }
     //页面下标
     public static final int VOTE_TYPE = R.id.main_vote;     //投票
     public static final int APP_TYPE = R.id.main_app;     //应用

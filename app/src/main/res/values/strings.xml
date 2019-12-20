@@ -252,6 +252,7 @@
     <string name="team_account">账户</string>
     <string name="team_register_time">注册时间</string>
     <string name="team_results">业绩（GVI）</string>
+    <string name="team_vote_results">投票（GVI）</string>
     <string name="sign_task">任务中心</string>
     <string name="sign_task_rules">任务规则</string>
     <string name="rules">

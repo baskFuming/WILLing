@@ -24,6 +24,12 @@ public class MyTeamBean {
         private double achievement;
         private String createTime;
 
+        public String getGviAmount() {
+            return gviAmount;
+        }
+
+        private String gviAmount;
+
         public int getId() {
             return id;
         }

@@ -209,8 +209,7 @@ public class LoginActivity extends BaseTitleActivity {
                                     EventBus.getDefault().post(EventBusConfig.EVENT_LOGIN);
                                     finish();
                                 } else {
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-//                                    MainActivity.actionStart(LoginActivity.this);
+                                    MainActivity.actionStart(LoginActivity.this);
                                     finish();
                                 }
                             }

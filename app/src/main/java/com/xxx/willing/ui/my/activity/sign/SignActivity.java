@@ -132,7 +132,7 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                 .flatMap((Function<BaseBean<SignInfoBean>, Observable<BaseBean<List<TaskInfoBean>>>>) bean -> {
                     if (bean != null) {
                         SignInfoBean data = bean.getData();
-                        days = data.getDays() + 1;
+                        days = data.getDays();
                         todaySign = data.isTodaySign();
                         List<StepBean> list = new ArrayList<>();
                         int end = days > 7 ? days : 7;

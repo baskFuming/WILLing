@@ -72,6 +72,8 @@ public class SettingAddressActivity extends BaseTitleActivity {
     EditText mDetailAddress;
     @BindView(R.id.switch_button)
     Switch mSwitchButton;
+    @BindView(R.id.add_save)
+    TextView mBtn;
 
     private MyAddressBean bean;
 
@@ -122,6 +124,9 @@ public class SettingAddressActivity extends BaseTitleActivity {
             mPhone.setText(bean.getPhone());
             mChoseAddress.setText(bean.getProvinces() + bean.getCities() + bean.getCounties());
             mDetailAddress.setText(bean.getAddress());
+            mBtn.setText("保存");
+        } else {
+            mBtn.setText("+添加新地址");
         }
     }
 
@@ -136,12 +141,6 @@ public class SettingAddressActivity extends BaseTitleActivity {
                 mDetailAddress.setText("");
                 break;
             case R.id.add_save://地址保存
-                boolean checked = mSwitchButton.isChecked();
-                if (checked) {
-                    setDefaultAddress();
-                } else {
-                    saveAddress();
-                }
                 switch (UiTag) {
                     case ADD_TAG:
                         saveAddress();
@@ -281,7 +280,6 @@ public class SettingAddressActivity extends BaseTitleActivity {
             ToastUtil.showToast(getString(R.string.add_error_1));
             return;
         }
-
         if (phone.isEmpty()) {
             showEditError(mPhone);
             ToastUtil.showToast(getString(R.string.add_error_2));
@@ -329,7 +327,6 @@ public class SettingAddressActivity extends BaseTitleActivity {
                         super.onEnd();
                         hideLoading();
                     }
-
                 });
 
     }

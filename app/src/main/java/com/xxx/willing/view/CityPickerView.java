@@ -214,7 +214,7 @@ public class CityPickerView implements CanShow, OnWheelChangedListener {
         int pCurrent = this.mViewProvince.getCurrentItem();
         int cCurrent = this.mViewCity.getCurrentItem();
         List<CustomCityData> provinceList = this.config.getCityDataList();
-        CustomCityData province = (CustomCityData) provinceList.get(pCurrent);
+        CustomCityData province = provinceList.get(pCurrent);
         List<CustomCityData> cityDataList = province.getList();
         if (cityDataList != null) {
             CustomCityData city = (CustomCityData) cityDataList.get(cCurrent);
@@ -241,11 +241,10 @@ public class CityPickerView implements CanShow, OnWheelChangedListener {
         if (this.isShow()) {
             this.popwindow.dismiss();
         }
-
     }
 
     public boolean isShow() {
-        return this.popwindow.isShowing();
+        return popwindow != null && this.popwindow.isShowing();
     }
 
     public void onChanged(WheelView wheel, int oldValue, int newValue) {

@@ -65,25 +65,23 @@ public class MyOrderAdapter extends BaseQuickAdapter<MyOrderBean, BaseViewHolder
         mpay.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         //订单状态
         if (item.getStatus() == ApiType.ORDER_COMMUNITY_ALL) {                            //全部状态
-            helper.getView(R.id.order_bottom_click).setVisibility(View.GONE);
-//            mStatus.setVisibility(View.GONE);
-//            //全部订单状态判断
-//            if (item.getStatus() == ApiType.ORDER_COMMUNITY_UNPAID) { //待付款
-//                mStatus.setText(mContext.getString(R.string.order_un_pay));
-//            } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_DELIVERY) { //待发货
-//                mStatus.setText(mContext.getString(R.string.order_un_delivery));
-//                mCancleOrder.setVisibility(View.GONE);
-//                mPayOrder.setVisibility(View.GONE);
-//                mDelivery.setVisibility(View.VISIBLE);
-//            } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_GOODS) { //待收货
-//                mStatus.setText(mContext.getString(R.string.order_merchants));
-//                mCancleOrder.setVisibility(View.GONE);
-//                mPayOrder.setVisibility(View.GONE);
-//                mConfirm.setVisibility(View.VISIBLE);
-//            } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_COMPLAINING) { //已收货
-//                mStatus.setText(mContext.getString(R.string.order_complete));
-//                helper.getView(R.id.order_bottom_click).setVisibility(View.GONE);
-//            }
+            //全部订单状态判断
+            if (item.getStatus() == ApiType.ORDER_COMMUNITY_UNPAID) { //待付款
+                mStatus.setText(mContext.getString(R.string.order_un_pay));
+            } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_DELIVERY) { //待发货
+                mStatus.setText(mContext.getString(R.string.order_un_delivery));
+                mCancleOrder.setVisibility(View.GONE);
+                mPayOrder.setVisibility(View.GONE);
+                mDelivery.setVisibility(View.VISIBLE);
+            } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_GOODS) { //待收货
+                mStatus.setText(mContext.getString(R.string.order_merchants));
+                mCancleOrder.setVisibility(View.GONE);
+                mPayOrder.setVisibility(View.GONE);
+                mConfirm.setVisibility(View.VISIBLE);
+            } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_COMPLAINING) { //已收货
+                mStatus.setText(mContext.getString(R.string.order_complete));
+                helper.getView(R.id.order_bottom_click).setVisibility(View.GONE);
+            }
         } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_UNPAID) {                  //待付款
             mStatus.setText(mContext.getString(R.string.order_un_pay));
         } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_DELIVERY) {                //待发货

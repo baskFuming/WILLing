@@ -64,7 +64,7 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
 
     private int status;
     private String statusStr;
-    private String orderId;
+    private int orderId;
     private int page = UIConfig.PAGE_DEFAULT;
     private List<MyOrderBean> mlist = new ArrayList<>();
     private MyOrderAdapter mAdapter;
@@ -105,6 +105,8 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
 
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+        MyOrderBean myOrderBean = mlist.get(position);
+        orderId = myOrderBean.getId();
         switch (view.getId()) {
             case R.id.order_cancel_btn: //待付款取消订单
                 if (myOrderPop != null) {
@@ -200,7 +202,7 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
      * @Model 确认收货
      */
     private void loadConfirm() {
-        Api.getInstance().confirmOrder(Integer.parseInt(orderId), status)
+        Api.getInstance().confirmOrder(orderId, status)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<Object>(getActivity()) {
@@ -236,7 +238,7 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
      * @mlde 取消订单
      */
     private void loadCancelOrder() {
-        Api.getInstance().cancelOrder(Integer.parseInt(orderId))
+        Api.getInstance().cancelOrder(orderId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<Object>(getActivity()) {
@@ -272,7 +274,7 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
      * @Model 支付订单
      */
     private void loadPayOrder() {
-        Api.getInstance().paymentOrder(Integer.parseInt(orderId))
+        Api.getInstance().paymentOrder(orderId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<BooleanBean>(getActivity()) {
@@ -312,12 +314,7 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        mRefresh.post(() -> {
-            loadDate();
-            loadCancelOrder();
-            loadConfirm();
-            loadPayOrder();
-        });
+        mRefresh.post(this::loadDate);
     }
 
     @Override

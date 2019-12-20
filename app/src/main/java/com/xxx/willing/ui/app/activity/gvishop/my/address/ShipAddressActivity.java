@@ -164,9 +164,7 @@ public class ShipAddressActivity extends BaseTitleActivity implements SubmitPop.
                 mTotalprice.setText("￥" + number * gviPrice);
                 break;
             case R.id.submit_order:
-                submitPop = SubmitPop.getInstance(this, this::addOrder);
-                submitPop.setNumber((number * gviPrice) + "");
-                submitPop.show();
+                addOrder();
                 break;
         }
     }

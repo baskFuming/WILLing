@@ -61,6 +61,7 @@ public class ShipAddressActivity extends BaseTitleActivity implements SubmitPop.
     private int number = 1;
     private SubmitPop submitPop;
     private double gviPrice;
+    private double freight;
 
     public static void actionStart(Activity activity, int commodityId, ShopJsVo shopJsVo) {
         Intent intent = new Intent(activity, ShipAddressActivity.class);
@@ -155,13 +156,13 @@ public class ShipAddressActivity extends BaseTitleActivity implements SubmitPop.
                 }
                 mNumber.setText(String.valueOf(number));
                 mBuyNumber.setText("共" + number + "件");
-                mTotalprice.setText("￥" + number * gviPrice);
+                mTotalprice.setText("￥" + (number * gviPrice + freight));
                 break;
             case R.id.count_add:
                 number++;
                 mNumber.setText(String.valueOf(number));
                 mBuyNumber.setText("共" + number + "件");
-                mTotalprice.setText("￥" + number * gviPrice);
+                mTotalprice.setText("￥" + (number * gviPrice + freight));
                 break;
             case R.id.submit_order:
                 addOrder();
@@ -230,7 +231,7 @@ public class ShipAddressActivity extends BaseTitleActivity implements SubmitPop.
                                 CommodityDetailBean.CommodityBean commodity = data.getCommodity();
                                 CommodityDetailBean.ShopBrandBean shopBrand = data.getShopBrand();
                                 gviPrice = commodity.getGviPrice();
-
+                                freight = commodity.getFreight();
                                 number = shopJsVo.getNum();
 
                                 try {
@@ -261,7 +262,7 @@ public class ShipAddressActivity extends BaseTitleActivity implements SubmitPop.
                                 }
                                 mPreferential.setText(commodity.getDiscount());
                                 mBuyNumber.setText("共" + number + "件");
-                                mTotalprice.setText("￥" + number * gviPrice);
+                                mTotalprice.setText("￥" + number * gviPrice + freight);
                             }
                         }
                     }
@@ -332,7 +333,7 @@ public class ShipAddressActivity extends BaseTitleActivity implements SubmitPop.
      * @Model 下单
      */
     private void addOrder() {
-        if (addressId == 0){
+        if (addressId == 0) {
             ToastUtil.showToast(getString(R.string.ship_address_error_1));
             return;
         }

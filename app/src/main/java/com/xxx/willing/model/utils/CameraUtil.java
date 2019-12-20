@@ -10,6 +10,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 
+import com.xxx.willing.base.App;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -45,7 +47,8 @@ public class CameraUtil {
      * 从相机获取图片
      */
     public static void openCamera(Activity activity) {
-        if (PermissionUtil.checkPermission(activity)) return;
+        if (PermissionUtil.checkPermission(activity, PermissionUtil.CAMERA_PERMISSION, PermissionUtil.READ_PERMISSION, PermissionUtil.WRITE_PERMISSION))
+            return;
         //用于保存调用相机拍照后所生成的文件
         //跳转到调用系统相机
         //用于保存调用相机拍照后所生成的文件

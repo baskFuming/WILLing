@@ -132,6 +132,7 @@ public class BaseWebShopActivity extends BaseTitleActivity implements SubmitPop.
         mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
             public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+                result.cancel();
                 try {
                     ShopJsVo shopJsVo = new Gson().fromJson(message, ShopJsVo.class);
                     if (shopJsVo == null) {

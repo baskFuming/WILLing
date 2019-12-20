@@ -329,7 +329,8 @@
     <string name="join_campaign">加盟竞选</string>
     <string name="votes">已获票数：</string>
     <string name="vote_btn">投票</string>
-    <string name="vote_end">距离投票结束时间：</string>
+    <string name="vote_end_time">距离投票结束时间：</string>
+    <string name="vote_start_time">距离投票开始：</string>
     <string name="vote_status">进行中</string>
     <string name="vote_per">已授权</string>
     <string name="vote_start">未开始</string>

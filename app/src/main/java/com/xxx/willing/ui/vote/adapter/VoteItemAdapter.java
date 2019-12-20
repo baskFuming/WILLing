@@ -26,7 +26,6 @@ import java.util.List;
 
 public class VoteItemAdapter extends BaseQuickAdapter<FranchiseeBean, BaseViewHolder> {
 
-
     public VoteItemAdapter(@Nullable List<FranchiseeBean> data) {
         super(R.layout.item_vote, data);
     }
@@ -52,9 +51,25 @@ public class VoteItemAdapter extends BaseQuickAdapter<FranchiseeBean, BaseViewHo
             mDownTimeUtil.closeDownTime();
         }
 
+
+
+
+
+        long startTime = StringUtil.getTime(item.getReleaseTime());
         long nowTime = StringUtil.getTime(item.getNowTime());
         long endTime = StringUtil.getTime(item.getEndTime());
-        mDownTimeUtil.openDownTime((int) (endTime - nowTime) / 1000, new DownTimeUtil.Callback() {
+        int downTime;
+        if (startTime >= nowTime) {
+            //已经开始
+            downTime = (int) (endTime - nowTime) / 1000;
+            helper.setText(R.id.item_vote_time_type, R.string.vote_end_time);
+        } else {
+            //等待开始
+            downTime = (int) (nowTime - startTime) / 1000;
+            helper.setText(R.id.item_vote_time_type, R.string.vote_start_time);
+        }
+
+        mDownTimeUtil.openDownTime(downTime, new DownTimeUtil.Callback() {
 
             @Override
             public void run(int nowTime) {
@@ -71,7 +86,7 @@ public class VoteItemAdapter extends BaseQuickAdapter<FranchiseeBean, BaseViewHo
 
             @Override
             public void end() {
-
+                notifyItemChanged(helper.getAdapterPosition());
             }
         });
         GlideUrlUtil.load(mContext, HttpConfig.HTTP_IMG_URL + item.getImgUrl(), R.mipmap.vote_banner_default, helper.getView(R.id.item_vote_img));

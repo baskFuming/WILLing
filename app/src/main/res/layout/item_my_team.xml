@@ -52,7 +52,6 @@
             android:gravity="center"
             android:text="0.0"
             android:textColor="#ff333333"
-            android:textFontWeight="1"
             android:textSize="14dp" />
 
     </LinearLayout>

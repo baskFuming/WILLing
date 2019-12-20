@@ -205,7 +205,7 @@ public class MyOrderFragment extends BaseFragment implements SwipeRefreshLayout.
      * @Model 确认收货
      */
     private void loadConfirm() {
-        Api.getInstance().confirmOrder(orderId, status)
+        Api.getInstance().confirmOrder(orderId, 3)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiCallback<Object>(getActivity()) {

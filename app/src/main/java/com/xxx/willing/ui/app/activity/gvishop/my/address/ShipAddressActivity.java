@@ -262,7 +262,7 @@ public class ShipAddressActivity extends BaseTitleActivity implements SubmitPop.
                                 }
                                 mPreferential.setText(commodity.getDiscount());
                                 mBuyNumber.setText("共" + number + "件");
-                                mTotalprice.setText("￥" + number * gviPrice + freight);
+                                mTotalprice.setText("￥" + (number * gviPrice + freight));
                             }
                         }
                     }

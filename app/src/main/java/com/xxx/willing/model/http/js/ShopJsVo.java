@@ -8,7 +8,7 @@ public class ShopJsVo implements Serializable{
 
     private int num;
 
-    private int color;
+    private int colorId;
 
     private int sizeId;
 
@@ -22,8 +22,8 @@ public class ShopJsVo implements Serializable{
         this.zgviPrice = price;
     }
 
-    public void setColor(int color) {
-        this.color = color;
+    public void setColor(int colorId) {
+        this.colorId = colorId;
     }
 
     public void setId(int id) {
@@ -43,7 +43,7 @@ public class ShopJsVo implements Serializable{
     }
 
     public int getColor() {
-        return color;
+        return colorId;
     }
 
     public int getNum() {

@@ -3,6 +3,7 @@ package com.xxx.willing.ui.vote.adapter;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -52,43 +53,50 @@ public class VoteItemAdapter extends BaseQuickAdapter<FranchiseeBean, BaseViewHo
         }
 
 
-
+        LinearLayout linearLayout = helper.getView(R.id.item_vote_time_view);
 
 
         long startTime = StringUtil.getTime(item.getReleaseTime());
         long nowTime = StringUtil.getTime(item.getNowTime());
         long endTime = StringUtil.getTime(item.getEndTime());
-        int downTime;
+        int downTime = 0;
         if (startTime >= nowTime) {
-            //已经开始
+            //已开始
             downTime = (int) (endTime - nowTime) / 1000;
             helper.setText(R.id.item_vote_time_type, R.string.vote_end_time);
+            linearLayout.setVisibility(View.VISIBLE);
+        } else if (nowTime >= endTime) {
+            //已结束
+            helper.setText(R.id.item_vote_time_type, R.string.vote_end);
+            linearLayout.setVisibility(View.GONE);
         } else {
             //等待开始
-            downTime = (int) (nowTime - startTime) / 1000;
+            downTime = (int) (startTime - nowTime) / 1000;
             helper.setText(R.id.item_vote_time_type, R.string.vote_start_time);
+            linearLayout.setVisibility(View.VISIBLE);
         }
 
-        mDownTimeUtil.openDownTime(downTime, new DownTimeUtil.Callback() {
+        if (downTime > 0) {
+            mDownTimeUtil.openDownTime(downTime, new DownTimeUtil.Callback() {
+                @Override
+                public void run(int nowTime) {
+                    //第一步计算小时
+                    long h = nowTime / 3600;
+                    //第二步计算分钟
+                    long m = nowTime % 3600 / 60;
+                    //第三步计算秒
+                    long s = nowTime % 3600 % 60;
+                    helper.setText(R.id.item_vote_time_h, h >= 10 ? "" + h : "0" + h)
+                            .setText(R.id.item_vote_time_m, m >= 10 ? "" + m : "0" + m)
+                            .setText(R.id.item_vote_time_s, s >= 10 ? "" + s : "0" + s);
+                }
 
-            @Override
-            public void run(int nowTime) {
-                //第一步计算小时
-                long h = nowTime / 3600;
-                //第二步计算分钟
-                long m = nowTime % 3600 / 60;
-                //第三步计算秒
-                long s = nowTime % 3600 % 60;
-                helper.setText(R.id.item_vote_time_h, h >= 10 ? "" + h : "0" + h)
-                        .setText(R.id.item_vote_time_m, m >= 10 ? "" + m : "0" + m)
-                        .setText(R.id.item_vote_time_s, s >= 10 ? "" + s : "0" + s);
-            }
-
-            @Override
-            public void end() {
-                notifyItemChanged(helper.getAdapterPosition());
-            }
-        });
+                @Override
+                public void end() {
+                    notifyItemChanged(helper.getAdapterPosition());
+                }
+            });
+        }
         GlideUrlUtil.load(mContext, HttpConfig.HTTP_IMG_URL + item.getImgUrl(), R.mipmap.vote_banner_default, helper.getView(R.id.item_vote_img));
         TextView status = helper.getView(R.id.item_vote_status);
         switch (item.getStatus()) {

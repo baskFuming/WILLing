@@ -331,6 +331,7 @@
     <string name="vote_btn">投票</string>
     <string name="vote_end_time">距离投票结束时间：</string>
     <string name="vote_start_time">距离投票开始：</string>
+    <string name="vote_end">投票已结束</string>
     <string name="vote_status">进行中</string>
     <string name="vote_per">已授权</string>
     <string name="vote_start">未开始</string>

@@ -114,6 +114,7 @@
                     android:textSize="12dp" />
 
                 <LinearLayout
+                    android:id="@+id/item_vote_time_view"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"

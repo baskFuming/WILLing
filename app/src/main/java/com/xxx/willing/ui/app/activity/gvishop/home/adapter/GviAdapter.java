@@ -45,7 +45,8 @@ public class GviAdapter extends BaseQuickAdapter<GviBean, BaseViewHolder> {
                 GviBean.ListBean listBean = item.getList().get(position);
                 int id = listBean.getId();
                 String name = listBean.getName();
-                if (onClickListener != null) onClickListener.onOnClickListener(name, id);
+                if (onClickListener != null)
+                    onClickListener.onOnClickListener(name, id, item.getBrandId());
             });
         } else {
             gviChildAdapter = (GviChildAdapter) tag;
@@ -57,6 +58,6 @@ public class GviAdapter extends BaseQuickAdapter<GviBean, BaseViewHolder> {
     private OnClickListener onClickListener;
 
     public interface OnClickListener {
-        void onOnClickListener(String name, int id);
+        void onOnClickListener(String name, int commodityId, int brandId);
     }
 }

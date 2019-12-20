@@ -15,6 +15,8 @@ import com.xxx.willing.model.http.bean.MyOrderBean;
 import com.xxx.willing.model.http.utils.ApiType;
 
 
+import org.json.JSONArray;
+
 import java.util.List;
 
 /**
@@ -46,7 +48,12 @@ public class MyOrderAdapter extends BaseQuickAdapter<MyOrderBean, BaseViewHolder
                 .addOnClickListener(R.id.order_un_delivery)
                 .addOnClickListener(R.id.order_confirm_btn);
 
-        GlideUrlUtil.loadBack(mContext, HttpConfig.HTTP_IMG_URL + item.getCommodity().getLogos(), R.mipmap.vote_banner_default, helper.getView(R.id.order_goods_icon));//品牌图片
+        try {
+            JSONArray jsonArray = new JSONArray(item.getCommodity().getImg());
+            GlideUrlUtil.loadBack(mContext, HttpConfig.HTTP_IMG_URL + jsonArray.getString(0), R.mipmap.vote_banner_default, helper.getView(R.id.order_goods_icon));//品牌图片
+        } catch (Exception ignored) {
+        }
+
 
         TextView mpay = helper.getView(R.id.order_pay_price);
         TextView mStatus = helper.getView(R.id.order_status);

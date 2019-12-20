@@ -11,9 +11,13 @@ public class GviBean {
      */
 
     private String name;
+    private int brandId;
+
     private String details;
     private List<ListBean> list;
-
+    public int getBrandId() {
+        return brandId;
+    }
     public String getName() {
         return name;
     }

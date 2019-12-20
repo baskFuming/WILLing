@@ -54,19 +54,22 @@ public class BaseWebShopActivity extends BaseActivity implements SubmitPop.Callb
     private ShopWindow mShopWindow;
     private SubmitPop mSubmitPop;
     private int orderId;
-    private int id;
+    private int commodityId;
+    private int brandId;
 
-    public static void actionStart(Activity activity, String title, int id) {
+    public static void actionStart(Activity activity, String title, int commodityId, int brandId) {
         Intent intent = new Intent(activity, BaseWebShopActivity.class);
         intent.putExtra("title", title);
-        intent.putExtra("id", id);
+        intent.putExtra("commodityId", commodityId);
+        intent.putExtra("brandId", brandId);
         activity.startActivity(intent);
     }
 
     private void initBundle() {
         Intent intent = getIntent();
 //        String title = intent.getStringExtra("title");
-        id = intent.getIntExtra("id", 0);
+        commodityId = intent.getIntExtra("commodityId", 0);
+        brandId = intent.getIntExtra("brandId", 0);
     }
 
     @BindView(R.id.use_help_web)
@@ -108,7 +111,7 @@ public class BaseWebShopActivity extends BaseActivity implements SubmitPop.Callb
         } catch (Exception e) {
             launcher = "zh";
         }
-        mWebView.loadUrl(HttpConfig.SHOP_DETAIL_URL + "?language=" + launcher + "&id=" + id + "&token=" + token);
+        mWebView.loadUrl(HttpConfig.SHOP_DETAIL_URL + "?language=" + launcher + "&id=" + commodityId + "&token=" + token);
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -131,7 +134,7 @@ public class BaseWebShopActivity extends BaseActivity implements SubmitPop.Callb
                         return true;
                     }
                     //手机号输入框弹起
-                    if (shopJsVo.getColor() == 0 && shopJsVo.getSizeId() == 0) {
+                    if (brandId == 1) {
                         if (mShopWindow != null) {
                             mShopWindow.setCallback(phone -> addOrder(shopJsVo, phone));
                             mShopWindow.setType(ShopWindow.TYPE_PHONE_EDIT);
@@ -140,7 +143,7 @@ public class BaseWebShopActivity extends BaseActivity implements SubmitPop.Callb
                         return true;
                     } else {
                         //跳转下单页面
-                        ShipAddressActivity.actionStart(BaseWebShopActivity.this, id, shopJsVo);
+                        ShipAddressActivity.actionStart(BaseWebShopActivity.this, commodityId, shopJsVo);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

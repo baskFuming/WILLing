@@ -59,7 +59,8 @@
             android:gravity="bottom"
             android:text="---"
             android:textColor="#999999"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:visibility="invisible" />
 
     </LinearLayout>
 

@@ -26,9 +26,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class WalletMarketFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
+public class WalletMarketFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    public static WalletMarketFragment getInstance(){
+    public static WalletMarketFragment getInstance() {
         return new WalletMarketFragment();
     }
 
@@ -39,7 +39,6 @@ public class WalletMarketFragment extends BaseFragment implements SwipeRefreshLa
     @BindView(R.id.main_refresh)
     SwipeRefreshLayout mRefresh;
 
-    private int page = UIConfig.PAGE_DEFAULT;
     private WalletMarketAdapter mAdapter;
     private List<WalletMarketBean> mList = new ArrayList<>();
 
@@ -54,80 +53,47 @@ public class WalletMarketFragment extends BaseFragment implements SwipeRefreshLa
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycler.setAdapter(mAdapter);
         mRefresh.setOnRefreshListener(this);
-        mAdapter.setOnLoadMoreListener(this, mRecycler);
 
         loadData();
     }
 
     @Override
     public void onRefresh() {
-        page = UIConfig.PAGE_DEFAULT;
-        loadData();
-    }
-
-    @Override
-    public void onLoadMoreRequested() {
-        page++;
         loadData();
     }
 
     private void loadData() {
-        Api.getInstance().getWalletMarketList(page, UIConfig.PAGE_SIZE)
+        Api.getInstance().getWalletMarketList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiCallback<PageBean<WalletMarketBean>>(getActivity()) {
+                .subscribe(new ApiCallback<List<WalletMarketBean>>(getActivity()) {
 
                     @Override
-                    public void onSuccess(BaseBean<PageBean<WalletMarketBean>> bean) {
-                        if (bean == null) {
-                            mNotData.setVisibility(View.VISIBLE);
-                            mRecycler.setVisibility(View.GONE);
-                            mAdapter.loadMoreEnd(true);
-                            return;
+                    public void onSuccess(BaseBean<List<WalletMarketBean>> bean) {
+                        if (bean != null) {
+                            List<WalletMarketBean> list = bean.getData();
+                            if (list != null && list.size() != 0) {
+                                mNotData.setVisibility(View.GONE);
+                                mRecycler.setVisibility(View.VISIBLE);
+                                mList.clear();
+                                mList.addAll(list);
+                                mAdapter.notifyDataSetChanged();
+                            } else {
+                                mNotData.setVisibility(View.VISIBLE);
+                                mRecycler.setVisibility(View.GONE);
+                            }
                         }
-                        PageBean<WalletMarketBean> data = bean.getData();
-                        if (data == null) {
-                            mNotData.setVisibility(View.VISIBLE);
-                            mRecycler.setVisibility(View.GONE);
-                            mAdapter.loadMoreEnd(true);
-                            return;
-                        }
-                        List<WalletMarketBean> list = data.getList();
-                        if (list == null || list.size() == 0 && page == UIConfig.PAGE_DEFAULT) {
-                            mNotData.setVisibility(View.VISIBLE);
-                            mRecycler.setVisibility(View.GONE);
-                            mAdapter.loadMoreEnd(true);
-                            return;
-                        }
-
-                        mNotData.setVisibility(View.GONE);
-                        mRecycler.setVisibility(View.VISIBLE);
-                        if (page == UIConfig.PAGE_DEFAULT) {
-                            mList.clear();
-                        }
-
-                        mList.addAll(list);
-                        if (list.size() < UIConfig.PAGE_SIZE) {
-                            mAdapter.loadMoreEnd(true);
-                        } else {
-                            mAdapter.loadMoreComplete();
-                        }
-                        mAdapter.notifyDataSetChanged();
                     }
 
                     @Override
                     public void onError(int errorCode, String errorMessage) {
-                        if (mList.size() == 0) {
-                            mNotData.setVisibility(View.VISIBLE);
-                            mRecycler.setVisibility(View.GONE);
-                        }
                         ToastUtil.showToast(errorMessage);
                     }
 
                     @Override
                     public void onStart(Disposable d) {
                         super.onStart(d);
-                        if (mRefresh != null && page == UIConfig.PAGE_DEFAULT) {
+                        if (mRefresh != null) {
                             mRefresh.setRefreshing(true);
                         }
                     }

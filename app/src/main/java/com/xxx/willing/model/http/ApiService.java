@@ -146,10 +146,7 @@ public interface ApiService {
 
     //获取钱包行情列表
     @GET(HttpConfig.BASE_URL_PATH + "/getMarketList")
-    Observable<BaseBean<PageBean<WalletMarketBean>>> getWalletMarketList(
-            @Query("pageNum") int pageNum,
-            @Query("pageSize") int pageSize
-    );
+    Observable<BaseBean<List<WalletMarketBean>>> getWalletMarketList();
 
 
     //获取可兑换列表

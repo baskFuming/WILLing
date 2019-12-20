@@ -68,18 +68,18 @@ public class GVIHomeFragment extends BaseFragment implements SwipeRefreshLayout.
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycler.setAdapter(mAdapter);
         mRefresh.setOnRefreshListener(this);
-        mAdapter.setOnClickListener((name, id) -> {
+        mAdapter.setOnClickListener((name, commodityId, brandId) -> {
             //跳转到商城web
-            BaseWebShopActivity.actionStart(getActivity(), name, id);
+            BaseWebShopActivity.actionStart(getActivity(), name, commodityId, brandId);
         });
 
         mSearchAdapter = new GviAdapter(mSearchList);
         mSearchRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mSearchRecycler.setAdapter(mSearchAdapter);
         mSearchAdapter.setOnLoadMoreListener(this, mSearchRecycler);
-        mSearchAdapter.setOnClickListener((name, id) -> {
+        mSearchAdapter.setOnClickListener((name, commodityId, brandId) -> {
             //跳转到商城web
-            BaseWebShopActivity.actionStart(getActivity(), name, id);
+            BaseWebShopActivity.actionStart(getActivity(),  name, commodityId, brandId);
         });
 
         loadData();

@@ -140,7 +140,7 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                             int status;
                             if (i < days) {
                                 status = 1;
-                            } else if (i == days && todaySign) {
+                            } else if (i == days) {
                                 status = 1;
                             } else {
                                 status = 0;
@@ -164,7 +164,11 @@ public class SignActivity extends BaseTitleActivity implements SignPopWindow.Cal
                         }
                         SignActivity.this.runOnUiThread(() -> {
                             if (mStepView != null) {
-                                mStepView.setStepNum(list, days);
+                                if (todaySign) {
+                                    mStepView.setStepNum(list, days);
+                                } else {
+                                    mStepView.setStepNum(list, days + 1);
+                                }
                                 if (todaySign) {
                                     mSignBtn.setText("已连续签到" + days + "天");
                                     mSignBtn.setBackgroundColor(Color.parseColor("#AADDDDDD"));

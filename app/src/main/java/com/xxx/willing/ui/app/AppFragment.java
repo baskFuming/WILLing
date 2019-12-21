@@ -72,8 +72,8 @@ public class AppFragment extends BaseFragment implements SwipeRefreshLayout.OnRe
                 CmpRankActivity.actionStart(getActivity());
                 break;
             case R.id.app_shop: //GVI商场
-//                ToastUtil.showToast("敬请期待");
-                GVIShopActivity.actionStart(getActivity());
+                ToastUtil.showToast("敬请期待");
+//                GVIShopActivity.actionStart(getActivity());
                 break;
             case R.id.app_eth:
                 BaseWebActivity.actionStart(getActivity(), AppConfig.APP_ETH_BROWSER, getString(R.string.app_eth));

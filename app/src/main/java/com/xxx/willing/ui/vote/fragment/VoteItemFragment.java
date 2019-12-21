@@ -100,7 +100,7 @@ public class VoteItemFragment extends BaseFragment implements BaseQuickAdapter.R
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
         FranchiseeBean franchiseeBean = mList.get(position);
-        JoinDetailsActivity.actionStart(getActivity(), franchiseeBean.getId());
+        JoinDetailsActivity.actionStart(getActivity(), franchiseeBean.getId(), franchiseeBean.getStatus());
     }
 
     public void onRefresh() {

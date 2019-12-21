@@ -79,7 +79,7 @@ public class MyVoteActivity extends BaseTitleActivity implements SwipeRefreshLay
 
         switch (view.getId()) {
             case R.id.re_join_name:     //商家
-                JoinDetailsActivity.actionStart(this , bean.getFranId());
+                JoinDetailsActivity.actionStarts(this , bean.getFranId());
                 break;
             case R.id.re_vote_number:  //记录
                 VoteRecordActivity.actionStart(this, bean.getList());

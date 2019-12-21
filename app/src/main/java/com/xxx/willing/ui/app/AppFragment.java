@@ -1,7 +1,5 @@
 package com.xxx.willing.ui.app;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -46,7 +44,6 @@ public class AppFragment extends BaseFragment implements SwipeRefreshLayout.OnRe
     private List<GameBean> mList = new ArrayList<>();
     private AppGameAdapter mAdapter;
 
-
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_app;
@@ -64,7 +61,6 @@ public class AppFragment extends BaseFragment implements SwipeRefreshLayout.OnRe
 
     @OnClick({R.id.app_vote, R.id.app_partner, R.id.app_competition, R.id.app_shop, R.id.app_eth, R.id.app_btc, R.id.app_H_coin, R.id.app_huo_bi, R.id.app_kong_yi_college})
     public void OnClick(View view) {
-        Uri uri = null;
         switch (view.getId()) {
             case R.id.app_vote://投票加盟
                 VoteJoinActivity.actionStart(getActivity());
@@ -80,23 +76,20 @@ public class AppFragment extends BaseFragment implements SwipeRefreshLayout.OnRe
                 GVIShopActivity.actionStart(getActivity());
                 break;
             case R.id.app_eth:
-                uri = Uri.parse(AppConfig.APP_ETH_BROWSER);
+                BaseWebActivity.actionStart(getActivity(), AppConfig.APP_ETH_BROWSER, getString(R.string.app_eth));
                 break;
             case R.id.app_btc:
-                uri = Uri.parse(AppConfig.APP_BTC_BROWSER);
+                BaseWebActivity.actionStart(getActivity(), AppConfig.APP_BTC_BROWSER, getString(R.string.app_btc));
                 break;
             case R.id.app_H_coin:
-                uri = Uri.parse(AppConfig.APP_HCOIN_BROWSER);
+                BaseWebActivity.actionStart(getActivity(), AppConfig.APP_HCOIN_BROWSER, getString(R.string.app_H_coin));
                 break;
             case R.id.app_huo_bi:
-                uri = Uri.parse(AppConfig.APP_HUOBI_BROWSER);
+                BaseWebActivity.actionStart(getActivity(), AppConfig.APP_HUOBI_BROWSER, getString(R.string.app_huo_bi));
                 break;
             case R.id.app_kong_yi_college:
                 BaseWebActivity.actionStart(getActivity(), AppConfig.APP_Study_BROWSER, getString(R.string.app_kong_yi_college));
                 break;
-        }
-        if (uri != null) {
-            startActivity(new Intent(Intent.ACTION_VIEW, uri));
         }
     }
 

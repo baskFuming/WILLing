@@ -5,7 +5,7 @@ public class HttpConfig {
     /**
      * 服务器地址
      */
-    public static final String BASE_URL = "http://edtcchain.com/";
+    public static final String BASE_URL = "http://willing.live/";
     public static final String BASE_URL_PATH = "/willing";
 
 //    public static final String BASE_URL = "http://192.168.31.95:8080";

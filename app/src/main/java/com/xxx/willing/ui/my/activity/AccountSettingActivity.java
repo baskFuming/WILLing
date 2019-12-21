@@ -93,7 +93,7 @@ public class AccountSettingActivity extends BaseTitleActivity {
                     public void onSuccess(BaseBean<Object> bean) {
                         if (bean != null) {
                             SharedPreferencesUtil.getInstance().cleanAll();
-                            startActivity(new Intent(AccountSettingActivity.this, LoginActivity.class));
+                            LoginActivity.actionStart(AccountSettingActivity.this);
                             finish();
                         }
                     }

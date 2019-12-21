@@ -24,6 +24,7 @@ import com.xxx.willing.model.http.ApiCallback;
 import com.xxx.willing.model.http.bean.VoteDetailBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.BooleanBean;
+import com.xxx.willing.model.http.utils.ApiType;
 import com.xxx.willing.model.utils.BannerUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.app.adapter.TeamMesAdapter;
@@ -48,9 +49,10 @@ import io.reactivex.schedulers.Schedulers;
 
 public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.OnItemChildClickListener, VoteWindow.Callback {
 
-    public static void actionStart(Activity activity, int franId) {
+    public static void actionStart(Activity activity, int franId, int status) {
         Intent intent = new Intent(activity, JoinDetailsActivity.class);
         intent.putExtra("franId", franId);
+        intent.putExtra("status", status);
         activity.startActivity(intent);
     }
 
@@ -65,6 +67,7 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
         Intent intent = getIntent();
         franId = intent.getIntExtra("franId", 0);
         boolean isMy = intent.getBooleanExtra("isMy", false);
+        status = intent.getIntExtra("status", 0);
         if (isMy) {
             //自己的不显示按钮
             mBtn.setVisibility(View.GONE);
@@ -72,6 +75,7 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
     }
 
     private VoteWindow mVoteWindow;
+    private int status;
 
     @BindView(R.id.main_content)
     TextView mContent;
@@ -113,6 +117,7 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
     @BindView(R.id.notice_img)
     ImageView mImage;
 
+
     private TeamMesAdapter mAdapter;
     private List<VoteDetailBean.ListBean> mList = new ArrayList<>();
     private Integer franId;
@@ -143,6 +148,10 @@ public class JoinDetailsActivity extends BaseTitleActivity implements SwipeRefre
 
         mVoteWindow = VoteWindow.getInstance(this);
         mVoteWindow.setCallback(this);
+        if (status != ApiType.VOTE_PROGRESS_STATUE) {
+            mBtn.setClickable(false);
+            mBtn.setBackgroundResource(R.drawable.select_vote_btn);
+        }
         getVoteDetail();
     }
 

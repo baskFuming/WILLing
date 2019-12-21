@@ -203,9 +203,8 @@ public class WalletExchangeFragment extends BaseFragment implements SwipeRefresh
         targetDecimal = targetCoinBean.getCoinDecimal();
         KeyBoardUtil.setFilters(mBaseAmount, baseCoinBean.getCoinDecimal());
         mBaseAmount.setHint(getString(R.string.wallet_exchange_base_amount) + targetCoinBean.getBalance());
-        String rate = new BigDecimal(baseCoinBean.getCoinPriceUsdt()).divide(new BigDecimal(targetCoinBean.getCoinPriceUsdt()), baseCoinBean.getCoinDecimal(), BigDecimal.ROUND_DOWN).stripTrailingZeros().toPlainString();
-        this.rate = Double.parseDouble(rate);
-
+        this.rate = baseCoinBean.getCoinPriceUsdt() / targetCoinBean.getCoinPriceUsdt();
+        String rate = new BigDecimal(this.rate).setScale(baseCoinBean.getCoinDecimal(), BigDecimal.ROUND_DOWN).stripTrailingZeros().toPlainString();
         mBaseAmount.setText("");
         mTargetAmount.setText("");
         mRate.setText(getString(R.string.wallet_exchange_rate) + rate);

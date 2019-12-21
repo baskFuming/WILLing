@@ -130,6 +130,7 @@ public class BaseWebShopActivity extends BaseTitleActivity implements SubmitPop.
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
                 handler.proceed();  //接受所有证书
             }
+
         });
         mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -272,6 +273,14 @@ public class BaseWebShopActivity extends BaseTitleActivity implements SubmitPop.
             mWebView.clearCache(true);
             mWebView.stopLoading();
             mWebView.destroy();
+        }
+
+        if(mWebView != null) {
+            try {
+                mWebView.destroy();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

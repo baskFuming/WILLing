@@ -133,15 +133,15 @@ public class ShipAddressActivity extends BaseTitleActivity implements SubmitPop.
         mShopWindow = ShopWindow.getInstance(this);
         submitPop = SubmitPop.getInstance(this, this);
 
-        //获取商品详情
-        getCommodityDetail();
-
         //是否设置过地址
         if (!SharedPreferencesUtil.getInstance().getBoolean(SharedConst.IS_SETTING_ADDRESS)) {
             SettingAddressActivity.actionStart(this, SettingAddressActivity.ADD_TAG);
         } else {
             getDefaultAddress();
         }
+
+        //获取商品详情
+        getCommodityDetail();
     }
 
     @OnClick({R.id.count_reduce, R.id.count_add, R.id.submit_order, R.id.re_onclick_setting})
@@ -429,4 +429,9 @@ public class ShipAddressActivity extends BaseTitleActivity implements SubmitPop.
                 });
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        getDefaultAddress();
+    }
 }

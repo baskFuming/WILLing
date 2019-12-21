@@ -42,7 +42,7 @@ public class MyOrderAdapter extends BaseQuickAdapter<MyOrderBean, BaseViewHolder
                 .setText(R.id.order_buy_number, "x" + item.getCommNum())                                      //购买个数
                 .setText(R.id.order_all_price, item.getPrice() + "GVI")                                       //商品总价
                 .setText(R.id.order_freight_money, item.getCommodity().getFreight() + "")                      //运费
-                .setText(R.id.order_total, (item.getPrice()  + item.getCommodity().getFreight()) + "GVI")                                            //合计
+                .setText(R.id.order_total, (item.getPrice() + item.getCommodity().getFreight()) + "GVI")                                            //合计
                 .addOnClickListener(R.id.order_cancel_btn)
                 .addOnClickListener(R.id.order_cancel_pay_btn)
                 .addOnClickListener(R.id.order_un_delivery)
@@ -70,9 +70,7 @@ public class MyOrderAdapter extends BaseQuickAdapter<MyOrderBean, BaseViewHolder
                 mStatus.setText(mContext.getString(R.string.order_un_pay));
             } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_DELIVERY) { //待发货
                 mStatus.setText(mContext.getString(R.string.order_un_delivery));
-                mCancleOrder.setVisibility(View.GONE);
-                mPayOrder.setVisibility(View.GONE);
-                mDelivery.setVisibility(View.GONE);
+                helper.getView(R.id.order_bottom_click).setVisibility(View.GONE);            //底部按钮隐藏
             } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_GOODS) { //待收货
                 mStatus.setText(mContext.getString(R.string.order_merchants));
                 mCancleOrder.setVisibility(View.GONE);
@@ -86,9 +84,7 @@ public class MyOrderAdapter extends BaseQuickAdapter<MyOrderBean, BaseViewHolder
             mStatus.setText(mContext.getString(R.string.order_un_pay));
         } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_DELIVERY) {                //待发货
             mStatus.setText(mContext.getString(R.string.order_un_delivery));
-            mCancleOrder.setVisibility(View.GONE);
-            mPayOrder.setVisibility(View.GONE);
-            mDelivery.setVisibility(View.GONE);
+            helper.getView(R.id.order_bottom_click).setVisibility(View.GONE);            //底部按钮隐藏
         } else if (item.getStatus() == ApiType.ORDER_COMMUNITY_GOODS) {                   //待收货
             mStatus.setText(mContext.getString(R.string.order_merchants));
             mCancleOrder.setVisibility(View.GONE);

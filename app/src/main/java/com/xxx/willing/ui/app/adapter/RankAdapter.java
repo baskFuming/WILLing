@@ -1,5 +1,6 @@
 package com.xxx.willing.ui.app.adapter;
 
+import android.annotation.SuppressLint;
 import android.support.annotation.Nullable;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ public class RankAdapter extends BaseQuickAdapter<RankBean, BaseViewHolder> {
         super(R.layout.rank_adapter, data);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void convert(BaseViewHolder helper, RankBean item) {
         helper.setText(R.id.user_account_id, item.getNickname())
@@ -34,13 +36,13 @@ public class RankAdapter extends BaseQuickAdapter<RankBean, BaseViewHolder> {
         int position = helper.getLayoutPosition();
         if (position == 0) {
             helper.getView(R.id.partner_level).setBackgroundResource(R.drawable.rank_1);
-            mLevel.setText("1");
         } else if (position == 1) {
             helper.getView(R.id.partner_level).setBackgroundResource(R.drawable.rank_2);
-            mLevel.setText("2");
         } else if (position == 2) {
             helper.getView(R.id.partner_level).setBackgroundResource(R.drawable.rank_3);
-            mLevel.setText("3");
+        } else {
+            helper.getView(R.id.partner_level).setBackgroundResource(R.drawable.rank_4);
         }
+        mLevel.setText((position + 1) + "");
     }
 }

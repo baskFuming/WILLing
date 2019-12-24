@@ -56,9 +56,14 @@ public class InviteFriendActivity extends BaseTitleActivity {
     @Override
     protected void initData() {
         mContent.setText(getString(R.string.content_save));
-
+        String language = SharedPreferencesUtil.getInstance().getString(SharedConst.CONSTANT_LAUNCHER);
+        try {
+            language = language.split(",")[1];
+        } catch (Exception e) {
+            language = "zh";
+        }
         content = SharedPreferencesUtil.getInstance().getString(SharedConst.VALUE_USER_INVITE_CODE);
-        url = HttpConfig.INVITE_URL + content;
+        url = HttpConfig.INVITE_URL + "?language=" + language + "&invest=" + content;
         bitmap = ZXingUtil.createQRCode(url, (int) getResources().getDimension(R.dimen.zxCode_size));
 
         mImage.setImageBitmap(bitmap);

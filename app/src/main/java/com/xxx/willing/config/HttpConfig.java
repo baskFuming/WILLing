@@ -34,7 +34,7 @@ public class HttpConfig {
     public static final String COMPETITION_URL = HTTP_WEB_URL + "/competition";            //竞赛规则
     public static final String EXCHANGE_URL = HTTP_WEB_URL + "/exchange";                  //兑换须知
     public static final String TASK_URL = HTTP_WEB_URL + "/task";                          //任务规则
-    public static final String INVITE_URL = HTTP_WEB_URL + "/download/register.html";    //邀请好友地址
+    public static final String INVITE_URL = HTTP_WEB_URL + "/register";    //邀请好友地址
 
     /**
      * 配置

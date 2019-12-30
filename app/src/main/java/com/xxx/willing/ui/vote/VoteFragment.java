@@ -6,6 +6,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -19,11 +20,14 @@ import com.xxx.willing.model.http.bean.BrandBean;
 import com.xxx.willing.model.http.bean.MessageBean;
 import com.xxx.willing.model.http.bean.base.BaseBean;
 import com.xxx.willing.model.http.bean.base.PageBean;
+import com.xxx.willing.model.sp.SharedConst;
+import com.xxx.willing.model.sp.SharedPreferencesUtil;
 import com.xxx.willing.model.utils.BannerInitUtil;
 import com.xxx.willing.model.utils.ToastUtil;
 import com.xxx.willing.ui.vote.activity.NoticeCenterActivity;
 import com.xxx.willing.ui.vote.adapter.VoteAdapter;
 import com.xxx.willing.ui.vote.fragment.VoteItemFragment;
+import com.xxx.willing.view.GuideView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +57,9 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     private List<BaseFragment> mFragment = new ArrayList<>();
     private List<String> mTitle = new ArrayList<>();
     private VoteAdapter mAdapter;
+    private ImageView mskip;
+    private GuideView guideView;
+    private boolean isFirst;
 
     @Override
     protected int getLayoutId() {
@@ -61,6 +68,7 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     @Override
     protected void initData() {
+//        initListener();
         getBannerList();
         getMessageList();
         getBrandList();
@@ -85,6 +93,16 @@ public class VoteFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         });
         mRefresh.setOnRefreshListener(this);
     }
+
+//    private void initListener() {
+//        isFirst = SharedPreferencesUtil.getInstance().getBoolean(SharedConst.IS_FIRST);
+//        View view = getLayoutInflater().inflate(R.layout.home_guide_view, null);
+//        mskip = view.findViewById(R.id.img_skip);
+//        if (isFirst){
+//
+//        }
+//    }
+
 
     @OnClick({R.id.vote_relative})
     public void OnClick(View view) {

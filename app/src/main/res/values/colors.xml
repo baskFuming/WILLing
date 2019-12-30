@@ -17,4 +17,11 @@
 
     <color name="wallet_tab_default_color">#ff666666</color>
     <color name="wallet_tab_select_color">#ff333333</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="shadow">#cc222222</color>
+    <color name="Red_800">#ffb93221</color>
+    <color name="white">#fff</color>
+
+
 </resources>
